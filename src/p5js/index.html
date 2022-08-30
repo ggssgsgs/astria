@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+    <style styleSheet="css">
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      #myContainer {
+        box-sizing: border-box;
+        display: flex;
+        width: 600px;
+        height: 1000px;
+        background: rgb(0, 16, 85);
+        justify-content: center;
+        align-items: center;
+      }
+      .imgMoon {
+        width: 300px;
+        opacity: 50%;
+      }
+      .imgContainer {
+        width: 300px;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="myContainer">
+      <div class="imgContainer" id="imgContainer">
+        <img class="imgMoon" src="./img/moonBg.png" />
+      </div>
+    </div>
+
+    <script src="keyVision.js"></script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+﻿@model WebApplication1.Models.Member
+
+
+@*@{
+        Layout = null;
+    }*@
+
+<form method="post" action="Save">
+    <br /><input type="hidden" name="mID" value="@Model.mID" />
+    <p>
+        姓名
+        <br /><input type="text" name="MemberName" value="@Model.MemberName" />
+    </p>
+    <p>
+        性別
+        <br /><input type="text" name="MemberSex" value="@Model.MemberSex" />
+    </p>
+    <p>
+        生日
+        <br /><input type="text" name="MemberBirth" value="@Model.MemberBirth" />
+    </p>
+    <p>
+        出生地
+        <br /><input type="text" name="MemberBirthPlace" value="@Model.MemberBirthPlace" />
+    </p>
+    <p>
+        電話
+        <br /><input type="text" name="MemberPhone" value="@Model.MemberPhone" />
+    </p>
+    <p>
+        電子郵件
+        <br /><input type="text" name="MemberEmail" value="@Model.MemberEmail" />
+    </p>
+    <p>
+        帳戶
+        <br /><input type="text" name="MemberAccount" value="@Model.MemberAccount" />
+    </p>
+    <p>
+        <br /><input type="submit" value="送出" />
+    </p>
+
+</form>

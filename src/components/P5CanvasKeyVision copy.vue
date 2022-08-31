@@ -1,9 +1,10 @@
 <template>
-  <div id="vue-canvas">helloKEY</div>
+  <div id="vue-canvas"></div>
 </template>
 
 <script>
 import P5 from "p5";
+import IMG from "../assets/img/starHolder.png";
 export default {
   name: "VueCanvas",
   props: {
@@ -11,6 +12,7 @@ export default {
   },
   data() {
     return {
+      scr: IMG,
       myp5: {},
     };
   },
@@ -72,6 +74,7 @@ export default {
         let c2;
         const Y_AXIS = 1;
         const X_AXIS = 2;
+        let imgStarHolder;
 
         // NOTE: Set up is here
         p5.setup = (_) => {
@@ -83,10 +86,10 @@ export default {
           let myCanvas = p5.createCanvas(p5.windowWidth, p5.windowHeight);
           myCanvas.parent("vue-canvas");
           myCanvas.position(0, 0);
-          myCanvas.style("z-index", 2);
+          myCanvas.style("z-index", -2);
           p5.imgLOGO = p5.loadImage(p.imgStarHolderSrc);
           p5.imgMoonBg = p5.loadImage(p.imgStarHolderSrc);
-          p5.imgStarHolder = p5.loadImage(p.imgStarHolderSrc);
+          imgStarHolder = p5.loadImage(p.imgStarHolderSrc);
           rad = p5.height * 0.3; // compute radius for central circle
           p5.background(255); // clear the screen
 
@@ -221,11 +224,11 @@ export default {
           }
 
           p5.image(
-            p5.imgStarHolder,
-            -(p5.starHolderWidth / 2) + 5,
-            -(p5.starHolderHeight / 2) + (p5.starHolderHeight / 4) * 3,
-            p5.starHolderWidth,
-            p5.starHolderHeight
+            imgStarHolder,
+            -(starHolderWidth / 2) + 5,
+            -(starHolderHeight / 2) + (starHolderHeight / 4) * 3,
+            starHolderWidth,
+            starHolderHeight
           );
 
           for (let i = 0; i < sines.length; i++) {

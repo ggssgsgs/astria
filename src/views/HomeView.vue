@@ -40,5 +40,6 @@ export default {
 
   <div>
     <SketchMain v-bind="sketchData" />
+    <!-- <img :src="sketchData.imgStarHolderSrc" alt="" /> -->
   </div>
 </template>

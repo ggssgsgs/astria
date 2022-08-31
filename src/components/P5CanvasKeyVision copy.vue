@@ -75,7 +75,21 @@ export default {
         const Y_AXIS = 1;
         const X_AXIS = 2;
         let imgStarHolder;
+        let spiralLayer;
+        //RESIZE
+        p5.windowResized = () => {
+          //console.log("resize");
+          p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
 
+          p5.redraw();
+
+          spiralLayer = p5.createGraphics(p5.windowWidth, p5.windowHeight);
+          spiralLayer.position(0, 0);
+          spiralLayer.style("z-index", 2);
+          spiralLayer.noStroke();
+          offsetX = p5.windowWidth / 2;
+          offsetY = p5.windowWidth / 4;
+        };
         // NOTE: Set up is here
         p5.setup = (_) => {
           // const canvas = p5.createCanvas(500, 500);
@@ -98,10 +112,10 @@ export default {
           }
 
           //Create layer
-          p5.spiralLayer = p5.createGraphics(p5.width, p5.height);
-          p5.spiralLayer.position(0, 0);
-          p5.spiralLayer.style("z-index", 2);
-          p5.spiralLayer.noStroke();
+          spiralLayer = p5.createGraphics(p5.width, p5.height);
+          spiralLayer.position(0, 0);
+          spiralLayer.style("z-index", 2);
+          spiralLayer.noStroke();
 
           //set position
           offsetX = p5.width / 2;
@@ -209,7 +223,7 @@ export default {
             p5.fill(0, 255, 0); //  fill
           }
 
-          drawSpring(p5.spiralLayer);
+          drawSpring(spiralLayer);
 
           // MAIN ACTION
           p5.push(); // start a transformation matrix

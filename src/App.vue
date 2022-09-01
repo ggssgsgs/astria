@@ -76,18 +76,25 @@ import HelloWorld from "./components/HelloWorld.vue";
               </a>
               <ul class="dropdown-menu dropdown-menu-lg-end">
                 <li>
-                  <RouterLink to="/products" class="dropdown-item"
+                  <RouterLink to="/logIn" class="dropdown-item"
                     >登入</RouterLink
                   >
                 </li>
                 <li>
-                  <RouterLink to="/products" class="dropdown-item"
+                  <RouterLink to="/signUp" class="dropdown-item"
                     >註冊</RouterLink
                   >
                 </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <RouterLink to="/myInfo" class="dropdown-item"
+                    >我的帳號</RouterLink
+                  >
+                </li>
+                <li>
+                  <RouterLink to="/myOrders" class="dropdown-item"
+                    >我的預約</RouterLink
+                  >
                 </li>
               </ul>
             </div>

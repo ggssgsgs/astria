@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OurAstroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="LoginWebForm">
+    <Key>
+      <PropertyRef Name="lID" />
+    </Key>
+    <Property Name="lID" Type="int" Nullable="false" />
+    <Property Name="mID" Type="int" Nullable="false" />
+    <Property Name="MemberEmail" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MemberWebName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MemberDetail">
+    <Key>
+      <PropertyRef Name="dID" />
+    </Key>
+    <Property Name="dID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mID" Type="int" Nullable="false" />
+    <Property Name="MemberID" Type="int" Nullable="false" />
+    <Property Name="MemberName" Type="nvarchar" MaxLength="20" />
+    <Property Name="MemberBirth" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MemberBirthTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="MemberBirthPlace" Type="nvarchar" MaxLength="50" />
+    <Property Name="MemberAstro" Type="nvarchar(max)" />
+    <Property Name="MemberAstronut" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="MemberForm">
+    <Key>
+      <PropertyRef Name="mID" />
+    </Key>
+    <Property Name="mID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberID" Type="int" />
+    <Property Name="MemberName" Type="nvarchar" MaxLength="20" />
+    <Property Name="MemberSex" Type="bit" />
+    <Property Name="MemberBirth" Type="nvarchar" MaxLength="50" />
+    <Property Name="MemberBirthTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="MemberBirthPlace" Type="nvarchar" MaxLength="50" />
+    <Property Name="MemberPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="MemberEmail" Type="nvarchar" MaxLength="100" />
+    <Property Name="MemberAccount" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ProForm">
+    <Key>
+      <PropertyRef Name="pID" />
+    </Key>
+    <Property Name="pID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberID" Type="int" Nullable="false" />
+    <Property Name="ProName" Type="nvarchar" MaxLength="20" />
+    <Property Name="ProSex" Type="bit" />
+    <Property Name="ProExperience" Type="nvarchar" MaxLength="300" />
+    <Property Name="ProSelect" Type="nvarchar" MaxLength="50" />
+    <Property Name="MemberPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="MemberEmail" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProAddress" Type="nvarchar" MaxLength="100" />
+    <Property Name="MemberAccount" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ProSkillList">
+    <Key>
+      <PropertyRef Name="sID" />
+    </Key>
+    <Property Name="sID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pID" Type="int" Nullable="false" />
+    <Property Name="MemberID" Type="int" Nullable="false" />
+    <Property Name="ProName" Type="nvarchar" MaxLength="20" />
+    <Property Name="ProSkill" Type="nvarchar" MaxLength="300" />
+    <Property Name="ProCost" Type="int" />
+  </EntityType>
+  <EntityType Name="PwdForm">
+    <Key>
+      <PropertyRef Name="pwdID" />
+    </Key>
+    <Property Name="pwdID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mID" Type="int" Nullable="false" />
+    <Property Name="MemberID" Type="int" Nullable="false" />
+    <Property Name="MemberPWD" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ReserveForm">
+    <Key>
+      <PropertyRef Name="rID" />
+    </Key>
+    <Property Name="pID" Type="int" Nullable="false" />
+    <Property Name="mID" Type="int" Nullable="false" />
+    <Property Name="rID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ProSkill" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProCost" Type="int" />
+    <Property Name="ProAddress" Type="nvarchar" MaxLength="100" />
+    <Property Name="ReserveDate" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TempForm">
+    <Key>
+      <PropertyRef Name="tID" />
+    </Key>
+    <Property Name="tID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tName" Type="nvarchar" MaxLength="20" />
+    <Property Name="tBirth" Type="nvarchar" MaxLength="50" />
+    <Property Name="tBirthTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="tBirthPlace" Type="nvarchar" MaxLength="50" />
+    <Property Name="tAstro" Type="nvarchar(max)" />
+    <Property Name="tAstronut" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_LoginWebForm_MemberForm">
+    <End Role="MemberForm" Type="Self.MemberForm" Multiplicity="1" />
+    <End Role="LoginWebForm" Type="Self.LoginWebForm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberForm">
+        <PropertyRef Name="mID" />
+      </Principal>
+      <Dependent Role="LoginWebForm">
+        <PropertyRef Name="mID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberDetail_MemberForm">
+    <End Role="MemberForm" Type="Self.MemberForm" Multiplicity="1" />
+    <End Role="MemberDetail" Type="Self.MemberDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberForm">
+        <PropertyRef Name="mID" />
+      </Principal>
+      <Dependent Role="MemberDetail">
+        <PropertyRef Name="mID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProSkillList_ProForm">
+    <End Role="ProForm" Type="Self.ProForm" Multiplicity="1" />
+    <End Role="ProSkillList" Type="Self.ProSkillList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProForm">
+        <PropertyRef Name="pID" />
+      </Principal>
+      <Dependent Role="ProSkillList">
+        <PropertyRef Name="pID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PwdForm_MemberForm">
+    <End Role="MemberForm" Type="Self.MemberForm" Multiplicity="1" />
+    <End Role="PwdForm" Type="Self.PwdForm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberForm">
+        <PropertyRef Name="mID" />
+      </Principal>
+      <Dependent Role="PwdForm">
+        <PropertyRef Name="mID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReserveForm_MemberForm">
+    <End Role="MemberForm" Type="Self.MemberForm" Multiplicity="1" />
+    <End Role="ReserveForm" Type="Self.ReserveForm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberForm">
+        <PropertyRef Name="mID" />
+      </Principal>
+      <Dependent Role="ReserveForm">
+        <PropertyRef Name="mID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReserveForm_ProForm">
+    <End Role="ProForm" Type="Self.ProForm" Multiplicity="1" />
+    <End Role="ReserveForm" Type="Self.ReserveForm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProForm">
+        <PropertyRef Name="pID" />
+      </Principal>
+      <Dependent Role="ReserveForm">
+        <PropertyRef Name="pID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OurAstroModelStoreContainer">
+    <EntitySet Name="LoginWebForm" EntityType="Self.LoginWebForm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MemberDetail" EntityType="Self.MemberDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MemberForm" EntityType="Self.MemberForm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProForm" EntityType="Self.ProForm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProSkillList" EntityType="Self.ProSkillList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PwdForm" EntityType="Self.PwdForm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReserveForm" EntityType="Self.ReserveForm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TempForm" EntityType="Self.TempForm" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_LoginWebForm_MemberForm" Association="Self.FK_LoginWebForm_MemberForm">
+      <End Role="MemberForm" EntitySet="MemberForm" />
+      <End Role="LoginWebForm" EntitySet="LoginWebForm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberDetail_MemberForm" Association="Self.FK_MemberDetail_MemberForm">
+      <End Role="MemberForm" EntitySet="MemberForm" />
+      <End Role="MemberDetail" EntitySet="MemberDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProSkillList_ProForm" Association="Self.FK_ProSkillList_ProForm">
+      <End Role="ProForm" EntitySet="ProForm" />
+      <End Role="ProSkillList" EntitySet="ProSkillList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PwdForm_MemberForm" Association="Self.FK_PwdForm_MemberForm">
+      <End Role="MemberForm" EntitySet="MemberForm" />
+      <End Role="PwdForm" EntitySet="PwdForm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReserveForm_MemberForm" Association="Self.FK_ReserveForm_MemberForm">
+      <End Role="MemberForm" EntitySet="MemberForm" />
+      <End Role="ReserveForm" EntitySet="ReserveForm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReserveForm_ProForm" Association="Self.FK_ReserveForm_ProForm">
+      <End Role="ProForm" EntitySet="ProForm" />
+      <End Role="ReserveForm" EntitySet="ReserveForm" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

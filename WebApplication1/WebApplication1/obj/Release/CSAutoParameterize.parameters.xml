@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="OurAstroEntities-Web.config Connection String" description="OurAstroEntities 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="metadata=res://*/OurAstro.csdl|res://*/OurAstro.ssdl|res://*/OurAstro.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.;initial catalog=OurAstro;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\z0938\\OneDrive\\文件\\上課素材\\全端課程\\全端期末\\astro\\WebApplication1\\WebApplication1\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='OurAstroEntities']/@connectionString" />
+  </parameter>
+</parameters>

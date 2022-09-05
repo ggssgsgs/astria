@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ae47d2c2ac5549b2a91acd3067846ef2" Name="Diagram1">
+        <EntityTypeShape EntityType="OurAstroModel.LoginWebForm" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OurAstroModel.MemberDetail" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OurAstroModel.MemberForm" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OurAstroModel.ProForm" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OurAstroModel.ProSkillList" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OurAstroModel.PwdForm" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OurAstroModel.ReserveForm" Width="1.5" PointX="6" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OurAstroModel.TempForm" Width="1.5" PointX="8.75" PointY="2.75" IsExpanded="true" />
+        <AssociationConnector Association="OurAstroModel.FK_LoginWebForm_MemberForm" ManuallyRouted="false" />
+        <AssociationConnector Association="OurAstroModel.FK_MemberDetail_MemberForm" ManuallyRouted="false" />
+        <AssociationConnector Association="OurAstroModel.FK_PwdForm_MemberForm" ManuallyRouted="false" />
+        <AssociationConnector Association="OurAstroModel.FK_ReserveForm_MemberForm" ManuallyRouted="false" />
+        <AssociationConnector Association="OurAstroModel.FK_ProSkillList_ProForm" ManuallyRouted="false" />
+        <AssociationConnector Association="OurAstroModel.FK_ReserveForm_ProForm" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

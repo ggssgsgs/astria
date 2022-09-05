@@ -1,14 +1,31 @@
-import {createRouter, createWebHistory} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
+import logIn from '../views/LogIn.vue'
 import HomeView from "../views/HomeView.vue";
 
+
+
+//建立VueRouter實體物件
 const router = createRouter({
+  //history 路由模式,BASE_URL webpack.DefinePlugin 静态地嵌入到客户端侧的代码中
+
   history: createWebHistory(import.meta.env.BASE_URL),
+  //對應元件
   routes: [
     {
       path: "/",
       name: "home",
       component: HomeView,
     },
+
+    // {
+    //   path: '/',
+    //   redirect: '/logIn'
+    // },
+    // {
+    //   path: "/home",
+    //   name: "home",
+    //   component: HomeView,
+    // },
     {
       path: "/about",
       name: "about",
@@ -57,7 +74,19 @@ const router = createRouter({
       name: "myOrders",
       component: () => import("../views/MyOrders.vue"),
     },
+    
   ],
 });
+// router.beforeEach((to,from,next)=>{
+//   const toPath = to.path;
+//   const fromPath = from.path;
+//   console.log(fromPath)
+//   console.log(toPath)
+//   next()
+// });
+
+// router.onError((err) => {
+//   console.log(err)
+// })
 
 export default router;

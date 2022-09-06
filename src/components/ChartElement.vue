@@ -60,9 +60,10 @@ import {loadScript} from "vue-plugin-load-script";
 export default {
   data: () => ({
     cs: 500,
+    //by default
     astroData: {
       planets: {
-        Lilith: [18],
+        Lilith: [17],
         Chiron: [18],
         Pluto: [63],
         Neptune: [110, 0.2],
@@ -82,6 +83,7 @@ export default {
   props: {
     chartSize: Number, //read only
     testString: String,
+    chartData: Object,
   },
   created() {
     loadScript("public/js/astrochart.js")
@@ -102,6 +104,10 @@ export default {
     // document.body.appendChild(recaptchaScript);
     if (window.innerWidth < 768) {
       this.cs = window.innerWidth * 0.9;
+    }
+    console.log(this.chartData);
+    if (this.chartData != "undefined") {
+      this.astroData = this.chartData;
     }
     loadScript("public/js/astrochart.js")
       .then(() => {
@@ -178,7 +184,8 @@ export default {
         .then(() => {
           // Script is loaded, do something
           console.log("loaded");
-          console.log(this.testString);
+
+          //console.log(this.testString);
           //   var data = {
           //     planets: {
           //       Lilith: [18],

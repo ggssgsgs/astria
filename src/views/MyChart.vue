@@ -1,8 +1,15 @@
 <script>
 import Chart from "../components/ChartElement.vue";
+import DataChart from "../components/DataChart.vue";
 export default {
   components: {
     Chart,
+    DataChart,
+  },
+  data() {
+    return {
+      bindingData: {chartData: this.$store.state.myChartData},
+    };
   },
 };
 </script>
@@ -10,9 +17,11 @@ export default {
   <div class="BG">
     <div class="container m-5">
       <div class="row">
-        <div class="col-md-6 col-sm-12"><Chart></Chart></div>
+        <div class="col-md-6 col-sm-12">
+          <Chart v-bind="bindingData"></Chart>
+        </div>
 
-        <div class="col-md-6 col-sm-12">ddd</div>
+        <div class="col-md-6 col-sm-12"><DataChart /></div>
       </div>
     </div>
   </div>

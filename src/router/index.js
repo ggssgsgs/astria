@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import logIn from '../views/LogIn.vue'
 import HomeView from "../views/HomeView.vue";
-
-
+import Cookies from 'js-cookie'
 
 //建立VueRouter實體物件
 const router = createRouter({
@@ -15,17 +14,9 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
+      meta: { requireAuth: true },// 用來作為此頁是否需要權限驗證的設定
     },
 
-    // {
-    //   path: '/',
-    //   redirect: '/logIn'
-    // },
-    // {
-    //   path: "/home",
-    //   name: "home",
-    //   component: HomeView,
-    // },
     {
       path: "/about",
       name: "about",
@@ -77,14 +68,18 @@ const router = createRouter({
     
   ],
 });
-// router.beforeEach((to,from,next)=>{
-//   const toPath = to.path;
-//   const fromPath = from.path;
-//   console.log(fromPath)
-//   console.log(toPath)
-//   next()
-// });
 
+router.beforeEach((to, from, next)=>{
+  const isLogin = localStorage.getItem('token') == 'ImLogin' ;
+  if( isLogin ){
+    next();
+  } else {
+    if( to.path !== '/logIn')
+      next('/logIn');
+    else
+      next();
+  }
+});
 // router.onError((err) => {
 //   console.log(err)
 // })

@@ -14,9 +14,8 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
-      meta: { requireAuth: true },// 用來作為此頁是否需要權限驗證的設定
+      // meta: { requireAuth: true },// 用來作為此頁是否需要權限驗證的設定
     },
-
     {
       path: "/about",
       name: "about",
@@ -50,6 +49,7 @@ const router = createRouter({
       name: "logIn",
       component: () => import("../views/LogIn.vue"),
     },
+   
     {
       path: "/signUp",
       name: "signUp",
@@ -65,21 +65,28 @@ const router = createRouter({
       name: "myOrders",
       component: () => import("../views/MyOrders.vue"),
     },
+    // {
+    //   path: '*',
+    //   redirect: '/',
+    // }
     
   ],
 });
 
-router.beforeEach((to, from, next)=>{
-  const isLogin = localStorage.getItem('token') == 'ImLogin' ;
-  if( isLogin ){
-    next();
-  } else {
-    if( to.path !== '/logIn')
-      next('/logIn');
-    else
-      next();
-  }
-});
+// router.beforeEach((to, from, next)=>{
+//   const isLogin = localStorage.getItem('token') == 'ImLogin' ;
+//   if( isLogin ){
+//     next();
+//   } else {
+//     if( to.path !== '/logIn')
+//       next('/logIn')
+     
+//     else
+//       next();
+//   }
+// });
+
+
 // router.onError((err) => {
 //   console.log(err)
 // })

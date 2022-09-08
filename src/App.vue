@@ -1,5 +1,5 @@
 <script setup>
-import {RouterLink, RouterView} from "vue-router";
+import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
@@ -80,6 +80,11 @@ import HelloWorld from "./components/HelloWorld.vue";
                     >登入</RouterLink
                   >
                 </li>
+                <li @click="logOut" class="dropdown-item">登出
+                  <!-- <RouterLink to="/"  class="dropdown-item"
+                    ></RouterLink
+                  > -->
+                </li>
                 <li>
                   <RouterLink to="/signUp" class="dropdown-item"
                     >註冊</RouterLink
@@ -106,5 +111,16 @@ import HelloWorld from "./components/HelloWorld.vue";
 
   <RouterView />
 </template>
+<script>
+export default {
+  methods: {
+    logOut() {
+      localStorage.removeItem("token");
+      this.$router.push("/");
+    },
+  },
+};
+</script>
+
 
 <style scoped></style>

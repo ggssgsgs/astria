@@ -1,10 +1,12 @@
 <template>
   <div class="login-containt">
     <!-- 忘記密碼 -->
-    <login-by-code 
-    @pchecked="paddchick"
-    @pdeleted="pdeletechick"
-    v-show="logonType === 'code'"> </login-by-code>
+    <login-by-code
+      @pchecked="paddchick"
+      @pdeleted="pdeletechick"
+      v-show="logonType === 'code'"
+    >
+    </login-by-code>
     <!-- 登入頁面 -->
     <login-by-pwd
       @checked="addchick"
@@ -56,42 +58,46 @@ export default {
     return {
       logonType: "pwd",
       datas: [],
+      info: null,
 
       // 登入
       users: [],
       passwords: [],
 
-     // 修改密碼
-    userpassword:{
-      ppasswords: [],
-      prepasswords: [],
-    },
-      
+      // 修改密碼
+      userpassword: {
+        ppasswords: [],
+        prepasswords: [],
+      },
+
       token: "",
     };
   },
   methods: {
-
-    paddchick(item){
-      console.log(item);
-      this.userpassword.ppasswords.push(item.password)
-      this.userpassword.prepasswords.push(item.repassword)
+    //忘記密碼，觸發事件，抓取子物件回傳
+    paddchick(item) {
+      // console.log(item);
+      this.userpassword.ppasswords.push(item.password);
+      this.userpassword.prepasswords.push(item.repassword);
     },
-    pdeleted(){
+    //忘記密碼，觸發事件，刪除資料
+    pdeleted() {
       this.userpassword.ppasswords.splice(0);
       this.userpassword.prepasswords.splice(0);
     },
 
-
+    //登入頁面,，觸發事件，抓取子物件回傳
     addchick(item) {
       console.log(item.username, item.password);
       this.users.push(item.username);
       this.passwords.push(item.password);
     },
+    //登入頁面,，觸發事件，刪除資料
     deletechick() {
       this.users.splice(0);
       this.passwords.splice(0);
     },
+    //按鈕click後，判斷是否能進入登入
     onSubmit() {
       //   const token = "asds32adsavrAS3Fadf5567"; // token本身就是加密過的字串，隨意
       let username = this.users[this.users.length - 1];
@@ -102,16 +108,18 @@ export default {
       console.log(username);
       console.log(password);
 
-      for (let i = 0; i < this.datas.length; i++) {
-        console.log(this.datas[i]);
-      }
-      console.log(this.datas[0].MemberEmail);
-      console.log(this.datas[0].MemberAccount);
+      // for (let i = 0; i < this.datas.length; i++) {
+      //   console.log(this.datas[i]);
+      // }
+      // console.log(this.datas[0].MemberEmail);
+      // console.log(this.datas[0].MemberAccount);
 
+      //判斷是登入頁面還是忘記密碼
       if (this.$data.logonType === "pwd") {
         // this.$router.push("/");
         //Email :ss@gmail.com
         //Password: ourss1
+
         if (username == usernameImfor && password == passwordImfor) {
           //  fetch("http://20.41.120.3/api/Login", {
           //   method: "POST",
@@ -145,10 +153,52 @@ export default {
       } else {
         // 忘記密碼
         // this.$router.push('/');
+        let ppasswordslen = this.userpassword.ppasswords.length;
+        let ppasswords = this.userpassword.ppasswords[ppasswordslen-1];
+
+        let prepasswordslen=this.userpassword.prepasswords.length;
+        let prepasswords = this.userpassword.prepasswords[prepasswordslen-1];
+
+        console.log(ppasswords);
+        console.log(ppasswordslen);
+        console.log(prepasswordslen);
+        console.log(prepasswords);
+
+        // axios
+        //   .post("http://localhost/api/Our")
+        //   .then((response) => (this.info = response))
+        //   .catch(function (error) {
+        //     // 请求失败处理
+        //     console.log(error);
+        //   });
+        //   console.log(info);
+
+        fetch("http://20.41.120.3/api/Login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json;charset =utf-8",
+          },
+          body: JSON.stringify({
+            'Email': ppasswords,
+            'Password': prepasswords,
+          }),
+        })
+          .then(function (re) {
+            return re.json();
+          })
+          .then(function (body) {
+            console.log(body);
+            console.log(body.length);
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
+
         this.$data.logonType = "pwd";
         console.log("忘記密碼");
       }
     },
+
     onChangeLoginType() {
       if (this.$data.logonType === "pwd") {
         this.$data.logonType = "code";
@@ -157,6 +207,8 @@ export default {
       }
       console.log("切換登入方式");
     },
+
+    //測試用登出按鈕
     logOut() {
       localStorage.removeItem("token");
       this.$router.push("/");

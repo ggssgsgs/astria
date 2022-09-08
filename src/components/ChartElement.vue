@@ -4,6 +4,7 @@
 
 <script>
 import {loadScript} from "vue-plugin-load-script";
+import {useStore} from "vuex";
 
 // import DrawChart from "../AstroChart-master/project/build/astrochart.js";
 // export default {
@@ -62,22 +63,22 @@ export default {
     cs: 500,
     //by default
     astroData: {
-      planets: {
-        Lilith: [17],
-        Chiron: [18],
-        Pluto: [63],
-        Neptune: [110, 0.2],
-        Uranus: [318],
-        Saturn: [201, -0.2],
-        Jupiter: [192],
-        Mars: [210],
-        Moon: [268],
-        Sun: [281],
-        Mercury: [312],
-        Venus: [330],
-        NNode: [2],
-      },
-      cusps: [296, 350, 30, 56, 75, 94, 116, 170, 210, 236, 255, 274],
+      //   planets: {
+      //     Lilith: [17],
+      //     Chiron: [18],
+      //     Pluto: [63],
+      //     Neptune: [110, 0.2],
+      //     Uranus: [318],
+      //     Saturn: [201, -0.2],
+      //     Jupiter: [192],
+      //     Mars: [210],
+      //     Moon: [268],
+      //     Sun: [281],
+      //     Mercury: [312],
+      //     Venus: [330],
+      //     NNode: [2],
+      //   },
+      //   cusps: [296, 350, 30, 56, 75, 94, 116, 170, 210, 236, 255, 274],
     },
   }),
   props: {
@@ -86,6 +87,7 @@ export default {
     chartData: Object,
   },
   created() {
+    console.log(" chart element created");
     loadScript("public/js/astrochart.js")
       .then(() => {
         // Script is loaded, do something
@@ -102,63 +104,81 @@ export default {
     // let recaptchaScript = document.createElement("script");
     // recaptchaScript.setAttribute("src", "./astrochart.js");
     // document.body.appendChild(recaptchaScript);
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 992) {
       this.cs = window.innerWidth * 0.9;
     }
+    if (window.innerWidth < 1140 && window.innerWidth > 992) {
+      this.cs = 500 * (window.innerWidth / 1200);
+    }
+
     console.log(this.chartData);
     if (this.chartData != "undefined") {
       this.astroData = this.chartData;
-    }
-    loadScript("public/js/astrochart.js")
-      .then(() => {
-        // Script is loaded, do something
-        console.log("loaded");
-        console.log(this.testString);
-        // var data = {
-        //   planets: {
-        //     Lilith: [18],
-        //     Chiron: [18],
-        //     Pluto: [63],
-        //     Neptune: [110, 0.2],
-        //     Uranus: [318],
-        //     Saturn: [201, -0.2],
-        //     Jupiter: [192],
-        //     Mars: [210],
-        //     Moon: [268],
-        //     Sun: [281],
-        //     Mercury: [312],
-        //     Venus: [330],
-        //     NNode: [2],
-        //   },
-        //   cusps: [296, 350, 30, 56, 75, 94, 116, 170, 210, 236, 255, 274],
-        // };
-        // window.onload = function () {
-        var radix = new astrology.Chart("paper", this.cs, this.cs).radix(
-          this.astroData
-        );
-        // Aspect calculation
-        // default is planet to planet, but it is possible add some important points:
-        radix.addPointsOfInterest({
-          As: [this.astroData.cusps[0]],
-          Ic: [this.astroData.cusps[3]],
-          Ds: [this.astroData.cusps[6]],
-          Mc: [this.astroData.cusps[9]],
-        });
-        radix.aspects();
 
-        //};
-      })
-      .catch(() => {
-        // Failed to fetch script
-        console.log("chart failed to load");
-      });
+      console.log("not undefined");
+      console.log("this.chartData in [ChartElement.vue]", this.chartData);
+    }
+
+    //reload_newdata
+    window.setTimeout(() => {
+      loadScript("public/js/astrochart.js")
+        .then(() => {
+          // Script is loaded, do something
+          console.log("astroChart.js loaded, draw chart from chartData");
+          console.log("this.chartData in [ChartElement.vue]", this.astroData);
+          //console.log(this.testString);
+          // var data = {
+          //   planets: {
+          //     Lilith: [18],
+          //     Chiron: [18],
+          //     Pluto: [63],
+          //     Neptune: [110, 0.2],
+          //     Uranus: [318],
+          //     Saturn: [201, -0.2],
+          //     Jupiter: [192],
+          //     Mars: [210],
+          //     Moon: [268],
+          //     Sun: [281],
+          //     Mercury: [312],
+          //     Venus: [330],
+          //     NNode: [2],
+          //   },
+          //   cusps: [296, 350, 30, 56, 75, 94, 116, 170, 210, 236, 255, 274],
+          // };
+          // window.onload = function () {
+
+          var radix = new astrology.Chart("paper", this.cs, this.cs).radix(
+            this.astroData
+          );
+          // Aspect calculation
+          // default is planet to planet, but it is possible add some important points:
+          radix.addPointsOfInterest({
+            As: [this.astroData.cusps[0]],
+            Ic: [this.astroData.cusps[3]],
+            Ds: [this.astroData.cusps[6]],
+            Mc: [this.astroData.cusps[9]],
+          });
+          radix.aspects();
+
+          //};
+        })
+        .catch(() => {
+          // Failed to fetch script
+          console.log("chart failed to load");
+        });
+    }, 100);
   },
+  beforeUpdate() {
+    console.log("before updated");
+  },
+
   updated() {
     console.log("updated");
   },
   created() {
     window.addEventListener("resize", this.myEventHandler);
   },
+
   destroyed() {
     window.removeEventListener("resize", this.myEventHandler);
   },
@@ -167,10 +187,10 @@ export default {
       // your code for handling resize...
 
       //change size
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 992) {
         this.cs = window.innerWidth * 0.9;
       } else {
-        this.cs = 500;
+        this.cs = 500 * (window.innerWidth / 1200);
       }
 
       //delete the existing element
@@ -183,7 +203,7 @@ export default {
       loadScript("public/js/astrochart.js")
         .then(() => {
           // Script is loaded, do something
-          console.log("loaded");
+          console.log("loaded and rewriteCanvas");
 
           //console.log(this.testString);
           //   var data = {
@@ -236,7 +256,7 @@ export default {
   background-color: #fff;
 }
 .block {
-  background: rgb(0, 16, 85);
+  background: transparent;
   display: flex;
   justify-content: center;
 }

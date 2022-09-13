@@ -14,10 +14,10 @@
       v-show="logonType === 'pwd'"
     >
     </login-by-pwd>
-    <button class="login-button" @click="onSubmit">登入</button>
+    <button id="login" class="login-button" @click="onSubmit">{{msg}}</button>
     <br />
     <div class="login-bottom-containt">
-      <button
+      <button 
         class="change-login-type"
         @click="onChangeLoginType"
         v-show="logonType === 'pwd'"
@@ -57,6 +57,7 @@ export default {
   data() {
     return {
       logonType: "pwd",
+      msg:'登入',
       datas: [],
       info: null,
 
@@ -164,15 +165,6 @@ export default {
         console.log(prepasswordslen);
         console.log(prepasswords);
 
-        // axios
-        //   .post("http://localhost/api/Our")
-        //   .then((response) => (this.info = response))
-        //   .catch(function (error) {
-        //     // 请求失败处理
-        //     console.log(error);
-        //   });
-        //   console.log(info);
-
         fetch("http://20.41.120.3/api/Login", {
           method: "POST",
           headers: {
@@ -193,7 +185,7 @@ export default {
           .catch(function (err) {
             console.log(err);
           });
-
+        
         this.$data.logonType = "pwd";
         console.log("忘記密碼");
       }
@@ -202,8 +194,10 @@ export default {
     onChangeLoginType() {
       if (this.$data.logonType === "pwd") {
         this.$data.logonType = "code";
+        this.msg="送出"
       } else {
         this.$data.logonType = "pwd";
+        
       }
       console.log("切換登入方式");
     },

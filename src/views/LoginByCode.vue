@@ -14,8 +14,7 @@ export default {
         return{
             userForm:{
                  password: '',
-                 repassword: '',
-                 
+                 repassword: '',  
             }
 
         }

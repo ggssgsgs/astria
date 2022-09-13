@@ -1,6 +1,6 @@
 <script setup>
 import {RouterLink, RouterView} from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+//import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
@@ -31,7 +31,7 @@ import HelloWorld from "./components/HelloWorld.vue";
             class="d-flex me-auto mb-sm-3 mt-sm-3 mb-md-0 mt-md-0"
             role="search"
           >
-            <input
+            <!-- <input
               class="form-control me-2"
               type="search"
               placeholder="Search"
@@ -39,7 +39,7 @@ import HelloWorld from "./components/HelloWorld.vue";
             />
             <button class="btn btn-outline-secondary" type="submit">
               Search
-            </button>
+            </button> -->
           </form>
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">

@@ -45,6 +45,11 @@ const router = createRouter({
       component: () => import("../views/Products.vue"),
     },
     {
+      path: "/productShop",
+      name: "productShop",
+      component: () => import("../views/ProductShop.vue"),
+    },
+    {
       path: "/logIn",
       name: "logIn",
       component: () => import("../views/LogIn.vue"),
@@ -70,6 +75,7 @@ const router = createRouter({
       name: "myOrders",
       component: () => import("../views/MyOrders.vue"),
     },
+    
     // {
     //   path: '*',
     //   redirect: '/',

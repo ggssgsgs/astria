@@ -14,10 +14,10 @@
       v-show="logonType === 'pwd'"
     >
     </login-by-pwd>
-    <button id="login" class="login-button" @click="onSubmit">{{msg}}</button>
+    <button id="login" class="login-button" @click="onSubmit">{{ msg }}</button>
     <br />
     <div class="login-bottom-containt">
-      <button 
+      <button
         class="change-login-type"
         @click="onChangeLoginType"
         v-show="logonType === 'pwd'"
@@ -36,10 +36,9 @@
       <span><RouterLink to="/signUp">立即註冊</RouterLink></span>
       <!-- <p>{{ datsas[0]}}</p> -->
     </div>
-    <button @click="logOut">登出</button>
-    <!-- <div>
-        <p v-for="(value,key) in datas">{{value.MemberEmail}}</p>
-    </div> -->
+    <div>
+      <p>{{ datas }}</p>
+    </div>
   </div>
 </template>
 
@@ -57,8 +56,9 @@ export default {
   data() {
     return {
       logonType: "pwd",
-      msg:'登入',
-      datas: [],
+      msg: "登入",
+      a: "",
+      b: "",
       info: null,
 
       // 登入
@@ -66,11 +66,7 @@ export default {
       passwords: [],
 
       // 修改密碼
-      userpassword: {
-        ppasswords: [],
-        prepasswords: [],
-      },
-
+      chemail: [],
       token: "",
     };
   },
@@ -78,15 +74,12 @@ export default {
     //忘記密碼，觸發事件，抓取子物件回傳
     paddchick(item) {
       // console.log(item);
-      this.userpassword.ppasswords.push(item.password);
-      this.userpassword.prepasswords.push(item.repassword);
+      this.chemail.push(item.email);
     },
     //忘記密碼，觸發事件，刪除資料
     pdeleted() {
-      this.userpassword.ppasswords.splice(0);
-      this.userpassword.prepasswords.splice(0);
+      this.chemail.splice(0);
     },
-
     //登入頁面,，觸發事件，抓取子物件回傳
     addchick(item) {
       console.log(item.username, item.password);
@@ -103,121 +96,90 @@ export default {
       //   const token = "asds32adsavrAS3Fadf5567"; // token本身就是加密過的字串，隨意
       let username = this.users[this.users.length - 1];
       let password = this.passwords[this.passwords.length - 1];
-      let usernameImfor = this.datas[0].MemberEmail;
-      let passwordImfor = this.datas[0].MemberAccount;
-
-      console.log(username);
-      console.log(password);
-
-      // for (let i = 0; i < this.datas.length; i++) {
-      //   console.log(this.datas[i]);
-      // }
-      // console.log(this.datas[0].MemberEmail);
-      // console.log(this.datas[0].MemberAccount);
 
       //判斷是登入頁面還是忘記密碼
       if (this.$data.logonType === "pwd") {
-        // this.$router.push("/");
-        //Email :ss@gmail.com
-        //Password: ourss1
-
-        if (username == usernameImfor && password == passwordImfor) {
-          //  fetch("http://20.41.120.3/api/Login", {
-          //   method: "POST",
-          //   headers: {
-          //     "Content-Type": "application/json;charset =utf-8",
-          //   },
-          //   body: JSON.stringify({
-          //     'Email': username,
-          //     'Password': password,
-          //   }),
-          // })
-          //   .then(function (response) {
-          //     return response.json();
-          //   })
-          //   .then(function (body) {
-          //     console.log(body);
-          //     console.log(body.length);
-          //   })
-          //   .catch(function (err) {
-          //     console.log(err);
-          //   });
-          localStorage.setItem("token", "ImLogin");
-          this.$router.push("/");
-          // 密碼登入
-          console.log("密碼登入");
-        } else {
-          alert("login failed");
-          //   console.log(username);
-          //   console.log(password);
-        }
-      } else {
-        // 忘記密碼
-        // this.$router.push('/');
-        let ppasswordslen = this.userpassword.ppasswords.length;
-        let ppasswords = this.userpassword.ppasswords[ppasswordslen-1];
-
-        let prepasswordslen=this.userpassword.prepasswords.length;
-        let prepasswords = this.userpassword.prepasswords[prepasswordslen-1];
-
-        console.log(ppasswords);
-        console.log(ppasswordslen);
-        console.log(prepasswordslen);
-        console.log(prepasswords);
-
-        fetch("http://20.41.120.3/api/Login", {
+        fetch("http://52.139.170.100/api/LoginIn", {
           method: "POST",
           headers: {
             "Content-Type": "application/json;charset =utf-8",
           },
           body: JSON.stringify({
-            'Email': ppasswords,
-            'Password': prepasswords,
+            Email: username,
+            Password: password,
+          }),
+        })
+          .then(function (response) {
+            return response.json();
+          })
+          .then((body) => {
+            console.log(body.Msg);
+            this.a = body.Msg;
+            console.log(this.a);
+            if (this.a == "登入成功") {
+              localStorage.setItem("token", "ImLogin");
+              this.$router.push("/");
+            }
+          })
+          // .then(body => this.datas = body.Msg
+          // )
+          .catch(function (err) {
+            console.log(err);
+          });
+      } else {
+        // 忘記密碼
+        // this.$router.push('/');
+        let chemaillen = this.chemail.length;
+        let chemails = this.chemail[chemaillen - 1];
+        console.log(chemails);
+
+        fetch("http://52.139.170.100/api/RePWD", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json;charset =utf-8",
+          },
+          body: JSON.stringify({
+            Email: chemails,
           }),
         })
           .then(function (re) {
             return re.json();
           })
-          .then(function (body) {
+          .then((body) => {
             console.log(body);
-            console.log(body.length);
+            this.b = body.Status;
+            if (this.b == "1") {
+              this.$data.logonType = "pwd";
+              console.log("忘記密碼");
+            }
           })
           .catch(function (err) {
             console.log(err);
           });
-        
-        this.$data.logonType = "pwd";
-        console.log("忘記密碼");
       }
     },
 
     onChangeLoginType() {
       if (this.$data.logonType === "pwd") {
         this.$data.logonType = "code";
-        this.msg="送出"
+        this.msg = "送出";
       } else {
         this.$data.logonType = "pwd";
-        
+        this.msg = "登入";
       }
       console.log("切換登入方式");
     },
-
-    //測試用登出按鈕
-    logOut() {
-      localStorage.removeItem("token");
-      this.$router.push("/");
-    },
   },
-  mounted: function () {
-    axios
-      //   .get("https://randomuser.me/api/?results=100") //測試api發出請求
-      .get("http://localhost/api/Our") //發出請求
-      //   .then((res) => console.log(res.data))
-      .then((res) => (this.datas = res.data))
-      .catch((error) => {
-        console.log(error);
-      });
-  },
+  // mounted: function () {
+  //   axios
+  //     //   .get("https://randomuser.me/api/?results=100") //測試api發出請求
+  //     .get("http://localhost/api/Our") //發出請求
+  //     //   .then((res) => console.log(res.data))
+  //     .then((res) => (this.datas = res.data))
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // },
 };
 </script>
 

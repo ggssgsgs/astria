@@ -44,6 +44,7 @@
     <button class="singup-submit" @click="nativeSubmit" :disabled="status">
       註冊
     </button>
+    <p><router-link to="/signUpForm">表單</router-link></p>
   </div>
 </template>
 <script>
@@ -52,6 +53,10 @@ export default {
   data() {
     return {
       message: "送出驗證碼",
+      remsg: "",
+      retime: "",
+      reMsgg: "",
+      resingupmsg: "",
       user: {
         username: { value: "", msg: "" },
         password: { value: "", msg: "" },
@@ -102,19 +107,75 @@ export default {
     nativeSubmit() {
       if (!this.submitDisabled) {
         if (this.user.password.value == this.user.repassword.value) {
-          this.$router.push("/signUpForm");
-          console.log("註冊成功");
+          let ckemail = this.user.username.value;
+          let chpwd = this.user.password.value;
+          let chCode = this.user.code.value;
+          console.log(ckemail);
+          console.log(chpwd);
+          fetch("http://52.139.170.100/api/basicsignup", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json;charset =utf-8",
+            },
+            body: JSON.stringify({
+              Email: ckemail,
+              Password: chpwd,
+              Code: chCode,
+            }),
+          })
+            .then(function (response) {
+              return response.json();
+            })
+            .then((body) => {
+              console.log(body);
+              this.resingupmsg = body.Status;
+              if (this.resingupmsg == "1"&&this.remsg=="1") {
+                this.$router.push("/signUpForm");
+                console.log("註冊成功");
+              }
+            })
+            .catch(function (err) {
+              console.log(err);
+            });
         }
       } else {
         console.log("註冊失敗");
       }
     },
     onChange() {
-      if (this.message == "送出驗證碼") {
-        this.message = "重新送出驗證碼";
-      } else {
-        this.message = "送出驗證碼";
-      }
+      let ckemail = this.user.username.value;
+      let chpwd = this.user.password.value;
+      console.log(ckemail);
+      console.log(chpwd);
+      fetch("http://52.139.170.100/api/Confirm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset =utf-8",
+        },
+        body: JSON.stringify({
+          Email: ckemail,
+          Password: chpwd,
+        }),
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then((body) => {
+          console.log(body);
+          this.remsg = body.Status;
+          this.retime = body.RemainingSec;
+          this.reMsgg = body.Msg;
+          if (this.remsg == "1" && this.retime == "0") {
+            this.message = "已傳送驗證碼";
+          } else if (this.remsg == "5" || this.remsg == "4") {
+            this.message = `驗證碼傳送錯誤(${this.reMsgg})`;
+          } else {
+            this.message = `送出驗證碼(請於${this.retime}秒後再送出)`;
+          }
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
     },
 
     fbsingup() {

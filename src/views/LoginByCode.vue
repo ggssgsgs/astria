@@ -1,8 +1,6 @@
 <template>
     <div class="login-code">
-        <input v-model="userForm.password" @keyup.delete="keydelete" @keyup.tab="keyenter1" @keyup.enter="keyenter1" placeholder="請輸入密碼"/>
-        <br/>
-        <input v-model="userForm.repassword" @keyup.delete="keydelete" @keyup.tab="keyenter1" @keyup.enter="keyenter1" @blur="keyenter1" placeholder="請重新輸入密碼"/>
+        <input v-model="userForm.email" @keyup.delete="keydelete" @keyup.tab="keyenter1" @keyup.enter="keyenter1" @blur="keyenter1" placeholder="請輸入信箱"/>
     </div>
 </template>
 
@@ -13,10 +11,8 @@ export default {
     data(){
         return{
             userForm:{
-                 password: '',
-                 repassword: '',  
+                 email: '',    
             }
-
         }
     },
     methods: {

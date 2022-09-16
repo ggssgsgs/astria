@@ -7,11 +7,17 @@
     <form>
       <label for=""
         >姓名:
-        <input type="text" v-model="form.name.value" placeholder="請輸入姓名" required autofocus/>
+        <input
+          type="text"
+          v-model="form.name.value"
+          placeholder="請輸入姓名"
+          required
+          autofocus
+        />
         <div class="el-form-item__error">{{ form.name.msg }}</div>
       </label>
       <label for=""
-        >性別: 
+        >性別:
         <input v-model="form.gender.value" type="radio" value="male" />Male
         <input v-model="form.gender.value" type="radio" value="female" />Female
         <input v-model="form.gender.value" type="radio" value="others" />Others
@@ -29,13 +35,13 @@
       </label>
       <label for=""
         >出生地:
-        <select >
+        <select>
           <option value="" disabled>-- 請選擇出生地 --</option>
           <!--<option v-for="address in addresslist" v-on:change="setplace" :key="address" :value="address">{{address}}</option>-->
           <option
             v-for="address in form.addresslist"
             :key="address"
-            :value="address" 
+            :value="address"
           >
             {{ address }}
           </option>
@@ -47,7 +53,8 @@
           type="text"
           v-model="form.phone.value"
           @change="nativeValidate(form, 'phone')"
-          placeholder="請輸入電話" required
+          placeholder="請輸入電話"
+          required
         />
         <div class="el-form-item__error">{{ form.phone.msg }}</div>
       </label>
@@ -57,22 +64,26 @@
           type="text"
           v-model="form.email.value"
           @change="nativeValidate(form, 'email')"
-          placeholder="請輸入Email" required
+          placeholder="請輸入Email"
+          required
         />
         <div class="el-form-item__error">{{ form.email.msg }}</div>
       </label>
 
       <div>
-        <button @click="nativeSubmit" :disabled="status" >送出</button>
+        <button @click="nativeSubmit" :disabled="status">送出</button>
       </div>
     </form>
   </div>
 </template>
 <script>
-import { reg_phoneType2, reg_email } from "../utils/validate";
+import { reg_phoneType2 } from "../utils/validate";
+import { reg_email } from "../utils/validate";
 export default {
   data() {
     return {
+      remsg: "",
+      remsgg: "",
       form: {
         name: { value: "", msg: "" },
         gender: { value: "male", msg: "" },
@@ -113,16 +124,20 @@ export default {
     nativeValidate(target, key) {
       let checkPhone = reg_phoneType2(target.phone.value);
       let checkEmail = reg_email(target.email.value);
-      const arr = [checkPhone, checkEmail];
+      const arr = [checkPhone];
 
       // 驗證未通過則顯示msg內的訊息
       switch (key) {
-        case 'phone':
-          checkPhone == true ? target.phone.msg = '' : target.phone.msg = '手機號碼格式錯誤或未輸入'
-          break
-        case 'email':
-          checkEmail == true ? target.email.msg = '' : target.email.msg = 'Email格式錯誤或未輸入'
-          break
+        case "phone":
+          checkPhone == true
+            ? (target.phone.msg = "")
+            : (target.phone.msg = "手機號碼格式錯誤或未輸入");
+          break;
+        case "email":
+          checkPhone == true
+            ? (target.email.msg = "")
+            : (target.email.msg = "信箱號碼格式錯誤或未輸入");
+          break;
       }
       // 用find只會撈回符合條件第一個值的特性，任何一個驗證規則沒通過就不能讓送出表單的按鈕被啟用
       let result = arr.find((item) => {
@@ -137,21 +152,52 @@ export default {
       console.log("form: ", arr, result);
     },
     nativeSubmit() {
-      
       if (!this.submitDisabled) {
-         this.$router.push("/");
-         console.log("登入成功");
-        // 如果沒有啟用disabled，代表驗證條件皆符合
-        // this.$message({
-        //   message: "登入成功",
-        //   type: "success",
-          
-        // });
-       
+        let chName = this.form.name.value;
+        let chGender = this.form.gender.value;
+        let chDate = this.form.date.value;
+        let chTime = this.form.time.value;
+        let chadress = this.form.address.value;
+        let chPhone = this.form.phone.value;
+        let chEmail = this.form.email.value;
+
+        fetch("http://52.139.170.100/api/secondsignup", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json;charset =utf-8",
+          },
+          body: JSON.stringify({
+            Name: chName,
+            Sex: chGender,
+            Birth: chDate,
+            BirthTime: chTime,
+            BirthPlace: chadress,
+            Phone: chPhone,
+            Email: chEmail,
+          }),
+        })
+          .then(function (response) {
+            return response.json();
+          })
+          .then((body) => {
+            console.log(body);
+            this.remsg = body.Status;
+            this.remsgg = body.Msg;
+            if (this.remsg == "1") {
+              localStorage.setItem("token", "ImLogin");
+              this.$router.push("/");
+              console.log("登入成功");
+            }
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
         
+
         // 接下來就是進入表單下一步動作，反之阻擋住
       } else {
         console.log("登入失敗");
+
         // this.$message({
         //   message: "登入失敗",
         //   type: "warning",

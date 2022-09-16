@@ -1,6 +1,5 @@
 <script setup>
 import {RouterLink, RouterView} from "vue-router";
-//import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
@@ -31,7 +30,7 @@ import {RouterLink, RouterView} from "vue-router";
             class="d-flex me-auto mb-sm-3 mt-sm-3 mb-md-0 mt-md-0"
             role="search"
           >
-            <!-- <input
+            <input
               class="form-control me-2"
               type="search"
               placeholder="Search"
@@ -39,7 +38,7 @@ import {RouterLink, RouterView} from "vue-router";
             />
             <button class="btn btn-outline-secondary" type="submit">
               Search
-            </button> -->
+            </button>
           </form>
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">
@@ -80,6 +79,12 @@ import {RouterLink, RouterView} from "vue-router";
                     >登入</RouterLink
                   >
                 </li>
+                <li @click="logOut" class="dropdown-item">
+                  登出
+                  <!-- <RouterLink to="/"  class="dropdown-item"
+                    ></RouterLink
+                  > -->
+                </li>
                 <li>
                   <RouterLink to="/signUp" class="dropdown-item"
                     >註冊</RouterLink
@@ -106,5 +111,33 @@ import {RouterLink, RouterView} from "vue-router";
 
   <RouterView />
 </template>
+<script>
+export default {
+  methods: {
+    logOut() {
+      localStorage.removeItem("token");
+      this.$router.push("/");
+    },
+  },
+};
+</script>
 
 <style scoped></style>
+<style>
+* {
+  margin: 0px;
+  padding: 0px;
+  color: gray;
+}
+.BG {
+  background: rgb(0, 2, 53);
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+p {
+  color: white;
+}
+h1 {
+}
+</style>

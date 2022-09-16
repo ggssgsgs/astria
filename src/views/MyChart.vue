@@ -4,12 +4,26 @@ import DataChart from "../components/DataChart.vue";
 import ChartDesc from "../components/ChartDesc.vue";
 import {useStore} from "vuex";
 
+//import sign logos
+import lAries from "../assets/img/signLogos/Aries_pink_400p.png";
+import lTarus from "../assets/img/signLogos/Tarus_pink_400p.png";
+import lGemini from "../assets/img/signLogos/Gemini_pink_400p.png";
+import lCancer from "../assets/img/signLogos/Cancer_pink_400p.png";
+import lLeo from "../assets/img/signLogos/Leo_pink_400p.png";
+import lVirgo from "../assets/img/signLogos/Virgo_pink_400p.png";
+import lLibra from "../assets/img/signLogos/Libra_pink_400p.png";
+import lScorpio from "../assets/img/signLogos/Scorpio_pink_400p.png";
+import lSagitarius from "../assets/img/signLogos/Sagitarius_pink_400p.png";
+import lCapricorn from "../assets/img/signLogos/Capricorn_pink_400p.png";
+import lAquarius from "../assets/img/signLogos/Aquarius_pink_400p.png";
+import lPisces from "../assets/img/signLogos/Pisces_pink_400p.png";
+
 export default {
   setup() {
     const store = useStore();
 
     return {
-      getMyChartData: () => store.dispatch("getMyChartData"),
+      //getMyChartData: () => store.dispatch("getMyChartData"),
     };
   },
   components: {
@@ -21,15 +35,47 @@ export default {
     //this.$store.dispatch("getMyChartData");
     return {
       bindingData: {chartData: this.$store.state.myChartData},
-
+      //api: "http://52.139.170.100:3333/horoscope?time=1995-07-07T03:08:00Z&latitude=25.11111&longitude=120.11111&houseSystem=P",
       content: "ChartDesc",
+
+      logoSigns: [
+        lAries,
+        lTarus,
+        lGemini,
+        lCancer,
+        lLeo,
+        lVirgo,
+        lLibra,
+        lScorpio,
+        lSagitarius,
+        lCapricorn,
+        lAquarius,
+        lPisces,
+      ],
+      //沒用到
+
+      currentSign: 1,
     };
   },
   beforeMount() {
     console.log("myChar.vue beforeMount");
+    ////vvv testing tto set the data to some other
+    this.$store.state.currentAPIsrc = this.$store.state.friends[0].astroAPI;
     this.$store.dispatch("getMyChartData");
     console.log(this.$store.state.myChartData);
     console.log("JSON", this.$store.state.descJSON.length);
+  },
+  mounted() {
+    window.setTimeout(() => {
+      this.currentSign = this.$store.state.mySigns[0];
+      //delete original img
+      // let element = document.getElementById("mySignLogo");
+      // while (element.firstChild) {
+      //   element.removeChild(element.firstChild);
+      // }
+
+      //document.getElementById("mySignLogo").appendChild();
+    }, 100);
   },
 };
 </script>
@@ -38,7 +84,30 @@ export default {
     <div class="container-xl mt-5">
       <div class="row justify-content-center">
         <div class="col-lg-6 col-md-12 row-no-padding">
-          <div class="smallBlock mx-1 mt-2">data</div>
+          <div class="smallBlock mx-1 mt-2 d-flex">
+            <div
+              class="w-25 m-auto d-flex justify-content-center"
+              id="mySignLogo"
+            >
+              <img
+                class="logoSign-sun"
+                :src="this.logoSigns[this.$store.state.mySigns[0] - 1]"
+                alt="sunSignLogo"
+              />
+            </div>
+            <div class="w-75 m-auto basic-info-container">
+              <div>
+                <span>{{ this.$store.state.myName }}</span
+                ><span>{{ this.$store.state.mySignsNames[0] }}</span>
+              </div>
+              <div>
+                <span>{{ this.$store.state.myBirthday }}</span>
+                <span>{{ this.$store.state.myBirthTime }}</span>
+                <span>{{ this.$store.state.myLatitude }}</span>
+                <span>{{ this.$store.state.myLongitude }}</span>
+              </div>
+            </div>
+          </div>
           <div
             class="smallBlock chartZone mx-1 mt-2 d-flex align-items-center justify-content-center"
           >
@@ -49,8 +118,16 @@ export default {
         <div class="col-lg-6 col-md-12 row-no-padding">
           <div class="smallBlock mx-1 mt-2 d-flex align-items-center">
             <tr class="d-flex justify-content-around text-center w-100">
-              <td><button @click="content = 'ChartDesc'">星盤解讀</button></td>
-              <td><button @click="content = 'DataChart'">詳細參數</button></td>
+              <td>
+                <div class="optionsBtn" @click="content = 'ChartDesc'">
+                  星盤解讀
+                </div>
+              </td>
+              <td>
+                <div class="optionsBtn" @click="content = 'DataChart'">
+                  詳細參數
+                </div>
+              </td>
             </tr>
           </div>
           <div class="smallBlock dataZone mx-1 mt-2">
@@ -79,8 +156,6 @@ export default {
   padding-left: 0px;
   padding-right: 0px;
 }
-.smallBlock {
-}
 
 .smallBlock:first-child {
   height: 100px;
@@ -97,6 +172,28 @@ export default {
   padding-top: 50px;
   padding-bottom: 50px;
 }
-.dataZone {
+
+.optionsBtn {
+  padding: 10px;
+  width: 200px;
+  border-radius: 10px;
+  background: rgba(217, 217, 217, 0.25);
+  color: white;
+}
+.optionsBtn:hover {
+  cursor: pointer;
+  background: rgba(217, 217, 217, 0.5);
+  /* width: 200px; */
+}
+.logoSign-sun {
+  width: 80px;
+}
+</style>
+<style scoped>
+.basic-info-container {
+  color: #fff;
+}
+span {
+  margin-right: 10px;
 }
 </style>

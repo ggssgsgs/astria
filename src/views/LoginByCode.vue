@@ -1,0 +1,35 @@
+<template>
+    <div class="login-code">
+        <input v-model="userForm.email" @keyup.delete="keydelete" @keyup.tab="keyenter1" @keyup.enter="keyenter1" @blur="keyenter1" placeholder="請輸入信箱"/>
+    </div>
+</template>
+
+<script>
+
+export default {
+    name: 'LoginByCode',
+    data(){
+        return{
+            userForm:{
+                 email: '',    
+            }
+        }
+    },
+    methods: {
+        keyenter1(){
+            this.$emit('pchecked',this.userForm)
+            
+        },
+        keydelete(){
+            this.$emit('pdeleted',this.userForm)
+        },
+        
+    },
+}
+</script>
+
+<style scoped>
+.login-code {
+    position:relative;
+}
+</style>

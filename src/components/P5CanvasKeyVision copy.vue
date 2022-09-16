@@ -124,7 +124,7 @@ export default {
           //set color
           // c1 = p5.color(0, 16, 85, 40);
           c1 = p5.color(0, 2, 53, 40);
-          c2 = p5.color(255, 255, 255, 100);
+          c2 = p5.color(0, 2, 53, 40);
           //c2 = p5.color(0, 2, 53, 100);
         };
 

@@ -13,18 +13,11 @@
     >
       <div class="d-flex flex-column align-items-center">
         <div class="my-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            fill="currentColor"
-            class="bi bi-sun-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"
-            />
-          </svg>
+          <img
+            :src="iconPlanet[this.planets.indexOf(planet)]"
+            alt="planetIcon"
+            class="iconPlanet"
+          />
         </div>
         <span>{{ planet }}</span>
       </div>
@@ -42,14 +35,62 @@
     <swiper-slide>Slide 2</swiper-slide>
     <swiper-slide>Slide 3</swiper-slide> -->
   </swiper>
-  <div>{{ signName }}</div>
-  <div>{{ signInfo }}</div>
+  <div class="contentBox">
+    <div class="d-flex justify-content-center align-items-center">
+      <img
+        :src="this.iconPlanet[this.currentPlanetIndex]"
+        alt="iconCCurrentPlanet"
+      />
+      <img
+        :src="this.logoSigns[this.currentSign - 1]"
+        alt="imgSign"
+        class="logoSign"
+      />
+      <img
+        :src="this.iconPlanet[this.currentPlanetIndex]"
+        alt="iconCCurrentPlanet"
+      />
+    </div>
+    <div>{{ signName }}</div>
+    <div>{{ signInfo }}</div>
+  </div>
+  <div class="contentBox">
+    <div>{{ houseName }}</div>
+    <div>{{ houseInfo }}</div>
+  </div>
+
   <!-- <div>
     <table></table>
     <button @click="$store.dispatch('getMyChartData')">get data</button>
   </div> -->
 </template>
 <script>
+//import planets icon
+import iSun from "../assets/img/icons/Sun.png";
+import iAsc from "../assets/img/icons/Asc.png";
+import iMoon from "../assets/img/icons/Moon.png";
+import iMars from "../assets/img/icons/Mars.png";
+import iMercury from "../assets/img/icons/Mercury.png";
+import iVenus from "../assets/img/icons/Venus.png";
+import iJupiter from "../assets/img/icons/Jupiter.png";
+import iSaturn from "../assets/img/icons/Saturn.png";
+import iUranus from "../assets/img/icons/Uranus.png";
+import iNaptune from "../assets/img/icons/Naptune.png";
+import iPluto from "../assets/img/icons/Pluto.png";
+//import sign logos
+import lAries from "../assets/img/signLogos/Aries_pink_400p.png";
+import lTarus from "../assets/img/signLogos/Tarus_pink_400p.png";
+import lGemini from "../assets/img/signLogos/Gemini_pink_400p.png";
+import lCancer from "../assets/img/signLogos/Cancer_pink_400p.png";
+import lLeo from "../assets/img/signLogos/Leo_pink_400p.png";
+import lVirgo from "../assets/img/signLogos/Virgo_pink_400p.png";
+import lLibra from "../assets/img/signLogos/Libra_pink_400p.png";
+import lScorpio from "../assets/img/signLogos/Scorpio_pink_400p.png";
+import lSagitarius from "../assets/img/signLogos/Sagitarius_pink_400p.png";
+import lCapricorn from "../assets/img/signLogos/Capricorn_pink_400p.png";
+import lAquarius from "../assets/img/signLogos/Aquarius_pink_400p.png";
+import lPisces from "../assets/img/signLogos/Pisces_pink_400p.png";
+
 // Import Swiper Vue.js components
 import {Swiper, SwiperSlide} from "swiper/vue";
 
@@ -88,32 +129,45 @@ export default {
 
   mounted() {
     console.log("chartDesc mounted");
-    this.$store.dispatch("getMyChartData");
+    //only need to set once in myChart.vue
+    //this.$store.dispatch("getMyChartData");
 
     window.setTimeout(() => {
       // load into local data from vuex
-      this.mySigns = this.$store.state.mySigns;
-      this.mySignsNames = this.$store.state.mySignsNames;
+      this.currentSigns = this.$store.state.mySigns;
+      this.currentSignsNames = this.$store.state.mySignsNames;
+      this.currentHouses = this.$store.state.myHouses;
+      this.currentHousesNames = this.$store.state.myHousesNames;
 
-      console.log("mysign", this.$store.state.mySigns);
-      console.log("mysign", this.mySigns);
+      console.log("currentsign", this.$store.state.mySigns);
+      console.log("currentsign", this.currentSigns);
 
       //傳到veux裡 （用 vuex 的 mutation 編輯
-      for (let i = 0; i < this.mySigns.length; i++) {
+      for (let i = 0; i < this.currentSigns.length; i++) {
         this.$store.commit("getDescBySign", {
           planet: this.planetsWithoutSpace[i],
-          sign: this.mySignsNames[i],
+          sign: this.currentSignsNames[i],
           index: i,
         });
       }
 
       // load into local data from vuex
-      this.l_mySignInfo = this.$store.state.mySignInfo;
+      this.l_currentSignInfo = this.$store.state.mySignInfo;
 
-      // this.mySigns.forEach((element) => {
+      // this.currentSigns.forEach((element) => {
       //   console.log(element);
+
       // });
-    }, 200);
+      for (let i = 0; i < this.currentHouses.length; i++) {
+        this.$store.commit("getDescByHouse", {
+          planet: this.planetsWithoutSpace[i],
+          house: this.currentHousesNames[i],
+          index: i,
+        });
+      }
+      // load into local data from vuex
+      this.l_currentHouseInfo = this.$store.state.myHouseInfo;
+    }, 300);
 
     // window.setTimeout(() => {
     //   this.signs = [
@@ -138,9 +192,15 @@ export default {
   },
   methods: {
     switchInfo(index) {
-      this.signInfo = this.l_mySignInfo[index];
-      this.signName = this.mySignsNames[index];
+      this.signInfo = this.l_currentSignInfo[index];
+      this.signName = this.currentSignsNames[index];
       //console.log("triggered");
+      this.houseInfo = this.l_currentHouseInfo[index];
+      this.houseName = this.currentHousesNames[index];
+
+      //set currentSign for logo
+      this.currentSign = this.currentSigns[index];
+      this.currentPlanetIndex = index;
     },
 
     // signNumberToName(signNumber) {
@@ -174,9 +234,41 @@ export default {
   computed: {},
   data() {
     return {
+      //icon
+      iconPlanet: [
+        iSun,
+        iAsc,
+        iMoon,
+        iMars,
+        iMercury,
+        iVenus,
+        iJupiter,
+        iSaturn,
+        iUranus,
+        iNaptune,
+        iPluto,
+      ],
+      logoSigns: [
+        lAries,
+        lTarus,
+        lGemini,
+        lCancer,
+        lLeo,
+        lVirgo,
+        lLibra,
+        lScorpio,
+        lSagitarius,
+        lCapricorn,
+        lAquarius,
+        lPisces,
+      ],
       //for test
+      currentSign: 1,
+      currentPlanetIndex: 0,
       signInfo: "禮讓老弱婦孺",
       signName: "博愛座",
+      houseInfo: "每個人的上升都在第一宮",
+      houseName: "打零工",
       planets: [
         "太 陽",
         "上 升",
@@ -206,9 +298,13 @@ export default {
       signs: [],
       signsNames: [],
 
-      mySigns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      mySignsNames: [],
-      //l_mySignInfo: [],
+      currentSigns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      currentSignsNames: [],
+      l_currentSignInfo: [],
+
+      currentHouses: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      currentHousesNames: [],
+      l_currentHouseInfo: [],
     };
   },
 };
@@ -235,7 +331,19 @@ export default {
   margin: 5px;
   width: 55px;
   height: 99px;
-  background: #fff;
+  background: #d9d9d9;
   border-radius: 10px;
+}
+.contentBox {
+  margin: 5px;
+  background: #d9d9d9;
+  border-radius: 10px;
+  padding: 10px;
+}
+.iconPlanet {
+  width: 50px;
+}
+.logoSign {
+  width: 200px;
 }
 </style>

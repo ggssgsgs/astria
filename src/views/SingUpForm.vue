@@ -35,7 +35,7 @@
       </label>
       <label for=""
         >出生地:
-        <select>
+        <select v-model="form.address.value">
           <option value="" disabled>-- 請選擇出生地 --</option>
           <!--<option v-for="address in addresslist" v-on:change="setplace" :key="address" :value="address">{{address}}</option>-->
           <option
@@ -124,7 +124,7 @@ export default {
     nativeValidate(target, key) {
       let checkPhone = reg_phoneType2(target.phone.value);
       let checkEmail = reg_email(target.email.value);
-      const arr = [checkPhone];
+      const arr = [checkPhone, checkEmail];
 
       // 驗證未通過則顯示msg內的訊息
       switch (key) {
@@ -153,6 +153,7 @@ export default {
     },
     nativeSubmit() {
       if (!this.submitDisabled) {
+        alert("進入if");
         let chName = this.form.name.value;
         let chGender = this.form.gender.value;
         let chDate = this.form.date.value;
@@ -177,31 +178,45 @@ export default {
           }),
         })
           .then(function (response) {
+            alert("Fetch");
             return response.json();
           })
           .then((body) => {
             console.log(body);
             this.remsg = body.Status;
             this.remsgg = body.Msg;
-            if (this.remsg == "1") {
-              localStorage.setItem("token", "ImLogin");
-              this.$router.push("/");
-              console.log("登入成功");
-            }
+            // alert(this.remsg + this.remsgg);
+            // if (this.remsg != 1) {
+            //   alert("失敗");
+            // } else {
+            //   alert("成功");
+            //   /*this.$router.push("/");*/
+            // }
           })
           .catch(function (err) {
+            alert("Fetch失敗");
             console.log(err);
           });
-        
+        this.$router.push("/");
 
         // 接下來就是進入表單下一步動作，反之阻擋住
       } else {
-        console.log("登入失敗");
-
-        // this.$message({
-        //   message: "登入失敗",
-        //   type: "warning",
-        // });
+        alert("沒進FETCH");
+        let chName = this.form.name.value;
+        let chGender = this.form.gender.value;
+        let chDate = this.form.date.value;
+        let chTime = this.form.time.value;
+        let chadress = this.form.address.value;
+        let chPhone = this.form.phone.value;
+        let chEmail = this.form.email.value;
+        console.log(chName);
+        console.log(chGender);
+        console.log(chDate);
+        console.log(chTime);
+        console.log(chadress);
+        console.log(chPhone);
+        console.log(chEmail);
+        console.log("表單註冊失敗");
       }
     },
   },

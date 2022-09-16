@@ -71,6 +71,14 @@
       <div class="wrap">
         <div class="tittle">
           <h1>依分類選擇</h1>
+          <div class="inputSearch">
+            <select class="custom-select" id="inputGroupSelect02">
+              <option selected>分類搜尋</option>
+              <option value="1">占卜</option>
+              <option value="2">塔羅</option>
+              <option value="3">易經</option>
+            </select>
+          </div>
         </div>
         <div class="item-group">
           <div class="item">
@@ -179,7 +187,7 @@ body {
 .item-group .hotCount {
   display: flex;
   justify-content: space-between;
-  padding: 0 60px;
+  padding: 0 50px;
   margin-bottom: 12px;
 }
 .item-group .txt-group {
@@ -192,10 +200,11 @@ body {
 
 .hotButton {
   background: #999;
-  width: 70%;
+  width: 75%;
   height: 50px;
   font-size: 20px;
   letter-spacing: 0.1rem;
+  border-radius: 5px;
 }
 
 .tittle {
@@ -203,6 +212,7 @@ body {
   text-align: center;
   letter-spacing: 0.1rem;
 }
+
 .item-group {
   width: 100%;
   margin: 60px auto;
@@ -210,11 +220,19 @@ body {
   /* overflow-x: scroll; */
 }
 .item {
-  margin: 0 40px 40px;
+  margin: 0 50px 40px;
   text-align: center;
 }
 .item-group h2 {
   margin: 12px 0;
+}
+.anyChoice .tittle .inputSearch {
+  margin-top: 10px;
+}
+.custom-select{
+  width: 150px;
+  height:35px;
+  font-size: 20px;
 }
 
 @media screen and (min-width: 765px) {
@@ -222,6 +240,14 @@ body {
     width: 100%;
     text-align: left;
     padding-left: 120px;
+  }
+  .anyChoice .tittle {
+    width: 100%;
+    display: flex;
+    padding-left: 120px;
+  }
+  .anyChoice .tittle .inputSearch {
+    margin:5px 20px;
   }
   .item-group {
     display: flex;

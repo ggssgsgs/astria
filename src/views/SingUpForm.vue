@@ -67,11 +67,13 @@
           placeholder="請輸入Email"
           required
         />
+        
         <div class="el-form-item__error">{{ form.email.msg }}</div>
       </label>
 
       <div>
-        <button @click="nativeSubmit" :disabled="status">送出</button>
+        <!-- 需要先做停止瀏覽器預設行為 -->
+        <button @click.prevent="nativeSubmit" :disabled="status">送出</button>
       </div>
     </form>
   </div>
@@ -185,19 +187,20 @@ export default {
             console.log(body);
             this.remsg = body.Status;
             this.remsgg = body.Msg;
-            // alert(this.remsg + this.remsgg);
-            // if (this.remsg != 1) {
-            //   alert("失敗");
-            // } else {
-            //   alert("成功");
-            //   /*this.$router.push("/");*/
-            // }
+            alert(this.remsg + this.remsgg);
+            if (this.remsg != 1) {
+              alert("失敗");
+            } else {
+              alert("成功");
+              localStorage.setItem("token", "ImLogin");
+              this.$router.push("/");
+            }
           })
           .catch(function (err) {
             alert("Fetch失敗");
             console.log(err);
           });
-        this.$router.push("/");
+       
 
         // 接下來就是進入表單下一步動作，反之阻擋住
       } else {

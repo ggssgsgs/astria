@@ -127,7 +127,7 @@ export default {
 * {
   margin: 0px;
   padding: 0px;
-  color: gray;
+  color: #eee;
 }
 .BG {
   background: rgb(0, 2, 53);

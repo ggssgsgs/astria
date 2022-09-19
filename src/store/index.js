@@ -148,6 +148,66 @@ export default createStore({
         myLongitude: "121.11111",
         signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       },
+      {
+        name: "正預期",
+        birthday: "1997-10-09",
+        birthTime: "03:08:00",
+        birthCity: "Tainan",
+        astroAPI:
+          "http://52.139.170.100:3333/horoscope?time=1997-10-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+
+        myLatitude: "23.11111",
+        myLongitude: "121.11111",
+        signs: [7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      },
+      {
+        name: "照相相",
+        birthday: "1997-09-09",
+        birthTime: "03:08:00",
+        birthCity: "Tainan",
+        astroAPI:
+          "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+
+        myLatitude: "23.11111",
+        myLongitude: "121.11111",
+        signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      },
+      {
+        name: "照相相",
+        birthday: "1997-09-09",
+        birthTime: "03:08:00",
+        birthCity: "Tainan",
+        astroAPI:
+          "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+
+        myLatitude: "23.11111",
+        myLongitude: "121.11111",
+        signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      },
+      {
+        name: "照相相",
+        birthday: "1997-09-09",
+        birthTime: "03:08:00",
+        birthCity: "Tainan",
+        astroAPI:
+          "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+
+        myLatitude: "23.11111",
+        myLongitude: "121.11111",
+        signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      },
+      {
+        name: "照相相",
+        birthday: "1997-09-09",
+        birthTime: "03:08:00",
+        birthCity: "Tainan",
+        astroAPI:
+          "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+
+        myLatitude: "23.11111",
+        myLongitude: "121.11111",
+        signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      },
     ],
 
     //未使用

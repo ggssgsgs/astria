@@ -1,4 +1,6 @@
 <template>
+  <SketchMain v-bind="sketchData" />
+  <div></div>
   <div class="singup-containt">
     <div class="singup-button">
       <button @click="fbsingup">FACEBOOK</button>
@@ -48,10 +50,18 @@
   </div>
 </template>
 <script>
+import SketchMain from "../components/P5CanvasKeyVision_half.vue";
+import imgUrl from "../assets/img/starHolder.png";
+import imgUrl2 from "../assets/img/0728.jpg";
+
 import {reg_pwdCommon, reg_email} from "../utils/validate";
 export default {
   data() {
     return {
+      sketchData: {
+        imgStarHolderSrc: imgUrl,
+        src2: imgUrl2,
+      },
       message: "送出驗證碼",
       remsg: "",
       retime: "",
@@ -65,6 +75,9 @@ export default {
       },
       submitDisabled: true, // 送出按鈕的disabled狀態，true為禁用
     };
+  },
+  components: {
+    SketchMain,
   },
   methods: {
     nativeValidate(target, key) {

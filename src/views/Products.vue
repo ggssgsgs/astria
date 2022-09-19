@@ -1,76 +1,92 @@
 <template>
-  <div class="body-cintent">
-    <!-- 熱門占卜 -->
-    <div class="hotProduct">
-      <div class="wrap">
-        <div class="tittle">
-          <h1>熱門占卜</h1>
+  <div class="BG">
+    <div class="container-xl mt-5">
+      <div class="row justify-content-center hotProduct">
+        <h2>熱門占卜師</h2>
+        <div class="col-12 col-lg-3 item">
+          <div class="card">
+            <div class="pic">
+              <img src="https://picsum.photos/300/300?random=1" />
+              <h3>{{ msgt1[0] }}</h3>
+            </div>
+
+            <div class="d-flex evaluate">
+              <span
+                ><p>{{ msgt2 }}</p></span
+              >
+              <span
+                ><p>評價:{{ count[2] }}</p></span
+              >
+            </div>
+            <div class="btnshop">
+              <button @click="shop">進入商店</button>
+            </div>
+          </div>
         </div>
-        <div class="item-group">
-          <div class="item">
+        <div class="col-12 col-lg-3 item">
+          <div class="card">
             <div class="pic">
-              <img src="https://picsum.photos/300/300?" alt="" />
+              <img src="https://picsum.photos/300/300?random=1" />
+              <h3>{{ msgt1[0] }}</h3>
             </div>
-            <div class="txt-group">
-              <h2>{{ msgt1[0] }}</h2>
-              <div class="hotCount">
-                <span>{{ msgt2 }}</span>
-                <span>評價:{{ count[2] }}</span>
-              </div>
-              <button class="hotButton" @click="onsubmit">即刻探索</button>
+
+            <div class="d-flex evaluate">
+              <span
+                ><p>{{ msgt2 }}</p></span
+              >
+              <span
+                ><p>評價:{{ count[2] }}</p></span
+              >
+            </div>
+            <div class="btnshop">
+              <button @click="shop">進入商店</button>
             </div>
           </div>
-          <div class="item">
+        </div>
+        <div class="col-12 col-lg-3 item">
+          <div class="card">
             <div class="pic">
-              <img src="https://picsum.photos/300/300?" alt="" />
+              <img src="https://picsum.photos/300/300?random=1" />
+              <h3>{{ msgt1[0] }}</h3>
             </div>
-            <div class="txt-group" @mouseenter="om">
-              <h2>{{ msgt1[0] }}</h2>
-              <div class="hotCount">
-                <span>{{ msgt2 }}</span>
 
-                <span>評價:{{ count[2] }}</span>
-              </div>
-              <button class="hotButton" @click="onsubmit">即刻探索</button>
+            <div class="d-flex evaluate">
+              <span
+                ><p>{{ msgt2 }}</p></span
+              >
+              <span
+                ><p>評價:{{ count[2] }}</p></span
+              >
+            </div>
+            <div class="btnshop">
+              <button @click="shop">進入商店</button>
             </div>
           </div>
-          <div class="item">
+        </div>
+        <div class="col-12 col-lg-3 item">
+          <div class="card">
             <div class="pic">
-              <img src="https://picsum.photos/300/300?" alt="" />
+              <img src="https://picsum.photos/300/300?random=1" />
+              <h3>{{ msgt1[0] }}</h3>
             </div>
-            <div class="txt-group">
-              <h2>{{ msgt1[0] }}</h2>
-              <div class="hotCount">
-                <span>{{ msgt2 }}</span>
-                <span>評價:{{ count[2] }}</span>
-              </div>
-              <button class="hotButton" @click="onsubmit">即刻探索</button>
-            </div>
-          </div>
 
-          <div class="item">
-            <div class="pic">
-              <img src="https://picsum.photos/300/300?" alt="" />
+            <div class="d-flex evaluate">
+              <span
+                ><p>{{ msgt2 }}</p></span
+              >
+              <span
+                ><p>評價:{{ count[2] }}</p></span
+              >
             </div>
-            <div class="txt-group">
-              <h2>{{ msgt1[0] }}</h2>
-              <div class="hotCount">
-                <span>{{ msgt2 }}</span>
-
-                <span>評價:{{ count[2] }}</span>
-              </div>
-              <button class="hotButton" @click="onsubmit">即刻探索</button>
+            <div class="btnshop">
+              <button @click="shop">進入商店</button>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- 依分類選擇 -->
-    <div class="anyChoice">
-      <div class="wrap">
-        <div class="tittle">
-          <h1>依分類選擇</h1>
+      <div class="row justify-content-center anyChoice">
+        <div class="searchGroup">
+          <h2>依分類選擇</h2>
           <div class="inputSearch">
             <select class="custom-select" id="inputGroupSelect02">
               <option selected>分類搜尋</option>
@@ -80,60 +96,83 @@
             </select>
           </div>
         </div>
-        <div class="item-group">
-          <div class="item">
+        <div class="col-12 col-lg-3 item">
+          <div class="card">
             <div class="pic">
-              <img src="https://picsum.photos/300/300?" alt="" />
+              <img src="https://picsum.photos/300/300?random=1" />
+              <h3>{{ msgt1[0] }}</h3>
             </div>
-            <div class="txt-group">
-              <h2>{{ msgt1[0] }}</h2>
-              <div class="hotCount">
-                <span>{{ msgt2 }}</span>
-                <span>評價:{{ count[2] }}</span>
-              </div>
-              <button class="hotButton" @click="onsubmit">即刻探索</button>
+
+            <div class="d-flex evaluate">
+              <span
+                ><p>{{ msgt2 }}</p></span
+              >
+              <span
+                ><p>評價:{{ count[2] }}</p></span
+              >
+            </div>
+            <div class="btnshop">
+              <button @click="shop">進入商店</button>
             </div>
           </div>
-          <div class="item">
+        </div>
+        <div class="col-12 col-lg-3 item">
+          <div class="card">
             <div class="pic">
-              <img src="https://picsum.photos/300/300?" alt="" />
+              <img src="https://picsum.photos/300/300?random=1" />
+              <h3>{{ msgt1[0] }}</h3>
             </div>
-            <div class="txt-group" @mouseenter="om">
-              <h2>{{ msgt1[0] }}</h2>
-              <div class="hotCount">
-                <span>{{ msgt2 }}</span>
 
-                <span>評價:{{ count[2] }}</span>
-              </div>
-              <button class="hotButton" @click="onsubmit">即刻探索</button>
+            <div class="d-flex evaluate">
+              <span
+                ><p>{{ msgt2 }}</p></span
+              >
+              <span
+                ><p>評價:{{ count[2] }}</p></span
+              >
+            </div>
+            <div class="btnshop">
+              <button @click="shop">進入商店</button>
             </div>
           </div>
-          <div class="item">
+        </div>
+        <div class="col-12 col-lg-3 item">
+          <div class="card">
             <div class="pic">
-              <img src="https://picsum.photos/300/300?" alt="" />
+              <img src="https://picsum.photos/300/300?random=1" />
+              <h3>{{ msgt1[0] }}</h3>
             </div>
-            <div class="txt-group">
-              <h2>{{ msgt1[0] }}</h2>
-              <div class="hotCount">
-                <span>{{ msgt2 }}</span>
-                <span>評價:{{ count[2] }}</span>
-              </div>
-              <button class="hotButton" @click="onsubmit">即刻探索</button>
+
+            <div class="d-flex evaluate">
+              <span
+                ><p>{{ msgt2 }}</p></span
+              >
+              <span
+                ><p>評價:{{ count[2] }}</p></span
+              >
+            </div>
+            <div class="btnshop">
+              <button @click="shop">進入商店</button>
             </div>
           </div>
-
-          <div class="item">
+        </div>
+        <div class="col-12 col-lg-3 item">
+          <div class="card">
             <div class="pic">
-              <img src="https://picsum.photos/300/300?" alt="" />
+              <img src="https://picsum.photos/300/300?random=1" />
+              <h3>{{ msgt1[0] }}</h3>
             </div>
-            <div class="txt-group">
-              <h2>{{ msgt1[0] }}</h2>
-              <div class="hotCount">
-                <span>{{ msgt2 }}</span>
 
-                <span>評價:{{ count[2] }}</span>
-              </div>
-              <button class="hotButton" @click="onsubmit">即刻探索</button>
+            <div class="d-flex evaluate">
+              <span
+                ><p>{{ msgt2 }}</p></span
+              >
+              <span
+                ><p>評價:{{ count[2] }}</p></span
+              >
+            </div>
+            <div class="btnshop">
+              <button @click="shop">進入商店</button>
             </div>
           </div>
         </div>
@@ -154,6 +193,9 @@ export default {
     onsubmit() {
       this.$router.push("/productShop");
     },
+    shop() {
+      this.$router.push("/productShop");
+    },
   },
 };
 </script>
@@ -166,96 +208,84 @@ export default {
   background: #000235;
   color: #fff;
 }
-body {
-  background: #000235;
-}
-
-/* ::-webkit-scrollbar {
-  display: none;
-} */
-
-.item .pic img {
-  width: 100%;
-  border-radius: 50%;
-}
 .hotProduct {
-  padding-top: 60px;
+  margin: 10px 0 0;
 }
 .anyChoice {
-  margin-top: 40px;
+  margin: 20px 0;
 }
-.item-group .hotCount {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 50px;
-  margin-bottom: 12px;
-}
-.item-group .txt-group {
-  letter-spacing: 0.1rem;
-}
-.item-group .hotCount span {
-  font-size: 20px;
-  letter-spacing: 0.05rem;
-}
-
-.hotButton {
-  background: #999;
-  width: 75%;
-  height: 50px;
-  font-size: 20px;
-  letter-spacing: 0.1rem;
-  border-radius: 5px;
-}
-
-.tittle {
-  width: 100%;
-  text-align: center;
-  letter-spacing: 0.1rem;
-}
-
-.item-group {
-  width: 100%;
-  margin: 60px auto;
-  padding: 0 70px;
-  /* overflow-x: scroll; */
+.mycard {
+  margin: 0 30px;
 }
 .item {
-  margin: 0 50px 40px;
   text-align: center;
 }
-.item-group h2 {
-  margin: 12px 0;
+.evaluate {
+  justify-content: center;
+  margin-bottom: 10px;
 }
-.anyChoice .tittle .inputSearch {
-  margin-top: 10px;
-}
-.custom-select{
-  width: 150px;
-  height:35px;
-  font-size: 20px;
+.hotProduct h2,
+.anyChoice h2 {
+  padding: 20px 20px 20px 30px;
+  color: #62ff36;
 }
 
-@media screen and (min-width: 765px) {
-  .tittle {
+.hotProduct button,
+.anyChoice button {
+  background: rgba(217, 217, 217, 0.25);
+  width: 240px;
+  height: 50px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.hotProduct img,
+.anyChoice img {
+  border-radius: 50%;
+  width: 100%;
+  padding: 30px 50px 20px;
+}
+
+.hotProduct h3,
+.anyChoice h3 {
+  margin: 12px 0 10px;
+}
+
+.hotProduct span,
+.anyChoice span {
+  margin: 0 30px;
+}
+
+.custom-select {
+  width: 150px;
+  height: 35px;
+}
+.searchGroup {
+  display: flex;
+}
+.btnshop {
+  text-align: center;
+}
+
+@media screen and (max-width: 992px) {
+  .hotProduct h2 {
+    text-align: center;
+    padding: 20px 0 30px;
+  }
+  .anyChoice h2 {
+    text-align: center;
+    padding: 20px 0 0;
+    margin-bottom: 20px;
+  }
+  .searchGroup {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hotProduct img,
+  .anyChoice img {
+    border-radius: 50%;
     width: 100%;
-    text-align: left;
-    padding-left: 120px;
-  }
-  .anyChoice .tittle {
-    width: 100%;
-    display: flex;
-    padding-left: 120px;
-  }
-  .anyChoice .tittle .inputSearch {
-    margin:5px 20px;
-  }
-  .item-group {
-    display: flex;
-    /* overflow-x: scroll; */
-  }
-  .item {
-    width: 100%;
-    /* flex-shrink: 0;  */
+    padding: 30px 80px 20px;
   }
 }
 </style>

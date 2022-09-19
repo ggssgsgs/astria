@@ -1,6 +1,5 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+import {RouterLink, RouterView} from "vue-router";
 </script>
 
 <template>
@@ -80,7 +79,8 @@ import HelloWorld from "./components/HelloWorld.vue";
                     >登入</RouterLink
                   >
                 </li>
-                <li @click="logOut" class="dropdown-item">登出
+                <li @click="logOut" class="dropdown-item">
+                  登出
                   <!-- <RouterLink to="/"  class="dropdown-item"
                     ></RouterLink
                   > -->
@@ -122,5 +122,22 @@ export default {
 };
 </script>
 
-
 <style scoped></style>
+<style>
+* {
+  margin: 0px;
+  padding: 0px;
+  color: gray;
+}
+.BG {
+  background: rgb(0, 2, 53);
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+p {
+  color: white;
+}
+h1 {
+}
+</style>

@@ -104,7 +104,7 @@ export default {
           p5.imgLOGO = p5.loadImage(p.imgStarHolderSrc);
           p5.imgMoonBg = p5.loadImage(p.imgStarHolderSrc);
           imgStarHolder = p5.loadImage(p.imgStarHolderSrc);
-          rad = p5.height * 0.3; // compute radius for central circle
+          rad = p5.height * 0.5; // compute radius for central circle
           p5.background(255); // clear the screen
 
           for (let i = 0; i < sines.length; i++) {
@@ -122,8 +122,10 @@ export default {
           offsetY = p5.height / 4;
 
           //set color
-          c1 = p5.color(0, 16, 85, 40);
-          c2 = p5.color(255, 255, 255, 100);
+          // c1 = p5.color(0, 16, 85, 40);
+          c1 = p5.color(0, 2, 53, 40);
+          c2 = p5.color(0, 2, 53, 40);
+          //c2 = p5.color(0, 2, 53, 100);
         };
 
         //Costumised Function

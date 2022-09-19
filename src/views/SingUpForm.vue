@@ -58,18 +58,6 @@
         />
         <div class="el-form-item__error">{{ form.phone.msg }}</div>
       </label>
-      <label for=""
-        >電子郵件:
-        <input
-          type="text"
-          v-model="form.email.value"
-          @change="nativeValidate(form, 'email')"
-          placeholder="請輸入Email"
-          required
-        />
-        
-        <div class="el-form-item__error">{{ form.email.msg }}</div>
-      </label>
 
       <div>
         <!-- 需要先做停止瀏覽器預設行為 -->
@@ -80,8 +68,11 @@
 </template>
 <script>
 import { reg_phoneType2 } from "../utils/validate";
-import { reg_email } from "../utils/validate";
 export default {
+  mounted() {
+    this.form.email.value =localStorage.getItem('myemail')
+    // console.log(localStorage.getItem('myemail'));
+  },
   data() {
     return {
       remsg: "",
@@ -117,7 +108,7 @@ export default {
           "馬祖縣",
         ],
         phone: { value: "", msg: "" },
-        email: { value: "", msg: "" },
+        email: { value: ''},
       },
       submitDisabled: true, // 送出按鈕的disabled狀態，true為禁用
     };
@@ -125,8 +116,7 @@ export default {
   methods: {
     nativeValidate(target, key) {
       let checkPhone = reg_phoneType2(target.phone.value);
-      let checkEmail = reg_email(target.email.value);
-      const arr = [checkPhone, checkEmail];
+      const arr = [checkPhone];
 
       // 驗證未通過則顯示msg內的訊息
       switch (key) {
@@ -134,11 +124,6 @@ export default {
           checkPhone == true
             ? (target.phone.msg = "")
             : (target.phone.msg = "手機號碼格式錯誤或未輸入");
-          break;
-        case "email":
-          checkPhone == true
-            ? (target.email.msg = "")
-            : (target.email.msg = "信箱號碼格式錯誤或未輸入");
           break;
       }
       // 用find只會撈回符合條件第一個值的特性，任何一個驗證規則沒通過就不能讓送出表單的按鈕被啟用
@@ -165,7 +150,7 @@ export default {
         let chEmail = this.form.email.value;
 
         fetch("http://52.139.170.100/api/secondsignup", {
-          method: "PUT",
+          method: "post",
           headers: {
             "Content-Type": "application/json;charset =utf-8",
           },
@@ -193,6 +178,7 @@ export default {
             } else {
               alert("成功");
               localStorage.setItem("token", "ImLogin");
+              localStorage.removeItem('myemail')
               this.$router.push("/");
             }
           })
@@ -200,7 +186,6 @@ export default {
             alert("Fetch失敗");
             console.log(err);
           });
-       
 
         // 接下來就是進入表單下一步動作，反之阻擋住
       } else {

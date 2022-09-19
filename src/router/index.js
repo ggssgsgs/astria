@@ -1,7 +1,6 @@
-import { createRouter, createWebHistory } from "vue-router";
-import logIn from '../views/LogIn.vue'
+import {createRouter, createWebHistory} from "vue-router";
+
 import HomeView from "../views/HomeView.vue";
-import Cookies from 'js-cookie'
 
 //建立VueRouter實體物件
 const router = createRouter({
@@ -54,7 +53,7 @@ const router = createRouter({
       name: "logIn",
       component: () => import("../views/LogIn.vue"),
     },
-   
+
     {
       path: "/signUp",
       name: "signUp",
@@ -75,12 +74,11 @@ const router = createRouter({
       name: "myOrders",
       component: () => import("../views/MyOrders.vue"),
     },
-    
+
     // {
     //   path: '*',
     //   redirect: '/',
     // }
-    
   ],
 });
 
@@ -91,12 +89,11 @@ const router = createRouter({
 //   } else {
 //     if( to.path !== '/logIn')
 //       next('/logIn')
-     
+
 //     else
 //       next();
 //   }
 // });
-
 
 // router.onError((err) => {
 //   console.log(err)

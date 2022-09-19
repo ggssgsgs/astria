@@ -43,7 +43,7 @@ export default {
   <div>
     <SketchMain v-bind="sketchData" />
     <!-- <img :src="sketchData.imgStarHolderSrc" alt="" /> -->
-    <div style="height: 500px">ff</div>
+    <div style="height: 500px"></div>
     <div class="container">
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <div class="col">

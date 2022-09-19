@@ -1,58 +1,94 @@
 <template>
-  <div class="singup-containt">
-    <div class="singup-button">
-      <button @click="fbsingup">FACEBOOK</button>
-      <button @click="googlesingup">GOOGLE</button>
+  <div class="BG">
+    <div class="container-xl mt-5">
+      <div class="singup-containt">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-6">
+            <div class="card pic">
+              <img src="../assets/img/LOGO.png" alt="logo" />
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="card singup-form">
+              <h2>{{ msg1 }}</h2>
+              <input
+                type="text"
+                v-model="user.username.value"
+                placeholder="EMAIL"
+                @change="nativeValidate(user, 'username'), pushStore"
+                autofocus
+              />
+              <div class="el-form-item__error">{{ user.username.msg }}</div>
+
+              <input
+                type="password"
+                v-model="user.password.value"
+                @change="nativeValidate(user, 'password')"
+                placeholder="密碼(字母開頭含數字、6~18碼)"
+              />
+              <div class="el-form-item__error">{{ user.password.msg }}</div>
+
+              <input
+                type="password"
+                v-model="user.repassword.value"
+                @change="nativeValidate(user, 'repassword')"
+                placeholder="密碼確認(字母開頭含數字、6~18碼)"
+              />
+              <div class="el-form-item__error">{{ user.repassword.msg }}</div>
+              <input
+                type="text"
+                v-model="user.code.value"
+                placeholder="輸入驗證碼"
+                required
+              />
+              <div class="d-flex login-bottom-containt">
+                <button class="singupcode-submit" @click="onChange">
+                  {{ message }}
+                </button>
+                <br />
+                <button
+                  class="singup-submit"
+                  @click="nativeSubmit"
+                  :disabled="status"
+                >
+                  註冊
+                </button>
+              </div>
+              <div class="d-flex txt">
+                <div class="sinup">
+                  <span>已經是會員</span>
+                  <span class="t1" @click="loginTo">立即登入</span>
+                </div>
+                <div class="outlink">
+                  <p><span>或請使用以下方式登入</span></p>
+                  <div class="d-flex img-d">
+                    <div class="image" @click="fbsingup">
+                      <img src="../assets/img/icons/google.png" alt="google" />
+                    </div>
+                    <div class="image" @click="googlesingup">
+                      <img
+                        src="../assets/img/icons/facebook.png"
+                        alt="facebook"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <p><span></span>或是用信箱登入<span></span></p>
-
-    <form class="singup-form" action="">
-      <input
-        type="text"
-        v-model="user.username.value"
-        placeholder="EMAIL"
-        @change="nativeValidate(user, 'username')"
-        autofocus
-      />
-      <div class="el-form-item__error">{{ user.username.msg }}</div>
-
-      <input
-        type="password"
-        v-model="user.password.value"
-        @change="nativeValidate(user, 'password')"
-        placeholder="密碼(含數字、字母、下底線，6~18碼)"
-      />
-      <div class="el-form-item__error">{{ user.password.msg }}</div>
-
-      <input
-        type="password"
-        v-model="user.repassword.value"
-        @change="nativeValidate(user, 'repassword')"
-        placeholder="密碼確認(含數字、字母、下底線，6~18碼)"
-      />
-      <div class="el-form-item__error">{{ user.repassword.msg }}</div>
-      <input
-        type="text"
-        v-model="user.code.value"
-        placeholder="輸入驗證碼"
-        required
-      />
-    </form>
-    <button class="singupcode-submit" @click="onChange">{{ message }}</button>
-    <br />
-    <button class="singup-submit" @click="nativeSubmit" :disabled="status">
-      註冊
-    </button>
-    <p><router-link to="/signUpForm">表單</router-link></p>
   </div>
 </template>
 <script>
 import { reg_pwdCommon, reg_email } from "../utils/validate";
+
 export default {
   data() {
     return {
       message: "送出驗證碼",
+      msg1: "註冊",
       remsg: "",
       retime: "",
       reMsgg: "",
@@ -129,7 +165,8 @@ export default {
             .then((body) => {
               console.log(body);
               this.resingupmsg = body.Status;
-              if (this.resingupmsg == "1"&&this.remsg=="1") {
+              if (this.resingupmsg == "1" && this.remsg == "1") {
+                localStorage.setItem("myemail", `${this.user.username.value}`);
                 this.$router.push("/signUpForm");
                 console.log("註冊成功");
               }
@@ -184,39 +221,93 @@ export default {
     googlesingup() {
       this.$router.push("/");
     },
+    loginTo(){
+      this.$router.push("/logIn");
+    },
   },
 };
 </script>
 
 <style scoped>
-.singup-containt {
+input {
   width: 100%;
-  height: 100%;
-  margin-top: 50px;
-  text-align: center;
-}
-.singup-button {
-  margin: 20px;
-}
-.singup-button button {
-  width: 7.5%;
-  margin: 20px 20px 0px 20px;
+  height: 50px;
+  margin: 20px 0;
+  padding-left: 10px;
+  border-radius: 10px;
 }
 .singup-form {
-  width: 18%;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
+  padding: 30px 80px;
+  background: rgba(255, 255, 255, 0.25);
 }
-input {
-  margin: 10px;
+h2 {
+  text-align: center;
+  margin: 30px 0 20px;
+}
+img {
+  width: 100%;
+}
+.pic {
+  padding: 50px;
+  background: #000235;
+}
+.login-bottom-containt {
+  flex-direction: column;
+  align-items: center;
 }
 .singupcode-submit {
-  margin-top: 20px;
-  width: 17%;
+  width: 160px;
+  height: 30px;
+  margin-top: 30px;
+  margin: 20px auto 0;
+  border-radius: 10px;
+  background: rgba(217, 217, 217, 0.25);
+  border: none;
+  color: #fff;
+  /* text-align: center; */
 }
 .singup-submit {
-  margin-top: 20px;
-  width: 17%;
+  width: 160px;
+  height: 30px;
+  margin: 0px auto 0;
+  border-radius: 10px;
+  background: rgba(217, 217, 217, 0.25);
+  border: none;
+  color: #fff;
+}
+.outlink {
+  padding: 20px 30px;
+}
+.outlink span {
+  display: block; /*設定為塊級元素會獨佔一行形成上下居中的效果*/
+  color: gray;
+  position: relative;
+}
+
+.outlink p {
+  color: gray;
+  margin: 20px 0 30px;
+}
+
+.image {
+  width: 20%;
+  margin: 20px auto;
+  
+}
+.image img{
+  border-radius: 50%;
+}
+
+.txt {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.sinup .t1 {
+  margin-left: 10px;
+}
+.sinup .t1:hover {
+  margin-left: 10px;
+  color: #62ff36;
 }
 </style>

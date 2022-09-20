@@ -268,6 +268,9 @@ img {
   padding: 50px;
   background: #000235;
 }
+.pic img{
+  padding: 50px;
+}
 .login-bottom-containt {
   flex-direction: column;
   align-items: center;

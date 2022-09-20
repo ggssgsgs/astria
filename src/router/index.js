@@ -79,6 +79,11 @@ const router = createRouter({
       name: "myFortuneTellerInfo",
       component: () => import("../views/MyFortuneTellerInfo.vue"),
     },
+    {
+      path: "/shoppingCart",
+      name: "shoppingCart",
+      component: () => import("../views/shoppingCart.vue"),
+    },
    
 
     // {

@@ -4,12 +4,18 @@
       <div class="row justify-content-center myInfor">
         <div class="col-12 col-lg-4 buttonForm">
           <button @click="myInfor">個人資料管理</button>
+          <button @click="onChange">忘記密碼</button>
+          <button @click="myOrder">我的預約</button>
+          <button @click="myPInfo">個人專業資料管理</button>
           <button>我的課程管理</button>
-          <button>我的預約</button>
+          <button>預約訂單管理</button>
+          
         </div>
         <div class="col-12 col-lg-8 inforForm">
-          <ft-infol-code v-if="logonType === 'code'"></ft-infol-code>
+          <ft-infol-code v-if="logonType === 'ftcode'"></ft-infol-code>
+         <infol-code v-if="logonType === 'code'"></infol-code>
           <infol-pwd v-if="logonType === 'pwd'"></infol-pwd>
+          <infol-reserve v-if="logonType ==='order'"></infol-reserve>
         </div>
       </div>
     </div>
@@ -17,29 +23,44 @@
 </template>
 <script>
 import ftInfolCode from "./ftInfolCode.vue"; 
+import InfolCode from "./InfolCode.vue";
 import InfolPwd from "./InfolPwd.vue";
+import InfolReserve from"./InfolReserve.vue";
 export default {
   components: {
     ftInfolCode,
+    InfolCode,
     InfolPwd,
+    InfolReserve,
   },
   name: "MyInfo",
   data() {
     return {
-      logonType: "code",
+      logonType: "ftcode",
     };
   },
   methods: {
     myInfor() {
-      if (this.$data.logonType === "code" || this.$data.logonType === "pwd") {
+      if (this.$data.logonType === "code" || this.$data.logonType === "pwd"||this.$data.logonType==="ftcode"||this.$data.logonType==="order") {
         this.$data.logonType = "code";
       }
     },
     onChange() {
-      if (this.$data.logonType === "pwd" || this.$data.logonType === "code") {
+      if (this.$data.logonType === "code" || this.$data.logonType === "pwd"||this.$data.logonType==="ftcode"||this.$data.logonType==="order") {
         this.$data.logonType = "pwd";
       }
     },
+    myPInfo(){
+      if(this.$data.logonType === "code" || this.$data.logonType === "pwd"||this.$data.logonType==="ftcode"||this.$data.logonType==="order"){
+        this.$data.logonType = "ftcode";
+      }
+    },
+    myOrder(){
+       if(this.$data.logonType === "code" || this.$data.logonType === "pwd"||this.$data.logonType==="ftcode"||this.$data.logonType==="order"){
+        this.$data.logonType = "order";
+      }
+    }
+
   },
 };
 </script>

@@ -7,7 +7,6 @@
           <button @click="myInfor">個人資料管理</button>
           <button @click="onChange">忘記密碼</button>
           <button @click="myOrder">我的預約</button>
-          <button @click="charts">好友星盤管理</button>
           <button @click="MyFortuneTellerInfo">成為占星師</button>
         </div>
         <div class="col-12 col-lg-8 inforForm">

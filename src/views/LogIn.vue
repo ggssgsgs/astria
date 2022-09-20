@@ -244,10 +244,14 @@ export default {
 }
 img {
   width: 100%;
+  
 }
 .pic {
-  padding: 50px;
+  padding: 50px 50px 50px 0;
   background: #000235;
+}
+.pic img{
+  padding: 70px;
 }
 .inputform {
   height: 740px;

@@ -1,5 +1,5 @@
 <script setup>
-import {RouterLink, RouterView} from "vue-router";
+import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
@@ -97,8 +97,13 @@ import {RouterLink, RouterView} from "vue-router";
                   >
                 </li>
                 <li>
-                  <RouterLink to="/myOrders" class="dropdown-item"
-                    >我的預約</RouterLink
+                  <RouterLink to="/signUpForm" class="dropdown-item"
+                    >我的表單</RouterLink
+                  >
+                </li>
+                <li>
+                  <RouterLink to="/myFortuneTellerInfos" class="dropdown-item"
+                    >成為占卜師</RouterLink
                   >
                 </li>
               </ul>
@@ -116,6 +121,7 @@ export default {
   methods: {
     logOut() {
       localStorage.removeItem("token");
+      localStorage.removeItem("myemail");
       this.$router.push("/");
     },
   },

@@ -139,15 +139,15 @@ export default {
 
 <style scoped>
 .infoContaint {
-  height: 500px;
+  height: 540px;
 }
 .inputForm {
   flex-direction: column;
-  padding: 100px 90px;
+  padding: 120px 100px;
 }
 .card {
   background: rgba(255, 255, 255, 0.25);
-  margin: 0 0 1rem;
+  margin: 0 0 0.5rem;
 }
 
 input {
@@ -160,7 +160,7 @@ input {
   margin: 20px 0;
 }
 label {
-  width: 22%;
+  width: 20%;
   padding: 20px 0 0;
   letter-spacing: 1rem;
   text-align: left;
@@ -171,7 +171,7 @@ label {
   border-radius: 10px;
   background: rgba(217, 217, 217, 0.25);
   color: #fff;
-  margin: auto;
+  margin: 20px auto 0;
 }
 .onsubmitcontent {
   background: #000235;
@@ -179,4 +179,5 @@ label {
 h3{
   margin-bottom: 10px;
 }
+
 </style>

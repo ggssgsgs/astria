@@ -307,11 +307,11 @@ export default {
 }
 .inputForm {
   flex-direction: column;
-  padding: 40px 90px;
+  padding: 40px 100px;
 }
 .card {
   background: rgba(255, 255, 255, 0.25);
-  margin: 0 0 1rem;
+  margin: 0 0 0.5rem;
 }
 .outLink {
   padding: 0 80px;
@@ -333,7 +333,7 @@ input {
   margin: 20px 0;
 }
 .t1 {
-  width: 78%;
+  width: 76%;
   padding-left: 1rem;
 }
 .t2 {
@@ -344,7 +344,7 @@ input {
 }
 
 .l1 {
-  width: 22%;
+  width: 20%;
   padding: 20px 0 0;
   letter-spacing: 1rem;
   text-align: left;

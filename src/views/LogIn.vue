@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
           <div class="col">
             <div class="card pic">
-              <img src="../assets/img/LOGO.png" alt="logo" />
+              <img src="../assets/img/LoginLogo.png" alt="logo" />
             </div>
           </div>
           <div class="col-12 col-lg-6">
@@ -157,6 +157,8 @@ export default {
             if (this.a == "登入成功") {
               localStorage.setItem("token", "ImLogin");
               this.$store.commit("testChangeFriendsName", { name: this.a });
+              localStorage.setItem("myemail", `${this.users}`);
+              localStorage.setItem("mymsg", `${this.a}`);
               this.$router.push("/");
             }
           })
@@ -248,7 +250,7 @@ img {
   background: #000235;
 }
 .inputform {
-  height: 665px;
+  height: 740px;
   background: rgba(255, 255, 255, 0.25);
   padding-top: 30px;
 }

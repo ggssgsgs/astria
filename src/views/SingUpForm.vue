@@ -1,76 +1,117 @@
 <template>
-  <div class="page">
-    <h1>基本資料</h1>
-    <br />
-    <!--不使用element UI 內建驗證的表單-->
+  <div class="BG">
+    <div class="container-xl mt-5">
+      <div class="row justify-content-center myInfor">
+        <div class="col-12 buttonForm">
+          <div class="page">
+            <!--不使用element UI 內建驗證的表單-->
 
-    <form>
-      <label for=""
-        >姓名:
-        <input
-          type="text"
-          v-model="form.name.value"
-          placeholder="請輸入姓名"
-          required
-          autofocus
-        />
-        <div class="el-form-item__error">{{ form.name.msg }}</div>
-      </label>
-      <label for=""
-        >性別:
-        <input v-model="form.gender.value" type="radio" value="male" />Male
-        <input v-model="form.gender.value" type="radio" value="female" />Female
-        <input v-model="form.gender.value" type="radio" value="others" />Others
-        <div class="el-form-item__error">{{ form.gender.msg }}</div>
-      </label>
-      <label for=""
-        >生日:
-        <input type="date" v-model="form.date.value" name="getday" required />
-        <div class="el-form-item__error">{{ form.date.msg }}</div>
-      </label>
-      <label for=""
-        >出生時間:
-        <input type="time" v-model="form.time.value" name="gettime" required />
-        <div class="el-form-item__error">{{ form.time.msg }}</div>
-      </label>
-      <label for=""
-        >出生地:
-        <select v-model="form.address.value">
-          <option value="" disabled>-- 請選擇出生地 --</option>
-          <!--<option v-for="address in addresslist" v-on:change="setplace" :key="address" :value="address">{{address}}</option>-->
-          <option
-            v-for="address in form.addresslist"
-            :key="address"
-            :value="address"
-          >
-            {{ address }}
-          </option>
-        </select>
-      </label>
-      <label for=""
-        >電話:
-        <input
-          type="text"
-          v-model="form.phone.value"
-          @change="nativeValidate(form, 'phone')"
-          placeholder="請輸入電話"
-          required
-        />
-        <div class="el-form-item__error">{{ form.phone.msg }}</div>
-      </label>
+            <div class="card inputForm">
+              <h2>基本資料</h2>
+              <div class="d-flex inputItem">
+                <label for="">姓名</label>
+                <input
+                  type="text"
+                  class="t1"
+                  v-model="form.name.value"
+                  placeholder="請輸入姓名"
+                  required
+                  autofocus
+                />
+                <div class="el-form-item__error">{{ form.name.msg }}</div>
+              </div>
+              <div class="d-flex inputItem radiocontent">
+                <label class="l1">性別</label>
 
-      <div>
-        <!-- 需要先做停止瀏覽器預設行為 -->
-        <button @click.prevent="nativeSubmit" :disabled="status">送出</button>
+                <input
+                  class="t2"
+                  v-model="form.gender.value"
+                  type="radio"
+                  value="male"
+                />
+                <p class="radioTxt">Male</p>
+                <input
+                  class="t2"
+                  v-model="form.gender.value"
+                  type="radio"
+                  value="female"
+                />
+                <p class="radioTxt">Female</p>
+                <input
+                  class="t2"
+                  v-model="form.gender.value"
+                  type="radio"
+                  value="others"
+                />
+                <p class="radioTxt">Others</p>
+              </div>
+              <div class="d-flex inputItem">
+                <label for="">生日</label>
+                <input
+                  type="date"
+                  class="t1"
+                  v-model="form.date.value"
+                  name="getday"
+                  required
+                />
+                <div class="el-form-item__error">{{ form.date.msg }}</div>
+              </div>
+              <div class="d-flex inputItem">
+                <label for="">出生時間</label>
+                <input
+                  type="time"
+                  class="t1"
+                  v-model="form.time.value"
+                  name="gettime"
+                  required
+                />
+                <div class="el-form-item__error">{{ form.time.msg }}</div>
+              </div>
+              <div class="d-flex inputItem">
+                <label for="">出生地</label>
+                <select v-model="form.address.value" class="t1">
+                  <option value="" disabled>-- 請選擇出生地 --</option>
+                  <!--<option v-for="address in addresslist" v-on:change="setplace" :key="address" :value="address">{{address}}</option>-->
+                  <option
+                    v-for="address in form.addresslist"
+                    :key="address"
+                    :value="address"
+                  >
+                    {{ address }}
+                  </option>
+                </select>
+              </div>
+              <div class="d-flex inputItem">
+                <label>電話</label>
+                <input
+                  type="text"
+                  class="t1"
+                  v-model="form.phone.value"
+                  @change="nativeValidate(form, 'phone')"
+                  placeholder="請輸入電話"
+                  required
+                />
+                <div class="el-form-item__error">{{ form.phone.msg }}</div>
+              </div>
+
+              <div>
+                <!-- 需要先做停止瀏覽器預設行為 -->
+                <button @click.prevent="nativeSubmit" :disabled="status">
+                  送出
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </form>
+    </div>
   </div>
 </template>
 <script>
 import { reg_phoneType2 } from "../utils/validate";
 export default {
   mounted() {
-    this.form.email.value =localStorage.getItem('myemail')
+    this.form.email.value = localStorage.getItem("myemail");
     // console.log(localStorage.getItem('myemail'));
   },
   data() {
@@ -108,7 +149,7 @@ export default {
           "馬祖縣",
         ],
         phone: { value: "", msg: "" },
-        email: { value: ''},
+        email: { value: "" },
       },
       submitDisabled: true, // 送出按鈕的disabled狀態，true為禁用
     };
@@ -178,7 +219,6 @@ export default {
             } else {
               alert("成功");
               localStorage.setItem("token", "ImLogin");
-              localStorage.removeItem('myemail')
               this.$router.push("/");
             }
           })
@@ -215,12 +255,81 @@ export default {
 .page {
   text-align: center;
 }
-form {
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
+.inputForm {
+  padding: 50px 50px;
 }
+
 input {
-  margin: 15px;
+  background: rgba(255, 255, 255, 0);
+  border: none;
+  border-bottom: 1px solid #eee;
+  outline: none;
+  margin-bottom: 40px;
+  padding-left: 10px;
+}
+select {
+  background: rgba(255, 255, 255, 0);
+  border: none;
+  border-bottom: 1px solid #eee;
+  outline: none;
+  margin-bottom: 40px;
+  padding-left: 10px;
+}
+.card {
+  background: rgba(255, 255, 255, 0.25);
+}
+label {
+  width: 17%;
+  letter-spacing: 1rem;
+  text-align: left;
+}
+
+.t1 {
+  width: 83%;
+}
+.t2 {
+  width: 5%;
+  padding-top: 20px;
+}
+h2 {
+  margin-bottom: 40px;
+  
+}
+button {
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(217, 217, 217, 0.25);
+  color: #fff;
+  border: none;
+
+}
+ p {
+    color: gray;
+  }
+
+@media screen and (min-width: 992px) {
+  .inputForm {
+    padding: 70px 300px;
+  }
+  label {
+    width: 10%;
+    letter-spacing: 1rem;
+    text-align: left;
+  }
+
+  .t1 {
+    width: 90%;
+  }
+  input {
+    margin: 0 0 60px;
+  }
+  select {
+    margin: 0 0 60px;
+  }
+ 
+  h2 {
+    margin-bottom: 60px;
+  }
 }
 </style>

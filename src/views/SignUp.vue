@@ -3,13 +3,13 @@
     <div class="container-xl mt-5">
       <div class="singup-containt">
         <div class="row justify-content-center">
-          <div class="col-12 col-lg-6">
+           <div class="col-12 col-lg-6">
             <div class="card pic">
-              <img src="../assets/img/LOGO.png" alt="logo" />
+              <img src="../assets/img/LoginLogo.png" alt="logo" />
             </div>
           </div>
           <div class="col-12 col-lg-6">
-            <div class="card singup-form">
+            <div class="singup-form">
               <h2>{{ msg1 }}</h2>
               <input
                 type="text"
@@ -83,16 +83,28 @@
 </template>
 <script>
 import { reg_pwdCommon, reg_email } from "../utils/validate";
+import SketchMain from "../components/P5CanvasKeyVision_half.vue";
+import imgUrl from "../assets/img/starHolder.png";
+import imgUrl2 from "../assets/img/0728.jpg";
+
+
 
 export default {
+
   data() {
     return {
+      sketchData: {
+        imgStarHolderSrc: imgUrl,
+        src2: imgUrl2,
+      },
       message: "送出驗證碼",
       msg1: "註冊",
       remsg: "",
       retime: "",
       reMsgg: "",
       resingupmsg: "",
+      resingupmsg1:"",
+      
       user: {
         username: { value: "", msg: "" },
         password: { value: "", msg: "" },
@@ -101,6 +113,9 @@ export default {
       },
       submitDisabled: true, // 送出按鈕的disabled狀態，true為禁用
     };
+  },
+  components: {
+    SketchMain,
   },
   methods: {
     nativeValidate(target, key) {
@@ -165,8 +180,10 @@ export default {
             .then((body) => {
               console.log(body);
               this.resingupmsg = body.Status;
+              this.resingupmsg1=body.Msg;
               if (this.resingupmsg == "1" && this.remsg == "1") {
                 localStorage.setItem("myemail", `${this.user.username.value}`);
+                 localStorage.setItem("mymsg", `${this.resingupmsg1}`);
                 this.$router.push("/signUpForm");
                 console.log("註冊成功");
               }

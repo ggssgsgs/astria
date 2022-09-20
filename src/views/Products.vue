@@ -226,7 +226,7 @@ export default {
 }
 .hotProduct h2,
 .anyChoice h2 {
-  padding: 20px 20px 20px 30px;
+  padding: 20px 20px 0px 30px;
   color: #62ff36;
 }
 
@@ -243,12 +243,12 @@ export default {
 .anyChoice img {
   border-radius: 50%;
   width: 100%;
-  padding: 30px 50px 20px;
+  padding: 60px 60px 40px;
 }
 
 .hotProduct h3,
 .anyChoice h3 {
-  margin: 12px 0 10px;
+  margin: 0px 0 10px;
 }
 
 .hotProduct span,
@@ -270,7 +270,7 @@ export default {
 @media screen and (max-width: 992px) {
   .hotProduct h2 {
     text-align: center;
-    padding: 20px 0 30px;
+    padding: 20px 0 0px;
   }
   .anyChoice h2 {
     text-align: center;
@@ -285,7 +285,7 @@ export default {
   .anyChoice img {
     border-radius: 50%;
     width: 100%;
-    padding: 30px 80px 20px;
+    padding: 60px 50px 40px;
   }
 }
 </style>

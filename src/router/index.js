@@ -74,6 +74,12 @@ const router = createRouter({
       name: "myOrders",
       component: () => import("../views/MyOrders.vue"),
     },
+    {
+      path: "/myFortuneTellerInfos",
+      name: "myFortuneTellerInfo",
+      component: () => import("../views/MyFortuneTellerInfo.vue"),
+    },
+   
 
     // {
     //   path: '*',

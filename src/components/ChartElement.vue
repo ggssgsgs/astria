@@ -189,8 +189,10 @@ export default {
       //change size
       if (window.innerWidth < 992) {
         this.cs = window.innerWidth * 0.9;
-      } else {
+      } else if (window.innerWidth < 1140) {
         this.cs = 500 * (window.innerWidth / 1200);
+      } else {
+        this.cs = 500;
       }
 
       //delete the existing element

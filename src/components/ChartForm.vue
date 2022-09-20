@@ -181,6 +181,7 @@ export default {
         birthTime: this.form.time.value,
         location: this.form.address.value,
       });
+      this.$store.commit("setCurrentUTCtime");
 
       this.$router.push("/currentChart");
     },

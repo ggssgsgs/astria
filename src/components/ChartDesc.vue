@@ -173,7 +173,7 @@ export default {
       }
       // load into local data from vuex
       this.l_currentHouseInfo = this.$store.state.currentData.currentHouseInfo;
-    }, 300);
+    }, 1200);
 
     // window.setTimeout(() => {
     //   this.signs = [

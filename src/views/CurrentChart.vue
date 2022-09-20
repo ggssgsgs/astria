@@ -61,9 +61,10 @@ export default {
     console.log("myChar.vue beforeMount");
     ////vvv testing tto set the data to some other
     this.$store.state.currentAPIsrc = this.$store.state.friends[0].astroAPI;
+
     this.$store.dispatch("getChartData", {
-      birthday: this.$store.state.currentData.currentBirthday,
-      birthTime: this.$store.state.currentData.currentBirthTime,
+      birthday: this.$store.state.currentData.currentUTCBirthday,
+      birthTime: this.$store.state.currentData.currentUTCBirthTime,
       location: this.$store.state.currentData.currentLocation,
     });
 

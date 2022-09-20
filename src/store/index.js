@@ -24,8 +24,10 @@ export default createStore({
     ],
 
     currentData: {
-      currentBirthday: "2024-03-11",
-      currentBirthTime: "13:01:01",
+      currentBirthday: "1995-07-07",
+      currentUTCBirthday: "1995-07-07",
+      currentBirthTime: "11:08:00",
+      currentUTCBirthTime: "03:08:00",
       currentName: "正預期",
       currentLocation: "台南",
       currentLatitude: "23.11111",
@@ -268,6 +270,45 @@ export default createStore({
   },
   getters: {},
   mutations: {
+    setCurrentUTCtime(state) {
+      // let date = this.$store.state.currentData.currentBirthday;
+      // let time = this.$store.state.currentData.currentBirthTime;
+      let date = state.currentData.currentBirthday;
+      let time = state.currentData.currentBirthTime;
+      let date1 = new Date(`${date}, ${time}:00 GMT+8:00`);
+
+      console.log("TIMETEST", date1.getUTCHours());
+      console.log("DAYTEST", date1.getUTCDate());
+      let newMonth;
+      if (date1.getUTCMonth() + 1 < 10) {
+        newMonth = "0" + (date1.getUTCMonth() + 1).toString();
+      } else {
+        newMonth = (date1.getUTCMonth() + 1).toString();
+      }
+      let newDate;
+      if (date1.getUTCDate() < 10) {
+        newDate = "0" + date1.getUTCDate().toString();
+      } else {
+        newDate = date1.getUTCDate().toString();
+      }
+      let newHours;
+      if (date1.getUTCHours() < 10) {
+        newHours = "0" + date1.getUTCHours().toString();
+      } else {
+        newHours = date1.getUTCHours().toString();
+      }
+      let newMinutes;
+      if (date1.getUTCMinutes() < 10) {
+        newMinutes = "0" + date1.getUTCMinutes().toString();
+      } else {
+        newMinutes = date1.getUTCMinutes().toString();
+      }
+
+      state.currentData.currentUTCBirthTime =
+        newHours + ":" + newMinutes + ":00";
+      state.currentData.currentUTCBirthday =
+        date1.getUTCFullYear().toString() + "-" + newMonth + "-" + newDate;
+    },
     setCurrentData(state, payload) {
       state.currentData.currentName = payload.name;
       state.currentData.currentBirthday = payload.birthday;

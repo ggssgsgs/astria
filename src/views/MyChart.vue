@@ -68,6 +68,7 @@ export default {
     console.log("JSON", this.$store.state.descJSON.length);
   },
   mounted() {
+    this.getUTCtime();
     window.setTimeout(() => {
       this.currentSign = this.$store.state.mySigns[0];
       //delete original img
@@ -78,6 +79,17 @@ export default {
 
       //document.getElementById("mySignLogo").appendChild();
     }, 100);
+  },
+  methods: {
+    getUTCtime() {
+      // let date = this.$store.state.currentData.currentBirthday;
+      // let time = this.$store.state.currentData.currentBirthTime;
+      let date = "1995-07-07";
+      let time = "07:08";
+      let date1 = new Date(`${date}, ${time}:00 GMT+8:00`);
+      console.log("TIMETEST", date1.getUTCHours());
+      console.log("DAYTEST", date1.getUTCDate());
+    },
   },
 };
 </script>

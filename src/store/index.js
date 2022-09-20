@@ -32,6 +32,7 @@ export default createStore({
       currentLongitude: "120.55555",
       currentChartDataOrigin: {},
       currentSigns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+
       currentSignsNames: [
         "牡羊座",
         "金牛座",
@@ -45,6 +46,43 @@ export default createStore({
         "摩羯座",
         "水瓶座",
       ],
+      currentHouses: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      currentHousesNames: [
+        "第一宮",
+        "第一宮",
+        "第一宮",
+        "第一宮",
+        "第一宮",
+        "第一宮",
+        "第一宮",
+        "第一宮",
+        "第一宮",
+        "第一宮",
+        "第一宮",
+      ],
+      currentSignInfo: [],
+      currentHouseInfo: [],
+      //各行星角度
+      currentDegrees: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      currentChartDataOrigin: {},
+      currentChartData: {
+        planets: {
+          Lilith: [17],
+          Chiron: [18],
+          Pluto: [63],
+          Neptune: [110, 0.2],
+          Uranus: [318],
+          Saturn: [201, -0.2],
+          Jupiter: [192],
+          Mars: [210],
+          Moon: [268],
+          Sun: [281],
+          Mercury: [312],
+          Venus: [330],
+          //NNode: [2],
+        },
+        cusps: [296, 350, 30, 56, 75, 94, 116, 170, 210, 236, 255, 274],
+      },
     },
 
     //Personal Data
@@ -249,7 +287,8 @@ export default createStore({
           if (state.descJSON[i].Select2 === payload.sign) {
             console.log("get json");
             console.log(state.descJSON[i].information);
-            state.mySignInfo[payload.index] = state.descJSON[i].information;
+            state.currentData.currentSignInfo[payload.index] =
+              state.descJSON[i].information;
             return state.descJSON[i].information;
           }
         }
@@ -257,13 +296,14 @@ export default createStore({
           if (state.descJSON[i].Select1 === payload.sign) {
             console.log("get json");
             console.log(state.descJSON[i].information);
-            state.mySignInfo[payload.index] = state.descJSON[i].information;
+            state.currentData.currentSignInfo[payload.index] =
+              state.descJSON[i].information;
             return state.descJSON[i].information;
           }
         }
         //console.log(state.descJSON[i].Select1, state.descJSON[i].Select2);
         //console.log("failed to get one!");
-        state.mySignInfo[payload.index] = "No Data";
+        state.currentData.currentSignInfo[payload.index] = "No Data";
       }
     },
     //取得宮位資訊
@@ -274,7 +314,8 @@ export default createStore({
           if (state.descJSON[i].Select2 === payload.house) {
             console.log("get json");
             console.log(state.descJSON[i].information);
-            state.myHouseInfo[payload.index] = state.descJSON[i].information;
+            state.currentData.currentHouseInfo[payload.index] =
+              state.descJSON[i].information;
             return state.descJSON[i].information;
           }
         }
@@ -282,13 +323,14 @@ export default createStore({
           if (state.descJSON[i].Select1 === payload.house) {
             console.log("get json");
             console.log(state.descJSON[i].information);
-            state.myHouseInfo[payload.index] = state.descJSON[i].information;
+            state.currentData.currentHouseInfo[payload.index] =
+              state.descJSON[i].information;
             return state.descJSON[i].information;
           }
         }
         //console.log(state.descJSON[i].Select1, state.descJSON[i].Select2);
         //console.log("failed to get one!");
-        state.myHouseInfo[payload.index] = "No Data";
+        state.currentData.currentHouseInfo[payload.index] = "No Data";
       }
     },
     // signNumberToName(signNumber) {
@@ -326,51 +368,52 @@ export default createStore({
 
       let interval = ascHouse - 1;
 
-      for (let i = 0; i < state.mySigns.length; i++) {
+      for (let i = 0; i < state.currentData.currentSigns.length; i++) {
         let house =
-          astroDataOriginal.houses[state.mySigns[i] - 1].sign + interval;
+          astroDataOriginal.houses[state.currentData.currentSigns[i] - 1].sign +
+          interval;
         if (house % 12 === 0) {
           house = 12;
         } else {
           house = house % 12;
         }
-        state.myHouses[i] = house;
+        state.currentData.currentHouses[i] = house;
       }
     },
     assignHouseName(state) {
-      for (let i = 0; i < state.myHouses.length; i++) {
-        let signNumber = state.myHouses[i];
+      for (let i = 0; i < state.currentData.currentHouses.length; i++) {
+        let signNumber = state.currentData.currentHouses[i];
         if (signNumber == 1) {
-          state.myHousesNames[i] = "第一宮";
+          state.currentData.currentHousesNames[i] = "第一宮";
         } else if (signNumber == 2) {
-          state.myHousesNames[i] = "第二宮";
+          state.currentData.currentHousesNames[i] = "第二宮";
         } else if (signNumber == 3) {
-          state.myHousesNames[i] = "第三宮";
+          state.currentData.currentHousesNames[i] = "第三宮";
         } else if (signNumber == 4) {
-          state.myHousesNames[i] = "第四宮";
+          state.currentData.currentHousesNames[i] = "第四宮";
         } else if (signNumber == 5) {
-          state.myHousesNames[i] = "第五宮";
+          state.currentData.currentHousesNames[i] = "第五宮";
         } else if (signNumber == 6) {
-          state.myHousesNames[i] = "第六宮";
+          state.currentData.currentHousesNames[i] = "第六宮";
         } else if (signNumber == 7) {
-          state.myHousesNames[i] = "第七宮";
+          state.currentData.currentHousesNames[i] = "第七宮";
         } else if (signNumber == 8) {
-          state.myHousesNames[i] = "第八宮";
+          state.currentData.currentHousesNames[i] = "第八宮";
         } else if (signNumber == 9) {
-          state.myHousesNames[i] = "第九宮";
+          state.currentData.currentHousesNames[i] = "第九宮";
         } else if (signNumber == 10) {
-          state.myHousesNames[i] = "第十宮";
+          state.currentData.currentHousesNames[i] = "第十宮";
         } else if (signNumber == 11) {
-          state.myHousesNames[i] = "第十一宮";
+          state.currentData.currentHousesNames[i] = "第十一宮";
         } else if (signNumber == 12) {
-          state.myHousesNames[i] = "第十二宮";
+          state.currentData.currentHousesNames[i] = "第十二宮";
         }
       }
     },
-    //set to mySigns in vuex
+    //set to currentData.currentSigns in vuex
     setSigns(state, astroDataOriginal) {
-      //console.log("測試", state.mySigns);
-      state.mySigns = [
+      //console.log("測試", state.currentData.currentSigns);
+      state.currentData.currentSigns = [
         astroDataOriginal.astros.sun.sign,
         astroDataOriginal.axes.asc.sign,
         astroDataOriginal.astros.moon.sign,
@@ -385,42 +428,42 @@ export default createStore({
       ];
     },
 
-    //set data to mySignsNames in vuex
+    //set data to currentData.currentSignsNames in vuex
     assignSignName(state) {
-      for (let i = 0; i < state.mySigns.length; i++) {
-        // state.mySignsNames[i] = this.signNumberToName(state.mySigns[i]);
-        let signNumber = state.mySigns[i];
+      for (let i = 0; i < state.currentData.currentSigns.length; i++) {
+        // state.currentData.currentSignsNames[i] = this.signNumberToName(state.currentData.currentSigns[i]);
+        let signNumber = state.currentData.currentSigns[i];
         if (signNumber == 1) {
-          state.mySignsNames[i] = "牡羊座";
+          state.currentData.currentSignsNames[i] = "牡羊座";
         } else if (signNumber == 2) {
-          state.mySignsNames[i] = "金牛座";
+          state.currentData.currentSignsNames[i] = "金牛座";
         } else if (signNumber == 3) {
-          state.mySignsNames[i] = "雙子座";
+          state.currentData.currentSignsNames[i] = "雙子座";
         } else if (signNumber == 4) {
-          state.mySignsNames[i] = "巨蟹座";
+          state.currentData.currentSignsNames[i] = "巨蟹座";
         } else if (signNumber == 5) {
-          state.mySignsNames[i] = "獅子座";
+          state.currentData.currentSignsNames[i] = "獅子座";
         } else if (signNumber == 6) {
-          state.mySignsNames[i] = "處女座";
+          state.currentData.currentSignsNames[i] = "處女座";
         } else if (signNumber == 7) {
-          state.mySignsNames[i] = "天秤座";
+          state.currentData.currentSignsNames[i] = "天秤座";
         } else if (signNumber == 8) {
-          state.mySignsNames[i] = "天蠍座";
+          state.currentData.currentSignsNames[i] = "天蠍座";
         } else if (signNumber == 9) {
-          state.mySignsNames[i] = "射手座";
+          state.currentData.currentSignsNames[i] = "射手座";
         } else if (signNumber == 10) {
-          state.mySignsNames[i] = "摩羯座";
+          state.currentData.currentSignsNames[i] = "摩羯座";
         } else if (signNumber == 11) {
-          state.mySignsNames[i] = "水瓶座";
+          state.currentData.currentSignsNames[i] = "水瓶座";
         } else if (signNumber == 12) {
-          state.mySignsNames[i] = "雙魚座";
+          state.currentData.currentSignsNames[i] = "雙魚座";
         }
       }
     },
 
     setDegrees(state, astroDataOriginal) {
-      //console.log("測試", state.mySigns);
-      state.myDegrees = [
+      //console.log("測試", state.currentData.currentSigns);
+      state.currentData.currentDegrees = [
         astroDataOriginal.astros.sun.position.degrees,
         astroDataOriginal.axes.asc.position.degrees,
         astroDataOriginal.astros.moon.position.degrees,
@@ -435,89 +478,110 @@ export default createStore({
       ];
     },
 
-    //set data to myChartData in state(vuex)
+    //set data to currentData.currentChartData in state(vuex)
     setChartData(state, astroDataOriginal) {
-      //   console.log(state.myChartData.planets.Chiron[0]);
-      //   console.log(state.myChartDataOrigin);
+      //   console.log(state.currentData.currentChartData.planets.Chiron[0]);
+      //   console.log(state.currentData.currentChartDataOrigin);
       //--Chiron
-      state.myChartData.planets.Chiron[0] =
+      state.currentData.currentChartData.planets.Chiron[0] =
         astroDataOriginal.astros.chiron.position.longitude;
 
-      console.log("chiron", state.myChartData.planets.Chiron[0]);
+      console.log(
+        "chiron",
+        state.currentData.currentChartData.planets.Chiron[0]
+      );
       //--Lilith
-      state.myChartData.planets.Lilith[0] =
+      state.currentData.currentChartData.planets.Lilith[0] =
         astroDataOriginal.astros.lilith.position.longitude;
 
-      console.log("Lilith", state.myChartData.planets.Lilith[0]);
+      console.log(
+        "Lilith",
+        state.currentData.currentChartData.planets.Lilith[0]
+      );
       //--Pluto
-      state.myChartData.planets.Pluto[0] =
+      state.currentData.currentChartData.planets.Pluto[0] =
         astroDataOriginal.astros.pluto.position.longitude;
 
-      console.log("Pluto", state.myChartData.planets.Pluto[0]);
+      console.log("Pluto", state.currentData.currentChartData.planets.Pluto[0]);
       //--Neptune
-      state.myChartData.planets.Neptune = [
+      state.currentData.currentChartData.planets.Neptune = [
         astroDataOriginal.astros.neptune.position.longitude,
       ];
 
-      console.log("Neptune", state.myChartData.planets.Neptune[0]);
+      console.log(
+        "Neptune",
+        state.currentData.currentChartData.planets.Neptune[0]
+      );
       //--Uranus
-      state.myChartData.planets.Uranus[0] =
+      state.currentData.currentChartData.planets.Uranus[0] =
         astroDataOriginal.astros.uranus.position.longitude;
 
-      console.log("Uranus", state.myChartData.planets.Uranus[0]);
+      console.log(
+        "Uranus",
+        state.currentData.currentChartData.planets.Uranus[0]
+      );
       //--Saturn
-      state.myChartData.planets.Saturn = [
+      state.currentData.currentChartData.planets.Saturn = [
         astroDataOriginal.astros.saturn.position.longitude,
       ];
 
-      console.log("Saturn", state.myChartData.planets.Saturn[0]);
+      console.log(
+        "Saturn",
+        state.currentData.currentChartData.planets.Saturn[0]
+      );
       //--Jupiter
-      state.myChartData.planets.Jupiter = [
+      state.currentData.currentChartData.planets.Jupiter = [
         astroDataOriginal.astros.jupiter.position.longitude,
       ];
 
-      console.log("Jupiter", state.myChartData.planets.Jupiter[0]);
+      console.log(
+        "Jupiter",
+        state.currentData.currentChartData.planets.Jupiter[0]
+      );
       //--Mars
-      state.myChartData.planets.Mars = [
+      state.currentData.currentChartData.planets.Mars = [
         astroDataOriginal.astros.mars.position.longitude,
       ];
 
-      console.log("Mars", state.myChartData.planets.Mars[0]);
+      console.log("Mars", state.currentData.currentChartData.planets.Mars[0]);
       //--Moon
-      state.myChartData.planets.Moon = [
+      state.currentData.currentChartData.planets.Moon = [
         astroDataOriginal.astros.moon.position.longitude,
       ];
 
-      console.log("Moon", state.myChartData.planets.Moon[0]);
+      console.log("Moon", state.currentData.currentChartData.planets.Moon[0]);
       //--Sun
-      state.myChartData.planets.Sun = [
+      state.currentData.currentChartData.planets.Sun = [
         astroDataOriginal.astros.sun.position.longitude,
       ];
 
-      console.log("Sun", state.myChartData.planets.Sun[0]);
+      console.log("Sun", state.currentData.currentChartData.planets.Sun[0]);
       //--Mercury
-      state.myChartData.planets.Mercury = [
+      state.currentData.currentChartData.planets.Mercury = [
         astroDataOriginal.astros.mercury.position.longitude,
       ];
 
-      console.log("Mercury", state.myChartData.planets.Mercury[0]);
+      console.log(
+        "Mercury",
+        state.currentData.currentChartData.planets.Mercury[0]
+      );
       //--Venus
-      state.myChartData.planets.Venus = [
+      state.currentData.currentChartData.planets.Venus = [
         astroDataOriginal.astros.venus.position.longitude,
       ];
 
-      console.log("Venus", state.myChartData.planets.Venus[0]);
+      console.log("Venus", state.currentData.currentChartData.planets.Venus[0]);
       //   //--NNode api 暫無此資料
-      //   state.myChartData.planets.NNode = [
+      //   state.currentData.currentChartData.planets.NNode = [
       //     astroDataOriginal.astros.saturn.position.longitude,
       //   ];
 
-      //   console.log("Saturn", state.myChartData.planets.Saturn[0]);
+      //   console.log("Saturn", state.currentData.currentChartData.planets.Saturn[0]);
 
-      //state.myChartDataOrigin.astros.chiron.position.longitude;
+      //state.currentData.currentChartDataOrigin.astros.chiron.position.longitude;
 
       for (let i = 0; i < 12; i++) {
-        state.myChartData.cusps[i] =
+        state.currentData.currentChartData.cusps[i] =
           astroDataOriginal.houses[i].position.longitude;
         //houses[0].position.longitude
       }
@@ -572,7 +636,7 @@ export default createStore({
         });
     },
 
-    getChartData({commit, state}) {
+    getChartData({commit, state}, payload) {
       //到時候更改API 提供四個欄位資料
       // axios
       //   .get("https://randomuser.me/api/", {
@@ -585,24 +649,54 @@ export default createStore({
       //   .then((response) => console.log(response))
       //   .catch((error) => console.log(error));
       //this.myAPIsrc = api;
+      //----GET----
+      // axios
+      //   .get(
+      //     //台灣時間記得 -8 : 經緯度小數點 5 位
+      //     state.currentAPIsrc,
+      //     {
+      //       params: {
+      //         Date: state.currentData.currentBirthday,
+      //         Time: state.currentData.currentBirthTime,
+      //         Address: state.currentData.currentLocation,
+      //         //Location
+      //       },
+      //     }
+      //   )
+      //   .then((response) => {
+      //     console.log("Cdata:", response);
+      //     state.currentData.currentChartDataOrigin = response.data.data;
+      //     console.log(
+      //       "currentChartDataOrigin:",
+      //       state.currentData.currentChartDataOrigin
+      //     );
+      //     commit("setChartData", state.currentData.currentChartDataOrigin);
+      //     //console.log("myChartData_Axios", state.myChartData);
+      //     //分配取得各行星星座
+      //     commit("setSigns", state.currentData.currentChartDataOrigin);
+      //     //console.log("mySigns", this.mySigns);
+      //     //在 vue裡的 index.js 呼叫 state 會顯示 undefined
+      //     commit("assignSignName");
+      //     //console.log("mySignsNames", this.mySignsNames);
+      //     //有Sign 才有 House
+      //     commit("setHouses", state.currentData.currentChartDataOrigin);
+      //     //vvvv not gonna show
+      //     //console.log("myHouses", this.myHouses);
+      //     commit("assignHouseName");
+      //     //set degrees
+      //     commit("setDegrees", state.currentData.currentChartDataOrigin);
+      //   });
       axios
-        .get(
-          //台灣時間記得 -8 : 經緯度小數點 5 位
-          state.currentAPIsrc,
-          {
-            params: {
-              Date: state.currentData.currentBirthday,
-              Time: state.currentData.currentBirthTime,
-              Address: state.currentData.currentLocation,
-              //Location
-            },
-          }
-        )
-        .then((response) => {
-          console.log("Cdata:", response);
-          state.currentData.currentChartDataOrigin = response.data.data;
+        .post("https://astria.sutsanyuan.com/api/astrodata", {
+          Date: payload.birthday,
+          Time: payload.birthTime,
+          Address: payload.location,
+        })
+        .then(function (response) {
+          console.log("get astro data by post", response);
+          state.currentData.currentChartDataOrigin = response.data.JObj.data;
           console.log(
-            "currentChartDataOrigin:",
+            "myChartDataOrigin:",
             state.currentData.currentChartDataOrigin
           );
           commit("setChartData", state.currentData.currentChartDataOrigin);
@@ -620,6 +714,9 @@ export default createStore({
           commit("assignHouseName");
           //set degrees
           commit("setDegrees", state.currentData.currentChartDataOrigin);
+        })
+        .catch(function (error) {
+          console.log(error);
         });
     },
   },

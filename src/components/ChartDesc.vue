@@ -136,15 +136,16 @@ export default {
 
     window.setTimeout(() => {
       // load into local data from vuex
-      console.log(this.$store.state.mySigns);
-      this.currentSigns = this.$store.state.mySigns;
+      console.log(this.$store.state.currentData.currentSigns);
+      this.currentSigns = this.$store.state.currentData.currentSigns;
 
-      this.currentSignsNames = this.$store.state.mySignsNames;
-      console.log(this.$store.state.mySignsNames);
-      this.currentHouses = this.$store.state.myHouses;
-      this.currentHousesNames = this.$store.state.myHousesNames;
+      this.currentSignsNames = this.$store.state.currentData.currentSignsNames;
+      console.log(this.$store.state.currentData.currentSignsNames);
+      this.currentHouses = this.$store.state.currentData.currentHouses;
+      this.currentHousesNames =
+        this.$store.state.currentData.currentHousesNames;
 
-      console.log("mysign", this.$store.state.mySigns);
+      console.log("currentData.currentsign", this.$store.state.mySigns);
       console.log("currentsign", this.currentSigns);
 
       //傳到veux裡 （用 vuex 的 mutation 編輯
@@ -157,7 +158,7 @@ export default {
       }
 
       // load into local data from vuex
-      this.l_currentSignInfo = this.$store.state.mySignInfo;
+      this.l_currentSignInfo = this.$store.state.currentData.currentSignInfo;
 
       // this.currentSigns.forEach((element) => {
       //   console.log(element);
@@ -171,7 +172,7 @@ export default {
         });
       }
       // load into local data from vuex
-      this.l_currentHouseInfo = this.$store.state.myHouseInfo;
+      this.l_currentHouseInfo = this.$store.state.currentData.currentHouseInfo;
     }, 300);
 
     // window.setTimeout(() => {

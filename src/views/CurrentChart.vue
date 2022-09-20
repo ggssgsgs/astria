@@ -61,11 +61,14 @@ export default {
     console.log("myChar.vue beforeMount");
     ////vvv testing tto set the data to some other
     this.$store.state.currentAPIsrc = this.$store.state.friends[0].astroAPI;
-    this.$store.dispatch("getMyChartData");
+    this.$store.dispatch("getChartData", {
+      birthday: this.$store.state.currentData.currentBirthday,
+      birthTime: this.$store.state.currentData.currentBirthTime,
+      location: this.$store.state.currentData.currentLocation,
+    });
 
-    console.log(this.$store.state.myChartData);
-    console.log("MyChart>mySigns", this.$store.state.mySigns);
-    console.log("JSON", this.$store.state.descJSON.length);
+    console.log("CurrentChart>mySigns", this.$store.state.mySigns);
+    //console.log("JSON", this.$store.state.descJSON.length);
   },
   mounted() {
     window.setTimeout(() => {

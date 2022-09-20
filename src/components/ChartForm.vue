@@ -1,53 +1,99 @@
 <template>
-  <div class="page">
-    <h1>基本資料</h1>
-    <br />
-    <!--不使用element UI 內建驗證的表單-->
+  <div class="container m-auto mt-5 d-flex justify-content-center">
+    <div class="row align-items-center justify-content-center w-100">
+      <div
+        class="block col-12 col-md-8 d-flex flex-column align-items-center justify-content-center"
+      >
+        <h1 class="my-5 align-self-center">查詢星盤</h1>
 
-    <form>
-      <label for=""
-        >姓名:
-        <input
-          type="text"
-          v-model="form.name.value"
-          placeholder="請輸入姓名"
-          required
-          autofocus
-        />
-        <div class="el-form-item__error">{{ form.name.msg }}</div>
-      </label>
-      <label for=""
-        >性別:
-        <input v-model="form.gender.value" type="radio" value="male" />Male
-        <input v-model="form.gender.value" type="radio" value="female" />Female
-        <input v-model="form.gender.value" type="radio" value="others" />Others
-        <div class="el-form-item__error">{{ form.gender.msg }}</div>
-      </label>
-      <label for=""
-        >生日:
-        <input type="date" v-model="form.date.value" name="getday" required />
-        <div class="el-form-item__error">{{ form.date.msg }}</div>
-      </label>
-      <label for=""
-        >出生時間:
-        <input type="time" v-model="form.time.value" name="gettime" required />
-        <div class="el-form-item__error">{{ form.time.msg }}</div>
-      </label>
-      <label for=""
-        >出生地:
-        <select v-model="form.address.value">
-          <option value="" disabled>-- 請選擇出生地 --</option>
-          <!--<option v-for="address in addresslist" v-on:change="setplace" :key="address" :value="address">{{address}}</option>-->
-          <option
-            v-for="address in form.addresslist"
-            :key="address"
-            :value="address"
-          >
-            {{ address }}
-          </option>
-        </select>
-      </label>
-      <label for=""
+        <!--不使用element UI 內建驗證的表單-->
+
+        <form class="d-flex flex-column w-75 fs-4">
+          <div class="w-100 d-flex my-3">
+            <span class="flex-shrink-1">姓名:</span>
+            <input
+              class="input-style flex-fill"
+              type="text"
+              v-model="form.name.value"
+              placeholder="請輸入姓名"
+              required
+            />
+          </div>
+          <div class="el-form-item__error">{{ form.name.msg }}</div>
+
+          <div class="w-100 d-flex my-3">
+            <span class="flex-shrink-1">性別:</span>
+            <div class="radio-btns flex-fill d-flex justify-content-around">
+              <input
+                v-model="form.gender.value"
+                type="radio"
+                value="male"
+                class="btn-check"
+                name="genders"
+                id="male"
+                autocomplete="off"
+              />
+              <label class="btn btn-secondary btn-lg" for="male">男性</label>
+              <input
+                v-model="form.gender.value"
+                value="female"
+                type="radio"
+                class="btn-check"
+                name="genders"
+                id="female"
+                autocomplete="off"
+              />
+              <label class="btn btn-secondary btn-lg" for="female">女性</label>
+              <input
+                v-model="form.gender.value"
+                value="others"
+                type="radio"
+                class="btn-check"
+                name="genders"
+                id="others"
+                autocomplete="off"
+              />
+              <label class="btn btn-secondary btn-lg" for="others">其他</label>
+            </div>
+          </div>
+          <div class="el-form-item__error">{{ form.gender.msg }}</div>
+          <div class="w-100 d-flex my-3">
+            <span class="flex-shrink-1">出生日期:</span>
+            <input
+              class="input-style flex-fill"
+              type="date"
+              v-model="form.date.value"
+              name="getday"
+              required
+            />
+            <div class="el-form-item__error">{{ form.date.msg }}</div>
+          </div>
+          <div class="w-100 d-flex my-3">
+            <span class="flex-shrink-1">出生時間:</span>
+            <input
+              class="input-style flex-fill"
+              type="time"
+              v-model="form.time.value"
+              name="gettime"
+              required
+            />
+            <div class="el-form-item__error">{{ form.time.msg }}</div>
+          </div>
+          <div class="w-100 d-flex my-3">
+            <span class="flex-shrink-1">出生地點:</span>
+            <select class="input-style flex-fill" v-model="form.address.value">
+              <option value="" disabled>-- 請選擇出生地 --</option>
+              <!--<option v-for="address in addresslist" v-on:change="setplace" :key="address" :value="address">{{address}}</option>-->
+              <option
+                v-for="address in form.addresslist"
+                :key="address"
+                :value="address"
+              >
+                {{ address }}
+              </option>
+            </select>
+          </div>
+          <!-- <div for=""
         >電話:
         <input
           type="text"
@@ -57,18 +103,32 @@
           required
         />
         <div class="el-form-item__error">{{ form.phone.msg }}</div>
-      </label>
-
-      <div>
-        <!-- 需要先做停止瀏覽器預設行為 -->
-        <button @click.prevent="nativeSubmit" :disabled="status">送出</button>
+      </div> -->
+        </form>
+        <div class="my-5 mx-auto">
+          <button
+            @click="submitData"
+            class="btn btn-lg btn-customized btn-secondary"
+          >
+            查看星盤
+          </button>
+          <!-- 需要先做停止瀏覽器預設行為 -->
+          <!-- <button @click.prevent="nativeSubmit" :disabled="status">送出</button> -->
+        </div>
       </div>
-    </form>
+    </div>
   </div>
 </template>
 <script>
 import {reg_phoneType2} from "../utils/validate";
+import {useStore} from "vuex";
+
 export default {
+  setup() {
+    const store = useStore();
+
+    return {};
+  },
   mounted() {
     this.form.email.value = localStorage.getItem("myemail");
     // console.log(localStorage.getItem('myemail'));
@@ -114,6 +174,16 @@ export default {
     };
   },
   methods: {
+    submitData() {
+      this.$store.commit("setCurrentData", {
+        name: this.form.name.value,
+        birthday: this.form.date.value,
+        birthTime: this.form.time.value,
+        location: this.form.address.value,
+      });
+
+      this.$router.push("/MyChart");
+    },
     nativeValidate(target, key) {
       let checkPhone = reg_phoneType2(target.phone.value);
       const arr = [checkPhone];
@@ -135,87 +205,98 @@ export default {
         : (this.submitDisabled = true);
       console.log("form: ", arr, result);
     },
-    nativeSubmit() {
-      if (!this.submitDisabled) {
-        alert("進入if");
-        let chName = this.form.name.value;
-        let chGender = this.form.gender.value;
-        let chDate = this.form.date.value;
-        let chTime = this.form.time.value;
-        let chadress = this.form.address.value;
-        let chPhone = this.form.phone.value;
-        let chEmail = this.form.email.value;
-        fetch("http://52.139.170.100/api/secondsignup", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json;charset =utf-8",
-          },
-          body: JSON.stringify({
-            Name: chName,
-            Sex: chGender,
-            Birth: chDate,
-            BirthTime: chTime,
-            BirthPlace: chadress,
-            Phone: chPhone,
-            Email: chEmail,
-          }),
-        })
-          .then(function (response) {
-            alert("Fetch");
-            return response.json();
-          })
-          .then((body) => {
-            console.log(body);
-            this.remsg = body.Status;
-            this.remsgg = body.Msg;
-            alert(this.remsg + this.remsgg);
-            if (this.remsg != 1) {
-              alert("失敗");
-            } else {
-              alert("成功");
-              localStorage.setItem("token", "ImLogin");
-              localStorage.removeItem("myemail");
-              this.$router.push("/");
-            }
-          })
-          .catch(function (err) {
-            alert("Fetch失敗");
-            console.log(err);
-          });
-        // 接下來就是進入表單下一步動作，反之阻擋住
-      } else {
-        alert("沒進FETCH");
-        let chName = this.form.name.value;
-        let chGender = this.form.gender.value;
-        let chDate = this.form.date.value;
-        let chTime = this.form.time.value;
-        let chadress = this.form.address.value;
-        let chPhone = this.form.phone.value;
-        let chEmail = this.form.email.value;
-        console.log(chName);
-        console.log(chGender);
-        console.log(chDate);
-        console.log(chTime);
-        console.log(chadress);
-        console.log(chPhone);
-        console.log(chEmail);
-        console.log("表單註冊失敗");
-      }
-    },
+    // nativeSubmit() {
+    //   if (!this.submitDisabled) {
+    //     alert("進入if");
+    //     let chName = this.form.name.value;
+    //     let chGender = this.form.gender.value;
+    //     let chDate = this.form.date.value;
+    //     let chTime = this.form.time.value;
+    //     let chadress = this.form.address.value;
+    //     let chPhone = this.form.phone.value;
+    //     let chEmail = this.form.email.value;
+    //     fetch("http://52.139.170.100/api/secondsignup", {
+    //       method: "post",
+    //       headers: {
+    //         "Content-Type": "application/json;charset =utf-8",
+    //       },
+    //       body: JSON.stringify({
+    //         Name: chName,
+    //         Sex: chGender,
+    //         Birth: chDate,
+    //         BirthTime: chTime,
+    //         BirthPlace: chadress,
+    //         Phone: chPhone,
+    //         Email: chEmail,
+    //       }),
+    //     })
+    //       .then(function (response) {
+    //         alert("Fetch");
+    //         return response.json();
+    //       })
+    //       .then((body) => {
+    //         console.log(body);
+    //         this.remsg = body.Status;
+    //         this.remsgg = body.Msg;
+    //         alert(this.remsg + this.remsgg);
+    //         if (this.remsg != 1) {
+    //           alert("失敗");
+    //         } else {
+    //           alert("成功");
+    //           localStorage.setItem("token", "ImLogin");
+    //           localStorage.removeItem("myemail");
+    //           this.$router.push("/");
+    //         }
+    //       })
+    //       .catch(function (err) {
+    //         alert("Fetch失敗");
+    //         console.log(err);
+    //       });
+    //     // 接下來就是進入表單下一步動作，反之阻擋住
+    //   } else {
+    //     alert("沒進FETCH");
+    //     let chName = this.form.name.value;
+    //     let chGender = this.form.gender.value;
+    //     let chDate = this.form.date.value;
+    //     let chTime = this.form.time.value;
+    //     let chadress = this.form.address.value;
+    //     let chPhone = this.form.phone.value;
+    //     let chEmail = this.form.email.value;
+    //     console.log(chName);
+    //     console.log(chGender);
+    //     console.log(chDate);
+    //     console.log(chTime);
+    //     console.log(chadress);
+    //     console.log(chPhone);
+    //     console.log(chEmail);
+    //     console.log("表單註冊失敗");
+    //   }
+    // },
   },
 };
 </script>
 
 <style scoped>
-.page {
+/* .page {
+  text-align: center;
+} */
+
+.block {
+  padding: 30px;
+  /* height: 200px; */
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+.input-style {
+  text-decoration: none;
+  background: transparent;
+  border-style: none;
+  border-bottom: solid white;
+  /* width: 75%; */
   text-align: center;
 }
-form {
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-}
-input {
-  margin: 15px;
+.btn-customized {
+  font-size: 24px;
+  padding: 15px 25px;
 }
 </style>

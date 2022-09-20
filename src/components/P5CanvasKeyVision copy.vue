@@ -190,12 +190,12 @@ export default {
           posChangeScale = p5.cos((pos * 0.1) / (2 * p5.PI));
         };
 
-        p5.keyReleased = () => {
-          if (key == " ") {
-            trace = !trace;
-            p5.background(255);
-          }
-        };
+        // p5.keyReleased = () => {
+        //   if (key == " ") {
+        //     trace = !trace;
+        //     p5.background(255);
+        //   }
+        // };
 
         // NOTE: Draw is here
         p5.draw = (_) => {

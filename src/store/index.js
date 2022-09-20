@@ -24,13 +24,27 @@ export default createStore({
     ],
 
     currentData: {
-      currentBirthday: "2024,01,01",
+      currentBirthday: "2024-03-11",
       currentBirthTime: "13:01:01",
       currentName: "正預期",
       currentLocation: "台南",
       currentLatitude: "23.11111",
       currentLongitude: "120.55555",
       currentChartDataOrigin: {},
+      currentSigns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      currentSignsNames: [
+        "牡羊座",
+        "金牛座",
+        "雙子座",
+        "巨蟹座",
+        "獅子座",
+        "處女座",
+        "天秤座",
+        "天蠍座",
+        "射手座",
+        "摩羯座",
+        "水瓶座",
+      ],
     },
 
     //Personal Data
@@ -216,6 +230,12 @@ export default createStore({
   },
   getters: {},
   mutations: {
+    setCurrentData(state, payload) {
+      state.currentData.currentName = payload.name;
+      state.currentData.currentBirthday = payload.birthday;
+      state.currentData.currentBirthTime = payload.birthTime;
+      state.currentData.currentLocation = payload.location;
+    },
     testChangeFriendsName(state, payload) {
       state.friends[1].name = payload.name;
     },
@@ -551,6 +571,7 @@ export default createStore({
           commit("setDegrees", state.myChartDataOrigin);
         });
     },
+
     getChartData({commit, state}) {
       //到時候更改API 提供四個欄位資料
       // axios

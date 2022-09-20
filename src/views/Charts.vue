@@ -17,10 +17,10 @@
             </div>
             <div class="right-part m-auto d-flex flex-column align-items-start">
               <div class="d-flex justify-content-between w-100">
-                <span>{{ friend.name }}</span
+                <span class="mt-3">{{ friend.name }}</span
                 ><span>
                   <!-- edit -->
-                  <span class="mx-1"
+                  <span class="mx-1 btn"
                     ><svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -39,7 +39,7 @@
                     </svg>
                   </span>
                   <!-- delete -->
-                  <span
+                  <span class="btn"
                     ><svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -65,7 +65,7 @@
                 {{ friend.birthday }}
               </div>
               <div class="mt-3 d-flex justify-content-end">
-                <span class="btn"> 查看星盤 </span>
+                <span class="btn btn-c"> 查看星盤 </span>
               </div>
             </div>
           </div>
@@ -135,14 +135,14 @@ export default {
 .right-part {
   width: 60%;
 }
-.btn {
+.btn-c {
   padding: 10px;
   width: 100px;
   border-radius: 10px;
   background: rgba(217, 217, 217, 0.25);
   color: white;
 }
-.btn:hover {
+.btn-c:hover {
   cursor: pointer;
   background: rgba(217, 217, 217, 0.5);
   /* width: 200px; */

@@ -1,43 +1,74 @@
 <template>
-  <div class="login-containt">
-    <!-- 忘記密碼 -->
-    <login-by-code
-      @pchecked="paddchick"
-      @pdeleted="pdeletechick"
-      v-show="logonType === 'code'"
-    >
-    </login-by-code>
-    <!-- 登入頁面 -->
-    <login-by-pwd
-      @checked="addchick"
-      @deleted="deletechick"
-      v-show="logonType === 'pwd'"
-    >
-    </login-by-pwd>
-    <button id="login" class="login-button" @click="onSubmit">{{ msg }}</button>
-    <br />
-    <div class="login-bottom-containt">
-      <button
-        class="change-login-type"
-        @click="onChangeLoginType"
-        v-show="logonType === 'pwd'"
-      >
-        忘記密碼
-      </button>
-      <button
-        class="change-login-type"
-        @click="onChangeLoginType"
-        v-show="logonType === 'code'"
-      >
-        回上一頁
-      </button>
-      <br />
-      <span>還不是會員</span>
-      <span><RouterLink to="/signUp">立即註冊</RouterLink></span>
-      <!-- <p>{{ datsas[0]}}</p> -->
-    </div>
-    <div>
-      <p>{{ datas }}</p>
+  <div class="BG">
+    <div class="container-xl mt-5">
+      <div class="login-containt">
+        <div class="row justify-content-center">
+          <div class="col">
+            <div class="card pic">
+              <img src="../assets/img/LoginLogo.png" alt="logo" />
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="card inputform">
+              <h2>{{msg1}}</h2>
+              <!-- 忘記密碼 -->
+              <login-by-code
+                @pchecked="paddchick"
+                @pdeleted="pdeletechick"
+                v-show="logonType === 'code'"
+              >
+              </login-by-code>
+              <!-- 登入頁面 -->
+              <login-by-pwd
+                @checked="addchick"
+                @deleted="deletechick"
+                v-show="logonType === 'pwd'"
+              >
+              </login-by-pwd>
+
+              <div class="d-flex login-bottom-containt">
+                <button id="login" class="login-button" @click="onSubmit">
+                  {{ msg }}
+                </button>
+                <button
+                  class="change-login-type"
+                  @click="onChangeLoginType"
+                  v-show="logonType === 'pwd'"
+                >
+                  忘記密碼
+                </button>
+                <button
+                  class="change-login-type"
+                  @click="onChangeLoginType"
+                  v-show="logonType === 'code'"
+                >
+                  回上一頁
+                </button>
+              </div>
+              <div class="d-flex txt">
+                <div class="sinup">
+                  <span>還不是會員</span>
+                  <span class="t1" @click="singupTo">立即註冊</span>
+                </div>
+                <div class="outlink">
+                  <p><span>或請使用以下方式登入</span></p>
+                  <div class="d-flex img-d">
+                    <div class="image">
+                      <img src="../assets/img/icons/google.png" alt="google" />
+                    </div>
+                    <div class="image">
+                      <img
+                        src="../assets/img/icons/facebook.png"
+                        alt="facebook"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -46,7 +77,7 @@
 import LoginByCode from "./LoginByCode.vue";
 import LoginByPwd from "./LoginByPwd.vue";
 //import axios from "axios";
-import {useStore} from "vuex";
+import { useStore } from "vuex";
 
 export default {
   setup() {
@@ -63,6 +94,7 @@ export default {
     return {
       logonType: "pwd",
       msg: "登入",
+      msg1:"登入",
       a: "",
       b: "",
       info: null,
@@ -124,7 +156,9 @@ export default {
             console.log(this.a);
             if (this.a == "登入成功") {
               localStorage.setItem("token", "ImLogin");
-              this.$store.commit("testChangeFriendsName", {name: this.a});
+              this.$store.commit("testChangeFriendsName", { name: this.a });
+              localStorage.setItem("myemail", `${this.users}`);
+              localStorage.setItem("mymsg", `${this.a}`);
               this.$router.push("/");
             }
           })
@@ -141,7 +175,7 @@ export default {
         console.log(chemails);
 
         fetch("http://52.139.170.100/api/RePWD", {
-          method: "PUT",
+          method: "post",
           headers: {
             "Content-Type": "application/json;charset =utf-8",
           },
@@ -170,12 +204,18 @@ export default {
       if (this.$data.logonType === "pwd") {
         this.$data.logonType = "code";
         this.msg = "送出";
+        this.msg1="忘記密碼";
       } else {
         this.$data.logonType = "pwd";
         this.msg = "登入";
+        this.msg1="登入";
+        
       }
       console.log("切換登入方式");
     },
+    singupTo(){
+      this.$router.push('/signUp')
+    }
   },
   // mounted: function () {
   //   axios
@@ -191,23 +231,97 @@ export default {
 </script>
 
 <style scoped>
-.login-containt {
-  text-align: center;
-}
-
-.logo {
+/* .logo {
   margin-top: 40%;
   width: 100px;
   height: 100px;
+} */
+* {
+  list-style: none;
+}
+.BG {
+  background: rgb(0, 2, 53);
+}
+img {
+  width: 100%;
+}
+.pic {
+  padding: 50px;
+  background: #000235;
+}
+.inputform {
+  height: 740px;
+  background: rgba(255, 255, 255, 0.25);
+  padding-top: 30px;
 }
 .login-bottom-containt {
-  text-align: center;
+  flex-direction: column;
+  align-items: center;
 }
 .login-button {
-  margin-top: 40px;
+  width: 160px;
+  height: 30px;
+  margin-top: 30px;
+  margin: 20px auto 0;
+  border-radius: 10px;
+  background: rgba(217, 217, 217, 0.25);
+  border: none;
+  color: #fff;
+  /* text-align: center; */
 }
 .change-login-type {
-  text-align: right;
-  margin-top: 40px;
+  width: 160px;
+  height: 30px;
+  border-radius: 10px;
+  background: rgba(217, 217, 217, 0.25);
+  border: none;
+  color: #fff;
+  margin: 20px 0 5px;
+}
+h2 {
+  text-align: center;
+  margin: 30px 0 20px;
+}
+.outlink {
+  padding: 20px 30px;
+}
+.outlink span {
+  display: block; /*設定為塊級元素會獨佔一行形成上下居中的效果*/
+  color: gray;
+  position: relative;
+}
+
+.outlink p {
+  color: gray;
+  margin: 20px 0 30px;
+}
+
+.image {
+  width: 18%;
+  margin:20px auto;
+  
+}
+.img-d{
+  padding:0 80px;
+}
+
+.txt {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.oltxt {
+  margin: 10px;
+}
+.sinup .t1{
+  margin-left: 10px;
+  
+}
+.sinup .t1:hover{
+  margin-left: 10px;
+  color:#62ff36;
+}
+
+@media screen and (min-width: 992px) {
 }
 </style>

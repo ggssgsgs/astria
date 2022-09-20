@@ -62,7 +62,9 @@ export default {
     ////vvv testing tto set the data to some other
     this.$store.state.currentAPIsrc = this.$store.state.friends[0].astroAPI;
     this.$store.dispatch("getMyChartData");
+
     console.log(this.$store.state.myChartData);
+    console.log("MyChart>mySigns", this.$store.state.mySigns);
     console.log("JSON", this.$store.state.descJSON.length);
   },
   mounted() {
@@ -80,8 +82,8 @@ export default {
 };
 </script>
 <template>
-  <div class="BG">
-    <div class="container-xl mt-5">
+  <div class="BG py-5">
+    <div class="container-xl my-5">
       <div class="row justify-content-center">
         <div class="col-lg-6 col-md-12 row-no-padding">
           <div class="smallBlock mx-1 mt-2 d-flex">
@@ -91,20 +93,30 @@ export default {
             >
               <img
                 class="logoSign-sun"
-                :src="this.logoSigns[this.$store.state.mySigns[0] - 1]"
+                :src="
+                  this.logoSigns[
+                    this.$store.state.currentData.currentSigns[0] - 1
+                  ]
+                "
                 alt="sunSignLogo"
               />
             </div>
             <div class="w-75 m-auto basic-info-container">
               <div>
-                <span>{{ this.$store.state.myName }}</span
-                ><span>{{ this.$store.state.mySignsNames[0] }}</span>
+                <span>{{ this.$store.state.currentData.currentName }}</span
+                ><span>{{
+                  this.$store.state.currentData.currentSignsNames[0]
+                }}</span>
               </div>
               <div>
-                <span>{{ this.$store.state.myBirthday }}</span>
-                <span>{{ this.$store.state.myBirthTime }}</span>
-                <span>{{ this.$store.state.myLatitude }}</span>
-                <span>{{ this.$store.state.myLongitude }}</span>
+                <span>{{ this.$store.state.currentData.currentBirthday }}</span>
+                <span>{{
+                  this.$store.state.currentData.currentBirthTime
+                }}</span>
+                <span>{{ this.$store.state.currentData.currentLatitude }}</span>
+                <span>{{
+                  this.$store.state.currentData.currentLongitude
+                }}</span>
               </div>
             </div>
           </div>

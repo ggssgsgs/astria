@@ -89,6 +89,13 @@ const router = createRouter({
       name: "shoppingCart",
       component: () => import("../views/shoppingCart.vue"),
     },
+    {
+      path: "/infolProduct",
+      name: "infolProduct",
+      component: () => import("../views/InfolProduct.vue"),
+    },
+   
+
     // {
     //   path: '*',
     //   redirect: '/',

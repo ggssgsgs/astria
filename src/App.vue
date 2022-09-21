@@ -1,5 +1,5 @@
 <script setup>
-import {RouterLink, RouterView} from "vue-router";
+import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
@@ -91,11 +91,14 @@ import {RouterLink, RouterView} from "vue-router";
                     >我的表單</RouterLink
                   >
                 </li>
-
-
                 <li>
                   <RouterLink to="/myFortuneTellerInfos" class="dropdown-item"
                     >成為占卜師</RouterLink
+                  >
+                </li>
+                <li>
+                   <RouterLink to="/infolProduct" class="dropdown-item"
+                    >我的表單2</RouterLink
                   >
                 </li>
               </ul>

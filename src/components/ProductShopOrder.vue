@@ -50,16 +50,16 @@ export default {
       this.$router.push("/shoppingCart");
     },
     pushTime1(){
-      this.push(this.timeMsg[0])
+      this.time=1
     },
     pushTime2(){
-      this.push(this.timeMsg[1])
+      
     },
     pushTime3(){
-      this.push(this.timeMsg[2])
+      
     },
     pushTime4(){
-      this.push(this.timeMsg[3])
+      
     }
 
   },

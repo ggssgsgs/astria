@@ -66,9 +66,10 @@ export default {
     //this.$store.dispatch("getMyChartData");
     window.setTimeout(() => {
       //暫時用mySignNames
-      this.currentSignsNames = this.$store.state.mySignsNames;
-      this.currentDegrees = this.$store.state.myDegrees;
-      this.currentHousesNames = this.$store.state.myHousesNames;
+      this.currentSignsNames = this.$store.state.currentData.currentSignsNames;
+      this.currentDegrees = this.$store.state.currentData.currentDegrees;
+      this.currentHousesNames =
+        this.$store.state.currentData.cuurrentHousesNames;
     }, 200);
   },
   data() {

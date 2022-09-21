@@ -137,7 +137,7 @@ export default {
 
       //判斷是登入頁面還是忘記密碼
       if (this.$data.logonType === "pwd") {
-        fetch("http://52.139.170.100/api/LoginIn", {
+        fetch("https://astria.sutsanyuan.com/api/LoginIn", {
           method: "POST",
           headers: {
             "Content-Type": "application/json;charset =utf-8",
@@ -174,7 +174,7 @@ export default {
         let chemails = this.chemail[chemaillen - 1];
         console.log(chemails);
 
-        fetch("http://52.139.170.100/api/RePWD", {
+        fetch("https://astria.sutsanyuan.com/api/RePWD", {
           method: "post",
           headers: {
             "Content-Type": "application/json;charset =utf-8",

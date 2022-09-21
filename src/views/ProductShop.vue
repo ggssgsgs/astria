@@ -22,56 +22,85 @@
             <swiper-slide>
               <div class="shopItem">
                 <div class="image">
-                  <img src="https://picsum.photos/300/300?random=1" />
+                  <img src="https://picsum.photos/200/200?random=1" />
                 </div>
-                <h5>塔羅牌真命天子陣</h5>
+                <h4>塔羅牌真命天子陣</h4>
                 <p>30 mins NTD$1,000 起</p>
                 <p class="swTxt">
                   透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！
-                  ⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠
                 </p>
+                <p class="swTxt1">⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠</p>
                 <button class="orderbtn" @click="orderTo">點我預約</button>
               </div>
             </swiper-slide>
             <swiper-slide>
               <div class="shopItem">
                 <div class="image">
-                  <img src="https://picsum.photos/300/300?random=1" />
+                  <img src="https://picsum.photos/200/200?random=1" />
                 </div>
-                <h5>塔羅牌真命天子陣</h5>
+                <h4>塔羅牌真命天子陣</h4>
                 <p>30 mins NTD$1,000 起</p>
                 <p class="swTxt">
                   透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！
-                  ⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠
                 </p>
+                <p class="swTxt1">⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠</p>
                 <button class="orderbtn" @click="orderTo">點我預約</button>
               </div>
             </swiper-slide>
             <swiper-slide
               ><div class="shopItem">
                 <div class="image">
-                  <img src="https://picsum.photos/300/300?random=1" />
+                  <img src="https://picsum.photos/200/200?random=1" />
                 </div>
-                <h5>塔羅牌真命天子陣</h5>
+                <h4>塔羅牌真命天子陣</h4>
                 <p>30 mins NTD$1,000 起</p>
                 <p class="swTxt">
                   透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！
-                  ⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠
                 </p>
+                <p class="swTxt1">⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠</p>
+                <button class="orderbtn" @click="orderTo">點我預約</button>
+              </div></swiper-slide
+            >
+            <swiper-slide>
+              <div class="shopItem">
+                <div class="image">
+                  <img src="https://picsum.photos/200/200?random=1" />
+                </div>
+                <h4>塔羅牌真命天子陣</h4>
+                <p>30 mins NTD$1,000 起</p>
+                <p class="swTxt">
+                  透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！
+                </p>
+                <p class="swTxt1">⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠</p>
+                <button class="orderbtn" @click="orderTo">點我預約</button>
+              </div>
+            </swiper-slide>
+            <swiper-slide
+              ><div class="shopItem">
+                <div class="image">
+                  <img src="https://picsum.photos/200/200?random=1" />
+                </div>
+                <h4>塔羅牌真命天子陣</h4>
+                <p>30 mins NTD$1,000 起</p>
+                <p class="swTxt">
+                  透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！
+                </p>
+                <p class="swTxt1">⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠</p>
+
                 <button class="orderbtn" @click="orderTo">點我預約</button>
               </div></swiper-slide
             >
             <swiper-slide
               ><div class="shopItem">
                 <div class="image">
-                  <img src="https://picsum.photos/300/300?random=1" />
+                  <img src="https://picsum.photos/200/200?random=1" />
                 </div>
-                <h5>塔羅牌真命天子陣</h5>
+                <h4>塔羅牌真命天子陣</h4>
                 <p>30 mins NTD$1,000 起</p>
                 <p class="swTxt">
                   透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！
-                  ⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠
                 </p>
+                <p class="swTxt1">⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠</p>
                 <button class="orderbtn" @click="orderTo">點我預約</button>
               </div></swiper-slide
             >
@@ -100,11 +129,7 @@ export default {
   data() {
     return {
       logonType: "about",
-      msgt1: "思妤塔羅占卜工作坊",
-      msglocation: "台北",
-      msgp1:
-        "世新大學行政管理所 碩士畢業，大學一入學就加入占星社，開始不務正業，大三大四擔任社長，畢業後還身兼社團指導老師一職。對西洋星盤、塔羅、瑜珈感到興趣，師承唐綺陽，期待在亂世中透過占星神秘學，為在亂流中的大家帶來一根浮木。",
-      slidesPerView: 3,
+      slidesPerView: 4,
     };
   },
   methods: {
@@ -122,7 +147,7 @@ export default {
         this.slidesPerView = 1;
       }
       else{
-        this.slidesPerView=3;
+        this.slidesPerView=4;
       }
       
     },
@@ -139,7 +164,7 @@ export default {
 }
 .about {
   border-bottom: 1px solid #eee;
-  padding: 20px;
+  padding: 20px 20px 40px;
 }
 .itemPic {
   padding: 30px 50px;
@@ -150,17 +175,14 @@ export default {
 .title {
   justify-content: Space-between;
 }
-.p1 {
-  padding: 20px 0 0;
-}
-h2 {
-  margin-bottom: 15px;
-}
+
 h3 {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 p {
-  letter-spacing: 0.1rem;
+ 
+  margin-bottom: 0.5rem;
+  
 }
 .card {
   height: 300px;
@@ -171,17 +193,22 @@ p {
 .shopItem {
   text-align: center;
   background: rgba(255, 255, 255, 0.25);
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   border-radius: 5px;
 }
 .shopGroup h2 {
-  margin: 20px;
+  margin: 30px 0 20px;
 }
 .image img {
   padding: 30px;
 }
 .swTxt {
-  padding: 0 50px;
+  padding: 0 80px 0px;
+  
+  /* text-align: left; */
+}
+.swTxt1{
+ padding: 0 80px 10px;
   /* text-align: left; */
 }
 .orderbtn {
@@ -194,8 +221,19 @@ p {
 }
 .shop {
   border-bottom: 1px solid #eee;
-  margin: 0 0 20px;
+  margin: 0 0 40px;
 }
+.ordershop{
+  margin-bottom: 20px;
+}
+
 @media screen and (min-width: 992px) {
+  .swTxt {
+  padding: 0 30px 0px;
+  /* text-align: left; */
+}
+.swTxt1{
+ padding: 0 30px 10px;
+}
 }
 </style>

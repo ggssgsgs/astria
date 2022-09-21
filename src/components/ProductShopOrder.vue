@@ -4,14 +4,14 @@
       <div class="d-flex">
         <div class="card shopItem">
           <div class="image">
-            <img src="https://picsum.photos/300/300?random=1" />
+            <img src="https://picsum.photos/200/200?random=1" />
           </div>
-          <h5>塔羅牌真命天子陣</h5>
+          <h4>塔羅牌真命天子陣</h4>
           <p>30 mins NTD$1,000 起</p>
           <p class="swTxt">
             透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！
-            ⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠
           </p>
+          <p class="swTxt1"> ⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠</p>
         </div>
       </div>
     </div>
@@ -19,10 +19,10 @@
       <div class="card ordeerChoice">
         <h3>課程時數</h3>
         <div class="d-flex btnGroup">
-          <button>{{ timeMsg[0] }}</button>
-          <button>{{ timeMsg[1] }}</button>
-          <button>{{ timeMsg[2] }}</button>
-          <button>{{ timeMsg[3] }}</button>
+          <button @click="pushTime1">{{ timeMsg[0] }}mins</button>
+          <button @click="pushTime2">{{ timeMsg[1] }}mins</button>
+          <button @click="pushTime3">{{ timeMsg[2] }}mins</button>
+          <button @click="pushTime4">{{ timeMsg[3] }}mins</button>
         </div>
         <h3 class="t2">課程安排</h3>
         <div class="d-flex btnGroup">
@@ -40,14 +40,28 @@
 export default {
   data() {
     return {
-      timeMsg: ["30mins", "60mins", "90mins", "120mins"],
+      timeMsg: ["30", "60", "90", "120"],
       timeMsg1: ["線上", "實體"],
+      time:"",
     };
   },
   methods: {
-    cartTo(){
-        this.$router.push('/shoppingCart')
+    cartTo() {
+      this.$router.push("/shoppingCart");
+    },
+    pushTime1(){
+      this.push(this.timeMsg[0])
+    },
+    pushTime2(){
+      this.push(this.timeMsg[1])
+    },
+    pushTime3(){
+      this.push(this.timeMsg[2])
+    },
+    pushTime4(){
+      this.push(this.timeMsg[3])
     }
+
   },
 };
 </script>
@@ -87,7 +101,12 @@ h3 {
   padding: 0 30px 30px;
 }
 .swTxt {
-  padding: 0 50px;
+  padding: 0 60px 0px;
+  
+  /* text-align: left; */
+}
+.swTxt1{
+ padding: 0 60px 10px;
   /* text-align: left; */
 }
 .t2 {
@@ -98,15 +117,18 @@ h3 {
   margin: 0 0.5rem;
   padding: 30px 40px 0;
 }
+p {
+  margin-bottom: 0.5rem;
+}
 
 @media screen and (min-width: 992px) {
   .myorder {
     display: flex;
   }
   .ordeerChoice {
-    height: 614px;
+    height: 520px;
     margin: 0 0.5rem;
-    padding: 100px 40px 0;
+    padding: 50px 40px 0;
   }
   .btnGroup button,
   .cart button {
@@ -122,7 +144,16 @@ h3 {
     margin: 60px auto;
   }
   .btnGroup {
-  justify-content: left;
+    justify-content: left;
+  }
+  .swTxt {
+  padding: 0 40px 0px;
+  
+  /* text-align: left; */
+}
+.swTxt1{
+ padding: 0 40px 10px;
+  /* text-align: left; */
 }
 }
 </style>

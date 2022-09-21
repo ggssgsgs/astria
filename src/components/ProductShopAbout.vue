@@ -1,7 +1,7 @@
 <template>
   <div class="col-12 col-lg-3 itemPic">
     <div class="pic">
-      <img src="https://picsum.photos/300/300?random=1" />
+      <img src="https://picsum.photos/200/200?random=1" />
     </div>
   </div>
   <div class="col-12 col-lg-9 itemTxt">
@@ -42,18 +42,18 @@ export default {
 }
 .pic img {
   width: 100%;
+  height: 100%;
   border-radius: 50%;
+  padding: 30px 50px 30px;
 }
 .about {
   border-bottom: 1px solid #eee;
   padding: 20px 20px 0;
 }
 .itemPic {
-  padding: 20px 50px 0px;
+  padding: 0px 50px 0px;
 }
-.itemPic img {
-  padding: 50px;
-}
+
 .txt {
   padding: 40px 50px 20px;
 }
@@ -71,7 +71,7 @@ h3 {
 }
 
 .card {
-  height: 380px;
+  height: 340px;
   background: rgba(255, 255, 255, 0.25);
   margin: 0 0 0.5rem;
 }
@@ -96,10 +96,9 @@ p {
     padding: 40px 50px 20px;
   }
   .card {
-  height: 300px;
-  background: rgba(255, 255, 255, 0.25);
-  margin: 0 0 0.5rem;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.25);
+    margin: 0 0 0.5rem;
+  }
 }
-}
-
 </style>

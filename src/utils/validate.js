@@ -43,7 +43,7 @@ export const reg_url = (val) => {
   // 中低強度的密碼，只能包含數字、字母、下底線，6~18碼
   
   export const reg_pwdCommon = (val) => {
-    const validate = /^[a-zA-Z0-9][a-zA-Z0-9_]{5,16}$/
+    const validate = /^[a-zA-Z][a-zA-Z0-9_]{5,16}$/
     return validate.test(val)
   }
   

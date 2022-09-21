@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 import HomeView from "../views/HomeView.vue";
 
@@ -80,12 +80,15 @@ const router = createRouter({
       component: () => import("../views/MyFortuneTellerInfo.vue"),
     },
     {
+      path: "/currentChart",
+      name: "currentChart",
+      component: () => import("../views/CurrentChart.vue"),
+    },
+    {
       path: "/shoppingCart",
       name: "shoppingCart",
       component: () => import("../views/shoppingCart.vue"),
     },
-   
-
     // {
     //   path: '*',
     //   redirect: '/',

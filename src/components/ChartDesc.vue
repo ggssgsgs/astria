@@ -19,7 +19,7 @@
             class="iconPlanet"
           />
         </div>
-        <span>{{ planet }}</span>
+        <span class="h5">{{ planet }}</span>
       </div>
     </swiper-slide>
     <!-- 記得最後可以複製一遍 -->
@@ -51,12 +51,14 @@
         alt="iconCCurrentPlanet"
       />
     </div>
-    <div>{{ signName }}</div>
-    <div>{{ signInfo }}</div>
+    <div class="h5 text-center">{{ signName }}</div>
+    <div class="p-2 p">
+      {{ signInfo }}
+    </div>
   </div>
   <div class="contentBox">
-    <div>{{ houseName }}</div>
-    <div>{{ houseInfo }}</div>
+    <div class="h5 text-center mt-2">{{ houseName }}</div>
+    <div class="p-2 p">{{ houseInfo }}</div>
   </div>
 
   <!-- <div>
@@ -134,12 +136,16 @@ export default {
 
     window.setTimeout(() => {
       // load into local data from vuex
-      this.currentSigns = this.$store.state.mySigns;
-      this.currentSignsNames = this.$store.state.mySignsNames;
-      this.currentHouses = this.$store.state.myHouses;
-      this.currentHousesNames = this.$store.state.myHousesNames;
+      console.log(this.$store.state.currentData.currentSigns);
+      this.currentSigns = this.$store.state.currentData.currentSigns;
 
-      console.log("currentsign", this.$store.state.mySigns);
+      this.currentSignsNames = this.$store.state.currentData.currentSignsNames;
+      console.log(this.$store.state.currentData.currentSignsNames);
+      this.currentHouses = this.$store.state.currentData.currentHouses;
+      this.currentHousesNames =
+        this.$store.state.currentData.currentHousesNames;
+
+      console.log("currentData.currentsign", this.$store.state.mySigns);
       console.log("currentsign", this.currentSigns);
 
       //傳到veux裡 （用 vuex 的 mutation 編輯
@@ -152,7 +158,7 @@ export default {
       }
 
       // load into local data from vuex
-      this.l_currentSignInfo = this.$store.state.mySignInfo;
+      this.l_currentSignInfo = this.$store.state.currentData.currentSignInfo;
 
       // this.currentSigns.forEach((element) => {
       //   console.log(element);
@@ -166,8 +172,8 @@ export default {
         });
       }
       // load into local data from vuex
-      this.l_currentHouseInfo = this.$store.state.myHouseInfo;
-    }, 300);
+      this.l_currentHouseInfo = this.$store.state.currentData.currentHouseInfo;
+    }, 1200);
 
     // window.setTimeout(() => {
     //   this.signs = [
@@ -265,10 +271,10 @@ export default {
       //for test
       currentSign: 1,
       currentPlanetIndex: 0,
-      signInfo: "禮讓老弱婦孺",
-      signName: "博愛座",
-      houseInfo: "每個人的上升都在第一宮",
-      houseName: "打零工",
+      signInfo: "請點選方行星，查看資訊",
+      signName: "行星星座",
+      houseInfo: "請點選方行星，查看資訊",
+      houseName: "行星宮位",
       planets: [
         "太 陽",
         "上 升",
@@ -339,6 +345,12 @@ export default {
   background: #d9d9d9;
   border-radius: 10px;
   padding: 10px;
+}
+.h5 {
+  color: #555;
+}
+.p {
+  color: #555;
 }
 .iconPlanet {
   width: 50px;

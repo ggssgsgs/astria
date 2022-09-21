@@ -39,7 +39,11 @@
                     </svg>
                   </span>
                   <!-- delete -->
-                  <span class="btn"
+                  <span
+                    class="btn"
+                    @click="
+                      deleteFriend(this.$store.state.friends.indexOf(friend))
+                    "
                     ><svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -65,7 +69,9 @@
                 {{ friend.birthday }}
               </div>
               <div class="mt-3 d-flex justify-content-end">
-                <span class="btn btn-c"> 查看星盤 </span>
+                <span class="btn btn-c" @click="viewChart(friend)">
+                  查看星盤
+                </span>
               </div>
             </div>
           </div>
@@ -76,6 +82,8 @@
 </template>
 <script>
 import {useStore} from "vuex";
+
+import Swal from "sweetalert2";
 
 import lAries from "../assets/img/signLogos/Aries_pink_400p.png";
 import lTarus from "../assets/img/signLogos/Tarus_pink_400p.png";
@@ -94,6 +102,39 @@ export default {
     const store = useStore();
 
     return {};
+  },
+  methods: {
+    viewChart(friend) {
+      //將資料導入Current
+      this.$store.commit("setCurrentData", {
+        name: friend.name,
+        birthday: friend.birthday,
+        birthTime: friend.birthTime,
+        location: friend.birthCity,
+      });
+
+      //轉換 UTC 時間
+      this.$store.commit("setCurrentUTCtime");
+
+      this.$router.push("/currentChart");
+    },
+    deleteFriend(index) {
+      Swal.fire({
+        title: "確定要刪除此好友星盤嗎?",
+        text: "資料將永久刪除!",
+        icon: "warning",
+        iconColor: "rgba(0,2,53,0.3)",
+        showCancelButton: true,
+        confirmButtonColor: "rgba(0,2,53,0.3)",
+        cancelButtonColor: "rgba(0,2,53,0.5)",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$store.commit("deleteFriend", index);
+          Swal.fire("成功!", "已刪除好友星盤.", "success");
+        }
+      });
+    },
   },
   data() {
     return {

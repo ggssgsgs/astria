@@ -84,6 +84,11 @@ const router = createRouter({
       name: "currentChart",
       component: () => import("../views/CurrentChart.vue"),
     },
+    {
+      path: "/shoppingCart",
+      name: "shoppingCart",
+      component: () => import("../views/shoppingCart.vue"),
+    },
 
     // {
     //   path: '*',

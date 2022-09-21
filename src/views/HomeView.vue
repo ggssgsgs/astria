@@ -8,12 +8,14 @@ import chartForm from "../components/ChartForm.vue";
 
 //Horoscope
 import horoscope from "../components/Horoscope.vue";
-
+//
+import hello from "../components/Hello.vue";
 export default {
   components: {
     SketchMain,
     chartForm,
     horoscope,
+    hello,
   },
   data() {
     return {
@@ -53,6 +55,8 @@ export default {
     <SketchMain v-bind="sketchData" />
     <!-- <img :src="sketchData.imgStarHolderSrc" alt="" /> -->
     <div style="height: 500px"></div>
+    <hello></hello>
+
     <horoscope></horoscope>
 
     <!-- <div class="container">

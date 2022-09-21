@@ -310,7 +310,7 @@ button {
 
 @media screen and (min-width: 992px) {
   .inputForm {
-    padding: 70px 300px;
+    padding: 70px 60px;
   }
   label {
     width: 10%;
@@ -331,5 +331,9 @@ button {
   h2 {
     margin-bottom: 60px;
   }
+.row{
+  margin: 0 240px;
+}
+
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <!-- <div><button>星座</button><button>宮位</button></div> -->
   <div class="d-flex justify-content-center">
-    <div class="chartContainer">
+    <div class="chartContainer p">
       <table class="w-100 my-3">
         <tr class="mb-5">
           <td align="center" class="w-25">星體</td>
@@ -13,7 +13,7 @@
       <hr />
       <table v-for="planet in planets" class="w-100 my-3">
         <tr class="">
-          <td align="center" class="w-25">{{ planet }}</td>
+          <td align="center" class="w-25 colorGrey">{{ planet }}</td>
           <td align="center" class="w-25">
             {{ this.currentSignsNames[this.planets.indexOf(planet)] }}
           </td>
@@ -69,7 +69,7 @@ export default {
       this.currentSignsNames = this.$store.state.currentData.currentSignsNames;
       this.currentDegrees = this.$store.state.currentData.currentDegrees;
       this.currentHousesNames =
-        this.$store.state.currentData.cuurrentHousesNames;
+        this.$store.state.currentData.currentHousesNames;
     }, 200);
   },
   data() {
@@ -155,5 +155,15 @@ td {
   height: 99px;
   background: #fff;
   border-radius: 10px;
+}
+.p {
+  color: #555;
+}
+p {
+  color: #555;
+}
+td {
+  padding: 0;
+  color: #555;
 }
 </style>

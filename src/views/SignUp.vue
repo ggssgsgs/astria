@@ -163,7 +163,7 @@ export default {
           let chCode = this.user.code.value;
           console.log(ckemail);
           console.log(chpwd);
-          fetch("http://52.139.170.100/api/basicsignup", {
+          fetch("https://astria.sutsanyuan.com/api/basicsignup", {
             method: "POST",
             headers: {
               "Content-Type": "application/json;charset =utf-8",
@@ -201,7 +201,7 @@ export default {
       let chpwd = this.user.password.value;
       console.log(ckemail);
       console.log(chpwd);
-      fetch("http://52.139.170.100/api/Confirm", {
+      fetch("https://astria.sutsanyuan.com/api/Confirm", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset =utf-8",
@@ -246,6 +246,9 @@ export default {
 </script>
 
 <style scoped>
+*{
+  color: #666;
+}
 input {
   width: 100%;
   height: 50px;
@@ -267,6 +270,9 @@ img {
 .pic {
   padding: 50px;
   background: #000235;
+}
+.pic img{
+  padding: 50px;
 }
 .login-bottom-containt {
   flex-direction: column;

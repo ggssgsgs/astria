@@ -271,9 +271,9 @@ export default {
       //for test
       currentSign: 1,
       currentPlanetIndex: 0,
-      signInfo: "請點選方行星，查看資訊",
+      signInfo: "請點選上方行星，查看星座資訊。",
       signName: "行星星座",
-      houseInfo: "請點選方行星，查看資訊",
+      houseInfo: "請點選上方行星，查看宮位資訊。",
       houseName: "行星宮位",
       planets: [
         "太 陽",

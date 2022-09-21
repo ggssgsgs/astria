@@ -87,17 +87,23 @@ export default createStore({
       },
     },
 
+    //登入狀態
+    isLogIn: false,
+
     //Personal Data
     //我的資料
-    //myEmail: "tsanyuansu@gmail.com",
+    myEmail: "",
     myName: "酥燦燦",
     myBirthday: "1995-07-07",
-    myBirthTime: "11:08:00",
-    myBirthdayAndTime: "1995-07-07T03:08:00Z", //台灣時間-8
+    myBirthTime: "11:08",
+    myUTCBirthday: "1995-07-07",
+    myUTCBirthTime: "03:08:00",
+    myLocation: "台北市",
+    //myBirthdayAndTime: "1995-07-07T03:08:00Z", //台灣時間-8
     myLatitude: "25.11111",
     myLongitude: "121.11111",
-    myAPIsrc:
-      "http://52.139.170.100:3333/horoscope?time=1995-07-07T03:08:00Z&latitude=25.11111&longitude=120.11111&houseSystem=P",
+    // myAPIsrc:
+    //   "http://52.139.170.100:3333/horoscope?time=1995-07-07T03:08:00Z&latitude=25.11111&longitude=120.11111&houseSystem=P",
 
     //api抓下來的原始資料
     myChartDataOrigin: {},
@@ -163,12 +169,12 @@ export default createStore({
         birthday: "1996-08-09",
         birthTime: "03:08:00",
         birthCity: "Taipei",
-        astroAPI:
-          "http://52.139.170.100:3333/horoscope?time=1996-08-09T08:14:00Z&latitude=25.11111&longitude=120.11111&houseSystem=P",
+        // astroAPI:
+        //   "http://52.139.170.100:3333/horoscope?time=1996-08-09T08:14:00Z&latitude=25.11111&longitude=120.11111&houseSystem=P",
 
         signs: [5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        myLatitude: "25.11111",
-        myLongitude: "121.11111",
+        //myLatitude: "25.11111",
+        //myLongitude: "121.11111",
         //birthdayAndTime: "1995-07-07T03:08:00Z",
 
         // chartData: {
@@ -195,11 +201,11 @@ export default createStore({
         birthday: "1997-09-09",
         birthTime: "03:08:00",
         birthCity: "Tainan",
-        astroAPI:
-          "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+        //astroAPI:
+        //  "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
 
-        myLatitude: "23.11111",
-        myLongitude: "121.11111",
+        //myLatitude: "23.11111",
+        //myLongitude: "121.11111",
         signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       },
       {
@@ -207,11 +213,11 @@ export default createStore({
         birthday: "1997-10-09",
         birthTime: "03:08:00",
         birthCity: "Tainan",
-        astroAPI:
-          "http://52.139.170.100:3333/horoscope?time=1997-10-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+        // astroAPI:
+        //   "http://52.139.170.100:3333/horoscope?time=1997-10-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
 
-        myLatitude: "23.11111",
-        myLongitude: "121.11111",
+        // myLatitude: "23.11111",
+        // myLongitude: "121.11111",
         signs: [7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       },
       {
@@ -219,11 +225,11 @@ export default createStore({
         birthday: "1997-09-09",
         birthTime: "03:08:00",
         birthCity: "Tainan",
-        astroAPI:
-          "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+        // astroAPI:
+        //   "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
 
-        myLatitude: "23.11111",
-        myLongitude: "121.11111",
+        // myLatitude: "23.11111",
+        // myLongitude: "121.11111",
         signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       },
       {
@@ -231,11 +237,11 @@ export default createStore({
         birthday: "1997-09-09",
         birthTime: "03:08:00",
         birthCity: "Tainan",
-        astroAPI:
-          "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+        // astroAPI:
+        //   "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
 
-        myLatitude: "23.11111",
-        myLongitude: "121.11111",
+        // myLatitude: "23.11111",
+        // myLongitude: "121.11111",
         signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       },
       {
@@ -243,11 +249,11 @@ export default createStore({
         birthday: "1997-09-09",
         birthTime: "03:08:00",
         birthCity: "Tainan",
-        astroAPI:
-          "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+        // astroAPI:
+        //   "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
 
-        myLatitude: "23.11111",
-        myLongitude: "121.11111",
+        // myLatitude: "23.11111",
+        // myLongitude: "121.11111",
         signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       },
       {
@@ -255,11 +261,11 @@ export default createStore({
         birthday: "1997-09-09",
         birthTime: "03:08:00",
         birthCity: "Tainan",
-        astroAPI:
-          "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+        // astroAPI:
+        //   "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
 
-        myLatitude: "23.11111",
-        myLongitude: "121.11111",
+        // myLatitude: "23.11111",
+        // myLongitude: "121.11111",
         signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       },
     ],
@@ -270,12 +276,15 @@ export default createStore({
   },
   getters: {},
   mutations: {
+    deleteFriend(state, index) {
+      state.friends.splice(index, 1);
+    },
     setCurrentUTCtime(state) {
       // let date = this.$store.state.currentData.currentBirthday;
       // let time = this.$store.state.currentData.currentBirthTime;
       let date = state.currentData.currentBirthday;
       let time = state.currentData.currentBirthTime;
-      let date1 = new Date(`${date}, ${time}:00 GMT+8:00`);
+      let date1 = new Date(`${date}, ${time} GMT+8:00`);
 
       console.log("TIMETEST", date1.getUTCHours());
       console.log("DAYTEST", date1.getUTCDate());
@@ -728,7 +737,7 @@ export default createStore({
       //     commit("setDegrees", state.currentData.currentChartDataOrigin);
       //   });
       axios
-        .post("https://astria.sutsanyuan.com/api/astrodata", {
+        .post("https://astria.sutsanyuan.com/Astria_api/GuestAstroData", {
           Date: payload.birthday,
           Time: payload.birthTime,
           Address: payload.location,

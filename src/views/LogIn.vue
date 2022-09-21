@@ -10,7 +10,7 @@
           </div>
           <div class="col-12 col-lg-6">
             <div class="card inputform">
-              <h2>{{msg1}}</h2>
+              <h2>{{ msg1 }}</h2>
               <!-- 忘記密碼 -->
               <login-by-code
                 @pchecked="paddchick"
@@ -77,7 +77,7 @@
 import LoginByCode from "./LoginByCode.vue";
 import LoginByPwd from "./LoginByPwd.vue";
 //import axios from "axios";
-import { useStore } from "vuex";
+import {useStore} from "vuex";
 
 export default {
   setup() {
@@ -94,7 +94,7 @@ export default {
     return {
       logonType: "pwd",
       msg: "登入",
-      msg1:"登入",
+      msg1: "登入",
       a: "",
       b: "",
       info: null,
@@ -137,7 +137,7 @@ export default {
 
       //判斷是登入頁面還是忘記密碼
       if (this.$data.logonType === "pwd") {
-        fetch("http://52.139.170.100/api/LoginIn", {
+        fetch("https://astria.sutsanyuan.com/Astria_api/Login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json;charset =utf-8",
@@ -156,9 +156,11 @@ export default {
             console.log(this.a);
             if (this.a == "登入成功") {
               localStorage.setItem("token", "ImLogin");
-              this.$store.commit("testChangeFriendsName", { name: this.a });
+              this.$store.commit("testChangeFriendsName", {name: this.a});
               localStorage.setItem("myemail", `${this.users}`);
               localStorage.setItem("mymsg", `${this.a}`);
+              //更改狀態
+              this.$store.state.isLogIn = true;
               this.$router.push("/");
             }
           })
@@ -174,7 +176,7 @@ export default {
         let chemails = this.chemail[chemaillen - 1];
         console.log(chemails);
 
-        fetch("http://52.139.170.100/api/RePWD", {
+        fetch("https://astria.sutsanyuan.com/Astria_api/RePWD", {
           method: "post",
           headers: {
             "Content-Type": "application/json;charset =utf-8",
@@ -204,18 +206,17 @@ export default {
       if (this.$data.logonType === "pwd") {
         this.$data.logonType = "code";
         this.msg = "送出";
-        this.msg1="忘記密碼";
+        this.msg1 = "忘記密碼";
       } else {
         this.$data.logonType = "pwd";
         this.msg = "登入";
-        this.msg1="登入";
-        
+        this.msg1 = "登入";
       }
       console.log("切換登入方式");
     },
-    singupTo(){
-      this.$router.push('/signUp')
-    }
+    singupTo() {
+      this.$router.push("/signUp");
+    },
   },
   // mounted: function () {
   //   axios
@@ -246,8 +247,11 @@ img {
   width: 100%;
 }
 .pic {
-  padding: 50px;
+  padding: 50px 50px 50px 0;
   background: #000235;
+}
+.pic img {
+  padding: 70px;
 }
 .inputform {
   height: 740px;
@@ -298,11 +302,10 @@ h2 {
 
 .image {
   width: 18%;
-  margin:20px auto;
-  
+  margin: 20px auto;
 }
-.img-d{
-  padding:0 80px;
+.img-d {
+  padding: 0 80px;
 }
 
 .txt {
@@ -313,13 +316,12 @@ h2 {
 .oltxt {
   margin: 10px;
 }
-.sinup .t1{
+.sinup .t1 {
   margin-left: 10px;
-  
 }
-.sinup .t1:hover{
+.sinup .t1:hover {
   margin-left: 10px;
-  color:#62ff36;
+  color: #62ff36;
 }
 
 @media screen and (min-width: 992px) {

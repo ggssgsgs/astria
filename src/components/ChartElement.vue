@@ -166,7 +166,7 @@ export default {
           // Failed to fetch script
           console.log("chart failed to load");
         });
-    }, 100);
+    }, 1200);
   },
   beforeUpdate() {
     console.log("before updated");

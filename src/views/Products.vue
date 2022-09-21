@@ -7,7 +7,7 @@
           <div class="card">
             <div class="pic">
               <!-- <img src="https://picsum.photos/300/300?random=1" /> -->
-              <img src="../assets/img/人類圖.jpg" width="300" height="300">
+              <img src="../assets/img/人類圖.jpg" width="300" height="300" />
               <h3>{{ msgt1[0] }}</h3>
             </div>
 
@@ -26,11 +26,11 @@
         </div>
         <div class="col-12 col-lg-3 item">
           <div class="card">
-              <div class="pic">
-                  <!--<img src="https://picsum.photos/300/300?random=2" />-->
-                  <img src="../assets/img/八字.jpg" width="300" height="300">
-                  <h3>{{ msgt1[0] }}</h3>
-              </div>
+            <div class="pic">
+              <!--<img src="https://picsum.photos/300/300?random=2" />-->
+              <img src="../assets/img/八字.jpg" width="300" height="300" />
+              <h3>{{ msgt1[0] }}</h3>
+            </div>
 
             <div class="d-flex evaluate">
               <span
@@ -49,8 +49,8 @@
           <div class="card">
             <div class="pic">
               <!--<img src="https://picsum.photos/300/300?random=3" />-->
-                <img src="../assets/img/塔羅牌.png" width="300" height="300">
-                <h3>{{ msgt1[0] }}</h3>
+              <img src="../assets/img/塔羅牌.png" width="300" height="300" />
+              <h3>{{ msgt1[0] }}</h3>
             </div>
 
             <div class="d-flex evaluate">
@@ -68,11 +68,11 @@
         </div>
         <div class="col-12 col-lg-3 item">
           <div class="card">
-              <div class="pic">
-                  <!--<img src="https://picsum.photos/300/300?random=4" />-->
-                  <img src="../assets/img/星座命盤.png" width="300" height="300">
-                  <h3>{{ msgt1[0] }}</h3>
-              </div>
+            <div class="pic">
+              <!--<img src="https://picsum.photos/300/300?random=4" />-->
+              <img src="../assets/img/星座命盤.png" width="300" height="300" />
+              <h3>{{ msgt1[0] }}</h3>
+            </div>
 
             <div class="d-flex evaluate">
               <span
@@ -105,11 +105,11 @@
         </div>
         <div class="col-12 col-lg-3 item">
           <div class="card">
-              <div class="pic">
-                  <!--<img src="https://picsum.photos/300/300?random=5" />-->
-                  <img src="../assets/img/生命靈數.png" width="300" height="300">
-                  <h3>{{ msgt1[0] }}</h3>
-              </div>
+            <div class="pic">
+              <!--<img src="https://picsum.photos/300/300?random=5" />-->
+              <img src="../assets/img/生命靈數.png" width="300" height="300" />
+              <h3>{{ msgt1[0] }}</h3>
+            </div>
 
             <div class="d-flex evaluate">
               <span
@@ -126,11 +126,11 @@
         </div>
         <div class="col-12 col-lg-3 item">
           <div class="card">
-              <div class="pic">
-                  <!--<img src="https://picsum.photos/300/300?random=6" />-->
-                  <img src="../assets/img/紫微斗數.jpg" width="300" height="300">
-                  <h3>{{ msgt1[0] }}</h3>
-              </div>
+            <div class="pic">
+              <!--<img src="https://picsum.photos/300/300?random=6" />-->
+              <img src="../assets/img/紫微斗數.jpg" width="300" height="300" />
+              <h3>{{ msgt1[0] }}</h3>
+            </div>
 
             <div class="d-flex evaluate">
               <span
@@ -147,11 +147,11 @@
         </div>
         <div class="col-12 col-lg-3 item">
           <div class="card">
-              <div class="pic">
-                  <!--<img src="https://picsum.photos/300/300?random=7" />-->
-                  <img src="../assets/img/人類圖.jpg" width="300" height="300">
-                  <h3>{{ msgt1[0] }}</h3>
-              </div>
+            <div class="pic">
+              <!--<img src="https://picsum.photos/300/300?random=7" />-->
+              <img src="../assets/img/人類圖.jpg" width="300" height="300" />
+              <h3>{{ msgt1[0] }}</h3>
+            </div>
 
             <div class="d-flex evaluate">
               <span
@@ -168,11 +168,11 @@
         </div>
         <div class="col-12 col-lg-3 item">
           <div class="card">
-              <div class="pic">
-                  <!--<img src="https://picsum.photos/300/300?random=8" />-->
-                  <img src="../assets/img/星座命盤.png" width="300" height="300">
-                  <h3>{{ msgt1[0] }}</h3>
-              </div>
+            <div class="pic">
+              <!--<img src="https://picsum.photos/300/300?random=8" />-->
+              <img src="../assets/img/星座命盤.png" width="300" height="300" />
+              <h3>{{ msgt1[0] }}</h3>
+            </div>
 
             <div class="d-flex evaluate">
               <span
@@ -241,9 +241,9 @@ export default {
   color: #62ff36;
 }
 
-.picture{
-  width:300px;
-  height:300px;
+.picture {
+  width: 300px;
+  height: 300px;
 }
 
 .hotProduct button,

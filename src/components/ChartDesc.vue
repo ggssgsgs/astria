@@ -173,7 +173,10 @@ export default {
       }
       // load into local data from vuex
       this.l_currentHouseInfo = this.$store.state.currentData.currentHouseInfo;
-    }, 1200);
+
+      //初始顯示太陽
+      this.switchInfo(0);
+    }, 800);
 
     // window.setTimeout(() => {
     //   this.signs = [

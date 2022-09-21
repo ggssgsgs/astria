@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <swiper
-      :slidesPerView="4.5"
+      :slidesPerView="this.slidesPerView"
       :spaceBetween="0"
       :freeMode="true"
       :modules="modules"
@@ -71,6 +71,13 @@ export default {
     Swiper,
     SwiperSlide,
   },
+  mounted() {
+    if (window.innerWidth < 992) {
+      this.slidesPerView = 1.2;
+    } else {
+      this.slidesPerView = 4.5;
+    }
+  },
   setup() {
     const store = useStore();
     // const onSwiper = (swiper) => {
@@ -85,8 +92,26 @@ export default {
       modules: [FreeMode],
     };
   },
+  created() {
+    window.addEventListener("resize", this.changeSlidesAmount);
+  },
+
+  destroyed() {
+    window.removeEventListener("resize", this.changeSlidesAmount);
+  },
+  methods: {
+    changeSlidesAmount(e) {
+      //change size
+      if (window.innerWidth < 992) {
+        this.slidesPerView = 1.2;
+      } else {
+        this.slidesPerView = 4.5;
+      }
+    },
+  },
   data() {
     return {
+      slidesPerView: 4.5,
       //icon
 
       logoSigns: [

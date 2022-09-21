@@ -10,7 +10,7 @@
 
         <form class="d-flex flex-column w-75 fs-4">
           <div class="w-100 d-flex my-3">
-            <span class="flex-shrink-1">姓名</span>
+            <span class="flex-shrink-1 px-4 ps-0">姓名</span>
             <input
               class="input-style flex-fill"
               type="text"
@@ -22,7 +22,7 @@
           <div class="el-form-item__error">{{ form.name.msg }}</div>
 
           <div class="w-100 d-flex my-3">
-            <span class="flex-shrink-1">性別</span>
+            <span class="flex-shrink-1 px-4 ps-0">性別</span>
             <div class="radio-btns flex-fill d-flex justify-content-around">
               <input
                 v-model="form.gender.value"
@@ -58,7 +58,7 @@
           </div>
           <div class="el-form-item__error">{{ form.gender.msg }}</div>
           <div class="w-100 d-flex my-3">
-            <span class="flex-shrink-1">出生日期</span>
+            <span class="flex-shrink-1 px-4 ps-0">出生日期</span>
             <input
               class="input-style flex-fill"
               type="date"
@@ -69,7 +69,7 @@
             <div class="el-form-item__error">{{ form.date.msg }}</div>
           </div>
           <div class="w-100 d-flex my-3">
-            <span class="flex-shrink-1">出生時間</span>
+            <span class="flex-shrink-1 px-4 ps-0">出生時間</span>
             <input
               class="input-style flex-fill"
               type="time"
@@ -80,7 +80,7 @@
             <div class="el-form-item__error">{{ form.time.msg }}</div>
           </div>
           <div class="w-100 d-flex my-3">
-            <span class="flex-shrink-1">出生地點</span>
+            <span class="flex-shrink-1 px-4 ps-0">出生地點</span>
             <select class="input-style flex-fill" v-model="form.address.value">
               <option value="" disabled>-- 請選擇出生地 --</option>
               <!--<option v-for="address in addresslist" v-on:change="setplace" :key="address" :value="address">{{address}}</option>-->
@@ -292,7 +292,7 @@ export default {
   text-decoration: none;
   background: transparent;
   border-style: none;
-  border-bottom: solid white;
+  border-bottom: solid white 0.5px;
   /* width: 75%; */
   text-align: center;
 }

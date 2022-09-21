@@ -154,7 +154,25 @@ export default {
       ],
     };
   },
-  mounted() {},
+  mounted() {
+    if (!this.$store.state.isLogIn) {
+      console.log("not log in");
+      Swal.fire({
+        title: "您尚未登入",
+        text: "請登入以查看個人星盤",
+        // icon: "warning",
+        iconColor: "rgba(0,2,53,0.3)",
+        showCancelButton: false,
+        confirmButtonColor: "rgba(0,2,53,0.5)",
+        //cancelButtonColor: "rgba(0,2,53,0.5)",
+        confirmButtonText: "登入以繼續",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$router.push("/logIn");
+        }
+      });
+    }
+  },
 };
 </script>
 <style scoped>

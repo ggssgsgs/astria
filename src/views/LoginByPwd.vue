@@ -1,5 +1,5 @@
 <template>
-  <div  class="inpuForm">
+  <div class="inpuForm">
     <input
       v-model="userForm.username"
       @keyup.delete="keydelete"
@@ -49,8 +49,7 @@ input {
   padding-left: 10px;
   border-radius: 10px;
 }
-.inpuForm{
-    padding: 0 80px;
-    
+.inpuForm {
+  padding: 0 80px;
 }
 </style>

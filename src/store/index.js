@@ -270,12 +270,110 @@ export default createStore({
       },
     ],
 
+    //我的訂單
+    myOrders: [
+      {
+        rID: "0000000001",
+        //ProID: "ProID001",
+        //MemID: "MemID001",
+        ProName: "唐綺陽",
+        ProLesson: "塔羅課",
+        //日期
+        ProTime: "2021-10-23",
+        UserSelect: "不明",
+        ProCost: 1600,
+        LesCount: 2,
+        ReserveAmount: 2,
+
+        //資料表沒有
+        purchaseDate: "2022-09-02",
+        isOver: true,
+      },
+      {
+        rID: "0000000002",
+        //ProID: "ProID001",
+        //MemID: "MemID001",
+        ProName: "唐綺陽",
+        ProLesson: "塔羅課2",
+        //日期
+        ProTime: "2021-10-23",
+        UserSelect: "不明",
+        ProCost: 1600,
+        LesCount: 3,
+        ReserveAmount: 1,
+
+        //資料表沒有
+        purchaseDate: "2022-09-02",
+        isOver: false,
+      },
+      {
+        rID: "0000000003",
+        //ProID: "ProID001",
+        //MemID: "MemID001",
+        ProName: "唐陽",
+        ProLesson: "塔羅課3",
+        //日期
+        ProTime: "2021-10-23",
+        UserSelect: "不明",
+        ProCost: 1600,
+        LesCount: 1,
+        ReserveAmount: 1,
+
+        //資料表沒有
+        purchaseDate: "2022-09-02",
+        isOver: false,
+      },
+    ],
+    proOrders: [
+      {
+        rID: "0000000004",
+        //ProID: "ProID001",
+        MemID: "MemID001",
+        MemberName: "姓名",
+        //ProName: "唐綺陽",
+        ProLesson: "塔羅課",
+        //日期
+        ProTime: "2021-10-23",
+        UserSelect: "不明",
+        ProCost: 1600,
+        LesCount: 1,
+        ReserveAmount: 1,
+
+        //資料表沒有
+        purchaseDate: "2022-09-02",
+        isOver: false,
+      },
+      {
+        rID: "0000000001",
+        //ProID: "ProID001",
+        //MemID: "MemID001",
+        ProName: "唐綺陽",
+        ProLesson: "塔羅課",
+        //日期
+        ProTime: "2021-10-23",
+        UserSelect: "不明",
+        ProCost: 1600,
+        LesCount: 1,
+        ReserveAmount: 1,
+
+        //資料表沒有
+        purchaseDate: "2022-09-02",
+        isOver: false,
+      },
+    ],
+
     //未使用
     chartDataOrigin: {},
     chartData: {},
   },
   getters: {},
   mutations: {
+    //------ actions API 抓取後放入
+
+    setMyOrders() {},
+    setProOrders() {},
+
+    //------
     deleteFriend(state, index) {
       state.friends.splice(index, 1);
     },

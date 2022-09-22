@@ -92,8 +92,10 @@ export default createStore({
 
     //Personal Data
     //我的資料
-    myEmail: "",
+    myEmail: "aa@gmail.com",
     myName: "酥燦燦",
+    myPhone: "0921809234",
+    myGender: 1,
     myBirthday: "1995-07-07",
     myBirthTime: "11:08",
     myUTCBirthday: "1995-07-07",
@@ -368,6 +370,17 @@ export default createStore({
   },
   getters: {},
   mutations: {
+    //------set Account Info
+    setAccountInfo(state, payload) {
+      state.myBirthday = payload.Birth;
+      state.myBirthTime = payload.BirthTime;
+      state.myLocation = payload.BirthPlace;
+      state.myEmail = payload.Email;
+      state.myName = payload.Name;
+      state.myPhone = payload.Phone;
+      state.myGender = payload.Sex;
+    },
+
     //------ actions API 抓取後放入
 
     setMyOrders() {},
@@ -865,6 +878,17 @@ export default createStore({
         })
         .catch(function (error) {
           console.log(error);
+        });
+    },
+
+    getAccountInfo({commit, state}, email) {
+      axios
+        .post("https://astria.sutsanyuan.com/Astria_api/ShowMemInfo", {
+          Email: email,
+        })
+        .then((response) => {
+          console.log("Customer data get by post:", response.data.Req);
+          commit("setAccountInfo", response.data.Req);
         });
     },
   },

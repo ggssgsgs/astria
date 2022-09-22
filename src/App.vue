@@ -102,7 +102,7 @@ import {RouterLink, RouterView} from "vue-router";
 
                 <li>
                   <RouterLink
-                    to="/myFortuneTellerInfos"
+                    to="/myFortuneTellerInfo"
                     class="dropdown-item"
                     v-show="!this.$store.state.isLogIn"
                     >成為占卜師</RouterLink
@@ -230,6 +230,12 @@ export default {
   margin: 0px;
   padding: 0px;
   color: #eee;
+}
+.bgGray {
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
 }
 .BG {
   background: rgb(0, 2, 53);

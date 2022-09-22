@@ -1,6 +1,6 @@
 <template>
   <div v-for="order in this.$store.state.myOrders">
-    <div class="box my-5">
+    <div class="box my-5 mx-1 mx-md-5">
       <div class="topPart">
         <div class="d-flex justify-content-between">
           <div class="fs-6 pt-2 ps-3 pb-1">

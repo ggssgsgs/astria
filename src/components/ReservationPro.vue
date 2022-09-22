@@ -1,6 +1,6 @@
 <template>
-  <div v-for="order in this.$store.state.myOrders">
-    <div class="box my-5">
+  <div v-for="order in this.$store.state.proOrders">
+    <div class="box my-5 mx-1 mx-md-5">
       <div class="topPart">
         <div class="d-flex justify-content-between">
           <div class="fs-6 pt-2 ps-3 pb-1">
@@ -8,9 +8,9 @@
             <span v-show="order.isOver">（已結案）</span>
           </div>
           <div class="fs-6 pt-2 pe-3 pb-1">
-            <span class="mx-2">聯絡賣家</span
-            ><span class="mx-2 me-0" v-show="!order.isOver">預約時間</span
-            ><span class="mx-2 me-0" v-show="order.isOver">占卜紀錄</span>
+            <span class="mx-2">聯絡買家</span
+            ><span class="mx-2 me-0" v-show="!order.isOver">占卜紀錄</span
+            ><span class="mx-2 me-0" v-show="order.isOver">已結案按我</span>
           </div>
         </div>
       </div>
@@ -19,7 +19,7 @@
           <img src="https://random.imagecdn.app/100/100" />
         </div>
         <div class="flex-grow-1 d-flex flex-column justify-content-center">
-          <h5 class="text-start mt-2">{{ order.ProLesson }}</h5>
+          <h5 class="text-start mt-2">{{ order.MemberName }}</h5>
           <div class="d-flex flex-wrap justify-content-start">
             <div class="text-start mx-4 ms-0">
               <h6>老師名稱：{{ order.ProName }}</h6>
@@ -56,7 +56,7 @@ export default {
 }
 .topPart {
   border-radius: 10px 10px 0px 0px;
-  background: #ff7bac;
+  background: #999;
 }
 .content {
   border-radius: 0px 0px 10px 10px;

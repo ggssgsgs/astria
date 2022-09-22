@@ -96,6 +96,7 @@ export default createStore({
     myName: "酥燦燦",
     myPhone: "0921809234",
     myGender: 1,
+    myPhoto: "",
     myBirthday: "1995-07-07",
     myBirthTime: "11:08",
     myUTCBirthday: "1995-07-07",
@@ -106,6 +107,8 @@ export default createStore({
     myLongitude: "121.11111",
     // myAPIsrc:
     //   "http://52.139.170.100:3333/horoscope?time=1995-07-07T03:08:00Z&latitude=25.11111&longitude=120.11111&houseSystem=P",
+
+    isPro: false,
 
     //api抓下來的原始資料
     myChartDataOrigin: {},
@@ -331,7 +334,7 @@ export default createStore({
         rID: "0000000004",
         //ProID: "ProID001",
         MemID: "MemID001",
-        MemberName: "姓名",
+        MemberName: "林冠廷",
         //ProName: "唐綺陽",
         ProLesson: "塔羅課",
         //日期
@@ -343,13 +346,14 @@ export default createStore({
 
         //資料表沒有
         purchaseDate: "2022-09-02",
-        isOver: false,
+        isOver: true,
       },
       {
         rID: "0000000001",
         //ProID: "ProID001",
         //MemID: "MemID001",
         ProName: "唐綺陽",
+        MemberName: "照相香",
         ProLesson: "塔羅課",
         //日期
         ProTime: "2021-10-23",
@@ -367,9 +371,52 @@ export default createStore({
     //未使用
     chartDataOrigin: {},
     chartData: {},
+
+    //熱門占星師
+    trendyAstrologists: [
+      {ProName: "唐齊齊", Select: "占星塔羅", ProImg: "1.jpg"},
+      {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg"},
+      {ProName: "詹惟中", Select: "風水", ProImg: "3.jpg"},
+      {ProName: "唐齊齊", Select: "占星塔羅", ProImg: "4.jpg"},
+      {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "5.jpg"},
+      {ProName: "詹惟中", Select: "風水", ProImg: "6.jpg"},
+    ],
+    //所有占星師
+    allAstrologists: [
+      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "1.jpg"},
+      {ProName: "唐揚揚", Select: "生命靈數", ProImg: "2.jpg"},
+      {ProName: "詹惟中", Select: "塔羅占卜", ProImg: "3.jpg"},
+      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "4.jpg"},
+      {ProName: "唐揚揚", Select: "人類圖", ProImg: "5.jpg"},
+      {ProName: "詹惟中", Select: "八字", ProImg: "6.jpg"},
+      {ProName: "詹惟中", Select: "風水", ProImg: "3.jpg"},
+      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "7.jpg"},
+      {ProName: "唐揚揚", Select: "紫微斗數", ProImg: "5.jpg"},
+      {ProName: "詹惟中", Select: "風水", ProImg: "6.jpg"},
+    ],
   },
   getters: {},
   mutations: {
+    //------Log Out
+    logOut(state) {
+      state.isLogIn = false;
+    },
+    //------logIn
+    loginSet(state, payload) {
+      state.myBirthday = payload.Birth;
+      state.myBirthTime = payload.BirthTime;
+      state.myLocation = payload.BirthPlace;
+      state.myEmail = payload.Email;
+      state.myName = payload.Name;
+      state.myPhone = payload.Phone;
+      state.myGender = payload.Sex;
+
+      state.isPro = payload.IsAdv;
+      state.mySigns = payload.signs;
+      state.myPhoto = payload.Photo;
+      state.myLatitude = payload.JsonData.lat;
+      state.myLongitude = payload.JsonData.lng;
+    },
     //------set Account Info
     setAccountInfo(state, payload) {
       state.myBirthday = payload.Birth;
@@ -878,6 +925,21 @@ export default createStore({
         })
         .catch(function (error) {
           console.log(error);
+        });
+    },
+
+    //取得登入資料
+    getLoginInfo({commit, state}, email) {
+      axios
+        .post("https://astria.sutsanyuan.com/Astria_api/Login", {
+          Email: email,
+        })
+        .then((response) => {
+          console.log(
+            "Checked if logged in and get Customer data by post:",
+            response.data.Req
+          );
+          commit("loginSet", response.data.Req);
         });
     },
 

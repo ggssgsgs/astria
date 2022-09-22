@@ -3,7 +3,7 @@
     <div class="container-xl mt-5">
       <div class="singup-containt">
         <div class="row justify-content-center">
-           <div class="col-12 col-lg-6">
+          <div class="col-12 col-lg-6">
             <div class="card pic">
               <img src="../assets/img/LoginLogo.png" alt="logo" />
             </div>
@@ -82,15 +82,12 @@
   </div>
 </template>
 <script>
-import { reg_pwdCommon, reg_email } from "../utils/validate";
+import {reg_pwdCommon, reg_email} from "../utils/validate";
 import SketchMain from "../components/P5CanvasKeyVision_half.vue";
 import imgUrl from "../assets/img/starHolder.png";
 import imgUrl2 from "../assets/img/0728.jpg";
 
-
-
 export default {
-
   data() {
     return {
       sketchData: {
@@ -103,13 +100,13 @@ export default {
       retime: "",
       reMsgg: "",
       resingupmsg: "",
-      resingupmsg1:"",
-      
+      resingupmsg1: "",
+
       user: {
-        username: { value: "", msg: "" },
-        password: { value: "", msg: "" },
-        repassword: { value: "", msg: "" },
-        code: { value: "", msg: "" },
+        username: {value: "", msg: ""},
+        password: {value: "", msg: ""},
+        repassword: {value: "", msg: ""},
+        code: {value: "", msg: ""},
       },
       submitDisabled: true, // 送出按鈕的disabled狀態，true為禁用
     };
@@ -163,7 +160,7 @@ export default {
           let chCode = this.user.code.value;
           console.log(ckemail);
           console.log(chpwd);
-          fetch("https://astria.sutsanyuan.com/api/basicsignup", {
+          fetch("https://astria.sutsanyuan.com/Astria_api/FirstSignUp", {
             method: "POST",
             headers: {
               "Content-Type": "application/json;charset =utf-8",
@@ -180,10 +177,10 @@ export default {
             .then((body) => {
               console.log(body);
               this.resingupmsg = body.Status;
-              this.resingupmsg1=body.Msg;
+              this.resingupmsg1 = body.Msg;
               if (this.resingupmsg == "1" && this.remsg == "1") {
                 localStorage.setItem("myemail", `${this.user.username.value}`);
-                 localStorage.setItem("mymsg", `${this.resingupmsg1}`);
+                localStorage.setItem("mymsg", `${this.resingupmsg1}`);
                 this.$router.push("/signUpForm");
                 console.log("註冊成功");
               }
@@ -201,7 +198,7 @@ export default {
       let chpwd = this.user.password.value;
       console.log(ckemail);
       console.log(chpwd);
-      fetch("https://astria.sutsanyuan.com/api/Confirm", {
+      fetch("https://astria.sutsanyuan.com/Astria_api/CreateVCode", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset =utf-8",
@@ -238,7 +235,7 @@ export default {
     googlesingup() {
       this.$router.push("/");
     },
-    loginTo(){
+    loginTo() {
       this.$router.push("/logIn");
     },
   },
@@ -246,7 +243,7 @@ export default {
 </script>
 
 <style scoped>
-*{
+* {
   color: #666;
 }
 input {
@@ -271,7 +268,7 @@ img {
   padding: 50px;
   background: #000235;
 }
-.pic img{
+.pic img {
   padding: 50px;
 }
 .login-bottom-containt {
@@ -315,9 +312,8 @@ img {
 .image {
   width: 20%;
   margin: 20px auto;
-  
 }
-.image img{
+.image img {
   border-radius: 50%;
 }
 

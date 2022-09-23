@@ -115,7 +115,7 @@ export default {
       this.chemail.push(item.email);
     },
     //忘記密碼，觸發事件，刪除資料
-    pdeleted() {
+    pdeletechiick() {
       this.chemail.splice(0);
     },
     //登入頁面,，觸發事件，抓取子物件回傳

@@ -69,15 +69,11 @@ import {RouterLink, RouterView} from "vue-router";
                   <RouterLink
                     to="/logIn"
                     class="dropdown-item"
-                    v-show="!this.$store.state.isLogIn"
+                    v-show="!isLogIn"
                     >登入</RouterLink
                   >
                 </li>
-                <li
-                  @click="logOut"
-                  class="dropdown-item"
-                  v-show="this.$store.state.isLogIn"
-                >
+                <li @click="logOut" class="dropdown-item" v-show="isLogIn">
                   登出
                   <!-- <RouterLink to="/"  class="dropdown-item"
                     ></RouterLink
@@ -87,25 +83,26 @@ import {RouterLink, RouterView} from "vue-router";
                   <RouterLink
                     to="/signUp"
                     class="dropdown-item"
-                    v-show="!this.$store.state.isLogIn"
+                    v-show="!isLogIn"
                     >註冊</RouterLink
                   >
                 </li>
-                <li><hr class="dropdown-divider" /></li>
+                <li v-show="isLogIn"><hr class="dropdown-divider" /></li>
                 <li>
                   <RouterLink
+                    v-model="isLogIn"
                     to="/myInfo"
                     class="dropdown-item"
-                    v-show="this.$store.state.isLogIn"
+                    v-show="isLogIn"
                     >我的帳號</RouterLink
                   >
                 </li>
 
                 <li>
                   <RouterLink
-                    to="/myFortuneTellerInfo"
+                    to="/myInfo"
                     class="dropdown-item"
-                    v-show="!this.$store.state.isLogIn"
+                    v-show="!isPro && isLogIn"
                     >成為占卜師</RouterLink
                   >
                 </li>
@@ -221,6 +218,37 @@ export default {
     this.$store.state.myEmail = localStorage.getItem("myemail");
   },
 
+  // computed: {
+  //   isLogin: () => {
+  //     if (localStorage.getItem("token") === "ImLogin") {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   },
+  // },
+  data() {
+    return {
+      //isLogIn: true,
+    };
+  },
+  computed: {
+    gender() {
+      if (this.$store.state.myGender == 1) {
+        return "male";
+      } else if (this.$store.state.myGender == 2) {
+        return "female";
+      } else if (this.$store.state.myGender == 0) {
+        return "others";
+      }
+    },
+    isLogIn() {
+      return this.$store.state.isLogIn;
+    },
+    isPro() {
+      return this.$store.state.isPro == true ? true : false;
+    },
+  },
   methods: {
     logOut() {
       localStorage.removeItem("token");

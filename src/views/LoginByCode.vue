@@ -26,7 +26,7 @@ export default {
       this.$emit("pchecked", this.userForm);
     },
     keydelete() {
-      this.$emit("pdeleted", this.userForm);
+      this.$emit("deleted", this.userForm);
     },
   },
 };

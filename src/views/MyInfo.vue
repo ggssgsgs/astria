@@ -79,6 +79,7 @@ import reservation from "../components/Reservation.vue";
 import reservationPro from "../components/ReservationPro.vue";
 export default {
   mounted() {
+    window.setTimeout(100);
     //this.isPro = this.$store.state.isPro;
   },
 
@@ -130,9 +131,6 @@ export default {
     //     this.$data.logonType = "pwd";
     //   }
     // },
-    MyFortuneTellerInfo() {
-      this.$router.push("/myFortunetellerInfo");
-    },
   },
 };
 </script>

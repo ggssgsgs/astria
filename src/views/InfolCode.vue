@@ -89,7 +89,7 @@
         />
         <div class="el-form-item__error">{{ form.phone.msg }}</div>
       </div>
-      <div class="d-flex input-item ">
+      <div class="d-flex input-item">
         <label class="l1">電子郵件</label>
         <input
           type="text"
@@ -139,7 +139,9 @@
     </div>
   </div>
   <duv class="card onsubmitcontent">
-    <button class="onsubmit" @click.prevent="nativeSubmit" :disabled="status">送出</button>
+    <button class="onsubmit" @click.prevent="nativeSubmit" :disabled="status">
+      送出
+    </button>
   </duv>
 </template>
 
@@ -152,8 +154,41 @@ export default {
   components: {
     google,
   },
+  created() {
+    fetch("https://astria.sutsanyuan.com/Astria_api/ShowMemInfo", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json;charset =utf-8",
+      },
+      body: JSON.stringify({
+        Email: "aa@gmail.com",
+      }),
+    })
+      .then(function (response) {
+        // alert("Fetch");
+        return response.json();
+      })
+      .then((body) => {
+        console.log(body);
+        this.form.name.value = body.Req.Name;
+        this.form.gender.value = body.Req.Sex;
+      
+      })
+      .catch(function (err) {
+        // alert("Fetch失敗");
+        console.log(err);
+      });
+    // axios
+    //   .get("https://astria.sutsanyuan.com/Astria_api/ShowMemInfo") //發出請求
+    //     .then((res) => console.log(res))
+    //   // .then((res) => (this.datas = res.data))
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  },
   data() {
     return {
+      datas: [],
       remsg: "",
       remsgg: "",
       form: {
@@ -259,9 +294,9 @@ export default {
             this.remsgg = body.Msg;
             alert(this.remsg + this.remsgg);
             if (this.remsg != 1) {
-            //   alert("失敗");
+              //   alert("失敗");
             } else {
-            //   alert("成功");
+              //   alert("成功");
               localStorage.setItem("token", "ImLogin");
               this.$router.push("/myInfo");
             }
@@ -384,20 +419,19 @@ select {
   text-align: left;
   width: 25%;
   padding: 10px 0 0 10px;
-
 }
-.infolBtn{
-    margin: 30px;
+.infolBtn {
+  margin: 30px;
 }
-.onsubmit{
-    width: 200px;
-    height: 45px;
-    border-radius: 10px;
-    background: rgba(217, 217, 217, 0.25);
-    color: #fff;
-    margin: auto;
+.onsubmit {
+  width: 200px;
+  height: 45px;
+  border-radius: 10px;
+  background: rgba(217, 217, 217, 0.25);
+  color: #fff;
+  margin: auto;
 }
-.onsubmitcontent{
-    background: #000235;
+.onsubmitcontent {
+  background: #000235;
 }
 </style>

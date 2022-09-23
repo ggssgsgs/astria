@@ -1,5 +1,5 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
+import {RouterLink, RouterView} from "vue-router";
 </script>
 
 <template>
@@ -65,40 +65,47 @@ import { RouterLink, RouterView } from "vue-router";
               </a>
               <ul class="dropdown-menu dropdown-menu-lg-end">
                 <li>
-                  <RouterLink to="/logIn" class="dropdown-item"
+                  <RouterLink
+                    to="/logIn"
+                    class="dropdown-item"
+                    v-show="!this.$store.state.isLogIn"
                     >登入</RouterLink
                   >
                 </li>
-                <li @click="logOut" class="dropdown-item">
+                <li
+                  @click="logOut"
+                  class="dropdown-item"
+                  v-show="this.$store.state.isLogIn"
+                >
                   登出
                   <!-- <RouterLink to="/"  class="dropdown-item"
                     ></RouterLink
                   > -->
                 </li>
                 <li>
-                  <RouterLink to="/signUp" class="dropdown-item"
+                  <RouterLink
+                    to="/signUp"
+                    class="dropdown-item"
+                    v-show="!this.$store.state.isLogIn"
                     >註冊</RouterLink
                   >
                 </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                  <RouterLink to="/myInfo" class="dropdown-item"
+                  <RouterLink
+                    to="/myInfo"
+                    class="dropdown-item"
+                    v-show="this.$store.state.isLogIn"
                     >我的帳號</RouterLink
                   >
                 </li>
+
                 <li>
-                  <RouterLink to="/signUpForm" class="dropdown-item"
-                    >我的表單</RouterLink
-                  >
-                </li>
-                <li>
-                  <RouterLink to="/myFortuneTellerInfos" class="dropdown-item"
+                  <RouterLink
+                    to="/myFortuneTellerInfos"
+                    class="dropdown-item"
+                    v-show="!this.$store.state.isLogIn"
                     >成為占卜師</RouterLink
-                  >
-                </li>
-                <li>
-                   <RouterLink to="/infolProduct" class="dropdown-item"
-                    >我的表單2</RouterLink
                   >
                 </li>
               </ul>
@@ -197,6 +204,17 @@ import { RouterLink, RouterView } from "vue-router";
 </template>
 <script>
 export default {
+  beforeMount() {},
+
+  mounted() {
+    if (localStorage.getItem("token") === "ImLogin") {
+      this.$store.state.isLogIn = true;
+    } else {
+      this.$store.state.isLogIn = false;
+    }
+    this.$store.state.myEmail = localStorage.getItem("myemail");
+  },
+
   methods: {
     logOut() {
       localStorage.removeItem("token");

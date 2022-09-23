@@ -2,6 +2,7 @@
 import Chart from "../components/ChartElement.vue";
 import DataChart from "../components/DataChart.vue";
 import ChartDesc from "../components/ChartDesc.vue";
+
 import {useStore} from "vuex";
 
 //import sign logos
@@ -17,6 +18,9 @@ import lSagitarius from "../assets/img/signLogos/Sagitarius_pink_400p.png";
 import lCapricorn from "../assets/img/signLogos/Capricorn_pink_400p.png";
 import lAquarius from "../assets/img/signLogos/Aquarius_pink_400p.png";
 import lPisces from "../assets/img/signLogos/Pisces_pink_400p.png";
+
+//import sweetalert
+import Swal from "sweetalert2";
 
 export default {
   setup() {
@@ -60,15 +64,69 @@ export default {
   beforeMount() {
     console.log("myChar.vue beforeMount");
     ////vvv testing tto set the data to some other
-    this.$store.state.currentAPIsrc = this.$store.state.friends[0].astroAPI;
-    this.$store.dispatch("getMyChartData");
+    //this.$store.state.currentAPIsrc = this.$store.state.friends[0].astroAPI;
+    // this.$store.dispatch("getMyChartData");
 
-    console.log(this.$store.state.myChartData);
-    console.log("MyChart>mySigns", this.$store.state.mySigns);
-    console.log("JSON", this.$store.state.descJSON.length);
+    // if (localStorage.getItem("token") === "ImLogin") {
+    //   this.$store.state.isLogIn = true;
+    // } else {
+    //   this.$store.state.isLogIn = false;
+    // }
+    // this.$store.state.myEmail = localStorage.getItem("myemail");
+
+    //----- 產 生 星 盤 S O P ------
+
+    //將資料導入Ｃurrent
+    this.$store.commit("setCurrentData", {
+      name: this.$store.state.myName,
+      birthday: this.$store.state.myBirthday,
+      birthTime: this.$store.state.myBirthTime,
+      location: this.$store.state.myLocation,
+    });
+
+    //轉換 UTC 時間
+    this.$store.commit("setCurrentUTCtime");
+
+    //非同步 產生星盤資料
+    this.$store.dispatch("getChartData", {
+      birthday: this.$store.state.currentData.currentUTCBirthday,
+      birthTime: this.$store.state.currentData.currentUTCBirthTime,
+      location: this.$store.state.currentData.currentLocation,
+    });
+
+    //----- 產 生 星 盤 S O P ------
+
+    // console.log(this.$store.state.myChartData);
+    // console.log("MyChart>mySigns", this.$store.state.mySigns);
+    // console.log("JSON", this.$store.state.descJSON.length);
   },
   mounted() {
-    this.getUTCtime();
+    // window.setTimeout(() => {
+    //   if (localStorage.getItem("token") === "ImLogin") {
+    //     this.$store.state.isLogIn = true;
+    //   } else {
+    //     this.$store.state.isLogIn = false;
+    //   }
+    //   this.$store.state.myEmail = localStorage.getItem("myemail");
+    // }, 200);
+
+    if (!this.$store.state.isLogIn) {
+      console.log("not log in");
+      Swal.fire({
+        title: "您尚未登入",
+        text: "請登入以查看個人星盤",
+        // icon: "warning",
+        iconColor: "rgba(0,2,53,0.3)",
+        showCancelButton: false,
+        confirmButtonColor: "rgba(0,2,53,0.5)",
+        //cancelButtonColor: "rgba(0,2,53,0.5)",
+        confirmButtonText: "登入以繼續",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$router.push("/logIn");
+        }
+      });
+    }
     window.setTimeout(() => {
       this.currentSign = this.$store.state.mySigns[0];
       //delete original img
@@ -80,17 +138,7 @@ export default {
       //document.getElementById("mySignLogo").appendChild();
     }, 100);
   },
-  methods: {
-    getUTCtime() {
-      // let date = this.$store.state.currentData.currentBirthday;
-      // let time = this.$store.state.currentData.currentBirthTime;
-      let date = "1995-07-07";
-      let time = "07:08";
-      let date1 = new Date(`${date}, ${time}:00 GMT+8:00`);
-      console.log("TIMETEST", date1.getUTCHours());
-      console.log("DAYTEST", date1.getUTCDate());
-    },
-  },
+  methods: {},
 };
 </script>
 <template>

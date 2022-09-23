@@ -15,7 +15,7 @@
           <infol-code v-if="logonType === 'code'"></infol-code>
           <infol-pwd v-if="logonType === 'pwd'"></infol-pwd>
           <infol-reserve v-if="logonType === 'order'"></infol-reserve>
-          <infol-product v-if="logonType === 'corse'"></infol-product>
+          
         </div>
       </div>
     </div>
@@ -63,7 +63,6 @@ export default {
       }
     },
     
-   
 
   },
 };

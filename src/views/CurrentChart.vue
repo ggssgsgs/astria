@@ -60,7 +60,7 @@ export default {
   beforeMount() {
     console.log("myChar.vue beforeMount");
     ////vvv testing tto set the data to some other
-    this.$store.state.currentAPIsrc = this.$store.state.friends[0].astroAPI;
+    //this.$store.state.currentAPIsrc = this.$store.state.friends[0].astroAPI;
 
     this.$store.dispatch("getChartData", {
       birthday: this.$store.state.currentData.currentUTCBirthday,
@@ -73,13 +73,12 @@ export default {
   },
   mounted() {
     window.setTimeout(() => {
-      this.currentSign = this.$store.state.mySigns[0];
+      //this.currentSign = this.$store.state.mySigns[0];
       //delete original img
       // let element = document.getElementById("mySignLogo");
       // while (element.firstChild) {
       //   element.removeChild(element.firstChild);
       // }
-
       //document.getElementById("mySignLogo").appendChild();
     }, 100);
   },

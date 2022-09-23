@@ -1,4 +1,4 @@
-import {createStore} from "vuex";
+import { createStore } from "vuex";
 import axios from "axios";
 import descriptionJSON from "../assets/description.json";
 export default createStore({
@@ -87,17 +87,23 @@ export default createStore({
       },
     },
 
+    //登入狀態
+    isLogIn: false,
+
     //Personal Data
     //我的資料
-    //myEmail: "tsanyuansu@gmail.com",
+    myEmail: "",
     myName: "酥燦燦",
     myBirthday: "1995-07-07",
-    myBirthTime: "11:08:00",
-    myBirthdayAndTime: "1995-07-07T03:08:00Z", //台灣時間-8
+    myBirthTime: "11:08",
+    myUTCBirthday: "1995-07-07",
+    myUTCBirthTime: "03:08:00",
+    myLocation: "台北市",
+    //myBirthdayAndTime: "1995-07-07T03:08:00Z", //台灣時間-8
     myLatitude: "25.11111",
     myLongitude: "121.11111",
-    myAPIsrc:
-      "http://52.139.170.100:3333/horoscope?time=1995-07-07T03:08:00Z&latitude=25.11111&longitude=120.11111&houseSystem=P",
+    // myAPIsrc:
+    //   "http://52.139.170.100:3333/horoscope?time=1995-07-07T03:08:00Z&latitude=25.11111&longitude=120.11111&houseSystem=P",
 
     //api抓下來的原始資料
     myChartDataOrigin: {},
@@ -163,12 +169,12 @@ export default createStore({
         birthday: "1996-08-09",
         birthTime: "03:08:00",
         birthCity: "Taipei",
-        astroAPI:
-          "http://52.139.170.100:3333/horoscope?time=1996-08-09T08:14:00Z&latitude=25.11111&longitude=120.11111&houseSystem=P",
+        // astroAPI:
+        //   "http://52.139.170.100:3333/horoscope?time=1996-08-09T08:14:00Z&latitude=25.11111&longitude=120.11111&houseSystem=P",
 
         signs: [5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        myLatitude: "25.11111",
-        myLongitude: "121.11111",
+        //myLatitude: "25.11111",
+        //myLongitude: "121.11111",
         //birthdayAndTime: "1995-07-07T03:08:00Z",
 
         // chartData: {
@@ -195,11 +201,11 @@ export default createStore({
         birthday: "1997-09-09",
         birthTime: "03:08:00",
         birthCity: "Tainan",
-        astroAPI:
-          "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+        //astroAPI:
+        //  "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
 
-        myLatitude: "23.11111",
-        myLongitude: "121.11111",
+        //myLatitude: "23.11111",
+        //myLongitude: "121.11111",
         signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       },
       {
@@ -207,11 +213,11 @@ export default createStore({
         birthday: "1997-10-09",
         birthTime: "03:08:00",
         birthCity: "Tainan",
-        astroAPI:
-          "http://52.139.170.100:3333/horoscope?time=1997-10-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+        // astroAPI:
+        //   "http://52.139.170.100:3333/horoscope?time=1997-10-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
 
-        myLatitude: "23.11111",
-        myLongitude: "121.11111",
+        // myLatitude: "23.11111",
+        // myLongitude: "121.11111",
         signs: [7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       },
       {
@@ -219,11 +225,11 @@ export default createStore({
         birthday: "1997-09-09",
         birthTime: "03:08:00",
         birthCity: "Tainan",
-        astroAPI:
-          "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+        // astroAPI:
+        //   "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
 
-        myLatitude: "23.11111",
-        myLongitude: "121.11111",
+        // myLatitude: "23.11111",
+        // myLongitude: "121.11111",
         signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       },
       {
@@ -231,11 +237,11 @@ export default createStore({
         birthday: "1997-09-09",
         birthTime: "03:08:00",
         birthCity: "Tainan",
-        astroAPI:
-          "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+        // astroAPI:
+        //   "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
 
-        myLatitude: "23.11111",
-        myLongitude: "121.11111",
+        // myLatitude: "23.11111",
+        // myLongitude: "121.11111",
         signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       },
       {
@@ -243,11 +249,11 @@ export default createStore({
         birthday: "1997-09-09",
         birthTime: "03:08:00",
         birthCity: "Tainan",
-        astroAPI:
-          "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+        // astroAPI:
+        //   "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
 
-        myLatitude: "23.11111",
-        myLongitude: "121.11111",
+        // myLatitude: "23.11111",
+        // myLongitude: "121.11111",
         signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       },
       {
@@ -255,27 +261,187 @@ export default createStore({
         birthday: "1997-09-09",
         birthTime: "03:08:00",
         birthCity: "Tainan",
-        astroAPI:
-          "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
+        // astroAPI:
+        //   "http://52.139.170.100:3333/horoscope?time=1997-09-09T03:08:00Z&latitude=23.11111&longitude=120.11111&houseSystem=P",
 
-        myLatitude: "23.11111",
-        myLongitude: "121.11111",
+        // myLatitude: "23.11111",
+        // myLongitude: "121.11111",
         signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      },
+    ],
+
+    //我的訂單
+    myOrders: [
+      {
+        rID: "0000000001",
+        //ProID: "ProID001",
+        //MemID: "MemID001",
+        ProName: "唐綺陽",
+        ProLesson: "塔羅課",
+        //日期
+        ProTime: "2021-10-23",
+        UserSelect: "不明",
+        ProCost: 1600,
+        LesCount: 2,
+        ReserveAmount: 2,
+
+        //資料表沒有
+        purchaseDate: "2022-09-02",
+        isOver: true,
+      },
+      {
+        rID: "0000000002",
+        //ProID: "ProID001",
+        //MemID: "MemID001",
+        ProName: "唐綺陽",
+        ProLesson: "塔羅課2",
+        //日期
+        ProTime: "2021-10-23",
+        UserSelect: "不明",
+        ProCost: 1600,
+        LesCount: 3,
+        ReserveAmount: 1,
+
+        //資料表沒有
+        purchaseDate: "2022-09-02",
+        isOver: false,
+      },
+      {
+        rID: "0000000003",
+        //ProID: "ProID001",
+        //MemID: "MemID001",
+        ProName: "唐陽",
+        ProLesson: "塔羅課3",
+        //日期
+        ProTime: "2021-10-23",
+        UserSelect: "不明",
+        ProCost: 1600,
+        LesCount: 1,
+        ReserveAmount: 1,
+
+        //資料表沒有
+        purchaseDate: "2022-09-02",
+        isOver: false,
+      },
+    ],
+    proOrders: [
+      {
+        rID: "0000000004",
+        //ProID: "ProID001",
+        MemID: "MemID001",
+        MemberName: "姓名",
+        //ProName: "唐綺陽",
+        ProLesson: "塔羅課",
+        //日期
+        ProTime: "2021-10-23",
+        UserSelect: "不明",
+        ProCost: 1600,
+        LesCount: 1,
+        ReserveAmount: 1,
+
+        //資料表沒有
+        purchaseDate: "2022-09-02",
+        isOver: false,
+      },
+      {
+        rID: "0000000001",
+        //ProID: "ProID001",
+        //MemID: "MemID001",
+        ProName: "唐綺陽",
+        ProLesson: "塔羅課",
+        //日期
+        ProTime: "2021-10-23",
+        UserSelect: "不明",
+        ProCost: 1600,
+        LesCount: 1,
+        ReserveAmount: 1,
+
+        //資料表沒有
+        purchaseDate: "2022-09-02",
+        isOver: false,
       },
     ],
 
     //未使用
     chartDataOrigin: {},
     chartData: {},
+
+    //productshop購物車
+    myCart: {
+      shopNmae:"思語塔羅工作坊",
+      addpsTime: 0,
+      addCost: 0,
+      psCount: 0,
+      online:'',
+      local:'',
+    },
+    
+    psCost: [1000, 1500, 1800, 2700],
+    //課程內容
+    psName: ['妤塔羅占卜工作坊', '唐綺占星工作室',],
+    psSkill: ['八字', '人類圖', '紫微斗數', '塔羅占卜', '生命靈數', '星座命盤'],
+
+    psLesson: [{
+      lesson: '塔羅牌真命天子陣',
+      psTime: '30',
+      pscontent: '透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！',
+      pstip: '⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠',
+    },
+    {
+      lesson: '2023年流年運勢',
+      psTime: '30',
+      pscontent: '透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！',
+      pstip: '⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠',
+    },
+    {
+      lesson: '最強運勢解析',
+      psTime: '30',
+      pscontent: '透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！',
+      pstip: '⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠',
+    },
+    {
+      lesson: '塔羅工作運勢解析',
+      psTime: '30',
+      pscontent: '透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！',
+      pstip: '⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠',
+    },
+    {
+      lesson: '最強工作運勢解析',
+      psTime: '30',
+      pscontent: '透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！',
+      pstip: '⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠',
+    },
+
+
+    ],
+    pushLesson: {
+      lesson: [],
+      psTime: [],
+      pscontent: [,
+      ],
+      pstip: [],
+    }
+
+
+
   },
   getters: {},
   mutations: {
+    //------ actions API 抓取後放入
+
+    setMyOrders() { },
+    setProOrders() { },
+
+    //------
+    deleteFriend(state, index) {
+      state.friends.splice(index, 1);
+    },
     setCurrentUTCtime(state) {
       // let date = this.$store.state.currentData.currentBirthday;
       // let time = this.$store.state.currentData.currentBirthTime;
       let date = state.currentData.currentBirthday;
       let time = state.currentData.currentBirthTime;
-      let date1 = new Date(`${date}, ${time}:00 GMT+8:00`);
+      let date1 = new Date(`${date}, ${time} GMT+8:00`);
 
       console.log("TIMETEST", date1.getUTCHours());
       console.log("DAYTEST", date1.getUTCDate());
@@ -627,6 +793,56 @@ export default createStore({
         //houses[0].position.longitude
       }
     },
+
+
+    //productOrder 購物填選單
+    addStoreLesson(state, index) {
+      
+      for (let i = 0; i < 6; i++) {
+        state.pushLesson.lesson.push(state.psLesson[i].lesson) 
+        state.pushLesson.psTime = state.psLesson[i].psTime
+        state.pushLesson.pscontent = state.psLesson[i]
+        state.pushLesson.pstip = state.psLesson.pstip
+      }
+
+    },
+    //productshop購物車
+    addStorespTime(state) {
+      state.myCart.addpsTime += 30;
+      state.myCart.addCost += state.psCost[0];
+      state.myCart.psCount+=1
+    },
+    addStorespTime1(state) {
+      state.myCart.addpsTime += 60;
+      state.myCart.addCost += state.psCost[1];
+      state.myCart.psCount+=1
+    },
+    addStorespTime2(state) {
+      state.myCart.addpsTime += 90;
+      state.myCart.addCost += state.psCost[2];
+      state.myCart.psCount+=1
+    },
+    addStorespTime3(state) {
+      state.myCart.addpsTime += 120;
+      state.myCart.addCost += state.psCost[3];
+      state.myCart.psCount+=1
+    },
+    addStoreonline(state){
+      state.myCart.online='線上';
+    },
+    addStoreonlocal(state){
+      state.myCart.local='實體';
+    },
+    removeStoreInfol(state) {
+
+      state.myCart.addpsTime = 0
+      state.myCart.addCost = 0
+      state.myCart.psCount=0
+      state.myCart.local=""
+      state.myCart.online=""
+
+    }
+
   },
   actions: {
     // increaseCounter() {
@@ -637,7 +853,7 @@ export default createStore({
     //   });
     // },
 
-    getMyChartData({commit, state}) {
+    getMyChartData({ commit, state }) {
       //到時候更改API 提供四個欄位資料
       // axios
       //   .get("https://randomuser.me/api/", {
@@ -677,7 +893,7 @@ export default createStore({
         });
     },
 
-    getChartData({commit, state}, payload) {
+    getChartData({ commit, state }, payload) {
       //到時候更改API 提供四個欄位資料
       // axios
       //   .get("https://randomuser.me/api/", {
@@ -728,7 +944,7 @@ export default createStore({
       //     commit("setDegrees", state.currentData.currentChartDataOrigin);
       //   });
       axios
-        .post("https://astria.sutsanyuan.com/api/astrodata", {
+        .post("https://astria.sutsanyuan.com/Astria_api/GuestAstroData", {
           Date: payload.birthday,
           Time: payload.birthTime,
           Address: payload.location,

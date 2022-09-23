@@ -173,7 +173,10 @@ export default {
       }
       // load into local data from vuex
       this.l_currentHouseInfo = this.$store.state.currentData.currentHouseInfo;
-    }, 1200);
+
+      //初始顯示太陽
+      this.switchInfo(0);
+    }, 800);
 
     // window.setTimeout(() => {
     //   this.signs = [
@@ -271,9 +274,9 @@ export default {
       //for test
       currentSign: 1,
       currentPlanetIndex: 0,
-      signInfo: "請點選方行星，查看資訊",
+      signInfo: "請點選上方行星，查看星座資訊。",
       signName: "行星星座",
-      houseInfo: "請點選方行星，查看資訊",
+      houseInfo: "請點選上方行星，查看宮位資訊。",
       houseName: "行星宮位",
       planets: [
         "太 陽",

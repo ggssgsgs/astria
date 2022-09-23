@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {createRouter, createWebHistory} from "vue-router";
 
 import HomeView from "../views/HomeView.vue";
 
@@ -75,7 +75,7 @@ const router = createRouter({
       component: () => import("../views/MyOrders.vue"),
     },
     {
-      path: "/myFortuneTellerInfos",
+      path: "/myFortuneTellerInfo",
       name: "myFortuneTellerInfo",
       component: () => import("../views/MyFortuneTellerInfo.vue"),
     },
@@ -90,11 +90,10 @@ const router = createRouter({
       component: () => import("../views/shoppingCart.vue"),
     },
     {
-      path: "/infolProduct",
-      name: "infolProduct",
-      component: () => import("../views/InfolProduct.vue"),
+      path: "/chartFormPage",
+      name: "chartFormPage",
+      component: () => import("../views/ChartFormPage.vue"),
     },
-   
 
     // {
     //   path: '*',

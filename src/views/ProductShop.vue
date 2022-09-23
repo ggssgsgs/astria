@@ -30,14 +30,25 @@
                   {{ item.pscontent }}
                 </p>
                 <p class="swTxt1">{{ item.pstip }}</p>
-                <button class="push1" @click="orderTo(lesson.indexOf(item))">點我預約</button>
+                <button
+                  class="push1"
+                  @click="orderTo(this.lesson.indexOf(item))"
+                >
+                  點我預約
+                </button>
               </div>
             </swiper-slide>
           </swiper>
         </div>
       </div>
       <div class="row ordershop">
-        <product-shop-order v-show="logonType === 'order'"></product-shop-order>
+        <product-shop-order
+          v-show="logonType === 'order'"
+          :the-lesson="pLesson"
+          :the-time="pTime"
+          :the-content="pContent"
+          :the-tip="pTip"
+        ></product-shop-order>
       </div>
     </div>
   </div>
@@ -64,27 +75,23 @@ export default {
     return {
       logonType: "about",
       slidesPerView: 4,
-      plesson:'',
-      ptime:'',
-      pcontent:'',
-      ptipe:'',
+      pLesson: "",
+      pTime: "",
+      pContent: "",
+      pTip: "",
     };
   },
   methods: {
-    orderTo() {
+    orderTo(index) {
       if (this.$data.logonType === "about") {
         this.$data.logonType = "order";
-        alert(this.lesson[index].lesson)
-        // this.$store.commit("addStoreLesson");
-        this.plesson=this.lesson.lesson[0];
-        this.ptime =this.lesson.psTime[0];
-        this.pcontent =this.lesson.pscontent[0];
-        this.ptipe =this.lesson.pstip[0]
-     
-        
+        // alert(this.lesson[index].lesson);
+        this.pLesson = this.lesson[index].lesson;
+        this.pTime = this.lesson[index].psTime;
+        this.pContent = this.lesson[index].pscontent;
+        this.pTip = this.lesson[index].pstip;
       } else {
         this.$data.logonType = "about";
-       
       }
     },
     onresize() {

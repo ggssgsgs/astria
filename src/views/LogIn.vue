@@ -77,7 +77,7 @@
 import LoginByCode from "./LoginByCode.vue";
 import LoginByPwd from "./LoginByPwd.vue";
 //import axios from "axios";
-import {useStore} from "vuex";
+import { useStore } from "vuex";
 
 export default {
   setup() {
@@ -115,7 +115,7 @@ export default {
       this.chemail.push(item.email);
     },
     //忘記密碼，觸發事件，刪除資料
-    pdeleted() {
+    pdeletechick() {
       this.chemail.splice(0);
     },
     //登入頁面,，觸發事件，抓取子物件回傳
@@ -157,7 +157,7 @@ export default {
             console.log(this.a);
             if (this.a == "登入成功") {
               localStorage.setItem("token", "ImLogin");
-              this.$store.commit("testChangeFriendsName", {name: this.a});
+              this.$store.commit("testChangeFriendsName", { name: this.a });
               localStorage.setItem("myemail", `${this.users}`);
               localStorage.setItem("mymsg", `${this.a}`);
 
@@ -197,6 +197,8 @@ export default {
             if (this.b == "1") {
               this.$data.logonType = "pwd";
               console.log("忘記密碼");
+              this.msg1 = "登入";
+              this.msg = "登入";
             }
           })
           .catch(function (err) {

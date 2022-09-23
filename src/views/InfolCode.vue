@@ -28,7 +28,7 @@
           <input
             v-model="gender"
             type="radio"
-            value="male"
+            value="1"
             class="btn-check"
             name="genders"
             id="male"
@@ -37,7 +37,7 @@
           <label class="btn btn-secondary" for="male">男性</label>
           <input
             v-model="gender"
-            value="female"
+            value="2"
             type="radio"
             class="btn-check"
             name="genders"
@@ -47,7 +47,7 @@
           <label class="btn btn-secondary" for="female">女性</label>
           <input
             v-model="gender"
-            value="others"
+            value="0"
             type="radio"
             class="btn-check"
             name="genders"
@@ -220,7 +220,7 @@ export default {
       remsgg: "",
       form: {
         name: {value: "", msg: ""},
-        gender: {value: "male", msg: ""},
+        gender: {value: "1", msg: ""},
         date: {value: "", msg: ""},
         time: {value: "", msg: ""},
         address: {value: "", msg: ""},
@@ -308,7 +308,7 @@ export default {
         let chPhone = this.form.phone.value;
         let chEmail = this.form.email.value;
 
-        fetch("http://52.139.170.100/api/secondsignup", {
+        fetch("https://astria.sutsanyuan.com/Astria_api/secsignup", {
           method: "post",
           headers: {
             "Content-Type": "application/json;charset =utf-8",

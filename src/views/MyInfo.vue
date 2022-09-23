@@ -1,44 +1,60 @@
 <template>
-  <div :class="{bgGray: isPro, BG: !isPro}">
+  <div :class="{bgGray: this.$store.state.isPro, BG: !this.$store.state.isPro}">
     <div class="container-xl mt-5">
       <div class="row justify-content-center myInfo">
         <div class="col-12 col-lg-4 buttonForm">
           <div
             class="btn"
-            :class="{btnGray: isPro, btn: !isPro}"
+            :class="{
+              btnGray: this.$store.state.isPro,
+              btn: !this.$store.state.isPro,
+            }"
             @click="content = 'InfolCode'"
           >
             <h4>個人資料管理</h4>
           </div>
           <div
             class="btn"
-            :class="{btnGray: isPro, btn: !isPro}"
+            :class="{
+              btnGray: this.$store.state.isPro,
+              btn: !this.$store.state.isPro,
+            }"
             @click="content = 'InfolPwd'"
           >
             <h4>忘記密碼</h4>
           </div>
           <div
             class="btn"
-            :class="{btnGray: isPro, btn: !isPro}"
+            :class="{
+              btnGray: this.$store.state.isPro,
+              btn: !this.$store.state.isPro,
+            }"
             @click="content = 'reservation'"
           >
-            <h4>我的預約</h4>
+            <h4>我的訂單</h4>
           </div>
           <!-- <div @click="charts">好友星盤管理</div> -->
           <div
             class="btn"
-            :class="{btnGray: isPro, btn: !isPro}"
-            @click="MyFortuneTellerInfo"
+            :class="{
+              btnGray: this.$store.state.isPro,
+              btn: !this.$store.state.isPro,
+            }"
+            @click="content = 'ftInfolCode'"
           >
-            <h4>成為占星師</h4>
+            <h4 v-if="!this.$store.state.isPro">成為占星師</h4>
+            <h4 v-if="this.$store.state.isPro">我的專業帳號</h4>
           </div>
           <div
-            v-if="isPro"
+            v-if="this.$store.state.isPro"
             class="btn"
-            :class="{btnGray: isPro, btn: !isPro}"
+            :class="{
+              btnGray: this.$store.state.isPro,
+              btn: !this.$store.state.isPro,
+            }"
             @click="content = 'reservationPro'"
           >
-            <h4>我的預約(占星師介面)</h4>
+            <h4>我的預約</h4>
           </div>
         </div>
         <div class="col-12 col-lg-8 inforForm">
@@ -58,20 +74,26 @@
 import InfolCode from "./InfolCode.vue";
 import InfolPwd from "./InfolPwd.vue";
 // import InfolReserve from "./InfolReserve.vue";
+import ftInfolCode from "./ftInfolCode.vue";
 import reservation from "../components/Reservation.vue";
 import reservationPro from "../components/ReservationPro.vue";
 export default {
+  mounted() {
+    //this.isPro = this.$store.state.isPro;
+  },
+
   components: {
     InfolCode,
     InfolPwd,
     // InfolReserve,
     reservation,
     reservationPro,
+    ftInfolCode,
   },
   name: "MyInfo",
   data() {
     return {
-      isPro: true,
+      //isPro: this.$store.state.isPro,
       content: "InfolCode",
       logonType: "code",
     };
@@ -109,7 +131,7 @@ export default {
     //   }
     // },
     MyFortuneTellerInfo() {
-      this.$router.push("/charts");
+      this.$router.push("/myFortunetellerInfo");
     },
   },
 };

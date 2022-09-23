@@ -1,17 +1,17 @@
 <template>
   <div class="pic">
-    <img :src="imgsrc">
+    <img :src="imgsrc" />
   </div>
-  <button @click="changepic">選擇圖片</button>
-  <div class="card">
+  <div @click="changepic" class="btn my-3"><h5>選擇圖片</h5></div>
+  <div class="card mx-1 mx-md-5">
     <div class="d-flex inputForm">
       <div class="d-flex input-item">
-        <label class="l1">姓名</label>
+        <label class="l1">姓名 </label>
         <input
           type="text"
-          class="t1"
+          class="t1 text-center"
           v-model="form.name.value"
-          placeholder="請輸入姓名"
+          :placeholder="this.$store.state.myName"
           required
           autofocus
         />
@@ -19,32 +19,49 @@
       </div>
       <div class="d-flex input-item">
         <label class="l1">性別 </label>
-        <input
-          v-model="form.gender.value"
-          class="t2"
-          type="radio"
-          value="male"
-        />
-        <p class="radioTxt">Male</p>
-        <input
-          v-model="form.gender.value"
-          class="t2"
-          type="radio"
-          value="female"
-        />
-        <p class="radioTxt">Female</p>
-        <input
-          v-model="form.gender.value"
-          class="t2"
-          type="radio"
-          value="others"
-        />
-        <p class="radioTxt">Others</p>
+        <!-- <input v-model="gender" class="t2" type="radio" value="male" /> -->
+        <!-- <p class="radioTxt">Male</p> -->
+        <!-- <input v-model="gender" class="t2" type="radio" value="female" /> -->
+        <!-- <p class="radioTxt">Female</p> -->
+        <!-- <input v-model="gender" class="t2" type="radio" value="others" /> -->
+        <!-- <p class="radioTxt">Others</p> -->
+        <div class="radio-btns d-flex justify-content-around">
+          <input
+            v-model="gender"
+            type="radio"
+            value="male"
+            class="btn-check"
+            name="genders"
+            id="male"
+            autocomplete="off"
+          />
+          <label class="btn btn-secondary" for="male">男性</label>
+          <input
+            v-model="gender"
+            value="female"
+            type="radio"
+            class="btn-check"
+            name="genders"
+            id="female"
+            autocomplete="off"
+          />
+          <label class="btn btn-secondary" for="female">女性</label>
+          <input
+            v-model="gender"
+            value="others"
+            type="radio"
+            class="btn-check"
+            name="genders"
+            id="others"
+            autocomplete="off"
+          />
+          <label class="btn btn-secondary" for="others">其他</label>
+        </div>
         <div class="el-form-item__error">{{ form.gender.msg }}</div>
       </div>
       <div class="d-flex input-item">
         <label class="l1">專長</label>
-        <select v-model="form.skill.value" class="t1">
+        <select v-model="form.skill.value" class="t1 text-center">
           <option value="" disabled>請選擇專長</option>
           <option v-for="skill in form.Selectlist" :key="skill" :value="skill">
             {{ skill }}
@@ -53,7 +70,7 @@
       </div>
       <div class="d-flex input-item">
         <label class="l1">收費</label>
-        <select v-model="form.pay.value" class="t1">
+        <select v-model="form.pay.value" class="t1 text-center">
           <option value="" disabled>請選擇收費選項</option>
           <option
             v-for="address in addresslist"
@@ -70,7 +87,7 @@
       </div>
       <div class="d-flex input-item">
         <label class="l1">居住地</label>
-        <select v-model="form.address.value" class="t1">
+        <select v-model="form.address.value" class="t1 text-center">
           <option value="" disabled>請選擇居住地</option>
           <!--<option v-for="address in addresslist" v-on:change="setplace" :key="address" :value="address">{{address}}</option>-->
           <option
@@ -86,7 +103,7 @@
         <label class="l1">電話號碼</label>
         <input
           type="text"
-          class="t1"
+          class="t1 text-center"
           v-model="form.phone.value"
           @change="nativeValidate(form, 'phone')"
           placeholder="請輸入電話"
@@ -96,11 +113,16 @@
       </div>
       <div class="d-flex input-item">
         <label class="l1">商店簡介</label>
-        <textarea v-model="form.textmsg.value" cols="50" rows="10"></textarea>
+        <textarea
+          class="my-4"
+          v-model="form.textmsg.value"
+          cols="50"
+          rows="10"
+        ></textarea>
       </div>
     </div>
   </div>
-  <div class="card outLink">
+  <div class="card outLink mx-1 mx-md-5">
     <h3>快速登入</h3>
     <div class="d-flex outLink-d">
       <div class="outlink-item">
@@ -119,49 +141,64 @@
       </div>
     </div>
   </div>
-  <div class="card infolBtnContent">
+  <div class="card infolBtnContent mx-1 mx-md-5">
     <h3>推播通知設定</h3>
     <div class="infolBtn">
       <div class="d-flex inforpaper-d">
-        <button>願意</button>
-        <button>不願意</button>
+        <div class="btn">願意</div>
+        <div class="btn">不願意</div>
         <p class="infoTxt">收到Astria藏星電子報</p>
       </div>
       <div class="d-flex inforphone-d">
-        <button>願意</button>
-        <button>不願意</button>
+        <div class="btn">願意</div>
+        <div class="btn">不願意</div>
         <p class="infoTxt">收到Astria藏星電話通知</p>
       </div>
     </div>
   </div>
-  <duv class="card onsubmitcontent">
-    <button class="onsubmit" @click.prevent="nativeSubmit" :disabled="status">
-      送出
+  <duv class="card onsubmitcontent mx-1 mx-md-5">
+    <button
+      class="onsubmit btn"
+      @click.prevent="nativeSubmit"
+      :disabled="status"
+    >
+      <h5>送出</h5>
     </button>
   </duv>
 </template>
 
 <script>
 import google from "../assets/img/icons/google.png";
-import { reg_phoneType2 } from "../utils/validate";
+import {reg_phoneType2} from "../utils/validate";
 export default {
   name: "InfolCode",
   components: {
     google,
   },
+  computed: {
+    gender() {
+      if (this.$store.state.myGender == 1) {
+        return "male";
+      } else if (this.$store.state.myGender == 2) {
+        return "female";
+      } else if (this.$store.state.myGender == 0) {
+        return "others";
+      }
+    },
+  },
   data() {
     return {
       i: 0,
-      imgsrc2:"require('../assets/img/icons/facebook.png')",
+      imgsrc2: "require('../assets/img/icons/facebook.png')",
       imgsrc: "https://picsum.photos/200/200?",
       imgsrc1:
         "http://photos1.blogger.com/blogger/6857/1451/320/James.Pond.1.jpg",
       remsg: "",
       remsgg: "",
       form: {
-        name: { value: "", msg: "" },
-        gender: { value: "male", msg: "" },
-        skill: { value: "", msg: "" },
+        name: {value: "", msg: ""},
+        gender: {value: "male", msg: ""},
+        skill: {value: "", msg: ""},
         Selectlist: [
           "",
           "八字",
@@ -171,7 +208,7 @@ export default {
           "星座命盤",
           "紫微斗數",
         ],
-        address: { value: "", msg: "" },
+        address: {value: "", msg: ""},
         addresslist: [
           "台北市",
           "新北市",
@@ -196,17 +233,16 @@ export default {
           "金門縣",
           "馬祖縣",
         ],
-        pay: { value: "", msg: "" },
+        pay: {value: "", msg: ""},
         paylist: ["", "500", "1000", "1500", "2000"],
-        phone: { value: "", msg: "" },
-        email: { value: "aa@gmail.com", msg: "" },
-        textmsg: { value: "" },
+        phone: {value: "", msg: ""},
+        email: {value: "aa@gmail.com", msg: ""},
+        textmsg: {value: ""},
       },
       submitDisabled: true, // 送出按鈕的disabled狀態，true為禁用
     };
   },
   methods: {
-    
     nativeValidate(target, key) {
       let checkPhone = reg_phoneType2(target.phone.value);
       const arr = [checkPhone];
@@ -316,20 +352,26 @@ export default {
 </script>
 
 <style scoped>
-.myInfor img {
+* {
+  color: gray;
+}
+
+.card {
+  background: #dadada !important;
+  border: none;
+  margin: 0 0 0.5rem;
+}
+.myInfo img {
   border-radius: 50%;
 }
-.myInfor .pic {
+.myInfo .pic {
   margin: 40px 0 30px;
 }
 .inputForm {
   flex-direction: column;
   padding: 40px 100px;
 }
-.card {
-  background: rgba(255, 255, 255, 0.25);
-  margin: 0 0 0.5rem;
-}
+
 .outLink {
   padding: 0 80px;
 }
@@ -361,9 +403,9 @@ input {
 }
 
 .l1 {
-  width: 20%;
+  width: 150px;
   padding: 20px 0 0;
-  letter-spacing: 1rem;
+  letter-spacing: 0.5rem;
   text-align: left;
 }
 
@@ -388,10 +430,10 @@ select {
 .infolBtnContent h3 {
   margin: 30px 0 0;
 }
-.infolBtn button {
-  width: 15%;
+.infolBtn .btn {
+  width: 100px;
   height: 40px;
-  background: rgba(217, 217, 217, 0.25);
+  /* background: rgba(217, 217, 217, 0.25); */
   color: #fff;
   border: none;
   margin: 0 0 10px 10px;
@@ -399,7 +441,7 @@ select {
 }
 .infolBtn .infoTxt {
   text-align: left;
-  width: 25%;
+  width: 200px;
   padding: 10px 0 0 10px;
 }
 .infolBtn {
@@ -407,21 +449,40 @@ select {
 }
 .onsubmit {
   width: 200px;
-  height: 45px;
+
   border-radius: 10px;
   background: rgba(217, 217, 217, 0.25);
   color: #fff;
-  margin: auto;
+  margin: 10px auto;
+}
+
+.btn {
+  width: 200px;
+
+  border-radius: 10px;
+  background: #999;
+  color: #fff;
+  border: none;
+}
+.btn h5 {
+  color: #fff;
+}
+.btn:hover {
+  background: #555;
+  border: none;
+}
+.radio-btns .btn {
+  width: 100px;
+  margin: 0px 10px;
 }
 .onsubmitcontent {
   background: #000235;
 }
-textarea {
-  width: 75%;
-  background: rgba(217, 217, 217, 0.25);
-  border: none;
-  margin-top: 2 0px;
+h5 {
+  margin: 0;
 }
-@media screen and (min-width: 992px) {
+
+textarea {
+  border: none;
 }
 </style>

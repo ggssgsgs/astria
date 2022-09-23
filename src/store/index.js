@@ -1,4 +1,4 @@
-import {createStore} from "vuex";
+import { createStore } from "vuex";
 import axios from "axios";
 import descriptionJSON from "../assets/description.json";
 export default createStore({
@@ -380,24 +380,24 @@ export default createStore({
         ProImg: "1.jpg",
         MemberEmail: "hsianghoney@gmail.com",
       },
-      {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg"},
-      {ProName: "詹惟中", Select: "風水", ProImg: "3.jpg"},
-      {ProName: "唐齊齊", Select: "占星塔羅", ProImg: "4.jpg"},
-      {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "5.jpg"},
-      {ProName: "詹惟中", Select: "風水", ProImg: "6.jpg"},
+      { ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg" },
+      { ProName: "詹惟中", Select: "風水", ProImg: "3.jpg" },
+      { ProName: "唐齊齊", Select: "占星塔羅", ProImg: "4.jpg" },
+      { ProName: "唐揚揚", Select: "占星塔羅", ProImg: "5.jpg" },
+      { ProName: "詹惟中", Select: "風水", ProImg: "6.jpg" },
     ],
     //所有占星師
     allAstrologists: [
-      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "1.jpg"},
-      {ProName: "唐揚揚", Select: "生命靈數", ProImg: "2.jpg"},
-      {ProName: "詹惟中", Select: "塔羅占卜", ProImg: "3.jpg"},
-      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "4.jpg"},
-      {ProName: "唐揚揚", Select: "人類圖", ProImg: "5.jpg"},
-      {ProName: "詹惟中", Select: "八字", ProImg: "6.jpg"},
-      {ProName: "詹惟中", Select: "風水", ProImg: "3.jpg"},
-      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "7.jpg"},
-      {ProName: "唐揚揚", Select: "紫微斗數", ProImg: "5.jpg"},
-      {ProName: "詹惟中", Select: "風水", ProImg: "6.jpg"},
+      { ProName: "唐齊齊", Select: "星座命盤", ProImg: "1.jpg" },
+      { ProName: "唐揚揚", Select: "生命靈數", ProImg: "2.jpg" },
+      { ProName: "詹惟中", Select: "塔羅占卜", ProImg: "3.jpg" },
+      { ProName: "唐齊齊", Select: "星座命盤", ProImg: "4.jpg" },
+      { ProName: "唐揚揚", Select: "人類圖", ProImg: "5.jpg" },
+      { ProName: "詹惟中", Select: "八字", ProImg: "6.jpg" },
+      { ProName: "詹惟中", Select: "風水", ProImg: "3.jpg" },
+      { ProName: "唐齊齊", Select: "星座命盤", ProImg: "7.jpg" },
+      { ProName: "唐揚揚", Select: "紫微斗數", ProImg: "5.jpg" },
+      { ProName: "詹惟中", Select: "風水", ProImg: "6.jpg" },
     ],
 
     //new
@@ -492,12 +492,16 @@ export default createStore({
       state.myName = payload.Name;
       state.myPhone = payload.Phone;
       state.myGender = payload.Sex;
+      state.isPro = payload.IsAdv;
+
+      state.myLatitude = payload.JsonData.lat;
+      state.myLongitude = payload.JsonData.lng;
     },
 
     //------ actions API 抓取後放入
 
-    setMyOrders() {},
-    setProOrders() {},
+    setMyOrders() { },
+    setProOrders() { },
 
     //------
     deleteFriend(state, index) {
@@ -864,13 +868,11 @@ export default createStore({
     //new
 
     //productOrder 購物填選單
-    addStoreLesson(state, index) {
-      for (let i = 0; i < 6; i++) {
-        state.pushLesson.lesson.push(state.psLesson[i].lesson);
-        state.pushLesson.psTime = state.psLesson[i].psTime;
-        state.pushLesson.pscontent = state.psLesson[i];
-        state.pushLesson.pstip = state.psLesson.pstip;
-      }
+    addStoreLesson(state) {
+      state.pushLesson.lesson.push(state.psLesson[0].lesson);
+      state.pushLesson.psTime = state.psLesson[0].psTime;
+      state.pushLesson.pscontent = state.psLesson[0];
+      state.pushLesson.pstip = state.psLesson.pstip;
     },
     //productshop購物車
     addStorespTime(state) {
@@ -900,7 +902,6 @@ export default createStore({
       state.myCart.local = "實體";
     },
     removeStoreInfol(state) {
-      state.pushLesson.lesson=""
       state.myCart.addpsTime = 0;
       state.myCart.addCost = 0;
       state.myCart.psCount = 0;
@@ -917,7 +918,7 @@ export default createStore({
     //   });
     // },
 
-    getMyChartData({commit, state}) {
+    getMyChartData({ commit, state }) {
       //到時候更改API 提供四個欄位資料
       // axios
       //   .get("https://randomuser.me/api/", {
@@ -957,7 +958,7 @@ export default createStore({
         });
     },
 
-    getChartData({commit, state}, payload) {
+    getChartData({ commit, state }, payload) {
       //到時候更改API 提供四個欄位資料
       // axios
       //   .get("https://randomuser.me/api/", {
@@ -1042,7 +1043,7 @@ export default createStore({
     },
 
     //取得登入資料
-    getLoginInfo({commit, state}, email) {
+    getLoginInfo({ commit, state }, email) {
       axios
         .post("https://astria.sutsanyuan.com/Astria_api/Login", {
           Email: email,
@@ -1056,7 +1057,7 @@ export default createStore({
         });
     },
 
-    getAccountInfo({commit, state}, email) {
+    getAccountInfo({ commit, state }, email) {
       axios
         .post("https://astria.sutsanyuan.com/Astria_api/ShowMemInfo", {
           Email: email,

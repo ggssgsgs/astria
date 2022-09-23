@@ -82,7 +82,7 @@
   </div>
 </template>
 <script>
-import {reg_pwdCommon, reg_email} from "../utils/validate";
+import { reg_pwdCommon, reg_email } from "../utils/validate";
 import SketchMain from "../components/P5CanvasKeyVision_half.vue";
 import imgUrl from "../assets/img/starHolder.png";
 import imgUrl2 from "../assets/img/0728.jpg";
@@ -103,10 +103,10 @@ export default {
       resingupmsg1: "",
 
       user: {
-        username: {value: "", msg: ""},
-        password: {value: "", msg: ""},
-        repassword: {value: "", msg: ""},
-        code: {value: "", msg: ""},
+        username: { value: "", msg: "" },
+        password: { value: "", msg: "" },
+        repassword: { value: "", msg: "" },
+        code: { value: "", msg: "" },
       },
       submitDisabled: true, // 送出按鈕的disabled狀態，true為禁用
     };
@@ -178,7 +178,7 @@ export default {
               console.log(body);
               this.resingupmsg = body.Status;
               this.resingupmsg1 = body.Msg;
-              if (this.resingupmsg == "1" && this.remsg == "1") {
+              if (this.resingupmsg == "1") {
                 localStorage.setItem("myemail", `${this.user.username.value}`);
                 localStorage.setItem("mymsg", `${this.resingupmsg1}`);
                 this.$router.push("/signUpForm");
@@ -216,10 +216,8 @@ export default {
           this.remsg = body.Status;
           this.retime = body.RemainingSec;
           this.reMsgg = body.Msg;
-          if (this.remsg == "1" && this.retime == "0") {
+          if (this.remsg == "1") {
             this.message = "已傳送驗證碼";
-          } else if (this.remsg == "5" || this.remsg == "4") {
-            this.message = `驗證碼傳送錯誤(${this.reMsgg})`;
           } else {
             this.message = `送出驗證碼(請於${this.retime}秒後再送出)`;
           }

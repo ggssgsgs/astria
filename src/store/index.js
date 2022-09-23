@@ -1069,6 +1069,17 @@ export default createStore({
           commit("setAccountInfo", response.data.Req);
         });
     },
+
+    getReserationInfo({commit, state}, email) {
+      axios
+        .post("https://astria.sutsanyuan.com/Astria_api/ShowReserveInfo", {
+          Email: email,
+        })
+        .then((response) => {
+          console.log("Reservation data get by post:", response.data);
+          //commit("setAccountInfo", response.data.Req);
+        });
+    },
   },
   modules: {},
 });

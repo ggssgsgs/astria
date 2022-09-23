@@ -137,6 +137,8 @@ export default {
     } else {
       this.slidesPerView = 4.5;
     }
+
+    this.$store.dispatch("getReserationInfo", this.$store.state.myEmail);
   },
   setup() {
     const store = useStore();

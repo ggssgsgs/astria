@@ -374,7 +374,12 @@ export default createStore({
 
     //熱門占星師
     trendyAstrologists: [
-      {ProName: "唐齊齊", Select: "占星塔羅", ProImg: "1.jpg"},
+      {
+        ProName: "唐齊齊",
+        Select: "占星塔羅",
+        ProImg: "1.jpg",
+        MemberEmail: "hsianghoney@gmail.com",
+      },
       {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg"},
       {ProName: "詹惟中", Select: "風水", ProImg: "3.jpg"},
       {ProName: "唐齊齊", Select: "占星塔羅", ProImg: "4.jpg"},
@@ -394,6 +399,67 @@ export default createStore({
       {ProName: "唐揚揚", Select: "紫微斗數", ProImg: "5.jpg"},
       {ProName: "詹惟中", Select: "風水", ProImg: "6.jpg"},
     ],
+
+    //new
+
+    //productshop購物車
+    myCart: {
+      shopNmae: "思語塔羅工作坊",
+      addpsTime: 0,
+      addCost: 0,
+      psCount: 0,
+      online: "",
+      local: "",
+    },
+
+    psCost: [1000, 1500, 1800, 2700],
+    //課程內容
+    psName: ["妤塔羅占卜工作坊", "唐綺占星工作室"],
+    psSkill: ["八字", "人類圖", "紫微斗數", "塔羅占卜", "生命靈數", "星座命盤"],
+
+    psLesson: [
+      {
+        lesson: "塔羅牌真命天子陣",
+        psTime: "30",
+        pscontent:
+          "透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！",
+        pstip: "⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠",
+      },
+      {
+        lesson: "2023年流年運勢",
+        psTime: "30",
+        pscontent:
+          "透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！",
+        pstip: "⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠",
+      },
+      {
+        lesson: "最強運勢解析",
+        psTime: "30",
+        pscontent:
+          "透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！",
+        pstip: "⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠",
+      },
+      {
+        lesson: "塔羅工作運勢解析",
+        psTime: "30",
+        pscontent:
+          "透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！",
+        pstip: "⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠",
+      },
+      {
+        lesson: "最強工作運勢解析",
+        psTime: "30",
+        pscontent:
+          "透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！",
+        pstip: "⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠",
+      },
+    ],
+    pushLesson: {
+      lesson: [],
+      psTime: [],
+      pscontent: [,],
+      pstip: [],
+    },
   },
   getters: {},
   mutations: {
@@ -793,6 +859,52 @@ export default createStore({
           astroDataOriginal.houses[i].position.longitude;
         //houses[0].position.longitude
       }
+    },
+
+    //new
+
+    //productOrder 購物填選單
+    addStoreLesson(state, index) {
+      for (let i = 0; i < 6; i++) {
+        state.pushLesson.lesson.push(state.psLesson[i].lesson);
+        state.pushLesson.psTime = state.psLesson[i].psTime;
+        state.pushLesson.pscontent = state.psLesson[i];
+        state.pushLesson.pstip = state.psLesson.pstip;
+      }
+    },
+    //productshop購物車
+    addStorespTime(state) {
+      state.myCart.addpsTime += 30;
+      state.myCart.addCost += state.psCost[0];
+      state.myCart.psCount += 1;
+    },
+    addStorespTime1(state) {
+      state.myCart.addpsTime += 60;
+      state.myCart.addCost += state.psCost[1];
+      state.myCart.psCount += 1;
+    },
+    addStorespTime2(state) {
+      state.myCart.addpsTime += 90;
+      state.myCart.addCost += state.psCost[2];
+      state.myCart.psCount += 1;
+    },
+    addStorespTime3(state) {
+      state.myCart.addpsTime += 120;
+      state.myCart.addCost += state.psCost[3];
+      state.myCart.psCount += 1;
+    },
+    addStoreonline(state) {
+      state.myCart.online = "線上";
+    },
+    addStoreonlocal(state) {
+      state.myCart.local = "實體";
+    },
+    removeStoreInfol(state) {
+      state.myCart.addpsTime = 0;
+      state.myCart.addCost = 0;
+      state.myCart.psCount = 0;
+      state.myCart.local = "";
+      state.myCart.online = "";
     },
   },
   actions: {

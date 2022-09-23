@@ -308,7 +308,7 @@ export default {
         let chPhone = this.form.phone.value;
         let chEmail = this.form.email.value;
 
-        fetch("http://52.139.170.100/api/secondsignup", {
+        fetch("https://astria.sutsanyuan.com/Astria_api/secsignup", {
           method: "post",
           headers: {
             "Content-Type": "application/json;charset =utf-8",

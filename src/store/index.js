@@ -492,6 +492,10 @@ export default createStore({
       state.myName = payload.Name;
       state.myPhone = payload.Phone;
       state.myGender = payload.Sex;
+      state.isPro = payload.IsAdv;
+
+      state.myLatitude = payload.JsonData.lat;
+      state.myLongitude = payload.JsonData.lng;
     },
 
     //------ actions API 抓取後放入

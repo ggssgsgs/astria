@@ -1,5 +1,5 @@
 <template>
-  <div class="card infoContaint">
+  <div class="card infoContaint mx-1 mx-md-5">
     <div class="d-flex inputForm">
       <h3>修改密碼</h3>
       <div class="d-flex input-item">
@@ -36,23 +36,23 @@
       </div>
     </div>
   </div>
-  <div class="card onsubmitcontent">
-    <button class="onsubmit" @click.prevent="nativeSubmit" :disabled="status">
-      更新
-    </button>
+  <div class="card onsubmitcontent mx-1 mx-md-5">
+    <div class="onsubmit btn" @click.prevent="nativeSubmit" :disabled="status">
+      <h5>更新</h5>
+    </div>
   </div>
 </template>
 <script>
-import { reg_pwdCommon, reg_email } from "../utils/validate";
+import {reg_pwdCommon, reg_email} from "../utils/validate";
 export default {
   name: "InfolPwd",
   data() {
     return {
       resingupmsg: "",
       user: {
-        username: { value: "", msg: "" },
-        password: { value: "", msg: "" },
-        repassword: { value: "", msg: "" },
+        username: {value: "", msg: ""},
+        password: {value: "", msg: ""},
+        repassword: {value: "", msg: ""},
       },
       submitDisabled: true, // 送出按鈕的disabled狀態，true為禁用
     };
@@ -138,6 +138,9 @@ export default {
 </script>
 
 <style scoped>
+* {
+  color: gray;
+}
 .infoContaint {
   height: 540px;
 }
@@ -146,8 +149,9 @@ export default {
   padding: 120px 100px;
 }
 .card {
-  background: rgba(255, 255, 255, 0.25);
+  background: #dadada !important;
   margin: 0 0 0.5rem;
+  border: none;
 }
 
 input {
@@ -160,24 +164,42 @@ input {
   margin: 20px 0;
 }
 label {
-  width: 20%;
+  width: 150px;
   padding: 20px 0 0;
-  letter-spacing: 1rem;
+  letter-spacing: 0.5rem;
   text-align: left;
 }
 .onsubmit {
   width: 200px;
-  height: 45px;
+
   border-radius: 10px;
   background: rgba(217, 217, 217, 0.25);
   color: #fff;
-  margin: 20px auto 0;
+  margin: 10px auto;
 }
 .onsubmitcontent {
   background: #000235;
 }
-h3{
+h3 {
   margin-bottom: 10px;
 }
 
+.btn {
+  width: 200px;
+
+  border-radius: 10px;
+  background: #999;
+  color: #fff;
+  border: none;
+}
+.btn h5 {
+  color: #fff;
+}
+.btn:hover {
+  background: #555;
+  border: none;
+}
+h5 {
+  margin: 0;
+}
 </style>

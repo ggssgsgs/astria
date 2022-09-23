@@ -75,11 +75,6 @@ const router = createRouter({
       component: () => import("../views/MyOrders.vue"),
     },
     {
-      path: "/myFortuneTellerInfo",
-      name: "myFortuneTellerInfo",
-      component: () => import("../views/MyFortuneTellerInfo.vue"),
-    },
-    {
       path: "/currentChart",
       name: "currentChart",
       component: () => import("../views/CurrentChart.vue"),

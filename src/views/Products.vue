@@ -3,204 +3,187 @@
     <div class="container-xl mt-5">
       <div class="row justify-content-center hotProduct">
         <h2>熱門占卜師</h2>
-        <div class="col-12 col-lg-3 item">
-          <div class="card">
-            <div class="pic">
-              <!-- <img src="https://picsum.photos/300/300?random=1" /> -->
-              <img src="../assets/img/人類圖.jpg" width="300" height="300">
-              <h3>{{ msgt1[0] }}</h3>
-            </div>
-
-            <div class="d-flex evaluate">
-              <span
-                ><p>{{ msgt2 }}</p></span
-              >
-              <span
-                ><p>評價:{{ count[2] }}</p></span
-              >
-            </div>
-            <div class="btnshop">
-              <button @click="shop">進入商店</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-lg-3 item">
-          <div class="card">
-              <div class="pic">
-                  <!--<img src="https://picsum.photos/300/300?random=2" />-->
-                  <img src="../assets/img/八字.jpg" width="300" height="300">
-                  <h3>{{ msgt1[0] }}</h3>
+        <swiper
+          :slidesPerView="this.slidesPerView"
+          :spaceBetween="0"
+          :freeMode="true"
+          :modules="modules"
+          :navigation="true"
+        >
+          <swiper-slide
+            v-for="astrologist in this.$store.state.trendyAstrologists"
+            class="pe-auto"
+          >
+            <div class="d-flex flex-column align-items-center">
+              <div class="my-5">
+                <img
+                  :src="this.imgRoot + astrologist.ProImg"
+                  alt="astrologistLogo"
+                  class="imgSize"
+                />
               </div>
-
-            <div class="d-flex evaluate">
               <span
-                ><p>{{ msgt2 }}</p></span
+                ><h3>{{ astrologist.ProName }}</h3></span
               >
-              <span
-                ><p>評價:{{ count[2] }}</p></span
-              >
-            </div>
-            <div class="btnshop">
-              <button @click="shop">進入商店</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-lg-3 item">
-          <div class="card">
-            <div class="pic">
-              <!--<img src="https://picsum.photos/300/300?random=3" />-->
-                <img src="../assets/img/塔羅牌.png" width="300" height="300">
-                <h3>{{ msgt1[0] }}</h3>
-            </div>
-
-            <div class="d-flex evaluate">
-              <span
-                ><p>{{ msgt2 }}</p></span
-              >
-              <span
-                ><p>評價:{{ count[2] }}</p></span
-              >
-            </div>
-            <div class="btnshop">
-              <button @click="shop">進入商店</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-lg-3 item">
-          <div class="card">
-              <div class="pic">
-                  <!--<img src="https://picsum.photos/300/300?random=4" />-->
-                  <img src="../assets/img/星座命盤.png" width="300" height="300">
-                  <h3>{{ msgt1[0] }}</h3>
+              <div>
+                <h6>{{ astrologist.Select }}</h6>
               </div>
-
-            <div class="d-flex evaluate">
-              <span
-                ><p>{{ msgt2 }}</p></span
-              >
-              <span
-                ><p>評價:{{ count[2] }}</p></span
-              >
+              <div class="btn my-4">
+                <h5 @click="shop">進入商店</h5>
+              </div>
             </div>
-            <div class="btnshop">
-              <button @click="shop">進入商店</button>
-            </div>
-          </div>
-        </div>
+          </swiper-slide>
+          <!-- 記得最後可以複製一遍 -->
+          <!-- <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 3</swiper-slide>
+    <swiper-slide>Slide 1</swiper-slide>
+    <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 3</swiper-slide>
+    <swiper-slide>Slide 1</swiper-slide>
+    <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 3</swiper-slide>
+    <swiper-slide>Slide 1</swiper-slide>
+    <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 3</swiper-slide> -->
+        </swiper>
       </div>
-      <div class="row justify-content-center anyChoice">
+      <div class="row justify-content-center mt-5">
         <div class="searchGroup">
           <h2>依分類選擇</h2>
-          <div class="inputSearch">
-            <select class="custom-select" id="inputGroupSelect02">
+          <div class="mx-4 inputSearch">
+            <select
+              class="custom-select"
+              id="inputGroupSelect02"
+              v-model="selected"
+            >
               <option selected>分類搜尋</option>
-              <option value="1">八字</option>
-              <option value="2">人類圖</option>
-              <option value="3">紫微斗數</option>
-              <option value="4">塔羅占卜</option>
-              <option value="5">生命靈數</option>
-              <option value="6">星座命盤</option>
+              <option value="八字">八字</option>
+              <option value="人類圖">人類圖</option>
+              <option value="紫微斗數">紫微斗數</option>
+              <option value="塔羅占卜">塔羅占卜</option>
+              <option value="生命靈數">生命靈數</option>
+              <option value="星座命盤">星座命盤</option>
             </select>
           </div>
         </div>
-        <div class="col-12 col-lg-3 item">
-          <div class="card">
-              <div class="pic">
-                  <!--<img src="https://picsum.photos/300/300?random=5" />-->
-                  <img src="../assets/img/生命靈數.png" width="300" height="300">
-                  <h3>{{ msgt1[0] }}</h3>
+        <div class="d-flex">
+          <div
+            v-for="astrologist in this.$store.state.allAstrologists"
+            class="pe-auto"
+          >
+            <div
+              class="d-flex flex-column align-items-center mx-5"
+              v-if="astrologist.Select == selected"
+            >
+              <div class="my-5">
+                <img
+                  :src="this.imgRoot + astrologist.ProImg"
+                  alt="astrologistLogo"
+                  class="imgSize"
+                />
               </div>
-
-            <div class="d-flex evaluate">
               <span
-                ><p>{{ msgt2 }}</p></span
+                ><h3>{{ astrologist.ProName }}</h3></span
               >
-              <span
-                ><p>評價:{{ count[2] }}</p></span
-              >
-            </div>
-            <div class="btnshop">
-              <button @click="shop">進入商店</button>
+              <div>
+                <h6>{{ astrologist.Select }}</h6>
+              </div>
+              <div class="btn my-4">
+                <h5 @click="shop">進入商店</h5>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-12 col-lg-3 item">
-          <div class="card">
-              <div class="pic">
-                  <!--<img src="https://picsum.photos/300/300?random=6" />-->
-                  <img src="../assets/img/紫微斗數.jpg" width="300" height="300">
-                  <h3>{{ msgt1[0] }}</h3>
-              </div>
-
-            <div class="d-flex evaluate">
-              <span
-                ><p>{{ msgt2 }}</p></span
-              >
-              <span
-                ><p>評價:{{ count[2] }}</p></span
-              >
-            </div>
-            <div class="btnshop">
-              <button @click="shop">進入商店</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-lg-3 item">
-          <div class="card">
-              <div class="pic">
-                  <!--<img src="https://picsum.photos/300/300?random=7" />-->
-                  <img src="../assets/img/人類圖.jpg" width="300" height="300">
-                  <h3>{{ msgt1[0] }}</h3>
-              </div>
-
-            <div class="d-flex evaluate">
-              <span
-                ><p>{{ msgt2 }}</p></span
-              >
-              <span
-                ><p>評價:{{ count[2] }}</p></span
-              >
-            </div>
-            <div class="btnshop">
-              <button @click="shop">進入商店</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-lg-3 item">
-          <div class="card">
-              <div class="pic">
-                  <!--<img src="https://picsum.photos/300/300?random=8" />-->
-                  <img src="../assets/img/星座命盤.png" width="300" height="300">
-                  <h3>{{ msgt1[0] }}</h3>
-              </div>
-
-            <div class="d-flex evaluate">
-              <span
-                ><p>{{ msgt2 }}</p></span
-              >
-              <span
-                ><p>評價:{{ count[2] }}</p></span
-              >
-            </div>
-            <div class="btnshop">
-              <button @click="shop">進入商店</button>
-            </div>
-          </div>
+          <!-- 記得最後可以複製一遍 -->
+          <!-- <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 3</swiper-slide>
+    <swiper-slide>Slide 1</swiper-slide>
+    <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 3</swiper-slide>
+    <swiper-slide>Slide 1</swiper-slide>
+    <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 3</swiper-slide>
+    <swiper-slide>Slide 1</swiper-slide>
+    <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 3</swiper-slide> -->
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+// Import Swiper Vue.js components
+import {Swiper, SwiperSlide} from "swiper/vue";
+
+// Import Swiper styles
+import "swiper/css";
+
+import "swiper/css/free-mode";
+//import "swiper/css/pagination";
+//import "swiper/css/navigation";
+//import "./style.css";
+
+// import required modules
+import {FreeMode} from "swiper";
+
+import {useStore} from "vuex";
 export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  mounted() {
+    if (window.innerWidth < 992) {
+      this.slidesPerView = 1.2;
+    } else {
+      this.slidesPerView = 4.5;
+    }
+  },
+  setup() {
+    const store = useStore();
+    // const onSwiper = (swiper) => {
+    //   console.log(swiper);
+    // };
+    // const onSlideChange = () => {
+    //   console.log("slide change");
+    // };
+    return {
+      // onSwiper,
+      // onSlideChange,
+      modules: [FreeMode],
+    };
+  },
+  created() {
+    window.addEventListener("resize", this.changeSlidesAmount);
+  },
+
+  destroyed() {
+    window.removeEventListener("resize", this.changeSlidesAmount);
+  },
   data() {
     return {
+      selected: 2,
+      //
+      imgRoot: "../src/assets/img/",
+      //
+      slidesPerView: 4.5,
+      //
+
       msgt1: ["唐綺陽占星幫", "唐綺陽", "占星幫"],
       msgt2: "塔羅及西洋占星",
       count: [0, 1, 2, 3],
     };
   },
   methods: {
+    //
+    changeSlidesAmount(e) {
+      //change size
+      if (window.innerWidth < 992) {
+        this.slidesPerView = 1;
+      } else {
+        this.slidesPerView = 4.5;
+      }
+    },
+    //
     onsubmit() {
       this.$router.push("/productShop");
     },
@@ -212,15 +195,12 @@ export default {
 </script>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  background: #000235;
-  color: #fff;
-}
-.hotProduct {
+/* .hotProduct {
   margin: 10px 0 0;
+} */
+
+h2 {
+  margin: 0;
 }
 .anyChoice {
   margin: 20px 0;
@@ -235,19 +215,17 @@ export default {
   justify-content: center;
   margin-bottom: 10px;
 }
-.hotProduct h2,
+
 .anyChoice h2 {
   padding: 20px 20px 0px 30px;
   color: #62ff36;
 }
 
-.picture{
-  width:300px;
-  height:300px;
+.picture {
+  width: 300px;
+  height: 300px;
 }
-
-.hotProduct button,
-.anyChoice button {
+rgb(42, 55, 38) .anyChoice button {
   background: rgba(217, 217, 217, 0.25);
   width: 240px;
   height: 50px;
@@ -255,19 +233,16 @@ export default {
   margin-bottom: 30px;
 }
 
-.hotProduct img,
 .anyChoice img {
-  border-radius: 50%;
+  /* border-radius: 50%;
   width: 100%;
-  padding: 60px 60px 40px;
+  padding: 60px 60px 40px; */
 }
 
-.hotProduct h3,
 .anyChoice h3 {
   margin: 0px 0 10px;
 }
 
-.hotProduct span,
 .anyChoice span {
   margin: 0 30px;
 }
@@ -285,11 +260,7 @@ export default {
 }
 
 @media screen and (max-width: 992px) {
-  .hotProduct h2 {
-    text-align: center;
-    padding: 20px 0 0px;
-  }
-  .anyChoice h2 {
+  h2 {
     text-align: center;
     padding: 20px 0 0;
     margin-bottom: 20px;
@@ -298,11 +269,42 @@ export default {
     flex-direction: column;
     text-align: center;
   }
-  .hotProduct img,
+
   .anyChoice img {
     border-radius: 50%;
-    width: 100%;
-    padding: 60px 50px 40px;
+
+    /* padding: 60px 50px 40px; */
   }
+}
+
+.imgSize {
+  width: 200px;
+  border-radius: 50%;
+  /* width: 300px; */
+  /* display: inline; */
+  /* margin: 0 auto;
+  height: 300px;
+  width: auto; */
+}
+
+.btn {
+  width: 150px;
+  padding: 10px 0px;
+
+  border-radius: 10px;
+  background: #999;
+  color: #fff;
+  border: none;
+}
+.btn h5 {
+  color: #fff;
+  margin: 0px;
+}
+.btn:hover {
+  background: #555;
+  border: none;
+}
+select {
+  color: #555;
 }
 </style>

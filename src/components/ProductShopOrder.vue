@@ -6,7 +6,7 @@
           <div class="image" id="mycard">
             <img src="https://picsum.photos/200/200?random=1" />
           </div>
-          <h4>{{ lesson.lesson[0] }}</h4>
+          <h4>{{ lesson.lesson }}</h4>
           <p>30 mins NTD$1,000 起</p>
           <p class="swTxt">
             透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！
@@ -45,6 +45,7 @@
           <div class="d-flex totalPrice">
             <p>時間:{{ myCart.addpsTime }}mins</p>
             <p>價格:NT${{ myCart.addCost }}</p>
+            <p>{{ myCart.online }}{{myCart.local}}</p>
           </div>
         </div>
         <div class="d-flex cart">
@@ -87,7 +88,7 @@ export default {
     },
     addTime2() {
       if (this.isClick1 == "true") {
-        this.$store.commit("addStorespTime2");
+        this.$store.commit("addStorespTime1");
         this.isClick1 = "false";
       } else {
         this.isClick1 = "false";
@@ -95,15 +96,15 @@ export default {
     },
     addTime3() {
       if (this.isClick1 == "true") {
-        this.$store.commit("addStorespTime3");
+        this.$store.commit("addStorespTime2");
         this.isClick1 = "false";
       } else {
         this.isClick1 = "false";
       }
     },
     addTime4() {
-      if (this.isClick1 == "true") {
-        this.$store.commit("addStorespTime4");
+       if (this.isClick1 == "true") {
+        this.$store.commit("addStorespTime3");
         this.isClick1 = "false";
       } else {
         this.isClick1 = "false";
@@ -150,6 +151,7 @@ export default {
   color: #eee;
 }
 .shopItem {
+  height: 520px;
   text-align: center;
   margin: 0 0.5rem 0;
 }
@@ -205,7 +207,7 @@ p {
   text-align: center;
 }
 .totalPrice {
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
 @media screen and (min-width: 992px) {

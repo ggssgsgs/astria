@@ -7,12 +7,13 @@ import {RouterLink, RouterView} from "vue-router";
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
-          <img
-            alt="Astria logo"
-            src="@/assets/logo.png"
-            width="30"
-            height="30"
-          />
+          <RouterLink to="/" class="nav-link"
+            ><img
+              alt="Astria logo"
+              src="@/assets/logo.png"
+              width="30"
+              height="30"
+          /></RouterLink>
         </a>
         <button
           class="navbar-toggler"
@@ -102,7 +103,7 @@ import {RouterLink, RouterView} from "vue-router";
 
                 <li>
                   <RouterLink
-                    to="/myFortuneTellerInfos"
+                    to="/myFortuneTellerInfo"
                     class="dropdown-item"
                     v-show="!this.$store.state.isLogIn"
                     >成為占卜師</RouterLink
@@ -209,6 +210,11 @@ export default {
   mounted() {
     if (localStorage.getItem("token") === "ImLogin") {
       this.$store.state.isLogIn = true;
+      this.$store.state.myEmail = localStorage.getItem("myemail");
+      this.$store.dispatch("getAccountInfo", this.$store.state.myEmail);
+
+      //需要密碼
+      //this.$store.dispatch("getLoginInfo", this.$store.state.myEmail);
     } else {
       this.$store.state.isLogIn = false;
     }
@@ -218,6 +224,7 @@ export default {
   methods: {
     logOut() {
       localStorage.removeItem("token");
+      this.$store.commit("logOut");
       this.$router.push("/");
     },
   },
@@ -230,6 +237,12 @@ export default {
   margin: 0px;
   padding: 0px;
   color: #eee;
+}
+.bgGray {
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
 }
 .BG {
   background: rgb(0, 2, 53);
@@ -244,5 +257,11 @@ h1 {
 }
 footer {
   background: #001055;
+}
+.nav-link:hover {
+  background: #f5f5f5;
+}
+.navbar-brand:hover {
+  background: #f5f5f5;
 }
 </style>

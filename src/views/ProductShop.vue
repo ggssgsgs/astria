@@ -19,18 +19,18 @@
             @slideChange="onSlideChange"
             @resize="onresize"
           >
-            <swiper-slide v-for="(key, value) in lesson">
+            <swiper-slide v-for="item in lesson">
               <div class="shopItem">
                 <div class="image">
                   <img src="https://picsum.photos/200/200?random=1" />
                 </div>
-                <h4>{{ key.lesson }}</h4>
-                <p>{{ key.psTime }} mins NTD$1,000 起</p>
+                <h4>{{ item.lesson }}</h4>
+                <p>{{ item.psTime }} mins NTD$1,000 起</p>
                 <p class="swTxt">
-                  {{ key.pscontent }}
+                  {{ item.pscontent }}
                 </p>
-                <p class="swTxt1">{{ key.pstip }}</p>
-                <button class="push1" @click="orderTo(index)">點我預約</button>
+                <p class="swTxt1">{{ item.pstip }}</p>
+                <button class="push1" @click="orderTo(lesson.indexOf(item))">點我預約</button>
               </div>
             </swiper-slide>
           </swiper>
@@ -64,13 +64,23 @@ export default {
     return {
       logonType: "about",
       slidesPerView: 4,
+      plesson:'',
+      ptime:'',
+      pcontent:'',
+      ptipe:'',
     };
   },
   methods: {
-    orderTo(index) {
+    orderTo() {
       if (this.$data.logonType === "about") {
         this.$data.logonType = "order";
-        this.$store.commit("addStoreLesson");
+        alert(this.lesson[index].lesson)
+        // this.$store.commit("addStoreLesson");
+        this.plesson=this.lesson.lesson[0];
+        this.ptime =this.lesson.psTime[0];
+        this.pcontent =this.lesson.pscontent[0];
+        this.ptipe =this.lesson.pstip[0]
+     
         
       } else {
         this.$data.logonType = "about";

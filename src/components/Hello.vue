@@ -4,7 +4,7 @@
       <h1 class="text-center">“藏星，把星星藏進口袋”</h1>
       <h4 class="text-center mb-5">打開Astria專屬星盤 導讀你的人生課題</h4>
 
-      <div v-show="!this.$store.state.isLogIn" class="d-flex flex-column">
+      <div v-if="!this.$store.state.isLogIn" class="d-flex flex-column">
         <div class="d-flex justify-content-center">
           <div class="btn btn-c mx-2" @click="goTo(`/logIn`)">
             <h5>登入</h5>
@@ -20,7 +20,7 @@
           或不登入直接體驗
         </div>
       </div>
-      <div v-show="this.$store.state.isLogIn">
+      <div v-if="this.$store.state.isLogIn">
         <hr />
         <h4 class="text-center sub-font">
           {{ this.$store.state.myName }}，您好

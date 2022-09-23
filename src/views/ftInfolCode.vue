@@ -2,16 +2,16 @@
   <div class="pic">
     <img :src="imgsrc">
   </div>
-
+  <button @click="changepic">選擇圖片</button>
   <div class="card">
     <div class="d-flex inputForm">
       <div class="d-flex input-item">
-        <label class="l1">商店名稱</label>
+        <label class="l1">姓名</label>
         <input
           type="text"
           class="t1"
           v-model="form.name.value"
-          placeholder="請輸入商店名稱"
+          placeholder="請輸入姓名"
           required
           autofocus
         />
@@ -69,9 +69,9 @@
         </select>
       </div>
       <div class="d-flex input-item">
-        <label class="l1">服務地</label>
+        <label class="l1">居住地</label>
         <select v-model="form.address.value" class="t1">
-          <option value="" disabled>請選擇服務地</option>
+          <option value="" disabled>請選擇居住地</option>
           <!--<option v-for="address in addresslist" v-on:change="setplace" :key="address" :value="address">{{address}}</option>-->
           <option
             v-for="address in form.addresslist"

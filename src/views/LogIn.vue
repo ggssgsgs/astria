@@ -151,6 +151,7 @@ export default {
             return response.json();
           })
           .then((body) => {
+            console.log(body);
             console.log(body.Msg);
             this.a = body.Msg;
             console.log(this.a);
@@ -159,7 +160,9 @@ export default {
               this.$store.commit("testChangeFriendsName", {name: this.a});
               localStorage.setItem("myemail", `${this.users}`);
               localStorage.setItem("mymsg", `${this.a}`);
-              //更改狀態
+
+              //更改vuex狀態
+              this.$store.commit("loginSet", body.Req);
               this.$store.state.isLogIn = true;
               this.$router.push("/");
             }
@@ -176,7 +179,7 @@ export default {
         let chemails = this.chemail[chemaillen - 1];
         console.log(chemails);
 
-        fetch("https://astria.sutsanyuan.com/Astria_api/RePWD", {
+        fetch("https://astria.sutsanyuan.com/Astria_api/ForgottenPWD", {
           method: "post",
           headers: {
             "Content-Type": "application/json;charset =utf-8",

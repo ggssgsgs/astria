@@ -62,16 +62,25 @@ export default {
   },
   methods: {
     remove() {
+      // alert(this.myCart.psCount)
       this.$store.commit("removeStoreInfol");
     },
     onsubmit() {
-      fetch("https://astria.sutsanyuan.com/Astria_api/RePWD", {
+      fetch("https://astria.sutsanyuan.com/Astria_api/CreateReserve", {
         method: "post",
         headers: {
           "Content-Type": "application/json;charset =utf-8",
         },
         body: JSON.stringify({
-          Email: chemails,
+          // Lesson: ,
+          // Time:,
+          // Select:,
+          // Cost:,
+          // Total:,
+          // Email:,
+          // PEmail:,
+          // Date:,
+       
         }),
       })
         .then(function (re) {
@@ -79,11 +88,7 @@ export default {
         })
         .then((body) => {
           console.log(body);
-          this.b = body.Status;
-          if (this.b == "1") {
-            this.$data.logonType = "pwd";
-            console.log("忘記密碼");
-          }
+          
         })
         .catch(function (err) {
           console.log(err);

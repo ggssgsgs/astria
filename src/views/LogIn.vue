@@ -164,6 +164,7 @@ export default {
               //更改vuex狀態
               this.$store.commit("loginSet", body.Req);
               this.$store.state.isLogIn = true;
+
               this.$router.push("/");
             }
           })

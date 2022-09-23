@@ -58,6 +58,7 @@ import {RouterLink, RouterView} from "vue-router";
           <div class="navbar-nav mb-2 mb-lg-0">
             <div class="nav-item dropdown">
               <a
+                @click="updateStatus"
                 class="nav-link dropdown-toggle"
                 href="#"
                 role="button"
@@ -71,11 +72,11 @@ import {RouterLink, RouterView} from "vue-router";
                   <RouterLink
                     to="/logIn"
                     class="dropdown-item"
-                    v-show="!isLogIn"
+                    v-show="!storeIsLogIn"
                     >登入</RouterLink
                   >
                 </li>
-                <li @click="logOut" class="dropdown-item" v-show="isLogIn">
+                <li @click="logOut" class="dropdown-item" v-show="storeIsLogIn">
                   登出
                   <!-- <RouterLink to="/"  class="dropdown-item"
                     ></RouterLink
@@ -85,17 +86,16 @@ import {RouterLink, RouterView} from "vue-router";
                   <RouterLink
                     to="/signUp"
                     class="dropdown-item"
-                    v-show="!isLogIn"
+                    v-show="!storeIsLogIn"
                     >註冊</RouterLink
                   >
                 </li>
-                <li v-show="isLogIn"><hr class="dropdown-divider" /></li>
+                <li v-show="storeIsLogIn"><hr class="dropdown-divider" /></li>
                 <li>
                   <RouterLink
-                    v-model="isLogIn"
                     to="/myInfo"
                     class="dropdown-item"
-                    v-show="isLogIn"
+                    v-show="storeIsLogIn"
                     >我的帳號</RouterLink
                   >
                 </li>
@@ -104,7 +104,7 @@ import {RouterLink, RouterView} from "vue-router";
                   <RouterLink
                     to="/myInfo"
                     class="dropdown-item"
-                    v-show="!isPro && isLogIn"
+                    v-show="!isPro && storeIsLogIn"
                     >成為占卜師</RouterLink
                   >
                 </li>
@@ -219,6 +219,9 @@ export default {
       this.$store.state.isLogIn = false;
     }
     this.$store.state.myEmail = localStorage.getItem("myemail");
+    // window.setInterval(() => {
+    //   this.updateStatus();
+    // }, 100);
   },
 
   // computed: {
@@ -232,6 +235,7 @@ export default {
   // },
   data() {
     return {
+      storeIsLogIn: this.$store.state.isLogIn,
       //isLogIn: true,
     };
   },
@@ -245,22 +249,30 @@ export default {
         return "others";
       }
     },
-    isLogIn() {
-      if (localStorage.getItem("token") === "ImLogin") {
-        return true;
-      } else {
-        return false;
-      }
-    },
+    // isLogIn() {
+    //   if (localStorage.getItem("token") === "ImLogin") {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // },
     isPro() {
       return this.$store.state.isPro == true ? true : false;
     },
   },
   methods: {
+    updateStatus() {
+      if (localStorage.getItem("token") === "ImLogin") {
+        this.storeIsLogIn = true;
+      } else {
+        this.storeIsLogIn = false;
+      }
+    },
     logOut() {
       localStorage.removeItem("token");
       this.$store.commit("logOut");
       this.$router.push("/");
+      location.reload();
     },
   },
 };

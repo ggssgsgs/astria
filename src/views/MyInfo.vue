@@ -28,7 +28,7 @@
           <div
             class="btn"
             :class="{btnGray: isPro, btn: !isPro}"
-            @click="MyFortuneTellerInfo"
+            @click="content = 'ftInfolCode'"
           >
             <h4>成為占星師</h4>
           </div>
@@ -58,6 +58,7 @@
 import InfolCode from "./InfolCode.vue";
 import InfolPwd from "./InfolPwd.vue";
 // import InfolReserve from "./InfolReserve.vue";
+import ftInfolCode from "./ftInfolCode.vue";
 import reservation from "../components/Reservation.vue";
 import reservationPro from "../components/ReservationPro.vue";
 export default {
@@ -67,6 +68,7 @@ export default {
     // InfolReserve,
     reservation,
     reservationPro,
+    ftInfolCode,
   },
   name: "MyInfo",
   data() {
@@ -109,7 +111,7 @@ export default {
     //   }
     // },
     MyFortuneTellerInfo() {
-      this.$router.push("/charts");
+      this.$router.push("/myFortunetellerInfo");
     },
   },
 };

@@ -1,6 +1,7 @@
 <template>
   <div class="login-code">
     <input
+      class="input"
       v-model="userForm.email"
       @keyup.delete="keydelete"
       @keyup.tab="keyenter1"
@@ -37,6 +38,7 @@ export default {
     position:relative;
 } */
 input {
+  /* list-style: none; */
   width: 100%;
   height: 60px;
   margin: 20px 0;

@@ -3,7 +3,7 @@ import {RouterLink, RouterView} from "vue-router";
 </script>
 
 <template>
-  <div>
+  <div class="nav-fixed">
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -33,7 +33,9 @@ import {RouterLink, RouterView} from "vue-router";
           ></form>
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">
-              <RouterLink to="/" class="nav-link">Home</RouterLink>
+              <RouterLink @click="home" to="/" class="nav-link"
+                >Home</RouterLink
+              >
             </li>
             <li class="nav-item">
               <RouterLink to="/about" class="nav-link">關於我們</RouterLink>
@@ -113,6 +115,7 @@ import {RouterLink, RouterView} from "vue-router";
       </div>
     </nav>
   </div>
+  <div class="top-blank"></div>
 
   <RouterView />
   <footer>
@@ -243,7 +246,11 @@ export default {
       }
     },
     isLogIn() {
-      return this.$store.state.isLogIn;
+      if (localStorage.getItem("token") === "ImLogin") {
+        return true;
+      } else {
+        return false;
+      }
     },
     isPro() {
       return this.$store.state.isPro == true ? true : false;
@@ -265,6 +272,13 @@ export default {
   margin: 0px;
   padding: 0px;
   color: #eee;
+}
+input {
+  border: none;
+  outline: none;
+}
+button {
+  border: none;
 }
 .bgGray {
   background: #f5f5f5;
@@ -291,5 +305,13 @@ footer {
 }
 .navbar-brand:hover {
   background: #f5f5f5;
+}
+.nav-fixed {
+  width: 100vw;
+  z-index: 3;
+  position: fixed;
+}
+.top-blank {
+  height: 58.28px;
 }
 </style>

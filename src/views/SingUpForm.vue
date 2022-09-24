@@ -298,6 +298,7 @@ input {
   outline: none;
   margin-bottom: 40px;
   padding-left: 10px;
+  color: #666;
 }
 select {
   background: rgba(255, 255, 255, 0);
@@ -306,6 +307,7 @@ select {
   outline: none;
   margin-bottom: 40px;
   padding-left: 10px;
+  color: #666;
 }
 .card {
   background: rgba(255, 255, 255, 0.25);

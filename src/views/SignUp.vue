@@ -258,6 +258,7 @@ input {
 h2 {
   text-align: center;
   margin: 30px 0 20px;
+  color: #eee;
 }
 img {
   width: 100%;
@@ -291,7 +292,7 @@ img {
   border-radius: 10px;
   background: rgba(217, 217, 217, 0.25);
   border: none;
-  color: #fff;
+  color: #eee;
 }
 .outlink {
   padding: 20px 30px;
@@ -319,12 +320,22 @@ img {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  margin-top: 10px;
+}
+.sinup span {
+  color: #eee;
+  margin-top: 10px;
 }
 .sinup .t1 {
-  margin-left: 10px;
+  margin: 0px 0 0 10px;
+
+  color: #eee;
 }
 .sinup .t1:hover {
-  margin-left: 10px;
+  margin: 10px 0 0 10px;
   color: #62ff36;
+}
+.el-form-item__error{
+  color: #eee;
 }
 </style>

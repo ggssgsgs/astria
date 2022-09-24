@@ -48,6 +48,7 @@ input {
   margin: 20px 0;
   padding-left: 10px;
   border-radius: 10px;
+  color: #666;
 }
 .inpuForm {
   padding: 0 80px;

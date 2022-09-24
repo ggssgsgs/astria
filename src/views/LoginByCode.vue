@@ -33,15 +33,16 @@ export default {
 </script>
 
 <style scoped>
-/* .login-code {
-    position:relative;
-} */
+*{
+  color: #666;
+}
 input {
   width: 100%;
   height: 60px;
   margin: 20px 0;
   padding-left: 10px;
   border-radius: 10px;
+  color: #666;
 }
 .login-code {
   padding: 0 80px;

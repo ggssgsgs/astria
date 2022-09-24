@@ -78,9 +78,13 @@ import ftInfolCode from "./ftInfolCode.vue";
 import reservation from "../components/Reservation.vue";
 import reservationPro from "../components/ReservationPro.vue";
 export default {
+  beforeMount() {
+    this.$store.dispatch("getReserationInfo", this.$store.state.myEmail);
+    this.$store.dispatch("getReserationProInfo", this.$store.state.myEmail);
+  },
   mounted() {
     window.setTimeout(500);
-    this.$store.dispatch("getReserationInfo", this.$store.state.myEmail);
+
     //this.isPro = this.$store.state.isPro;
   },
 

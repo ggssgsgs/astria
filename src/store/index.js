@@ -294,40 +294,40 @@ export default createStore({
         purchaseDate: "2022-09-02",
         isOver: true,
       },
-      {
-        rID: "0000000002",
-        //ProID: "ProID001",
-        //MemID: "MemID001",
-        ProName: "唐綺陽",
-        ProLesson: "塔羅課2",
-        //日期
-        ProTime: "2021-10-23",
-        UserSelect: "不明",
-        ProCost: 1600,
-        LesCount: 3,
-        ReserveAmount: 1,
+      // {
+      //   rID: "0000000002",
+      //   //ProID: "ProID001",
+      //   //MemID: "MemID001",
+      //   ProName: "唐綺陽",
+      //   ProLesson: "塔羅課2",
+      //   //日期
+      //   ProTime: "2021-10-23",
+      //   UserSelect: "不明",
+      //   ProCost: 1600,
+      //   LesCount: 3,
+      //   ReserveAmount: 1,
 
-        //資料表沒有
-        purchaseDate: "2022-09-02",
-        isOver: false,
-      },
-      {
-        rID: "0000000003",
-        //ProID: "ProID001",
-        //MemID: "MemID001",
-        ProName: "唐陽",
-        ProLesson: "塔羅課3",
-        //日期
-        ProTime: "2021-10-23",
-        UserSelect: "不明",
-        ProCost: 1600,
-        LesCount: 1,
-        ReserveAmount: 1,
+      //   //資料表沒有
+      //   purchaseDate: "2022-09-02",
+      //   isOver: false,
+      // },
+      // {
+      //   rID: "0000000003",
+      //   //ProID: "ProID001",
+      //   //MemID: "MemID001",
+      //   ProName: "唐陽",
+      //   ProLesson: "塔羅課3",
+      //   //日期
+      //   ProTime: "2021-10-23",
+      //   UserSelect: "不明",
+      //   ProCost: 1600,
+      //   LesCount: 1,
+      //   ReserveAmount: 1,
 
-        //資料表沒有
-        purchaseDate: "2022-09-02",
-        isOver: false,
-      },
+      //   //資料表沒有
+      //   purchaseDate: "2022-09-02",
+      //   isOver: false,
+      // },
     ],
     proOrders: [
       {
@@ -343,29 +343,31 @@ export default createStore({
         ProCost: 1600,
         LesCount: 1,
         ReserveAmount: 1,
+        Memo: "下午時段方便",
 
         //資料表沒有
         purchaseDate: "2022-09-02",
         isOver: true,
       },
-      {
-        rID: "0000000001",
-        //ProID: "ProID001",
-        //MemID: "MemID001",
-        ProName: "唐綺陽",
-        MemberName: "照相香",
-        ProLesson: "塔羅課",
-        //日期
-        ProTime: "2021-10-23",
-        UserSelect: "不明",
-        ProCost: 1600,
-        LesCount: 1,
-        ReserveAmount: 1,
+      // {
+      //   rID: "0000000001",
+      //   //ProID: "ProID001",
+      //   //MemID: "MemID001",
+      //   ProName: "唐綺陽",
+      //   MemberName: "照相香",
+      //   ProLesson: "塔羅課",
+      //   //日期
+      //   ProTime: "2021-10-23",
+      //   UserSelect: "不明",
+      //   ProCost: 1600,
+      //   LesCount: 1,
+      //   ReserveAmount: 1,
+      //   Memo: "上午時段方便",
 
-        //資料表沒有
-        purchaseDate: "2022-09-02",
-        isOver: false,
-      },
+      //   //資料表沒有
+      //   purchaseDate: "2022-09-02",
+      //   isOver: false,
+      // },
     ],
 
     //未使用
@@ -505,11 +507,12 @@ export default createStore({
     // //MemID: "MemID001",
     // ProName: "唐綺陽",
     // ProLesson: "塔羅課2",
-    // //日期
+    // //日期 v
     // ProTime: "2021-10-23",
     // UserSelect: "不明",
     // ProCost: 1600,
     // LesCount: 3,
+    //不知道是啥 v
     // ReserveAmount: 1,
 
     // //資料表沒有
@@ -518,15 +521,57 @@ export default createStore({
 
     setMyOrders(state, payload) {
       payload.forEach((order) => {
-        state.myOrders.rID = order.RID;
-        state.myOrders.ProID = order.PID;
-        state.myOrders.MemID = order.MID;
-        state.myOrders.ProName = order.PName;
-        state.myOrders.ProLesson = order.Lesson;
-        // state.myOrders.ProTime = order.
+        state.myOrders[payload.indexOf(order)].rID = order.RID;
+        state.myOrders[payload.indexOf(order)].ProID = order.PID;
+        state.myOrders[payload.indexOf(order)].MemID = order.MID;
+        state.myOrders[payload.indexOf(order)].ProName = order.PName;
+        state.myOrders[payload.indexOf(order)].ProLesson = order.Lesson;
+        state.myOrders[payload.indexOf(order)].ProTime = "2022-10-10"; //假日期
+        state.myOrders[payload.indexOf(order)].UserSelect = order.Select;
+        state.myOrders[payload.indexOf(order)].ProCost = order.Cost;
+        state.myOrders[payload.indexOf(order)].LesCount =
+          order.Total / order.Cost;
+        // state.myOrders.ReserveAmount
+        state.myOrders[payload.indexOf(order)].purchaseDate = "2022-09-09";
+        state.myOrders[payload.indexOf(order)].isOver = false; //統一未結案
       });
     },
-    setProOrders() {},
+
+    //---API---
+    // Cost: 500
+    // Email: ""
+    // Lesson: "課程"
+    // MID: 3
+    // Memo: "備註"
+    // Name: "hsiang"
+    // PEmail: ""
+    // PID: 4
+    // PName: "ccc"
+    // RID: 10
+    // Select: "方式"
+    // Time: "時間"
+    // Total: 500000
+    ///---State---
+
+    setProOrders(state, payload) {
+      payload.forEach((order) => {
+        state.proOrders[payload.indexOf(order)].rID = order.RID;
+        state.proOrders[payload.indexOf(order)].ProID = order.PID;
+        state.proOrders[payload.indexOf(order)].MemID = order.MID;
+        state.proOrders[payload.indexOf(order)].MemberName = order.Name;
+        state.proOrders[payload.indexOf(order)].ProName = order.PName;
+        state.proOrders[payload.indexOf(order)].ProLesson = order.Lesson;
+        state.proOrders[payload.indexOf(order)].ProTime = "2022-10-10"; //假日期
+        state.proOrders[payload.indexOf(order)].UserSelect = order.Select;
+        state.proOrders[payload.indexOf(order)].ProCost = order.Cost;
+        state.proOrders[payload.indexOf(order)].LesCount =
+          order.Total / order.Cost;
+        // state.proOrders.ReserveAmount
+        state.proOrders[payload.indexOf(order)].purchaseDate = "2022-09-09";
+        state.proOrders[payload.indexOf(order)].Memo = order.Memo;
+        state.proOrders[payload.indexOf(order)].isOver = false; //統一未結案
+      });
+    },
 
     //------
     deleteFriend(state, index) {
@@ -984,6 +1029,39 @@ export default createStore({
     },
 
     getChartData({commit, state}, payload) {
+      axios
+        .post("https://astria.sutsanyuan.com/Astria_api/GuestAstroData", {
+          Date: payload.birthday,
+          Time: payload.birthTime,
+          Address: payload.location,
+        })
+        .then(function (response) {
+          console.log("get astro data by post", response);
+          state.currentData.currentChartDataOrigin = response.data.JObj.data;
+          console.log(
+            "myChartDataOrigin:",
+            state.currentData.currentChartDataOrigin
+          );
+          commit("setChartData", state.currentData.currentChartDataOrigin);
+          //console.log("myChartData_Axios", state.myChartData);
+          //分配取得各行星星座
+          commit("setSigns", state.currentData.currentChartDataOrigin);
+          //console.log("mySigns", this.mySigns);
+          //在 vue裡的 index.js 呼叫 state 會顯示 undefined
+          commit("assignSignName");
+          //console.log("mySignsNames", this.mySignsNames);
+          //有Sign 才有 House
+          commit("setHouses", state.currentData.currentChartDataOrigin);
+          //vvvv not gonna show
+          //console.log("myHouses", this.myHouses);
+          commit("assignHouseName");
+          //set degrees
+          commit("setDegrees", state.currentData.currentChartDataOrigin);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
       //到時候更改API 提供四個欄位資料
       // axios
       //   .get("https://randomuser.me/api/", {
@@ -1033,38 +1111,6 @@ export default createStore({
       //     //set degrees
       //     commit("setDegrees", state.currentData.currentChartDataOrigin);
       //   });
-      axios
-        .post("https://astria.sutsanyuan.com/Astria_api/GuestAstroData", {
-          Date: payload.birthday,
-          Time: payload.birthTime,
-          Address: payload.location,
-        })
-        .then(function (response) {
-          console.log("get astro data by post", response);
-          state.currentData.currentChartDataOrigin = response.data.JObj.data;
-          console.log(
-            "myChartDataOrigin:",
-            state.currentData.currentChartDataOrigin
-          );
-          commit("setChartData", state.currentData.currentChartDataOrigin);
-          //console.log("myChartData_Axios", state.myChartData);
-          //分配取得各行星星座
-          commit("setSigns", state.currentData.currentChartDataOrigin);
-          //console.log("mySigns", this.mySigns);
-          //在 vue裡的 index.js 呼叫 state 會顯示 undefined
-          commit("assignSignName");
-          //console.log("mySignsNames", this.mySignsNames);
-          //有Sign 才有 House
-          commit("setHouses", state.currentData.currentChartDataOrigin);
-          //vvvv not gonna show
-          //console.log("myHouses", this.myHouses);
-          commit("assignHouseName");
-          //set degrees
-          commit("setDegrees", state.currentData.currentChartDataOrigin);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
     },
 
     //取得登入資料
@@ -1100,7 +1146,20 @@ export default createStore({
         })
         .then((response) => {
           console.log("Reservation data get by post:", response);
-          //commit("setAccountInfo", response.data.Req);
+          commit("setMyOrders", response.data.Req);
+          //console.log(state.myOrders[0].ProName);
+        });
+    },
+
+    getReserationProInfo({commit, state}, email) {
+      axios
+        .post("https://astria.sutsanyuan.com/Astria_api/ShowProReserveInfo", {
+          Email: email,
+        })
+        .then((response) => {
+          console.log("Pro Reservation data get by post:", response);
+          commit("setProOrders", response.data.Req);
+          //console.log(state.myOrders[0].ProName);
         });
     },
   },

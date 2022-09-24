@@ -270,6 +270,8 @@ export default {
     },
     logOut() {
       localStorage.removeItem("token");
+      localStorage.removeItem("myemail");
+      localStorage.removeItem("mymsg");
       this.$store.commit("logOut");
       this.$router.push("/");
       // location.reload();

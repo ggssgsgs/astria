@@ -272,7 +272,7 @@ export default {
       localStorage.removeItem("token");
       this.$store.commit("logOut");
       this.$router.push("/");
-      location.reload();
+      // location.reload();
     },
   },
 };

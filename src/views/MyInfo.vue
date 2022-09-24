@@ -80,6 +80,7 @@ import reservationPro from "../components/ReservationPro.vue";
 export default {
   mounted() {
     window.setTimeout(500);
+    this.$store.dispatch("getReserationInfo", this.$store.state.myEmail);
     //this.isPro = this.$store.state.isPro;
   },
 
@@ -94,7 +95,8 @@ export default {
   name: "MyInfo",
   data() {
     return {
-      //isPro: this.$store.state.isPro,
+      //傳進來的是字串"True" "False"
+      isPro: this.$store.state.isPro == "True" ? true : false,
       content: "InfolCode",
       logonType: "code",
     };
@@ -117,9 +119,9 @@ export default {
         return false;
       }
     },
-    isPro() {
-      return this.$store.state.isPro == true ? true : false;
-    },
+    // isPro() {
+    //   return this.$store.state.isPro == true ? true : false;
+    // },
   },
   methods: {
     //可以改is

@@ -500,7 +500,32 @@ export default createStore({
 
     //------ actions API 抓取後放入
 
-    setMyOrders() {},
+    // rID: "0000000002",
+    // //ProID: "ProID001",
+    // //MemID: "MemID001",
+    // ProName: "唐綺陽",
+    // ProLesson: "塔羅課2",
+    // //日期
+    // ProTime: "2021-10-23",
+    // UserSelect: "不明",
+    // ProCost: 1600,
+    // LesCount: 3,
+    // ReserveAmount: 1,
+
+    // //資料表沒有
+    // purchaseDate: "2022-09-02",
+    // isOver: false,
+
+    setMyOrders(state, payload) {
+      payload.forEach((order) => {
+        state.myOrders.rID = order.RID;
+        state.myOrders.ProID = order.PID;
+        state.myOrders.MemID = order.MID;
+        state.myOrders.ProName = order.PName;
+        state.myOrders.ProLesson = order.Lesson;
+        // state.myOrders.ProTime = order.
+      });
+    },
     setProOrders() {},
 
     //------
@@ -1076,7 +1101,7 @@ export default createStore({
           Email: email,
         })
         .then((response) => {
-          console.log("Reservation data get by post:", response.data);
+          console.log("Reservation data get by post:", response);
           //commit("setAccountInfo", response.data.Req);
         });
     },

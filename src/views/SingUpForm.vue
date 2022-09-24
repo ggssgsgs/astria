@@ -27,21 +27,21 @@
                   class="t2"
                   v-model="form.gender.value"
                   type="radio"
-                  value="male"
+                  value="1"
                 />
                 <p class="radioTxt">Male</p>
                 <input
                   class="t2"
                   v-model="form.gender.value"
                   type="radio"
-                  value="female"
+                  value="2"
                 />
                 <p class="radioTxt">Female</p>
                 <input
                   class="t2"
                   v-model="form.gender.value"
                   type="radio"
-                  value="others"
+                  value="0"
                 />
                 <p class="radioTxt">Others</p>
               </div>
@@ -108,7 +108,7 @@
   </div>
 </template>
 <script>
-import { reg_phoneType2 } from "../utils/validate";
+import {reg_phoneType2} from "../utils/validate";
 export default {
   mounted() {
     this.form.email.value = localStorage.getItem("myemail");
@@ -119,11 +119,11 @@ export default {
       remsg: "",
       remsgg: "",
       form: {
-        name: { value: "", msg: "" },
-        gender: { value: "male", msg: "" },
-        date: { value: "", msg: "" },
-        time: { value: "", msg: "" },
-        address: { value: "", msg: "" },
+        name: {value: "", msg: ""},
+        gender: {value: "1", msg: ""},
+        date: {value: "", msg: ""},
+        time: {value: "", msg: ""},
+        address: {value: "", msg: ""},
         addresslist: [
           "台北市",
           "新北市",
@@ -148,8 +148,8 @@ export default {
           "金門縣",
           "馬祖縣",
         ],
-        phone: { value: "", msg: "" },
-        email: { value: "" },
+        phone: {value: "", msg: ""},
+        email: {value: ""},
       },
       submitDisabled: true, // 送出按鈕的disabled狀態，true為禁用
     };
@@ -181,7 +181,7 @@ export default {
     },
     nativeSubmit() {
       if (!this.submitDisabled) {
-        alert("進入if");
+        // alert("進入if");
         let chName = this.form.name.value;
         let chGender = this.form.gender.value;
         let chDate = this.form.date.value;
@@ -189,47 +189,76 @@ export default {
         let chadress = this.form.address.value;
         let chPhone = this.form.phone.value;
         let chEmail = this.form.email.value;
+        let formdata = new FormData();
+        formdata.append("Email", chEmail);
+        formdata.append("Name", chName);
+        formdata.append("Sex", chGender);
+        formdata.append("Birth", chDate);
+        formdata.append("BirthTime", chTime);
+        formdata.append("BirthPlace", chadress);
+        formdata.append("Phone", chPhone);
 
-        fetch("http://52.139.170.100/api/secondsignup", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json;charset =utf-8",
-          },
-          body: JSON.stringify({
-            Name: chName,
-            Sex: chGender,
-            Birth: chDate,
-            BirthTime: chTime,
-            BirthPlace: chadress,
-            Phone: chPhone,
-            Email: chEmail,
-          }),
-        })
-          .then(function (response) {
-            alert("Fetch");
-            return response.json();
-          })
-          .then((body) => {
-            console.log(body);
-            this.remsg = body.Status;
-            this.remsgg = body.Msg;
-            alert(this.remsg + this.remsgg);
-            if (this.remsg != 1) {
-              alert("失敗");
-            } else {
-              alert("成功");
+        let requestOptions = {
+          method: "POST",
+          body: formdata,
+          redirect: "follow",
+        };
+        fetch(
+          "https://astria.sutsanyuan.com/Astria_api/SecSignup",
+          requestOptions
+        )
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+            this.remsg = result.Status;
+            if (this.remsg == 1) {
+              console.log(this.remsg);
               localStorage.setItem("token", "ImLogin");
               this.$router.push("/");
             }
           })
-          .catch(function (err) {
-            alert("Fetch失敗");
-            console.log(err);
-          });
+          .catch((error) => console.log("error", error));
+
+        // fetch("https://astria.sutsanyuan.com/Astria_api/SecSignup", {
+        //   method: "post",
+        //   headers: {
+        //     "Content-Type": "application/json;charset =utf-8",
+        //   },
+        //   body:
+        //   JSON.stringify({
+        //     Name: chName,
+        //     Sex: chGender,
+        //     Birth: chDate,
+        //     BirthTime: chTime,
+        //     BirthPlace: chadress,
+        //     Phone: chPhone,
+        //     Email: chEmail,
+        //   }),
+        // })
+        //   .then(function (response) {
+        //     alert("Fetch");
+        //     return response.json();
+        //   })
+        //   .then((body) => {
+        //     console.log(body);
+        //     this.remsg = body.Status;
+        //     this.remsgg = body.Msg;
+        //     alert(this.remsg + this.remsgg);
+        //     if (this.remsg != 1) {
+        //       alert("失敗");
+        //     } else {
+        //       alert("成功");
+        //
+        //     }
+        //   })
+        //   .catch(function (err) {
+        //     alert("Fetch失敗");
+        //     console.log(err);
+        //   });
 
         // 接下來就是進入表單下一步動作，反之阻擋住
       } else {
-        alert("沒進FETCH");
+        // alert("沒進FETCH");
         let chName = this.form.name.value;
         let chGender = this.form.gender.value;
         let chDate = this.form.date.value;
@@ -266,6 +295,7 @@ input {
   outline: none;
   margin-bottom: 40px;
   padding-left: 10px;
+  color: #666;
 }
 select {
   background: rgba(255, 255, 255, 0);
@@ -274,6 +304,7 @@ select {
   outline: none;
   margin-bottom: 40px;
   padding-left: 10px;
+  color: #666;
 }
 .card {
   background: rgba(255, 255, 255, 0.25);
@@ -293,7 +324,6 @@ label {
 }
 h2 {
   margin-bottom: 40px;
-  
 }
 button {
   width: 200px;
@@ -302,11 +332,10 @@ button {
   background: rgba(217, 217, 217, 0.25);
   color: #fff;
   border: none;
-
 }
- p {
-    color: gray;
-  }
+p {
+  color: gray;
+}
 
 @media screen and (min-width: 992px) {
   .inputForm {
@@ -327,13 +356,12 @@ button {
   select {
     margin: 0 0 60px;
   }
- 
+
   h2 {
     margin-bottom: 60px;
   }
-.row{
-  margin: 0 240px;
-}
-
+  .row {
+    margin: 0 240px;
+  }
 }
 </style>

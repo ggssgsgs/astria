@@ -34,6 +34,9 @@ export default {
 </script>
 
 <style scoped>
+* {
+  color: #666;
+}
 /* .login-code {
     position:relative;
 } */
@@ -44,6 +47,7 @@ input {
   margin: 20px 0;
   padding-left: 10px;
   border-radius: 10px;
+  color: #666;
 }
 .login-code {
   padding: 0 80px;

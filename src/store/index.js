@@ -893,13 +893,11 @@ export default createStore({
     //new
 
     //productOrder 購物填選單
-    addStoreLesson(state, index) {
-      for (let i = 0; i < 6; i++) {
-        state.pushLesson.lesson.push(state.psLesson[i].lesson);
-        state.pushLesson.psTime = state.psLesson[i].psTime;
-        state.pushLesson.pscontent = state.psLesson[i];
-        state.pushLesson.pstip = state.psLesson.pstip;
-      }
+    addStoreLesson(state) {
+      state.pushLesson.lesson.push(state.psLesson[0].lesson);
+      state.pushLesson.psTime = state.psLesson[0].psTime;
+      state.pushLesson.pscontent = state.psLesson[0];
+      state.pushLesson.pstip = state.psLesson.pstip;
     },
     //productshop購物車
     addStorespTime(state) {

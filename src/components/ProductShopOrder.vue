@@ -6,13 +6,13 @@
           <div class="image" id="mycard">
             <img src="https://picsum.photos/200/200?random=1" />
           </div>
-          <h4>{{ lesson.lesson[0] }}</h4>
-          <p>30 mins NTD$1,000 起</p>
+          <h4>{{ theLesson }}</h4>
+          <p>{{ theTime }} mins NTD$1,000 起</p>
           <p class="swTxt">
-            透過塔羅抽牌方式，抽出至少5張，至多全部的牌，占卜師透過牌陣，詳細分析您一年內是否有機會碰到心儀的對象！
+            {{ theContent }}
           </p>
           <p class="swTxt1">
-            ⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠
+            {{ theTip }}
           </p>
         </div>
       </div>
@@ -45,6 +45,7 @@
           <div class="d-flex totalPrice">
             <p>時間:{{ myCart.addpsTime }}mins</p>
             <p>價格:NT${{ myCart.addCost }}</p>
+            <p>地點:{{ myCart.online }}{{ myCart.local }}</p>
           </div>
         </div>
         <div class="d-flex cart">
@@ -56,12 +57,13 @@
   </div>
 </template>
 <script>
-import { useStore } from "vuex";
+import {useStore} from "vuex";
 export default {
   setup() {
     const store = useStore();
     return {};
   },
+  props: ["the-lesson", "the-time", "the-content", "the-tip"],
   data() {
     return {
       timeMsg: ["30", "60", "90", "120"],
@@ -87,7 +89,7 @@ export default {
     },
     addTime2() {
       if (this.isClick1 == "true") {
-        this.$store.commit("addStorespTime2");
+        this.$store.commit("addStorespTime1");
         this.isClick1 = "false";
       } else {
         this.isClick1 = "false";
@@ -95,7 +97,7 @@ export default {
     },
     addTime3() {
       if (this.isClick1 == "true") {
-        this.$store.commit("addStorespTime3");
+        this.$store.commit("addStorespTime2");
         this.isClick1 = "false";
       } else {
         this.isClick1 = "false";
@@ -103,7 +105,7 @@ export default {
     },
     addTime4() {
       if (this.isClick1 == "true") {
-        this.$store.commit("addStorespTime4");
+        this.$store.commit("addStorespTime3");
         this.isClick1 = "false";
       } else {
         this.isClick1 = "false";

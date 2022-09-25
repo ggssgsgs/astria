@@ -158,16 +158,16 @@ p {
   padding: 30px;
 }
 .swTxt {
-  padding: 0 80px 0px;
+  padding: 0 40px 0px;
 
   /* text-align: left; */
 }
 .swTxt1 {
-  padding: 0 80px 10px;
+  padding: 0 40px 10px;
   /* text-align: left; */
 }
 button {
-  width: 150px;
+  width: 120px;
   height: 50px;
   background: rgba(217, 217, 217, 0.25);
   border: none;

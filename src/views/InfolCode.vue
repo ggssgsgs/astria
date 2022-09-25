@@ -63,7 +63,7 @@
         <input
           type="date"
           class="t1 text-center"
-          v-model="this.$store.state.myBirthday"
+          v-model="form.date.value"
           name="getday"
           required
         />
@@ -74,7 +74,7 @@
         <input
           type="time"
           class="t1 text-center"
-          v-model="this.$store.state.myBirthTime"
+          v-model="form.time.value"
           name="gettime"
           required
         />
@@ -82,7 +82,7 @@
       </div>
       <div class="d-flex input-item">
         <label class="l1">出生地</label>
-        <select v-model="this.$store.state.myLocation" class="t1 text-center">
+        <select v-model="form.address.value" class="t1 text-center">
           <option value="" disabled>請選擇出生地</option>
           <!--<option v-for="address in addresslist" v-on:change="setplace" :key="address" :value="address">{{address}}</option>-->
           <option
@@ -99,9 +99,9 @@
         <input
           type="text"
           class="t1 text-center"
-          v-model="this.$store.state.myPhone"
+          v-model="form.phone.value"
           @change="nativeValidate(form, 'phone')"
-          placeholder="請輸入電話"
+          :placeholder="form.phone.value"
           required
         />
         <div class="el-form-item__error">{{ form.phone.msg }}</div>
@@ -111,9 +111,9 @@
         <input
           type="text"
           class="t1 text-center"
-          v-model="this.$store.state.myEmail"
+          v-model="form.email.value"
           @change="nativeValidate(form, 'email')"
-          placeholder="請輸入Email"
+          :placeholder="form.email.value"
           required
         />
 
@@ -219,11 +219,11 @@ export default {
       remsg: "",
       remsgg: "",
       form: {
-        name: {value: "", msg: ""},
-        gender: {value: "male", msg: ""},
-        date: {value: "", msg: ""},
-        time: {value: "", msg: ""},
-        address: {value: "", msg: ""},
+        name: {value: this.$store.state.myName, msg: ""},
+        gender: {value: this.gender, msg: ""},
+        date: {value: this.$store.state.myBirthday, msg: ""},
+        time: {value: this.$store.state.myBirthTime, msg: ""},
+        address: {value: this.$store.state.myLocation, msg: ""},
         addresslist: [
           "台北市",
           "新北市",
@@ -248,8 +248,8 @@ export default {
           "金門縣",
           "馬祖縣",
         ],
-        phone: {value: "", msg: ""},
-        email: {value: "", msg: ""},
+        phone: {value: this.$store.state.myPhone, msg: ""},
+        email: {value: this.$store.state.myEmail, msg: ""},
       },
       // gender: computed(()=>{if(this.$store.state)})
       submitDisabled: true, // 送出按鈕的disabled狀態，true為禁用
@@ -300,29 +300,63 @@ export default {
     nativeSubmit() {
       if (!this.submitDisabled) {
         alert("進入if");
+        // let chName = this.form.name.value;
+
+        let chGender = 0;
+        if (this.gender == "male") {
+          chGender = 1;
+        } else if (this.gender == "female") {
+          chGender = 2;
+        } else {
+          chGender = 0;
+        }
+
+        // let chDate = this.form.date.value;
+        // let chTime = this.form.time.value;
+        // let chadress = this.form.address.value;
+        // let chPhone = this.form.phone.value;
+        // let chEmail = this.form.email.value;
+
         let chName = this.form.name.value;
-        let chGender = this.form.gender.value;
+        // let chGender = this.form.gender.value;
         let chDate = this.form.date.value;
         let chTime = this.form.time.value;
         let chadress = this.form.address.value;
         let chPhone = this.form.phone.value;
         let chEmail = this.form.email.value;
+        let formdata = new FormData();
+        formdata.append("Email", chEmail);
+        formdata.append("Name", chName);
+        formdata.append("Sex", chGender);
+        formdata.append("Birth", chDate);
+        formdata.append("BirthTime", chTime);
+        formdata.append("BirthPlace", chadress);
+        formdata.append("Phone", chPhone);
+        let requestOptions = {
+          method: "POST",
+          body: formdata,
+          redirect: "follow",
+        };
 
-        fetch("https://astria.sutsanyuan.com/Astria_api/secsignup", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json;charset =utf-8",
-          },
-          body: JSON.stringify({
-            Name: chName,
-            Sex: chGender,
-            Birth: chDate,
-            BirthTime: chTime,
-            BirthPlace: chadress,
-            Phone: chPhone,
-            Email: chEmail,
-          }),
-        })
+        fetch(
+          "https://astria.sutsanyuan.com/Astria_api/secsignup",
+          requestOptions
+          // {
+          //   //method: "post",
+          //   // headers: {
+          //   //   "Content-Type": "application/json;charset =utf-8",
+          //   // },
+          //   body: JSON.stringify({
+          //     Name: chName,
+          //     Sex: chGender,
+          //     Birth: chDate,
+          //     BirthTime: chTime,
+          //     BirthPlace: chadress,
+          //     Phone: chPhone,
+          //     Email: chEmail,
+          //   }),
+          // }
+        )
           .then(function (response) {
             // alert("Fetch");
             return response.json();

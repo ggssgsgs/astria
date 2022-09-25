@@ -108,7 +108,7 @@
   </div>
 </template>
 <script>
-import {reg_phoneType2} from "../utils/validate";
+import { reg_phoneType2 } from "../utils/validate";
 export default {
   mounted() {
     this.form.email.value = localStorage.getItem("myemail");
@@ -119,11 +119,11 @@ export default {
       remsg: "",
       remsgg: "",
       form: {
-        name: {value: "", msg: ""},
-        gender: {value: "1", msg: ""},
-        date: {value: "", msg: ""},
-        time: {value: "", msg: ""},
-        address: {value: "", msg: ""},
+        name: { value: "", msg: "" },
+        gender: { value: "1", msg: "" },
+        date: { value: "", msg: "" },
+        time: { value: "", msg: "" },
+        address: { value: "", msg: "" },
         addresslist: [
           "台北市",
           "新北市",
@@ -148,8 +148,8 @@ export default {
           "金門縣",
           "馬祖縣",
         ],
-        phone: {value: "", msg: ""},
-        email: {value: ""},
+        phone: { value: "", msg: "" },
+        email: { value: "" },
       },
       submitDisabled: true, // 送出按鈕的disabled狀態，true為禁用
     };
@@ -210,14 +210,17 @@ export default {
           .then((response) => response.json())
           .then((result) => {
             console.log(result);
-            this.remsg = result.Status;
-            if (this.remsg == 1) {
-              console.log(this.remsg);
-              localStorage.setItem("token", "ImLogin");
-              this.$router.push("/");
+            this.remsg=result.Status
+            if(this.remsg==1){
+               console.log(this.remsg);
+               localStorage.setItem("token", "ImLogin");
+               this.$router.push('/')
             }
+           
+
           })
           .catch((error) => console.log("error", error));
+        
 
         // fetch("https://astria.sutsanyuan.com/Astria_api/SecSignup", {
         //   method: "post",
@@ -281,11 +284,12 @@ export default {
 </script>
 
 <style scoped>
+
 .page {
   text-align: center;
 }
 .inputForm {
-  padding: 50px 50px;
+  padding: 50px 20px;
 }
 
 input {
@@ -295,7 +299,8 @@ input {
   outline: none;
   margin-bottom: 40px;
   padding-left: 10px;
-  color: #666;
+  color: #eee;
+ 
 }
 select {
   background: rgba(255, 255, 255, 0);
@@ -304,19 +309,21 @@ select {
   outline: none;
   margin-bottom: 40px;
   padding-left: 10px;
-  color: #666;
+  color: #eee;
+  
 }
 .card {
   background: rgba(255, 255, 255, 0.25);
 }
 label {
-  width: 17%;
+  width: 25%;
   letter-spacing: 1rem;
   text-align: left;
 }
 
 .t1 {
-  width: 83%;
+  width: 75%;
+  color: #eee;
 }
 .t2 {
   width: 5%;
@@ -330,16 +337,25 @@ button {
   height: 40px;
   border-radius: 10px;
   background: rgba(217, 217, 217, 0.25);
-  color: #fff;
+  color: #eee;
   border: none;
 }
-p {
-  color: gray;
-}
+option{
+    color: #666;
+  }
+  .el-form-item__error{
+    color:tomato;
+  }
+  
+  
+  ::-webkit-input-placeholder{
+    color: #eee;
+  }
 
 @media screen and (min-width: 992px) {
   .inputForm {
     padding: 70px 60px;
+    color: #eee;
   }
   label {
     width: 10%;
@@ -349,12 +365,15 @@ p {
 
   .t1 {
     width: 90%;
+    color: #eee;
   }
   input {
     margin: 0 0 60px;
+    color: #eee;
   }
   select {
     margin: 0 0 60px;
+    color: #eee;
   }
 
   h2 {
@@ -363,5 +382,6 @@ p {
   .row {
     margin: 0 240px;
   }
+ 
 }
 </style>

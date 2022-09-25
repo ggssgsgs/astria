@@ -11,9 +11,15 @@
             </div>
 
             <shopping-cart-card></shopping-cart-card>
+
+            <div class="memo">
+              <textarea v-model="theMemo" name="" id="" cols="60" rows="5">
+              </textarea>
+            </div>
+
             <div class="btnGroup">
-              <button @click="onsubmit">送出</button>
-              <button @click="remove">清除</button>
+              <button @click.prevent="onsubmit">送出</button>
+              <button @click.prevent="remove">清除</button>
             </div>
           </div>
         </div>
@@ -51,7 +57,7 @@
 </template>
 <script>
 import shoppingCartCard from "../components/shoppingCartCard.vue";
-import { useStore } from "vuex";
+import {useStore} from "vuex";
 export default {
   setup() {
     const store = useStore();
@@ -60,18 +66,45 @@ export default {
   components: {
     shoppingCartCard,
   },
+  mounted() {
+    this.TheLesson = localStorage.getItem("myLesson");
+    this.email = localStorage.getItem("myemail");
+    this.TheLocationl = localStorage.getItem("myLocation");
+  },
+  data() {
+    return {
+      theMemo: "",
+      email: "",
+      TheLesson: "",
+      TheLocation: "",
+    };
+  },
   methods: {
     remove() {
       this.$store.commit("removeStoreInfol");
+      localStorage.removeItem("myLesson");
     },
     onsubmit() {
-      fetch("https://astria.sutsanyuan.com/Astria_api/RePWD", {
+      alert(this.myCart.addpsTime);
+      alert(this.theMemo);
+      alert(this.email);
+      alert(this.TheLesson);
+      alert("fetch");
+      fetch(" https://astria.sutsanyuan.com/Astria_api/CreateReserve", {
         method: "post",
         headers: {
           "Content-Type": "application/json;charset =utf-8",
         },
         body: JSON.stringify({
-          Email: chemails,
+          Lesson: this.TheLesson,
+          Time: this.myCart.addpsTime,
+          Select: this.TheLocationl,
+          Cost: this.myCart.addCost,
+          Total: this.myCart.addCost,
+          Email: this.email,
+          PEmail: "a1@gmail.com",
+          Memo: this.theMemo,
+          Date: "1",
         }),
       })
         .then(function (re) {
@@ -79,15 +112,15 @@ export default {
         })
         .then((body) => {
           console.log(body);
-          this.b = body.Status;
-          if (this.b == "1") {
-            this.$data.logonType = "pwd";
-            console.log("忘記密碼");
-          }
+          alert("我到fetch");
         })
         .catch(function (err) {
           console.log(err);
         });
+
+      localStorage.removeItem("myLesson");
+      localStorage.removeItem("myLocation");
+      alert("我到local");
     },
   },
   computed: {
@@ -106,7 +139,7 @@ h3 {
 }
 
 .itemgroup {
-  height: 500px;
+  height: 540px;
   border: 1px solid #eee;
   border-radius: 10px;
   padding: 20px;
@@ -144,5 +177,12 @@ button {
 }
 .btnGroup {
   text-align: center;
+}
+.memo {
+  width: 20%;
+  padding-top: 20px;
+}
+textarea {
+  color: #666;
 }
 </style>

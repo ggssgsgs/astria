@@ -26,35 +26,41 @@
         <!-- <p class="radioTxt">Others</p> -->
         <div class="radio-btns d-flex justify-content-around">
           <input
-            v-model="gender"
+            v-model="form.gender.value"
             type="radio"
-            value="male"
+            value="1"
             class="btn-check"
             name="genders"
             id="male"
             autocomplete="off"
           />
-          <label class="btn btn-secondary" for="male">男性</label>
+          <label class="btn btn-secondary" for="male" @click="changeGender(1)"
+            >男性</label
+          >
           <input
-            v-model="gender"
-            value="female"
+            v-model="form.gender.value"
+            value="2"
             type="radio"
             class="btn-check"
             name="genders"
             id="female"
             autocomplete="off"
           />
-          <label class="btn btn-secondary" for="female">女性</label>
+          <label class="btn btn-secondary" for="female" @click="changeGender(2)"
+            >女性</label
+          >
           <input
-            v-model="gender"
-            value="others"
+            v-model="form.gender.value"
+            value="0"
             type="radio"
             class="btn-check"
             name="genders"
             id="others"
             autocomplete="off"
           />
-          <label class="btn btn-secondary" for="others">其他</label>
+          <label class="btn btn-secondary" for="others" @click="changeGender(0)"
+            >其他</label
+          >
         </div>
         <div class="el-form-item__error">{{ form.gender.msg }}</div>
       </div>
@@ -220,7 +226,7 @@ export default {
       remsgg: "",
       form: {
         name: {value: this.$store.state.myName, msg: ""},
-        gender: {value: this.gender, msg: ""},
+        gender: {value: this.$store.state.myGender, msg: ""},
         date: {value: this.$store.state.myBirthday, msg: ""},
         time: {value: this.$store.state.myBirthTime, msg: ""},
         address: {value: this.$store.state.myLocation, msg: ""},
@@ -267,6 +273,9 @@ export default {
     },
   },
   methods: {
+    changeGender(sexNum) {
+      this.$store.state.myGender = sexNum;
+    },
     nativeValidate(target, key) {
       let checkPhone = reg_phoneType2(target.phone.value);
       let checkEmail = reg_email(target.email.value);

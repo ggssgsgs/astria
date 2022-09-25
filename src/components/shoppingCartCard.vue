@@ -1,0 +1,75 @@
+<template>
+  <div class="card">
+    <div class="item d-flex">
+      <div class="pic">
+        <img src="https://picsum.photos/200/200?random=1" />
+      </div>
+      <div class="txt d-flex">
+        <p>{{ TheLesson }}</p>
+        <p>{{ myCart.addpsTime }}mins</p>
+        <p>NT${{ myCart.addCost }}</p>
+        <p>{{ myCart.online }}{{ myCart.local }}</p>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import { useStore } from "vuex";
+
+export default {
+  setup() {
+    const store = useStore();
+    return {};
+  },
+  mounted() {
+    this.TheLesson = localStorage.getItem("myLesson");
+
+  },
+  data() {
+    return {
+      TheLesson:'',
+      // cartItem: [
+      //   {
+      //     myLesson: { value: "" },
+      //     myTime: { value: "" },
+      //     myPrice: { value: "" },
+      //     myLocation: { value: "" },
+      //     myTotalPrice: { value: "" },
+      //   },
+      // ],
+    };
+  },
+
+  methods: {
+
+  },
+  computed: {
+    myCart() {
+      return this.$store.state.myCart;
+    },
+    addLesson() {
+      return this.$store.state.pushLesson;
+    },
+  },
+};
+</script>
+<style scoped>
+.card {
+  background: rgba(255, 255, 255, 0.25);
+}
+.txt {
+  align-items: center;
+  /* justify-content: space-between; */
+  margin: auto;
+}
+img {
+  width: 100%;
+}
+p {
+  letter-spacing: 0.1rem;
+  margin: 30px;
+}
+
+.item {
+}
+</style>

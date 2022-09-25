@@ -224,6 +224,8 @@ export default {
   methods: {
     logOut() {
       localStorage.removeItem("token");
+      localStorage.removeItem("myemail");
+      localStorage.removeItem("mymsg");
       this.$store.commit("logOut");
       this.$router.push("/");
     },

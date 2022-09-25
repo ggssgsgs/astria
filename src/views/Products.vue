@@ -225,7 +225,7 @@ h2 {
   width: 300px;
   height: 300px;
 }
-rgb(42, 55, 38) .anyChoice button {
+.anyChoice button {
   background: rgba(217, 217, 217, 0.25);
   width: 240px;
   height: 50px;

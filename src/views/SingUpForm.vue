@@ -284,11 +284,12 @@ export default {
 </script>
 
 <style scoped>
+
 .page {
   text-align: center;
 }
 .inputForm {
-  padding: 50px 50px;
+  padding: 50px 20px;
 }
 
 input {
@@ -298,7 +299,8 @@ input {
   outline: none;
   margin-bottom: 40px;
   padding-left: 10px;
-  color: #666;
+  color: #eee;
+ 
 }
 select {
   background: rgba(255, 255, 255, 0);
@@ -307,19 +309,21 @@ select {
   outline: none;
   margin-bottom: 40px;
   padding-left: 10px;
-  color: #666;
+  color: #eee;
+  
 }
 .card {
   background: rgba(255, 255, 255, 0.25);
 }
 label {
-  width: 17%;
+  width: 25%;
   letter-spacing: 1rem;
   text-align: left;
 }
 
 .t1 {
-  width: 83%;
+  width: 75%;
+  color: #eee;
 }
 .t2 {
   width: 5%;
@@ -333,16 +337,25 @@ button {
   height: 40px;
   border-radius: 10px;
   background: rgba(217, 217, 217, 0.25);
-  color: #fff;
+  color: #eee;
   border: none;
 }
-p {
-  color: gray;
-}
+option{
+    color: #666;
+  }
+  .el-form-item__error{
+    color:tomato;
+  }
+  
+  
+  ::-webkit-input-placeholder{
+    color: #eee;
+  }
 
 @media screen and (min-width: 992px) {
   .inputForm {
     padding: 70px 60px;
+    color: #eee;
   }
   label {
     width: 10%;
@@ -352,12 +365,15 @@ p {
 
   .t1 {
     width: 90%;
+    color: #eee;
   }
   input {
     margin: 0 0 60px;
+    color: #eee;
   }
   select {
     margin: 0 0 60px;
+    color: #eee;
   }
 
   h2 {
@@ -366,5 +382,6 @@ p {
   .row {
     margin: 0 240px;
   }
+ 
 }
 </style>

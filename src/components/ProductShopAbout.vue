@@ -12,7 +12,6 @@
       </div>
       <h4>關於我</h4>
       <p>{{ msgp1 }}</p>
-      <div><a href="#">ig</a></div>
     </div>
   </div>
 </template>
@@ -60,9 +59,7 @@ export default {
 .title {
   justify-content: Space-between;
 }
-.p1 {
-  padding: 20px 0 0;
-}
+
 h2 {
   margin-bottom: 15px;
 }
@@ -71,7 +68,7 @@ h3 {
 }
 
 .card {
-  height: 340px;
+  /* height: 340px; */
   background: rgba(255, 255, 255, 0.25);
   margin: 0 0 0.5rem;
 }
@@ -99,6 +96,9 @@ p {
     height: 300px;
     background: rgba(255, 255, 255, 0.25);
     margin: 0 0 0.5rem;
+  }
+  .p1 {
+    padding: 20px 0 0;
   }
 }
 </style>

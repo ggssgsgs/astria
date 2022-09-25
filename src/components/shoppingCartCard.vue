@@ -5,7 +5,7 @@
         <img src="https://picsum.photos/200/200?random=1" />
       </div>
       <div class="txt d-flex">
-        <p>{{ addLesson.lesson[0] }}</p>
+        <p>{{ TheLesson }}</p>
         <p>{{ myCart.addpsTime }}mins</p>
         <p>NT${{ myCart.addCost }}</p>
         <p>{{ myCart.online }}{{ myCart.local }}</p>
@@ -15,16 +15,34 @@
 </template>
 <script>
 import { useStore } from "vuex";
+
 export default {
   setup() {
     const store = useStore();
     return {};
   },
+  mounted() {
+    this.TheLesson = localStorage.getItem("myLesson");
 
-  data() {
-    return {};
   },
-  methods: {},
+  data() {
+    return {
+      TheLesson:'',
+      // cartItem: [
+      //   {
+      //     myLesson: { value: "" },
+      //     myTime: { value: "" },
+      //     myPrice: { value: "" },
+      //     myLocation: { value: "" },
+      //     myTotalPrice: { value: "" },
+      //   },
+      // ],
+    };
+  },
+
+  methods: {
+
+  },
   computed: {
     myCart() {
       return this.$store.state.myCart;

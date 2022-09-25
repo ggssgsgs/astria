@@ -270,9 +270,10 @@ export default {
       }
     },
     logOut() {
-      localStorage.removeItem("token");
-      localStorage.removeItem("myemail");
-      localStorage.removeItem("mymsg");
+      //移至store裡的muutation >logOut一併處理
+      // localStorage.removeItem("token");
+      // localStorage.removeItem("myemail");
+      // localStorage.removeItem("mymsg");
       this.$store.commit("logOut");
       this.$router.push("/");
       // location.reload();
@@ -328,5 +329,8 @@ footer {
 }
 .top-blank {
   height: 58.28px;
+}
+.color-dark-gray {
+  color: #555;
 }
 </style>

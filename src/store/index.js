@@ -103,17 +103,28 @@ export default createStore({
     myName: "酥燦燦",
     myPhone: "0921809234",
     myGender: 1,
-    myPhoto: "",
+
     myBirthday: "1995-07-07",
     myBirthTime: "11:08",
     myUTCBirthday: "1995-07-07",
     myUTCBirthTime: "03:08:00",
+    //出生地
     myLocation: "台北市",
+
     //myBirthdayAndTime: "1995-07-07T03:08:00Z", //台灣時間-8
     myLatitude: "25.11111",
     myLongitude: "121.11111",
     // myAPIsrc:
     //   "http://52.139.170.100:3333/horoscope?time=1995-07-07T03:08:00Z&latitude=25.11111&longitude=120.11111&houseSystem=P",
+
+    //專業帳號資料
+    myPhoto: "",
+    myProName: "酥酥",
+    myProPhone: "0988888888",
+    myExperience: "三年占星經驗",
+    mySkill: "星盤",
+    //居住地
+    myAddress: "台南市",
 
     isPro: false,
 
@@ -286,7 +297,7 @@ export default createStore({
     myOrders: [
       {
         rID: "0000000001",
-        //ProID: "ProID001",
+        ProID: "ProID001",
         //MemID: "MemID001",
         ProName: "唐綺陽",
         ProLesson: "塔羅課",
@@ -339,7 +350,7 @@ export default createStore({
     proOrders: [
       {
         rID: "0000000004",
-        //ProID: "ProID001",
+        ProID: "ProID001",
         MemID: "MemID001",
         MemberName: "林冠廷",
         //ProName: "唐綺陽",
@@ -518,6 +529,10 @@ export default createStore({
     //------Log Out
     logOut(state) {
       state.isLogIn = false;
+      localStorage.removeItem("token");
+      localStorage.removeItem("myemail");
+      localStorage.removeItem("mymsg");
+      localStorage.removeItem("isPro");
     },
     //------logIn
     loginSet(state, payload) {
@@ -534,8 +549,11 @@ export default createStore({
       state.myPhoto = payload.Photo;
       state.myLatitude = payload.JsonData.lat;
       state.myLongitude = payload.JsonData.lng;
+      localStorage.setItem("isPro", payload.IsAdv);
     },
+
     //------set Account Info
+
     setAccountInfo(state, payload) {
       state.myBirthday = payload.Birth;
       state.myBirthTime = payload.BirthTime;
@@ -548,6 +566,28 @@ export default createStore({
 
       state.myLatitude = payload.JsonData.lat;
       state.myLongitude = payload.JsonData.lng;
+    },
+
+    //------set Pro Info
+    //---from API
+    // Address: "Taipei"
+    // Email: "a1@gmail.com"
+    // Experience: "propropro"
+    // ID: null
+    // Name: "ccc"
+    // Phone: "0983192933"
+    // Photo: "./imgs/Adv/Default.jpg"
+    // Select: "星盤"
+    // Sex: 2
+    setProInfo(state, payload) {
+      state.myAddress = payload.Address;
+      state.myEmail = payload.Email;
+      state.myExperience = payload.Experience;
+      state.myProName = payload.Name;
+      state.myProPhone = payload.Phone;
+      state.myPhoto = payload.Photo;
+      state.mySkill = payload.Select;
+      state.myGender = payload.Sex;
     },
 
     //------ actions API 抓取後放入
@@ -570,27 +610,29 @@ export default createStore({
     // isOver: false,
 
     setMyOrders(state, payload) {
-      payload.forEach((order) => {
-        if (
-          payload.indexOf(order) != 0 &&
-          payload.length > state.myOrders.length
-        ) {
-          state.myOrders.push({});
-        }
-        state.myOrders[payload.indexOf(order)].rID = order.RID;
-        state.myOrders[payload.indexOf(order)].ProID = order.PID;
-        state.myOrders[payload.indexOf(order)].MemID = order.MID;
-        state.myOrders[payload.indexOf(order)].ProName = order.PName;
-        state.myOrders[payload.indexOf(order)].ProLesson = order.Lesson;
-        state.myOrders[payload.indexOf(order)].ProTime = "2022-10-10"; //假日期
-        state.myOrders[payload.indexOf(order)].UserSelect = order.Select;
-        state.myOrders[payload.indexOf(order)].ProCost = order.Cost;
-        state.myOrders[payload.indexOf(order)].LesCount =
-          order.Total / order.Cost;
-        // state.myOrders.ReserveAmount
-        state.myOrders[payload.indexOf(order)].purchaseDate = "2022-09-09";
-        state.myOrders[payload.indexOf(order)].isOver = false; //統一未結案
-      });
+      if (payload != null) {
+        payload.forEach((order) => {
+          if (
+            payload.indexOf(order) != 0 &&
+            payload.length > state.myOrders.length
+          ) {
+            state.myOrders.push({});
+          }
+          state.myOrders[payload.indexOf(order)].rID = order.RID;
+          state.myOrders[payload.indexOf(order)].ProID = order.PID;
+          state.myOrders[payload.indexOf(order)].MemID = order.MID;
+          state.myOrders[payload.indexOf(order)].ProName = order.PName;
+          state.myOrders[payload.indexOf(order)].ProLesson = order.Lesson;
+          state.myOrders[payload.indexOf(order)].ProTime = "2022-10-10"; //假日期
+          state.myOrders[payload.indexOf(order)].UserSelect = order.Select;
+          state.myOrders[payload.indexOf(order)].ProCost = order.Cost;
+          state.myOrders[payload.indexOf(order)].LesCount =
+            order.Total / order.Cost;
+          // state.myOrders.ReserveAmount
+          state.myOrders[payload.indexOf(order)].purchaseDate = "2022-09-09";
+          state.myOrders[payload.indexOf(order)].isOver = false; //統一未結案
+        });
+      }
     },
 
     //---API---
@@ -609,29 +651,31 @@ export default createStore({
     // Total: 500000
 
     setProOrders(state, payload) {
-      if (
-        payload.indexOf(order) != 0 &&
-        payload.length > state.proOrders.length
-      ) {
-        state.proOrders.push({});
+      if (payload != null) {
+        payload.forEach((order) => {
+          if (
+            payload.indexOf(order) != 0 &&
+            payload.length > state.proOrders.length
+          ) {
+            state.proOrders.push({});
+          }
+          state.proOrders[payload.indexOf(order)].rID = order.RID;
+          state.proOrders[payload.indexOf(order)].ProID = order.PID;
+          state.proOrders[payload.indexOf(order)].MemID = order.MID;
+          state.proOrders[payload.indexOf(order)].MemberName = order.Name;
+          state.proOrders[payload.indexOf(order)].ProName = order.PName;
+          state.proOrders[payload.indexOf(order)].ProLesson = order.Lesson;
+          state.proOrders[payload.indexOf(order)].ProTime = "2022-10-10"; //假日期
+          state.proOrders[payload.indexOf(order)].UserSelect = order.Select;
+          state.proOrders[payload.indexOf(order)].ProCost = order.Cost;
+          state.proOrders[payload.indexOf(order)].LesCount =
+            order.Total / order.Cost;
+          // state.proOrders.ReserveAmount
+          state.proOrders[payload.indexOf(order)].purchaseDate = "2022-09-09";
+          state.proOrders[payload.indexOf(order)].Memo = order.Memo;
+          state.proOrders[payload.indexOf(order)].isOver = false; //統一未結案
+        });
       }
-      payload.forEach((order) => {
-        state.proOrders[payload.indexOf(order)].rID = order.RID;
-        state.proOrders[payload.indexOf(order)].ProID = order.PID;
-        state.proOrders[payload.indexOf(order)].MemID = order.MID;
-        state.proOrders[payload.indexOf(order)].MemberName = order.Name;
-        state.proOrders[payload.indexOf(order)].ProName = order.PName;
-        state.proOrders[payload.indexOf(order)].ProLesson = order.Lesson;
-        state.proOrders[payload.indexOf(order)].ProTime = "2022-10-10"; //假日期
-        state.proOrders[payload.indexOf(order)].UserSelect = order.Select;
-        state.proOrders[payload.indexOf(order)].ProCost = order.Cost;
-        state.proOrders[payload.indexOf(order)].LesCount =
-          order.Total / order.Cost;
-        // state.proOrders.ReserveAmount
-        state.proOrders[payload.indexOf(order)].purchaseDate = "2022-09-09";
-        state.proOrders[payload.indexOf(order)].Memo = order.Memo;
-        state.proOrders[payload.indexOf(order)].isOver = false; //統一未結案
-      });
     },
 
     //------
@@ -1197,6 +1241,17 @@ export default createStore({
         .then((response) => {
           console.log("Customer data get by post:", response.data.Req);
           commit("setAccountInfo", response.data.Req);
+        });
+    },
+
+    getProInfo({commit, state}, email) {
+      axios
+        .post("https://astria.sutsanyuan.com/Astria_api/ShowProInfo", {
+          Email: email,
+        })
+        .then((response) => {
+          console.log("Pro Info", response.data.Req);
+          commit("setProInfo", response.data.Req);
         });
     },
 

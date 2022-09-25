@@ -521,6 +521,12 @@ export default createStore({
 
     setMyOrders(state, payload) {
       payload.forEach((order) => {
+        if (
+          payload.indexOf(order) != 0 &&
+          payload.length > state.myOrders.length
+        ) {
+          state.myOrders.push({});
+        }
         state.myOrders[payload.indexOf(order)].rID = order.RID;
         state.myOrders[payload.indexOf(order)].ProID = order.PID;
         state.myOrders[payload.indexOf(order)].MemID = order.MID;
@@ -554,6 +560,12 @@ export default createStore({
     ///---State---
 
     setProOrders(state, payload) {
+      if (
+        payload.indexOf(order) != 0 &&
+        payload.length > state.proOrders.length
+      ) {
+        state.proOrders.push({});
+      }
       payload.forEach((order) => {
         state.proOrders[payload.indexOf(order)].rID = order.RID;
         state.proOrders[payload.indexOf(order)].ProID = order.PID;

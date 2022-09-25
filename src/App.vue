@@ -208,6 +208,7 @@ export default {
   beforeMount() {},
 
   mounted() {
+    this.$store.dispatch("getProList");
     if (localStorage.getItem("token") === "ImLogin") {
       this.$store.state.isLogIn = true;
       this.$store.state.myEmail = localStorage.getItem("myemail");

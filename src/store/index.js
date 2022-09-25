@@ -85,6 +85,13 @@ export default createStore({
         },
         cusps: [296, 350, 30, 56, 75, 94, 116, 170, 210, 236, 255, 274],
       },
+
+      currentAstrologist: {
+        ProName: "唐揚揚",
+        Select: "占星塔羅",
+        ProImg: "2.jpg",
+        PID: 1,
+      },
     },
 
     //登入狀態
@@ -381,25 +388,30 @@ export default createStore({
         Select: "占星塔羅",
         ProImg: "1.jpg",
         MemberEmail: "hsianghoney@gmail.com",
+        PID: 1,
       },
-      {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg"},
-      {ProName: "詹惟中", Select: "風水", ProImg: "3.jpg"},
-      {ProName: "唐齊齊", Select: "占星塔羅", ProImg: "4.jpg"},
-      {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "5.jpg"},
-      {ProName: "詹惟中", Select: "風水", ProImg: "6.jpg"},
+      {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1},
+      {ProName: "詹惟中", Select: "風水", ProImg: "3.jpg", PID: 1},
+      {ProName: "唐齊齊", Select: "占星塔羅", ProImg: "4.jpg", PID: 1},
+      {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "5.jpg", PID: 1},
+      {ProName: "詹惟中", Select: "風水", ProImg: "6.jpg", PID: 1},
     ],
     //所有占星師
+    // Name: "ccc"
+    // PID: 4
+    // Select: "星盤"
+    // photo: "./imgs/Adv/Default.jpg"
     allAstrologists: [
-      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "1.jpg"},
-      {ProName: "唐揚揚", Select: "生命靈數", ProImg: "2.jpg"},
-      {ProName: "詹惟中", Select: "塔羅占卜", ProImg: "3.jpg"},
-      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "4.jpg"},
-      {ProName: "唐揚揚", Select: "人類圖", ProImg: "5.jpg"},
-      {ProName: "詹惟中", Select: "八字", ProImg: "6.jpg"},
-      {ProName: "詹惟中", Select: "風水", ProImg: "3.jpg"},
-      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "7.jpg"},
-      {ProName: "唐揚揚", Select: "紫微斗數", ProImg: "5.jpg"},
-      {ProName: "詹惟中", Select: "風水", ProImg: "6.jpg"},
+      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "1.jpg", PID: 1},
+      {ProName: "唐揚揚", Select: "生命靈數", ProImg: "2.jpg", PID: 2},
+      {ProName: "詹惟中", Select: "塔羅占卜", ProImg: "3.jpg", PID: 3},
+      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "4.jpg", PID: 4},
+      {ProName: "唐揚揚", Select: "人類圖", ProImg: "5.jpg", PID: 5},
+      {ProName: "詹惟中", Select: "八字", ProImg: "6.jpg", PID: 6},
+      {ProName: "詹惟中", Select: "風水", ProImg: "3.jpg", PID: 7},
+      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "7.jpg", PID: 8},
+      {ProName: "唐揚揚", Select: "紫微斗數", ProImg: "5.jpg", PID: 9},
+      {ProName: "詹惟中", Select: "風水", ProImg: "6.jpg", PID: 10},
     ],
 
     //new
@@ -465,6 +477,44 @@ export default createStore({
   },
   getters: {},
   mutations: {
+    //---Set Pro List
+    //---from api
+    // Name: "ccc"
+    // PID: 4
+    // Select: "星盤"
+    // photo: "./imgs/Adv/Default.jpg"
+    ///---State---
+    // ProName: "唐齊齊", Select: "星座命盤", ProImg: "1.jpg", PID: 1
+    setAllAstrologists(state, payload) {
+      payload.forEach((astrologist) => {
+        if (
+          payload.indexOf(astrologist) != 0 &&
+          payload.length > state.allAstrologists.length
+        ) {
+          state.allAstrologists.push({});
+        }
+        state.allAstrologists[payload.indexOf(astrologist)].PID =
+          astrologist.PID;
+        state.allAstrologists[payload.indexOf(astrologist)].ProName =
+          astrologist.Name;
+        state.allAstrologists[payload.indexOf(astrologist)].Select =
+          astrologist.Select;
+        state.allAstrologists[payload.indexOf(astrologist)].ProImg =
+          astrologist.photo;
+
+        console.log("set index", payload.indexOf(astrologist));
+      });
+    },
+
+    //設定目前商店
+
+    setCurrentAstrologist(state, payload) {
+      state.currentData.currentAstrologist.PID = payload.PID;
+      state.currentData.currentAstrologist.ProName = payload.ProName;
+      state.currentData.currentAstrologist.ProImg = payload.ProImg;
+      state.currentData.currentAstrologist.Select = payload.Select;
+    },
+
     //------Log Out
     logOut(state) {
       state.isLogIn = false;
@@ -557,7 +607,6 @@ export default createStore({
     // Select: "方式"
     // Time: "時間"
     // Total: 500000
-    ///---State---
 
     setProOrders(state, payload) {
       if (
@@ -1172,6 +1221,15 @@ export default createStore({
           console.log("Pro Reservation data get by post:", response);
           commit("setProOrders", response.data.Req);
           //console.log(state.myOrders[0].ProName);
+        });
+    },
+
+    getProList() {
+      axios
+        .get("https://astria.sutsanyuan.com/Astria_api/ShowProCard")
+        .then((response) => {
+          console.log("get Pro List", response.data);
+          this.commit("setAllAstrologists", response.data);
         });
     },
   },

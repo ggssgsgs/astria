@@ -11,7 +11,7 @@
           :navigation="true"
         >
           <swiper-slide
-            v-for="astrologist in this.$store.state.trendyAstrologists"
+            v-for="astrologist in this.$store.state.allAstrologists"
             class="pe-auto"
           >
             <div class="d-flex flex-column align-items-center">
@@ -29,7 +29,16 @@
                 <h6>{{ astrologist.Select }}</h6>
               </div>
               <div class="btn my-4">
-                <h5 @click="shop">進入商店</h5>
+                <h5
+                  @click="
+                    setCurrentAstrologist(
+                      this.$store.state.allAstrologists,
+                      this.$store.state.allAstrologists.indexOf(astrologist)
+                    )
+                  "
+                >
+                  進入商店
+                </h5>
               </div>
             </div>
           </swiper-slide>
@@ -176,6 +185,10 @@ export default {
     };
   },
   methods: {
+    setCurrentAstrologist(astrologists, index) {
+      this.$store.commit("setCurrentAstrologist", astrologists[index]);
+      this.$router.push("/productShop");
+    },
     //
     changeSlidesAmount(e) {
       //change size

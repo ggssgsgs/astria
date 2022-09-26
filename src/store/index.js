@@ -432,7 +432,10 @@ export default createStore({
       [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
       [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
       [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
-      [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
+      [
+        {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1},
+        {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1},
+      ],
     ],
 
     //new

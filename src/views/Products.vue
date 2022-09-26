@@ -72,45 +72,9 @@
               <option value="塔羅占卜">塔羅占卜</option>
               <option value="生命靈數">生命靈數</option>
               <option value="星座命盤">星座命盤</option>
+              <option value="星盤">星盤</option>
             </select>
           </div>
-        </div>
-        <div class="d-flex">
-          <div v-for="astrologist in selectedAstrologists" class="pe-auto">
-            <div
-              class="d-flex flex-column align-items-center mx-5"
-              v-if="astrologist.Select == selected"
-            >
-              <div class="my-5">
-                <img
-                  :src="this.imgRoot + astrologist.ProImg"
-                  alt="astrologistLogo"
-                  class="imgSize"
-                />
-              </div>
-              <span
-                ><h3>{{ astrologist.ProName }}</h3></span
-              >
-              <div>
-                <h6>{{ astrologist.Select }}</h6>
-              </div>
-              <div class="btn my-4">
-                <h5 @click="shop">進入商店</h5>
-              </div>
-            </div>
-          </div>
-          <!-- 記得最後可以複製一遍 -->
-          <!-- <swiper-slide>Slide 2</swiper-slide>
-    <swiper-slide>Slide 3</swiper-slide>
-    <swiper-slide>Slide 1</swiper-slide>
-    <swiper-slide>Slide 2</swiper-slide>
-    <swiper-slide>Slide 3</swiper-slide>
-    <swiper-slide>Slide 1</swiper-slide>
-    <swiper-slide>Slide 2</swiper-slide>
-    <swiper-slide>Slide 3</swiper-slide>
-    <swiper-slide>Slide 1</swiper-slide>
-    <swiper-slide>Slide 2</swiper-slide>
-    <swiper-slide>Slide 3</swiper-slide> -->
         </div>
 
         <!--  -->
@@ -122,7 +86,7 @@
           :navigation="true"
         >
           <swiper-slide
-            v-for="astrologist in this.$store.state.allAstrologists"
+            v-for="astrologist in selectedAstrologists"
             class="pe-auto"
           >
             <div class="d-flex flex-column align-items-center">
@@ -143,8 +107,8 @@
                 <h5
                   @click="
                     setCurrentAstrologist(
-                      this.$store.state.allAstrologists,
-                      this.$store.state.allAstrologists.indexOf(astrologist)
+                      selectedAstrologists,
+                      selectedAstrologists.indexOf(astrologist)
                     )
                   "
                 >
@@ -238,7 +202,7 @@ export default {
   },
   computed: {
     selectedAstrologists() {
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 7; i++) {
         if (this.selected == this.$store.state.psSkill[i]) {
           return this.$store.state.astrologistsByCat[i];
         }

@@ -76,10 +76,7 @@
           </div>
         </div>
         <div class="d-flex">
-          <div
-            v-for="astrologist in this.$store.state.allAstrologists"
-            class="pe-auto"
-          >
+          <div v-for="astrologist in selectedAstrologists" class="pe-auto">
             <div
               class="d-flex flex-column align-items-center mx-5"
               v-if="astrologist.Select == selected"
@@ -115,6 +112,60 @@
     <swiper-slide>Slide 2</swiper-slide>
     <swiper-slide>Slide 3</swiper-slide> -->
         </div>
+
+        <!--  -->
+        <swiper
+          :slidesPerView="this.slidesPerView"
+          :spaceBetween="0"
+          :freeMode="true"
+          :modules="modules"
+          :navigation="true"
+        >
+          <swiper-slide
+            v-for="astrologist in this.$store.state.allAstrologists"
+            class="pe-auto"
+          >
+            <div class="d-flex flex-column align-items-center">
+              <div class="my-5">
+                <img
+                  :src="this.imgRoot + astrologist.ProImg"
+                  alt="astrologistLogo"
+                  class="imgSize"
+                />
+              </div>
+              <span
+                ><h3>{{ astrologist.ProName }}</h3></span
+              >
+              <div>
+                <h6>{{ astrologist.Select }}</h6>
+              </div>
+              <div class="btn my-4">
+                <h5
+                  @click="
+                    setCurrentAstrologist(
+                      this.$store.state.allAstrologists,
+                      this.$store.state.allAstrologists.indexOf(astrologist)
+                    )
+                  "
+                >
+                  進入商店
+                </h5>
+              </div>
+            </div>
+          </swiper-slide>
+          <!-- 記得最後可以複製一遍 -->
+          <!-- <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 3</swiper-slide>
+    <swiper-slide>Slide 1</swiper-slide>
+    <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 3</swiper-slide>
+    <swiper-slide>Slide 1</swiper-slide>
+    <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 3</swiper-slide>
+    <swiper-slide>Slide 1</swiper-slide>
+    <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 3</swiper-slide> -->
+        </swiper>
       </div>
     </div>
   </div>
@@ -182,7 +233,17 @@ export default {
       msgt1: ["唐綺陽占星幫", "唐綺陽", "占星幫"],
       msgt2: "塔羅及西洋占星",
       count: [0, 1, 2, 3],
+      // selectedAstrologists: [],
     };
+  },
+  computed: {
+    selectedAstrologists() {
+      for (let i = 0; i < 6; i++) {
+        if (this.selected == this.$store.state.psSkill[i]) {
+          return this.$store.state.astrologistsByCat[i];
+        }
+      }
+    },
   },
   methods: {
     setCurrentAstrologist(astrologists, index) {

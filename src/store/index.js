@@ -425,6 +425,16 @@ export default createStore({
       {ProName: "詹惟中", Select: "風水", ProImg: "6.jpg", PID: 10},
     ],
 
+    astrologistsByCat: [
+      [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
+      [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
+      [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
+      [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
+      [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
+      [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
+      [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
+    ],
+
     //new
 
     //productshop購物車
@@ -440,7 +450,15 @@ export default createStore({
     psCost: [1000, 1500, 1800, 2700],
     //課程內容
     psName: ["妤塔羅占卜工作坊", "唐綺占星工作室"],
-    psSkill: ["八字", "人類圖", "紫微斗數", "塔羅占卜", "生命靈數", "星座命盤"],
+    psSkill: [
+      "八字",
+      "人類圖",
+      "紫微斗數",
+      "塔羅占卜",
+      "生命靈數",
+      "星座命盤",
+      "星盤",
+    ],
 
     psLesson: [
       {
@@ -504,6 +522,8 @@ export default createStore({
         ) {
           state.allAstrologists.push({});
         }
+      });
+      payload.forEach((astrologist) => {
         state.allAstrologists[payload.indexOf(astrologist)].PID =
           astrologist.PID;
         state.allAstrologists[payload.indexOf(astrologist)].ProName =
@@ -514,6 +534,47 @@ export default createStore({
           astrologist.photo;
 
         console.log("set index", payload.indexOf(astrologist));
+      });
+    },
+
+    setAstrologistsByCat(state, payload) {
+      // console.log("print cat", payload.cat);
+      payload.data.forEach((astrologist) => {
+        console.log("length", state.astrologistsByCat[payload.index].length);
+        if (
+          payload.data.indexOf(astrologist) != 0 &&
+          payload.data.length > state.astrologistsByCat[payload.index].length
+        ) {
+          state.astrologistsByCat[payload.index].push({});
+        }
+        console.log(
+          "state.astrologistsByCat[payload.index]" + payload.index,
+          state.astrologistsByCat[payload.index]
+        );
+        console.log(
+          "state.astrologistsByCat[payload.index].PID" + payload.index,
+          state.astrologistsByCat[payload.index][
+            payload.data.indexOf(astrologist)
+          ].PID
+        );
+        console.log("astrologist.PID", astrologist.PID);
+        state.astrologistsByCat[payload.index][
+          payload.data.indexOf(astrologist)
+        ].PID = astrologist.PID;
+        state.astrologistsByCat[payload.index][
+          payload.data.indexOf(astrologist)
+        ].ProName = astrologist.Name;
+        state.astrologistsByCat[payload.index][
+          payload.data.indexOf(astrologist)
+        ].Select = astrologist.Select;
+        state.astrologistsByCat[payload.index][
+          payload.data.indexOf(astrologist)
+        ].ProImg = astrologist.photo;
+
+        console.log(
+          "set cat index" + payload.index,
+          payload.data.indexOf(astrologist)
+        );
       });
     },
 
@@ -1279,13 +1340,32 @@ export default createStore({
         });
     },
 
-    getProList() {
+    getProList({commit}) {
       axios
         .get("https://astria.sutsanyuan.com/Astria_api/ShowProCard")
         .then((response) => {
           console.log("get Pro List", response.data);
-          this.commit("setAllAstrologists", response.data);
+          commit("setAllAstrologists", response.data);
         });
+    },
+
+    getProListBySelect({state, commit}) {
+      state.psSkill.forEach((cat) => {
+        // console.log("print cat", cat);
+        let catUrl = `?Select=${cat}`;
+        axios
+          .get("https://astria.sutsanyuan.com/Astria_api/ShowProCard" + catUrl)
+          .then((response) => {
+            console.log("get Pro List by " + cat, response.data);
+            if (response.data != null) {
+              let data = response.data;
+              let index = state.psSkill.indexOf(cat);
+              console.log(cat, index);
+
+              commit("setAstrologistsByCat", {data, index});
+            }
+          });
+      });
     },
   },
   modules: {},

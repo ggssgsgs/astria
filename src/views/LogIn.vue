@@ -157,13 +157,12 @@ export default {
             console.log(this.a);
             if (this.a == "登入成功") {
               localStorage.setItem("token", "ImLogin");
-              this.$store.commit("testChangeFriendsName", {name: this.a});
+              //this.$store.commit("testChangeFriendsName", {name: this.a});
               localStorage.setItem("myemail", `${this.users}`);
               localStorage.setItem("mymsg", `${this.a}`);
 
               //更改vuex狀態
               this.$store.commit("loginSet", body.Req);
-
               this.$store.state.isLogIn = true;
               this.$router.push("/");
             }

@@ -104,11 +104,11 @@ export default {
     // let recaptchaScript = document.createElement("script");
     // recaptchaScript.setAttribute("src", "./astrochart.js");
     // document.body.appendChild(recaptchaScript);
-    if (window.innerWidth < 992) {
-      this.cs = window.innerWidth * 0.9;
-    }
     if (window.innerWidth < 1140 && window.innerWidth > 992) {
       this.cs = 500 * (window.innerWidth / 1200);
+    }
+    if (window.innerWidth < 992) {
+      this.cs = window.innerWidth * 0.9;
     }
 
     console.log(this.chartData);
@@ -166,7 +166,7 @@ export default {
           // Failed to fetch script
           console.log("chart failed to load");
         });
-    }, 1200);
+    }, 1500);
   },
   beforeUpdate() {
     console.log("before updated");
@@ -256,11 +256,15 @@ export default {
 #paper {
   border-radius: 50%;
   background-color: #fff;
+  /* width: 90vw;
+  height: 90vw; */
 }
 .block {
   background: transparent;
   display: flex;
   justify-content: center;
+  /* width: 90vw;
+  height: 90vw; */
 }
 @media (screen) and (min-width: 768) {
   .block {

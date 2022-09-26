@@ -23,11 +23,10 @@ export default {
   },
   mounted() {
     this.TheLesson = localStorage.getItem("myLesson");
-
   },
   data() {
     return {
-      TheLesson:'',
+      TheLesson: "",
       // cartItem: [
       //   {
       //     myLesson: { value: "" },
@@ -40,9 +39,7 @@ export default {
     };
   },
 
-  methods: {
-
-  },
+  methods: {},
   computed: {
     myCart() {
       return this.$store.state.myCart;
@@ -59,17 +56,32 @@ export default {
 }
 .txt {
   align-items: center;
+  flex-direction: column;
   /* justify-content: space-between; */
-  margin: auto;
 }
 img {
   width: 100%;
 }
 p {
   letter-spacing: 0.1rem;
-  margin: 30px;
+  margin: 20px;
 }
-
 .item {
+  flex-direction: column;
+}
+@media screen and (min-width: 992px) {
+  .txt {
+    align-items: center;
+    /* justify-content: space-between; */
+    margin: auto;
+    flex-direction: row;
+  }
+  .item {
+    flex-direction: row;
+  }
+  p {
+    letter-spacing: 0.1rem;
+    margin: 30px;
+  }
 }
 </style>

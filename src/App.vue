@@ -3,7 +3,7 @@ import {RouterLink, RouterView} from "vue-router";
 </script>
 
 <template>
-  <div>
+  <div class="nav-fixed">
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -33,7 +33,9 @@ import {RouterLink, RouterView} from "vue-router";
           ></form>
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">
-              <RouterLink to="/" class="nav-link">Home</RouterLink>
+              <RouterLink @click="home" to="/" class="nav-link"
+                >Home</RouterLink
+              >
             </li>
             <li class="nav-item">
               <RouterLink to="/about" class="nav-link">關於我們</RouterLink>
@@ -56,6 +58,7 @@ import {RouterLink, RouterView} from "vue-router";
           <div class="navbar-nav mb-2 mb-lg-0">
             <div class="nav-item dropdown">
               <a
+                @click="updateStatus"
                 class="nav-link dropdown-toggle"
                 href="#"
                 role="button"
@@ -69,15 +72,11 @@ import {RouterLink, RouterView} from "vue-router";
                   <RouterLink
                     to="/logIn"
                     class="dropdown-item"
-                    v-show="!this.$store.state.isLogIn"
+                    v-show="!storeIsLogIn"
                     >登入</RouterLink
                   >
                 </li>
-                <li
-                  @click="logOut"
-                  class="dropdown-item"
-                  v-show="this.$store.state.isLogIn"
-                >
+                <li @click="logOut" class="dropdown-item" v-show="storeIsLogIn">
                   登出
                   <!-- <RouterLink to="/"  class="dropdown-item"
                     ></RouterLink
@@ -87,25 +86,25 @@ import {RouterLink, RouterView} from "vue-router";
                   <RouterLink
                     to="/signUp"
                     class="dropdown-item"
-                    v-show="!this.$store.state.isLogIn"
+                    v-show="!storeIsLogIn"
                     >註冊</RouterLink
                   >
                 </li>
-                <li><hr class="dropdown-divider" /></li>
+                <li v-show="storeIsLogIn"><hr class="dropdown-divider" /></li>
                 <li>
                   <RouterLink
                     to="/myInfo"
                     class="dropdown-item"
-                    v-show="this.$store.state.isLogIn"
+                    v-show="storeIsLogIn"
                     >我的帳號</RouterLink
                   >
                 </li>
 
                 <li>
                   <RouterLink
-                    to="/myFortuneTellerInfo"
+                    to="/myInfo"
                     class="dropdown-item"
-                    v-show="!this.$store.state.isLogIn"
+                    v-show="!isPro && storeIsLogIn"
                     >成為占卜師</RouterLink
                   >
                 </li>
@@ -116,6 +115,7 @@ import {RouterLink, RouterView} from "vue-router";
       </div>
     </nav>
   </div>
+  <div class="top-blank"></div>
 
   <RouterView />
   <footer>
@@ -208,6 +208,7 @@ export default {
   beforeMount() {},
 
   mounted() {
+    this.$store.dispatch("getProList");
     if (localStorage.getItem("token") === "ImLogin") {
       this.$store.state.isLogIn = true;
       this.$store.state.myEmail = localStorage.getItem("myemail");
@@ -219,15 +220,62 @@ export default {
       this.$store.state.isLogIn = false;
     }
     this.$store.state.myEmail = localStorage.getItem("myemail");
+    // window.setInterval(() => {
+    //   this.updateStatus();
+    // }, 100);
   },
 
+  // computed: {
+  //   isLogin: () => {
+  //     if (localStorage.getItem("token") === "ImLogin") {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   },
+  // },
+  data() {
+    return {
+      storeIsLogIn: this.$store.state.isLogIn,
+      //isLogIn: true,
+    };
+  },
+  computed: {
+    gender() {
+      if (this.$store.state.myGender == 1) {
+        return "male";
+      } else if (this.$store.state.myGender == 2) {
+        return "female";
+      } else if (this.$store.state.myGender == 0) {
+        return "others";
+      }
+    },
+    // isLogIn() {
+    //   if (localStorage.getItem("token") === "ImLogin") {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // },
+    isPro() {
+      return this.$store.state.isPro == true ? true : false;
+    },
+  },
   methods: {
+    updateStatus() {
+      if (localStorage.getItem("token") === "ImLogin") {
+        this.storeIsLogIn = true;
+      } else {
+        this.storeIsLogIn = false;
+      }
+    },
     logOut() {
       localStorage.removeItem("token");
       localStorage.removeItem("myemail");
       localStorage.removeItem("mymsg");
       this.$store.commit("logOut");
       this.$router.push("/");
+      // location.reload();
     },
   },
 };
@@ -239,6 +287,13 @@ export default {
   margin: 0px;
   padding: 0px;
   color: #eee;
+}
+input {
+  border: none;
+  outline: none;
+}
+button {
+  border: none;
 }
 .bgGray {
   background: #f5f5f5;
@@ -265,5 +320,13 @@ footer {
 }
 .navbar-brand:hover {
   background: #f5f5f5;
+}
+.nav-fixed {
+  width: 100vw;
+  z-index: 3;
+  position: fixed;
+}
+.top-blank {
+  height: 58.28px;
 }
 </style>

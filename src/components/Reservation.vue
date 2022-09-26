@@ -43,6 +43,10 @@
 <script>
 import {useStore} from "vuex";
 export default {
+  beforeMount() {
+    // window.setTimeout(500);
+    // this.$store.dispatch("getReserationInfo", this.$store.state.myEmail);
+  },
   mounted() {
     //---dispatch
   },

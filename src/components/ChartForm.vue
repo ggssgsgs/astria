@@ -286,7 +286,7 @@ export default {
   padding: 30px;
   /* height: 200px; */
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgb(58, 60, 104);
 }
 .input-style {
   text-decoration: none;

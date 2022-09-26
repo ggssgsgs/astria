@@ -13,8 +13,8 @@
             <shopping-cart-card></shopping-cart-card>
 
             <div class="memo">
-              <textarea v-model="theMemo" name="" id="" cols="60" rows="5">
-              </textarea>
+              <h4>商品備註</h4>
+              <textarea v-model="theMemo" cols="42" rows="6"></textarea>
             </div>
 
             <div class="btnGroup">
@@ -67,10 +67,6 @@ export default {
     shoppingCartCard,
   },
   mounted() {
-    this.TheLesson = localStorage.getItem("myLesson");
-    this.email = localStorage.getItem("myemail");
-    this.TheLocationl = localStorage.getItem("myLocation");
-
     
   },
   data() {
@@ -90,7 +86,7 @@ export default {
       alert(this.myCart.addpsTime);
       alert(this.theMemo);
       alert(this.email);
-      alert(this.TheLesson);    
+      alert(this.TheLesson);
       alert("fetch");
       fetch(" https://astria.sutsanyuan.com/Astria_api/CreateReserve", {
         method: "post",
@@ -106,7 +102,7 @@ export default {
           Email: this.email,
           PEmail: "a1@gmail.com",
           Memo: this.theMemo,
-          Date:'1',
+          Date: "1",
         }),
       })
         .then(function (re) {
@@ -122,6 +118,7 @@ export default {
 
       localStorage.removeItem("myLesson");
       localStorage.removeItem("myLocation");
+      this.$router.push("/productShop");
       alert("我到local");
     },
   },
@@ -141,7 +138,7 @@ h3 {
 }
 
 .itemgroup {
-  height: 540px;
+  /* height: 540px; */
   border: 1px solid #eee;
   border-radius: 10px;
   padding: 20px;
@@ -174,17 +171,55 @@ button {
   width: 120px;
   height: 50px;
   background: rgba(217, 217, 217, 0.25);
-  margin: 40px;
+  margin: 20px;
   border-radius: 10px;
 }
 .btnGroup {
   text-align: center;
 }
 .memo {
-  width: 20%;
+  width: 100%;
   padding-top: 20px;
+  /* text-align: center; */
+}
+.memo h4 {
+  margin: 20px 0;
+  text-align: left;
 }
 textarea {
   color: #666;
+  border-radius: 10px;
+}
+h3 {
+  margin-top: 20px;
+}
+@media screen and (min-width: 992px) {
+  textarea {
+    width: 60%;
+    color: #666;
+  }
+  button {
+    width: 120px;
+    height: 50px;
+    background: rgba(217, 217, 217, 0.25);
+    margin: 30px;
+    border-radius: 10px;
+  }
+  .itemgroup {
+    height: 620px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .memo h4 {
+    margin: 0 0 20px;
+    text-align: left;
+  }
+  p {
+    padding: 10px 0;
+  }
+  .image {
+    padding: 40px 50px 20px;
+  }
 }
 </style>

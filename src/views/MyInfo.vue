@@ -1,13 +1,13 @@
 <template>
-  <div :class="{bgGray: this.$store.state.isPro, BG: !this.$store.state.isPro}">
+  <div :class="{bgGray: isPro, BG: !isPro}">
     <div class="container-xl mt-5">
       <div class="row justify-content-center myInfo">
         <div class="col-12 col-lg-4 buttonForm">
           <div
             class="btn"
             :class="{
-              btnGray: this.$store.state.isPro,
-              btn: !this.$store.state.isPro,
+              btnGray: isPro,
+              btn: !isPro,
             }"
             @click="content = 'InfolCode'"
           >
@@ -16,8 +16,8 @@
           <div
             class="btn"
             :class="{
-              btnGray: this.$store.state.isPro,
-              btn: !this.$store.state.isPro,
+              btnGray: isPro,
+              btn: !isPro,
             }"
             @click="content = 'InfolPwd'"
           >
@@ -26,8 +26,8 @@
           <div
             class="btn"
             :class="{
-              btnGray: this.$store.state.isPro,
-              btn: !this.$store.state.isPro,
+              btnGray: isPro,
+              btn: !isPro,
             }"
             @click="content = 'reservation'"
           >
@@ -37,27 +37,27 @@
           <div
             class="btn"
             :class="{
-              btnGray: this.$store.state.isPro,
-              btn: !this.$store.state.isPro,
+              btnGray: isPro,
+              btn: !isPro,
             }"
             @click="content = 'ftInfolCode'"
           >
-            <h4 v-if="!this.$store.state.isPro">成為占星師</h4>
-            <h4 v-if="this.$store.state.isPro">我的專業帳號</h4>
+            <h4 v-if="!isPro">成為占星師</h4>
+            <h4 v-if="isPro">我的專業帳號</h4>
           </div>
           <div
-            v-if="this.$store.state.isPro"
+            v-if="isPro"
             class="btn"
             :class="{
-              btnGray: this.$store.state.isPro,
-              btn: !this.$store.state.isPro,
+              btnGray: isPro,
+              btn: !isPro,
             }"
             @click="content = 'reservationPro'"
           >
             <h4>我的預約</h4>
           </div>
         </div>
-        <div class="col-12 col-lg-8 inforForm">
+        <div class="col-12 col-lg-8 inforForm py-5">
           <keep-alive>
             <component :is="content"></component>
           </keep-alive>
@@ -78,7 +78,13 @@ import ftInfolCode from "./ftInfolCode.vue";
 import reservation from "../components/Reservation.vue";
 import reservationPro from "../components/ReservationPro.vue";
 export default {
+  beforeMount() {
+    this.$store.dispatch("getReserationInfo", this.$store.state.myEmail);
+    this.$store.dispatch("getReserationProInfo", this.$store.state.myEmail);
+  },
   mounted() {
+    window.setTimeout(500);
+
     //this.isPro = this.$store.state.isPro;
   },
 
@@ -93,10 +99,33 @@ export default {
   name: "MyInfo",
   data() {
     return {
-      //isPro: this.$store.state.isPro,
+      //傳進來的是字串"True" "False"
+      isPro: this.$store.state.isPro == "True" ? true : false,
       content: "InfolCode",
       logonType: "code",
     };
+  },
+
+  computed: {
+    gender() {
+      if (this.$store.state.myGender == 1) {
+        return "male";
+      } else if (this.$store.state.myGender == 2) {
+        return "female";
+      } else if (this.$store.state.myGender == 0) {
+        return "others";
+      }
+    },
+    isLogIn() {
+      if (localStorage.getItem("token") === "ImLogin") {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    // isPro() {
+    //   return this.$store.state.isPro == true ? true : false;
+    // },
   },
   methods: {
     //可以改is
@@ -130,9 +159,6 @@ export default {
     //     this.$data.logonType = "pwd";
     //   }
     // },
-    MyFortuneTellerInfo() {
-      this.$router.push("/myFortunetellerInfo");
-    },
   },
 };
 </script>
@@ -181,12 +207,15 @@ input {
   padding-top: 15px;
   padding-bottom: 15px;
   margin-bottom: 15px;
-  background: #dadada;
-  color: #fff;
+  background: #a3a3ac;
+  color: #111;
 }
 .btn:hover {
-  border: #fff;
+  background: #999;
+  color: #111;
+  /* border: #fff; */
 }
+
 .btnGray {
   color: #111;
 }

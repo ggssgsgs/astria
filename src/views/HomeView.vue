@@ -32,7 +32,7 @@ export default {
   <!-- 很長的 bg -->
   <div class="bg-color"></div>
   <div>
-    <SketchMain v-bind="sketchData" />
+    <SketchMain v-bind="sketchData" class="fixed" />
     <!-- <img :src="sketchData.imgStarHolderSrc" alt="" /> -->
     <div style="height: 500px"></div>
 
@@ -46,9 +46,17 @@ export default {
 <style scoped>
 .bg-color {
   width: 100%;
-  height: 4000px;
-  position: absolute;
+  height: 100vw;
+  position: fixed;
+  top: 0px;
   z-index: -3;
   background: rgb(0, 2, 53);
+  /* clear: both; */
+}
+.fixed {
+  width: 100%;
+  height: 100vw;
+  position: fixed;
+  /* top: 0px; */
 }
 </style>

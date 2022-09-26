@@ -1,4 +1,4 @@
-import { createStore } from "vuex";
+import {createStore} from "vuex";
 import axios from "axios";
 import descriptionJSON from "../assets/description.json";
 export default createStore({
@@ -84,6 +84,13 @@ export default createStore({
           //NNode: [2],
         },
         cusps: [296, 350, 30, 56, 75, 94, 116, 170, 210, 236, 255, 274],
+      },
+
+      currentAstrologist: {
+        ProName: "唐揚揚",
+        Select: "占星塔羅",
+        ProImg: "2.jpg",
+        PID: 1,
       },
     },
 
@@ -294,40 +301,40 @@ export default createStore({
         purchaseDate: "2022-09-02",
         isOver: true,
       },
-      {
-        rID: "0000000002",
-        //ProID: "ProID001",
-        //MemID: "MemID001",
-        ProName: "唐綺陽",
-        ProLesson: "塔羅課2",
-        //日期
-        ProTime: "2021-10-23",
-        UserSelect: "不明",
-        ProCost: 1600,
-        LesCount: 3,
-        ReserveAmount: 1,
+      // {
+      //   rID: "0000000002",
+      //   //ProID: "ProID001",
+      //   //MemID: "MemID001",
+      //   ProName: "唐綺陽",
+      //   ProLesson: "塔羅課2",
+      //   //日期
+      //   ProTime: "2021-10-23",
+      //   UserSelect: "不明",
+      //   ProCost: 1600,
+      //   LesCount: 3,
+      //   ReserveAmount: 1,
 
-        //資料表沒有
-        purchaseDate: "2022-09-02",
-        isOver: false,
-      },
-      {
-        rID: "0000000003",
-        //ProID: "ProID001",
-        //MemID: "MemID001",
-        ProName: "唐陽",
-        ProLesson: "塔羅課3",
-        //日期
-        ProTime: "2021-10-23",
-        UserSelect: "不明",
-        ProCost: 1600,
-        LesCount: 1,
-        ReserveAmount: 1,
+      //   //資料表沒有
+      //   purchaseDate: "2022-09-02",
+      //   isOver: false,
+      // },
+      // {
+      //   rID: "0000000003",
+      //   //ProID: "ProID001",
+      //   //MemID: "MemID001",
+      //   ProName: "唐陽",
+      //   ProLesson: "塔羅課3",
+      //   //日期
+      //   ProTime: "2021-10-23",
+      //   UserSelect: "不明",
+      //   ProCost: 1600,
+      //   LesCount: 1,
+      //   ReserveAmount: 1,
 
-        //資料表沒有
-        purchaseDate: "2022-09-02",
-        isOver: false,
-      },
+      //   //資料表沒有
+      //   purchaseDate: "2022-09-02",
+      //   isOver: false,
+      // },
     ],
     proOrders: [
       {
@@ -343,29 +350,31 @@ export default createStore({
         ProCost: 1600,
         LesCount: 1,
         ReserveAmount: 1,
+        Memo: "下午時段方便",
 
         //資料表沒有
         purchaseDate: "2022-09-02",
         isOver: true,
       },
-      {
-        rID: "0000000001",
-        //ProID: "ProID001",
-        //MemID: "MemID001",
-        ProName: "唐綺陽",
-        MemberName: "照相香",
-        ProLesson: "塔羅課",
-        //日期
-        ProTime: "2021-10-23",
-        UserSelect: "不明",
-        ProCost: 1600,
-        LesCount: 1,
-        ReserveAmount: 1,
+      // {
+      //   rID: "0000000001",
+      //   //ProID: "ProID001",
+      //   //MemID: "MemID001",
+      //   ProName: "唐綺陽",
+      //   MemberName: "照相香",
+      //   ProLesson: "塔羅課",
+      //   //日期
+      //   ProTime: "2021-10-23",
+      //   UserSelect: "不明",
+      //   ProCost: 1600,
+      //   LesCount: 1,
+      //   ReserveAmount: 1,
+      //   Memo: "上午時段方便",
 
-        //資料表沒有
-        purchaseDate: "2022-09-02",
-        isOver: false,
-      },
+      //   //資料表沒有
+      //   purchaseDate: "2022-09-02",
+      //   isOver: false,
+      // },
     ],
 
     //未使用
@@ -379,25 +388,30 @@ export default createStore({
         Select: "占星塔羅",
         ProImg: "1.jpg",
         MemberEmail: "hsianghoney@gmail.com",
+        PID: 1,
       },
-      { ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg" },
-      { ProName: "詹惟中", Select: "風水", ProImg: "3.jpg" },
-      { ProName: "唐齊齊", Select: "占星塔羅", ProImg: "4.jpg" },
-      { ProName: "唐揚揚", Select: "占星塔羅", ProImg: "5.jpg" },
-      { ProName: "詹惟中", Select: "風水", ProImg: "6.jpg" },
+      {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1},
+      {ProName: "詹惟中", Select: "風水", ProImg: "3.jpg", PID: 1},
+      {ProName: "唐齊齊", Select: "占星塔羅", ProImg: "4.jpg", PID: 1},
+      {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "5.jpg", PID: 1},
+      {ProName: "詹惟中", Select: "風水", ProImg: "6.jpg", PID: 1},
     ],
     //所有占星師
+    // Name: "ccc"
+    // PID: 4
+    // Select: "星盤"
+    // photo: "./imgs/Adv/Default.jpg"
     allAstrologists: [
-      { ProName: "唐齊齊", Select: "星座命盤", ProImg: "1.jpg" },
-      { ProName: "唐揚揚", Select: "生命靈數", ProImg: "2.jpg" },
-      { ProName: "詹惟中", Select: "塔羅占卜", ProImg: "3.jpg" },
-      { ProName: "唐齊齊", Select: "星座命盤", ProImg: "4.jpg" },
-      { ProName: "唐揚揚", Select: "人類圖", ProImg: "5.jpg" },
-      { ProName: "詹惟中", Select: "八字", ProImg: "6.jpg" },
-      { ProName: "詹惟中", Select: "風水", ProImg: "3.jpg" },
-      { ProName: "唐齊齊", Select: "星座命盤", ProImg: "7.jpg" },
-      { ProName: "唐揚揚", Select: "紫微斗數", ProImg: "5.jpg" },
-      { ProName: "詹惟中", Select: "風水", ProImg: "6.jpg" },
+      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "1.jpg", PID: 1},
+      {ProName: "唐揚揚", Select: "生命靈數", ProImg: "2.jpg", PID: 2},
+      {ProName: "詹惟中", Select: "塔羅占卜", ProImg: "3.jpg", PID: 3},
+      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "4.jpg", PID: 4},
+      {ProName: "唐揚揚", Select: "人類圖", ProImg: "5.jpg", PID: 5},
+      {ProName: "詹惟中", Select: "八字", ProImg: "6.jpg", PID: 6},
+      {ProName: "詹惟中", Select: "風水", ProImg: "3.jpg", PID: 7},
+      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "7.jpg", PID: 8},
+      {ProName: "唐揚揚", Select: "紫微斗數", ProImg: "5.jpg", PID: 9},
+      {ProName: "詹惟中", Select: "風水", ProImg: "6.jpg", PID: 10},
     ],
 
     //new
@@ -417,6 +431,9 @@ export default createStore({
     psName: ["妤塔羅占卜工作坊", "唐綺占星工作室"],
     psSkill: ["八字", "人類圖", "紫微斗數", "塔羅占卜", "生命靈數", "星座命盤"],
 
+    psLessons:[
+      
+    ],
     psLesson: [
       {
         lesson: "塔羅牌真命天子陣",
@@ -454,15 +471,48 @@ export default createStore({
         pstip: "⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠",
       },
     ],
-    pushLesson: {
-      lesson: [],
-      psTime: [],
-      pscontent: [,],
-      pstip: [],
-    },
+    
   },
   getters: {},
   mutations: {
+    //---Set Pro List
+    //---from api
+    // Name: "ccc"
+    // PID: 4
+    // Select: "星盤"
+    // photo: "./imgs/Adv/Default.jpg"
+    ///---State---
+    // ProName: "唐齊齊", Select: "星座命盤", ProImg: "1.jpg", PID: 1
+    setAllAstrologists(state, payload) {
+      payload.forEach((astrologist) => {
+        if (
+          payload.indexOf(astrologist) != 0 &&
+          payload.length > state.allAstrologists.length
+        ) {
+          state.allAstrologists.push({});
+        }
+        state.allAstrologists[payload.indexOf(astrologist)].PID =
+          astrologist.PID;
+        state.allAstrologists[payload.indexOf(astrologist)].ProName =
+          astrologist.Name;
+        state.allAstrologists[payload.indexOf(astrologist)].Select =
+          astrologist.Select;
+        state.allAstrologists[payload.indexOf(astrologist)].ProImg =
+          astrologist.photo;
+
+        console.log("set index", payload.indexOf(astrologist));
+      });
+    },
+
+    //設定目前商店
+
+    setCurrentAstrologist(state, payload) {
+      state.currentData.currentAstrologist.PID = payload.PID;
+      state.currentData.currentAstrologist.ProName = payload.ProName;
+      state.currentData.currentAstrologist.ProImg = payload.ProImg;
+      state.currentData.currentAstrologist.Select = payload.Select;
+    },
+
     //------Log Out
     logOut(state) {
       state.isLogIn = false;
@@ -500,8 +550,87 @@ export default createStore({
 
     //------ actions API 抓取後放入
 
-    setMyOrders() { },
-    setProOrders() { },
+    // rID: "0000000002",
+    // //ProID: "ProID001",
+    // //MemID: "MemID001",
+    // ProName: "唐綺陽",
+    // ProLesson: "塔羅課2",
+    // //日期 v
+    // ProTime: "2021-10-23",
+    // UserSelect: "不明",
+    // ProCost: 1600,
+    // LesCount: 3,
+    //不知道是啥 v
+    // ReserveAmount: 1,
+
+    // //資料表沒有
+    // purchaseDate: "2022-09-02",
+    // isOver: false,
+
+    setMyOrders(state, payload) {
+      payload.forEach((order) => {
+        if (
+          payload.indexOf(order) != 0 &&
+          payload.length > state.myOrders.length
+        ) {
+          state.myOrders.push({});
+        }
+        state.myOrders[payload.indexOf(order)].rID = order.RID;
+        state.myOrders[payload.indexOf(order)].ProID = order.PID;
+        state.myOrders[payload.indexOf(order)].MemID = order.MID;
+        state.myOrders[payload.indexOf(order)].ProName = order.PName;
+        state.myOrders[payload.indexOf(order)].ProLesson = order.Lesson;
+        state.myOrders[payload.indexOf(order)].ProTime = "2022-10-10"; //假日期
+        state.myOrders[payload.indexOf(order)].UserSelect = order.Select;
+        state.myOrders[payload.indexOf(order)].ProCost = order.Cost;
+        state.myOrders[payload.indexOf(order)].LesCount =
+          order.Total / order.Cost;
+        // state.myOrders.ReserveAmount
+        state.myOrders[payload.indexOf(order)].purchaseDate = "2022-09-09";
+        state.myOrders[payload.indexOf(order)].isOver = false; //統一未結案
+      });
+    },
+
+    //---API---
+    // Cost: 500
+    // Email: ""
+    // Lesson: "課程"
+    // MID: 3
+    // Memo: "備註"
+    // Name: "hsiang"
+    // PEmail: ""
+    // PID: 4
+    // PName: "ccc"
+    // RID: 10
+    // Select: "方式"
+    // Time: "時間"
+    // Total: 500000
+
+    setProOrders(state, payload) {
+      if (
+        payload.indexOf(order) != 0 &&
+        payload.length > state.proOrders.length
+      ) {
+        state.proOrders.push({});
+      }
+      payload.forEach((order) => {
+        state.proOrders[payload.indexOf(order)].rID = order.RID;
+        state.proOrders[payload.indexOf(order)].ProID = order.PID;
+        state.proOrders[payload.indexOf(order)].MemID = order.MID;
+        state.proOrders[payload.indexOf(order)].MemberName = order.Name;
+        state.proOrders[payload.indexOf(order)].ProName = order.PName;
+        state.proOrders[payload.indexOf(order)].ProLesson = order.Lesson;
+        state.proOrders[payload.indexOf(order)].ProTime = "2022-10-10"; //假日期
+        state.proOrders[payload.indexOf(order)].UserSelect = order.Select;
+        state.proOrders[payload.indexOf(order)].ProCost = order.Cost;
+        state.proOrders[payload.indexOf(order)].LesCount =
+          order.Total / order.Cost;
+        // state.proOrders.ReserveAmount
+        state.proOrders[payload.indexOf(order)].purchaseDate = "2022-09-09";
+        state.proOrders[payload.indexOf(order)].Memo = order.Memo;
+        state.proOrders[payload.indexOf(order)].isOver = false; //統一未結案
+      });
+    },
 
     //------
     deleteFriend(state, index) {
@@ -908,6 +1037,8 @@ export default createStore({
       state.myCart.local = "";
       state.myCart.online = "";
     },
+
+   
   },
   actions: {
     // increaseCounter() {
@@ -918,7 +1049,7 @@ export default createStore({
     //   });
     // },
 
-    getMyChartData({ commit, state }) {
+    getMyChartData({commit, state}) {
       //到時候更改API 提供四個欄位資料
       // axios
       //   .get("https://randomuser.me/api/", {
@@ -958,7 +1089,40 @@ export default createStore({
         });
     },
 
-    getChartData({ commit, state }, payload) {
+    getChartData({commit, state}, payload) {
+      axios
+        .post("https://astria.sutsanyuan.com/Astria_api/GuestAstroData", {
+          Date: payload.birthday,
+          Time: payload.birthTime,
+          Address: payload.location,
+        })
+        .then(function (response) {
+          console.log("get astro data by post", response);
+          state.currentData.currentChartDataOrigin = response.data.JObj.data;
+          console.log(
+            "myChartDataOrigin:",
+            state.currentData.currentChartDataOrigin
+          );
+          commit("setChartData", state.currentData.currentChartDataOrigin);
+          //console.log("myChartData_Axios", state.myChartData);
+          //分配取得各行星星座
+          commit("setSigns", state.currentData.currentChartDataOrigin);
+          //console.log("mySigns", this.mySigns);
+          //在 vue裡的 index.js 呼叫 state 會顯示 undefined
+          commit("assignSignName");
+          //console.log("mySignsNames", this.mySignsNames);
+          //有Sign 才有 House
+          commit("setHouses", state.currentData.currentChartDataOrigin);
+          //vvvv not gonna show
+          //console.log("myHouses", this.myHouses);
+          commit("assignHouseName");
+          //set degrees
+          commit("setDegrees", state.currentData.currentChartDataOrigin);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
       //到時候更改API 提供四個欄位資料
       // axios
       //   .get("https://randomuser.me/api/", {
@@ -1008,42 +1172,10 @@ export default createStore({
       //     //set degrees
       //     commit("setDegrees", state.currentData.currentChartDataOrigin);
       //   });
-      axios
-        .post("https://astria.sutsanyuan.com/Astria_api/GuestAstroData", {
-          Date: payload.birthday,
-          Time: payload.birthTime,
-          Address: payload.location,
-        })
-        .then(function (response) {
-          console.log("get astro data by post", response);
-          state.currentData.currentChartDataOrigin = response.data.JObj.data;
-          console.log(
-            "myChartDataOrigin:",
-            state.currentData.currentChartDataOrigin
-          );
-          commit("setChartData", state.currentData.currentChartDataOrigin);
-          //console.log("myChartData_Axios", state.myChartData);
-          //分配取得各行星星座
-          commit("setSigns", state.currentData.currentChartDataOrigin);
-          //console.log("mySigns", this.mySigns);
-          //在 vue裡的 index.js 呼叫 state 會顯示 undefined
-          commit("assignSignName");
-          //console.log("mySignsNames", this.mySignsNames);
-          //有Sign 才有 House
-          commit("setHouses", state.currentData.currentChartDataOrigin);
-          //vvvv not gonna show
-          //console.log("myHouses", this.myHouses);
-          commit("assignHouseName");
-          //set degrees
-          commit("setDegrees", state.currentData.currentChartDataOrigin);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
     },
 
     //取得登入資料
-    getLoginInfo({ commit, state }, email) {
+    getLoginInfo({commit, state}, email) {
       axios
         .post("https://astria.sutsanyuan.com/Astria_api/Login", {
           Email: email,
@@ -1057,7 +1189,7 @@ export default createStore({
         });
     },
 
-    getAccountInfo({ commit, state }, email) {
+    getAccountInfo({commit, state}, email) {
       axios
         .post("https://astria.sutsanyuan.com/Astria_api/ShowMemInfo", {
           Email: email,
@@ -1067,6 +1199,40 @@ export default createStore({
           commit("setAccountInfo", response.data.Req);
         });
     },
+
+    getReserationInfo({commit, state}, email) {
+      axios
+        .post("https://astria.sutsanyuan.com/Astria_api/ShowReserveInfo", {
+          Email: email,
+        })
+        .then((response) => {
+          console.log("Reservation data get by post:", response);
+          commit("setMyOrders", response.data.Req);
+          //console.log(state.myOrders[0].ProName);
+        });
+    },
+
+    getReserationProInfo({commit, state}, email) {
+      axios
+        .post("https://astria.sutsanyuan.com/Astria_api/ShowProReserveInfo", {
+          Email: email,
+        })
+        .then((response) => {
+          console.log("Pro Reservation data get by post:", response);
+          commit("setProOrders", response.data.Req);
+          //console.log(state.myOrders[0].ProName);
+        });
+    },
+
+    getProList() {
+      axios
+        .get("https://astria.sutsanyuan.com/Astria_api/ShowProCard")
+        .then((response) => {
+          console.log("get Pro List", response.data);
+          this.commit("setAllAstrologists", response.data);
+        });
+    },
+    
   },
   modules: {},
 });

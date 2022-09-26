@@ -130,14 +130,14 @@
           ><div class="image">
             <img src="../assets/img/icons/google.png" alt="google" /></div
         ></span>
-        <P>綁定成功</P>
+        <p>綁定成功</p>
       </div>
       <div class="outlink-item">
         <span
           ><div class="image">
             <img src="../assets/img/icons/facebook.png" alt="google" /></div
         ></span>
-        <P>綁定成功</P>
+        <p>綁定成功</p>
       </div>
     </div>
   </div>
@@ -156,7 +156,7 @@
       </div>
     </div>
   </div>
-  <duv class="card onsubmitcontent mx-1 mx-md-5">
+  <div class="card onsubmitcontent mx-1 mx-md-5">
     <button
       class="onsubmit btn"
       @click.prevent="nativeSubmit"
@@ -164,7 +164,7 @@
     >
       <h5>送出</h5>
     </button>
-  </duv>
+  </div>
 </template>
 
 <script>

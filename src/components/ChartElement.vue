@@ -266,14 +266,14 @@ export default {
   /* width: 90vw;
   height: 90vw; */
 }
-@media (screen) and (min-width: 768) {
-  .block {
+@media screen and (min-width: 768px) {
+  /* .block {
     width: 500px;
     height: 500px;
   }
   #paper {
     width: 500px;
     height: 500px;
-  }
+  } */
 }
 </style>

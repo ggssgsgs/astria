@@ -210,17 +210,16 @@ export default {
           .then((response) => response.json())
           .then((result) => {
             console.log(result);
-            this.remsg=result.Status
-            if(this.remsg==1){
-               console.log(this.remsg);
-               localStorage.setItem("token", "ImLogin");
-               this.$router.push('/')
+            this.remsg = result.Status;
+            if (this.remsg == 1) {
+              console.log(this.remsg);
+              localStorage.setItem("token", "ImLogin");
+              //更改vuex狀態
+              this.$store.state.isLogIn = true;
+              this.$router.push("/");
             }
-           
-
           })
           .catch((error) => console.log("error", error));
-        
 
         // fetch("https://astria.sutsanyuan.com/Astria_api/SecSignup", {
         //   method: "post",
@@ -284,7 +283,6 @@ export default {
 </script>
 
 <style scoped>
-
 .page {
   text-align: center;
 }
@@ -300,7 +298,6 @@ input {
   margin-bottom: 40px;
   padding-left: 10px;
   color: #eee;
- 
 }
 select {
   background: rgba(255, 255, 255, 0);
@@ -310,7 +307,6 @@ select {
   margin-bottom: 40px;
   padding-left: 10px;
   color: #eee;
-  
 }
 .card {
   background: rgba(255, 255, 255, 0.25);
@@ -340,17 +336,19 @@ button {
   color: #eee;
   border: none;
 }
-option{
-    color: #666;
-  }
-  .el-form-item__error{
-    color:tomato;
-  }
-  
-  
-  ::-webkit-input-placeholder{
-    color: #eee;
-  }
+option {
+  color: #666;
+}
+.page {
+  margin-bottom: 50px;
+}
+.el-form-item__error {
+  color: tomato;
+}
+
+::-webkit-input-placeholder {
+  color: #eee;
+}
 
 @media screen and (min-width: 992px) {
   .inputForm {
@@ -382,6 +380,5 @@ option{
   .row {
     margin: 0 240px;
   }
- 
 }
 </style>

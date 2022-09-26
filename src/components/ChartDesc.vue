@@ -128,6 +128,13 @@ export default {
       modules: [FreeMode],
     };
   },
+  created() {
+    window.addEventListener("resize", this.changeSlidesAmount);
+  },
+
+  destroyed() {
+    window.removeEventListener("resize", this.changeSlidesAmount);
+  },
 
   mounted() {
     console.log("chartDesc mounted");
@@ -200,6 +207,14 @@ export default {
     // console.log(this.signsNames);
   },
   methods: {
+    changeSlidesAmount(e) {
+      //change size
+      if (window.innerWidth < 992) {
+        this.slidesPerView = 1.2;
+      } else {
+        this.slidesPerView = 4.5;
+      }
+    },
     switchInfo(index) {
       this.signInfo = this.l_currentSignInfo[index];
       this.signName = this.currentSignsNames[index];

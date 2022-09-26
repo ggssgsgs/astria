@@ -252,6 +252,7 @@ export default {
   background: rgba(217, 217, 217, 0.25);
   color: white;
 }
+
 .optionsBtn:hover {
   cursor: pointer;
   background: rgba(217, 217, 217, 0.5);
@@ -267,5 +268,15 @@ export default {
 }
 span {
   margin-right: 10px;
+}
+
+@media screen and (max-width: 400px) {
+  .optionsBtn {
+    padding: 10px;
+    width: 45vw;
+    border-radius: 10px;
+    background: rgba(217, 217, 217, 0.25);
+    color: white;
+  }
 }
 </style>

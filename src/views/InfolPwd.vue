@@ -100,7 +100,7 @@ export default {
         let ckemail = this.user.username.value;
         let chpwd = this.user.password.value;
         let chrepwd = this.user.repassword.value;
-        fetch("http://52.139.170.100/api/MemRePWD", {
+        fetch("https://astria.sutsanyuan.com/Astria_api/ForgottenPWD", {
           method: "POST",
           headers: {
             "Content-Type": "application/json;charset =utf-8",

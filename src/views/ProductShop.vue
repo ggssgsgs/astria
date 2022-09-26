@@ -2,7 +2,12 @@
   <div class="BG">
     <div class="container-xl mt-5">
       <div class="row about">
-        <product-shop-about v-show="logonType === 'about'"></product-shop-about>
+        <product-shop-about
+          v-show="logonType === 'about'"
+          :the-shop="msgt1"
+          :the-location="msglocation"
+          :the-pcontent="msgp1"
+        ></product-shop-about>
       </div>
       <div class="row shop">
         <div class="col shopGroup">
@@ -19,20 +24,20 @@
             @slideChange="onSlideChange"
             @resize="onresize"
           >
-            <swiper-slide v-for="item in lesson">
+            <swiper-slide v-for="item in pslessons">
               <div class="shopItem">
                 <div class="image">
-                  <img src="https://picsum.photos/200/200?random=1" />
+                  <img src="../assets/img/lessons/lesson1.jpg">
                 </div>
-                <h4>{{ item.lesson }}</h4>
-                <p>{{ item.psTime }} mins NTD$1,000 起</p>
+                <h4>{{ item.Lesson }}</h4>
+                <p>{{ item.Time }} mins NTD${{ item.Cost }} 起</p>
                 <p class="swTxt">
-                  {{ item.pscontent }}
+                  {{ item.Des }}
                 </p>
-                <p class="swTxt1">{{ item.pstip }}</p>
+                <p class="swTxt1">{{ pTip }}</p>
                 <button
                   class="push1"
-                  @click="orderTo(this.lesson.indexOf(item))"
+                  @click="orderTo(this.pslessons.indexOf(item))"
                 >
                   點我預約
                 </button>
@@ -47,6 +52,7 @@
           :the-lesson="pLesson"
           :the-time="pTime"
           :the-content="pContent"
+          :the-cost="pCost"
           :the-tip="pTip"
         ></product-shop-order>
       </div>
@@ -60,6 +66,9 @@ import ProductShopOrder from "../components/ProductShopOrder.vue";
 import ProductShopAbout from "../components/ProductShopAbout.vue";
 import { useStore } from "vuex";
 
+//import sweetalert
+import Swal from "sweetalert2";
+
 export default {
   setup() {
     const store = useStore();
@@ -71,6 +80,32 @@ export default {
     ProductShopOrder,
     ProductShopAbout,
   },
+  mounted() {
+    // alert(this.$store.state.currentData.currentAstrologist.PID)
+    fetch("https://astria.sutsanyuan.com/Astria_api/showlesson", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json;charset =utf-8",
+      },
+      body: JSON.stringify({
+        
+        pid: this.$store.state.currentData.currentAstrologist.PID,
+      }),
+    })
+      .then(function (re) {
+        return re.json();
+      })
+      .then((body) => {
+        console.log(body);
+        this.msgt1 = body.Name;
+        this.msglocation = body.Address;
+        this.msgp1 = body.Experience;
+        this.pslessons = body.LessonTC;
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  },
   data() {
     return {
       logonType: "about",
@@ -78,18 +113,43 @@ export default {
       pLesson: "",
       pTime: "",
       pContent: "",
-      pTip: "",
+      pCost: "",
+      pTip: "⚠️選購本課程可錄音、拍照，不可錄影，請自備相關設備。⚠",
+      msgt1: "",
+      msglocation: "",
+      msgp1: "",
+      pslessons: [],
+   
+     
+     
     };
   },
   methods: {
     orderTo(index) {
       if (this.$data.logonType === "about") {
         this.$data.logonType = "order";
-        // alert(this.lesson[index].lesson);
-        this.pLesson = this.lesson[index].lesson;
-        this.pTime = this.lesson[index].psTime;
-        this.pContent = this.lesson[index].pscontent;
-        this.pTip = this.lesson[index].pstip;
+
+        this.pLesson = this.pslessons[index].Lesson;
+        this.pTime = this.pslessons[index].Time;
+        this.pCost = this.pslessons[index].Cost;
+        this.pContent = this.pslessons[index].Des;
+        if (!this.$store.state.isLogIn) {
+          console.log("not log in");
+          Swal.fire({
+            title: "您尚未登入",
+            text: "請登入以進入訂單",
+            // icon: "warning",
+            iconColor: "rgba(0,2,53,0.3)",
+            showCancelButton: false,
+            confirmButtonColor: "rgba(0,2,53,0.5)",
+            //cancelButtonColor: "rgba(0,2,53,0.5)",
+            confirmButtonText: "登入以繼續",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.$router.push("/logIn");
+            }
+          });
+        }
       } else {
         this.$data.logonType = "about";
       }

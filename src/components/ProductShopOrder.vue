@@ -7,7 +7,7 @@
             <img src="https://picsum.photos/200/200?random=1" />
           </div>
           <h4>{{ theLesson }}</h4>
-          <p>{{ theTime }} mins NTD$1,000 起</p>
+          <p>{{ theTime }} mins NTD${{ theCost }}起</p>
           <p class="swTxt">
             {{ theContent }}
           </p>
@@ -76,7 +76,8 @@ export default {
     const store = useStore();
     return {};
   },
-  props: ["the-lesson", "the-time", "the-content", "the-tip"],
+  props: ["the-lesson", "the-time", "the-content", "the-cost", "the-tip"],
+  mounted() {},
   data() {
     return {
       timeMsg: ["30", "60", "90", "120"],
@@ -100,7 +101,6 @@ export default {
       this.$router.push("/shoppingCart");
       this.isClick = "true";
       localStorage.setItem("myLesson", `${this.theLesson}`);
-      alert(this.theLesson);
     },
     addTime1() {
       if (this.isClick1 == "true") {
@@ -169,7 +169,7 @@ export default {
       this.objColor.coloritem4 = "rgba(255, 255, 255, 0.25)";
       this.objColor.coloritem5 = "rgba(255, 255, 255, 0.25)";
       this.objColor.coloritem6 = "rgba(255, 255, 255, 0.25)";
-     localStorage.removeItem("myLocation");
+      localStorage.removeItem("myLocation");
     },
   },
   computed: {

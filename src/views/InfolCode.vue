@@ -258,7 +258,7 @@ export default {
         email: {value: this.$store.state.myEmail, msg: ""},
       },
       // gender: computed(()=>{if(this.$store.state)})
-      submitDisabled: true, // 送出按鈕的disabled狀態，true為禁用
+      submitDisabled: false, // 送出按鈕的disabled狀態，true為禁用
     };
   },
   computed: {
@@ -311,14 +311,14 @@ export default {
         alert("進入if");
         // let chName = this.form.name.value;
 
-        let chGender = 0;
-        if (this.gender == "male") {
-          chGender = 1;
-        } else if (this.gender == "female") {
-          chGender = 2;
-        } else {
-          chGender = 0;
-        }
+        // let chGender = 0;
+        // if (this.gender == "male") {
+        //   chGender = 1;
+        // } else if (this.gender == "female") {
+        //   chGender = 2;
+        // } else {
+        //   chGender = 0;
+        // }
 
         // let chDate = this.form.date.value;
         // let chTime = this.form.time.value;
@@ -327,7 +327,7 @@ export default {
         // let chEmail = this.form.email.value;
 
         let chName = this.form.name.value;
-        // let chGender = this.form.gender.value;
+        let chGender = this.form.gender.value;
         let chDate = this.form.date.value;
         let chTime = this.form.time.value;
         let chadress = this.form.address.value;

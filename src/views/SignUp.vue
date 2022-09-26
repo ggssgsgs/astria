@@ -181,6 +181,8 @@ export default {
               if (this.resingupmsg == "1") {
                 localStorage.setItem("myemail", `${this.user.username.value}`);
                 localStorage.setItem("mymsg", `${this.resingupmsg1}`);
+                // this.$store.commit("loginSet", body.Req);
+
                 this.$router.push("/signUpForm");
                 console.log("註冊成功");
               }
@@ -335,7 +337,7 @@ img {
   margin: 10px 0 0 10px;
   color: #62ff36;
 }
-.el-form-item__error{
+.el-form-item__error {
   color: #eee;
 }
 </style>

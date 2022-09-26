@@ -33,9 +33,7 @@ import {RouterLink, RouterView} from "vue-router";
           ></form>
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">
-              <RouterLink @click="home" to="/" class="nav-link"
-                >Home</RouterLink
-              >
+              <RouterLink to="/" class="nav-link">Home</RouterLink>
             </li>
             <li class="nav-item">
               <RouterLink to="/about" class="nav-link">關於我們</RouterLink>
@@ -209,6 +207,8 @@ export default {
 
   mounted() {
     this.$store.dispatch("getProList");
+    this.$store.dispatch("getProListBySelect");
+
     if (localStorage.getItem("token") === "ImLogin") {
       this.$store.state.isLogIn = true;
       this.$store.state.myEmail = localStorage.getItem("myemail");
@@ -258,7 +258,7 @@ export default {
     //   }
     // },
     isPro() {
-      return this.$store.state.isPro == true ? true : false;
+      return localStorage.getItem("isPro") == "True" ? true : false;
     },
   },
   methods: {
@@ -270,9 +270,10 @@ export default {
       }
     },
     logOut() {
-      localStorage.removeItem("token");
-      localStorage.removeItem("myemail");
-      localStorage.removeItem("mymsg");
+      //移至store裡的muutation >logOut一併處理
+      // localStorage.removeItem("token");
+      // localStorage.removeItem("myemail");
+      // localStorage.removeItem("mymsg");
       this.$store.commit("logOut");
       this.$router.push("/");
       // location.reload();
@@ -328,5 +329,8 @@ footer {
 }
 .top-blank {
   height: 58.28px;
+}
+.color-dark-gray {
+  color: #555;
 }
 </style>

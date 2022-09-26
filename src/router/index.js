@@ -85,11 +85,6 @@ const router = createRouter({
       component: () => import("../views/shoppingCart.vue"),
     },
     {
-      path: "/productShop",
-      name: "productShop",
-      component: () => import("../views/ProductShop.vue"),
-    },
-    {
       path: "/chartFormPage",
       name: "chartFormPage",
       component: () => import("../views/ChartFormPage.vue"),

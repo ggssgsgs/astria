@@ -214,7 +214,8 @@ export default {
             if (this.remsg == 1) {
               console.log(this.remsg);
               localStorage.setItem("token", "ImLogin");
-              
+              //更改vuex狀態
+              this.$store.state.isLogIn = true;
               this.$router.push("/");
             }
           })
@@ -337,6 +338,9 @@ button {
 }
 option {
   color: #666;
+}
+.page {
+  margin-bottom: 50px;
 }
 .el-form-item__error {
   color: tomato;

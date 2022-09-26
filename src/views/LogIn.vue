@@ -76,8 +76,8 @@
 <script>
 import LoginByCode from "./LoginByCode.vue";
 import LoginByPwd from "./LoginByPwd.vue";
+//import axios from "axios";
 import {useStore} from "vuex";
-
 
 export default {
   setup() {
@@ -157,7 +157,7 @@ export default {
             console.log(this.a);
             if (this.a == "登入成功") {
               localStorage.setItem("token", "ImLogin");
-              this.$store.commit("testChangeFriendsName", {name: this.a});
+              //this.$store.commit("testChangeFriendsName", {name: this.a});
               localStorage.setItem("myemail", `${this.users}`);
               localStorage.setItem("mymsg", `${this.a}`);
 

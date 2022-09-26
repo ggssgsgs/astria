@@ -27,48 +27,54 @@
         <!-- <p class="radioTxt">Others</p> -->
         <div class="radio-btns d-flex justify-content-around">
           <input
-            v-model="gender"
+            v-model="form.gender.value"
             type="radio"
-            value="male"
+            value="1"
             class="btn-check"
             name="genders"
             id="male"
             autocomplete="off"
           />
-          <label class="btn btn-secondary" for="male">男性</label>
+          <label class="btn btn-secondary" for="male" @click="changeGender(1)"
+            >男性</label
+          >
           <input
-            v-model="gender"
-            value="female"
+            v-model="form.gender.value"
+            value="2"
             type="radio"
             class="btn-check"
             name="genders"
             id="female"
             autocomplete="off"
           />
-          <label class="btn btn-secondary" for="female">女性</label>
+          <label class="btn btn-secondary" for="female" @click="changeGender(2)"
+            >女性</label
+          >
           <input
-            v-model="gender"
-            value="others"
+            v-model="form.gender.value"
+            value="0"
             type="radio"
             class="btn-check"
             name="genders"
             id="others"
             autocomplete="off"
           />
-          <label class="btn btn-secondary" for="others">其他</label>
+          <label class="btn btn-secondary" for="others" @click="changeGender(0)"
+            >其他</label
+          >
         </div>
         <div class="el-form-item__error">{{ form.gender.msg }}</div>
       </div>
       <div class="d-flex input-item">
         <label class="l1">專長</label>
         <select v-model="form.skill.value" class="t1 text-center">
-          <option value="" disabled>請選擇專長</option>
+          <option v-if="form.skill.value != null" disabled>請選擇專長</option>
           <option v-for="skill in form.Selectlist" :key="skill" :value="skill">
             {{ skill }}
           </option>
         </select>
       </div>
-      <div class="d-flex input-item">
+      <!-- <div class="d-flex input-item">
         <label class="l1">收費</label>
         <select v-model="form.pay.value" class="t1 text-center">
           <option value="" disabled>請選擇收費選項</option>
@@ -84,7 +90,7 @@
             {{ pay }}
           </option>
         </select>
-      </div>
+      </div> -->
       <div class="d-flex input-item">
         <label class="l1">居住地</label>
         <select v-model="form.address.value" class="t1 text-center">
@@ -196,19 +202,19 @@ export default {
       remsg: "",
       remsgg: "",
       form: {
-        name: {value: "", msg: ""},
-        gender: {value: "male", msg: ""},
-        skill: {value: "", msg: ""},
+        name: {value: this.$store.state.myProName, msg: ""},
+        gender: {value: this.$store.state.myGender, msg: ""},
+        skill: {value: this.$store.state.mySkill, msg: ""},
         Selectlist: [
-          "",
           "八字",
           "人類圖",
           "塔羅占卜",
           "生命靈數",
           "星座命盤",
           "紫微斗數",
+          "星盤",
         ],
-        address: {value: "", msg: ""},
+        address: {value: this.$store.state.myAddress, msg: ""},
         addresslist: [
           "台北市",
           "新北市",
@@ -233,16 +239,19 @@ export default {
           "金門縣",
           "馬祖縣",
         ],
-        pay: {value: "", msg: ""},
-        paylist: ["", "500", "1000", "1500", "2000"],
-        phone: {value: "", msg: ""},
-        email: {value: "aa@gmail.com", msg: ""},
-        textmsg: {value: ""},
+        // pay: {value: "", msg: ""},
+        //paylist: ["", "500", "1000", "1500", "2000"],
+        phone: {value: this.$store.state.myProPhone, msg: ""},
+        email: {value: this.$store.state.myEmail, msg: ""},
+        textmsg: {value: this.$store.state.myExperience},
       },
-      submitDisabled: true, // 送出按鈕的disabled狀態，true為禁用
+      submitDisabled: false, // 送出按鈕的disabled狀態，true為禁用 // 粲淵改成false 否則依定需要更改電話號碼才能送
     };
   },
   methods: {
+    changeGender(sexNum) {
+      this.$store.state.myGender = sexNum;
+    },
     nativeValidate(target, key) {
       let checkPhone = reg_phoneType2(target.phone.value);
       const arr = [checkPhone];
@@ -270,40 +279,66 @@ export default {
     nativeSubmit() {
       if (!this.submitDisabled) {
         alert("進入if");
+
+        // let chName = this.form.name.value;
+        // let chGender = this.form.gender.value;
+        // let chDate = this.form.date.value;
+        // let chTime = this.form.time.value;
+        // let chadress = this.form.address.value;
+        // let chPhone = this.form.phone.value;
+        // let chEmail = this.form.email.value;
+        // let formdata = new FormData();
+        // formdata.append("Email", chEmail);
+        // formdata.append("Name", chName);
+        // formdata.append("Sex", chGender);
+        // formdata.append("Birth", chDate);
+        // formdata.append("BirthTime", chTime);
+        // formdata.append("BirthPlace", chadress);
+        // formdata.append("Phone", chPhone);
+        // let requestOptions = {
+        //   method: "POST",
+        //   body: formdata,
+        //   redirect: "follow",
+
         let chName = this.form.name.value;
         let chGender = this.form.gender.value;
         let chSelect = this.form.skill.value;
-        let chadress = this.form.address.value;
-        let chpay = this.form.pay.value;
+        let chAddress = this.form.address.value;
+        // let chpay = this.form.pay.value;
         let chPhone = this.form.phone.value;
         let chEmail = this.form.email.value;
         let chtextmsg = this.form.textmsg.value;
 
+        let formdata = new FormData();
+        formdata.append("Name", chName);
+        formdata.append("Sex", chGender);
+        formdata.append("Experience", chtextmsg);
+        formdata.append("Select", chSelect);
+        formdata.append("Phone", chPhone);
+        formdata.append("Address", chAddress);
+        formdata.append("Email", chEmail);
+        formdata.append("Photo", this.$store.state.myPhoto);
+
+        let requestOptions = {
+          method: "POST",
+          body: formdata,
+          redirect: "follow",
+        };
+
         console.log(chName);
         console.log(chGender);
         console.log(chSelect);
-        console.log(chadress);
-        console.log(chpay);
+        console.log(chAddress);
+        // console.log(chpay);
         console.log(chPhone);
         console.log(chEmail);
         console.log(chtextmsg);
+        console.log(this.$store.state.myPhoto);
 
-        fetch("http://52.139.170.100/api/ProInfo", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json;charset =utf-8",
-          },
-          body: JSON.stringify({
-            Name: chName,
-            Sex: chGender,
-            Experience: chtextmsg,
-            Select: chSelect,
-            Cost: chpay,
-            Phone: chPhone,
-            Email: chEmail,
-            Address: chadress,
-          }),
-        })
+        fetch(
+          "https://astria.sutsanyuan.com/Astria_api/AdvSignup",
+          requestOptions
+        )
           .then(function (response) {
             // alert("Fetch");
             return response.json();
@@ -332,7 +367,7 @@ export default {
         let chName = this.form.name.value;
         let chGender = this.form.gender.value;
         let chSelect = this.form.skill.value;
-        let chadress = this.form.address.value;
+        let chAddress = this.form.address.value;
         // let chpay =this.form.pay.value;
         let chPhone = this.form.phone.value;
         let chEmail = this.form.email.value;
@@ -341,7 +376,7 @@ export default {
         console.log(chName);
         console.log(chGender);
         console.log(chSelect);
-        console.log(chadress);
+        console.log(chAddress);
         console.log(chPhone);
         console.log(chEmail);
         console.log(chtextmsg);

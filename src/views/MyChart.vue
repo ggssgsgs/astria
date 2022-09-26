@@ -143,10 +143,10 @@ export default {
 };
 </script>
 <template>
-  <div class="BG py-5">
-    <div class="container-xl my-5">
+  <div class="BG py-0 py-lg-5">
+    <div class="container-xl my-2 my-lg-5">
       <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-12 row-no-padding">
+        <div class="col-lg-6 col-11 row-no-padding">
           <div class="smallBlock mx-1 mt-2 d-flex">
             <div
               class="w-25 m-auto d-flex justify-content-center"
@@ -188,7 +188,7 @@ export default {
           </div>
         </div>
 
-        <div class="col-lg-6 col-md-12 row-no-padding">
+        <div class="col-lg-6 col-11 row-no-padding">
           <div class="smallBlock mx-1 mt-2 d-flex align-items-center">
             <tr class="d-flex justify-content-around text-center w-100">
               <td>
@@ -274,7 +274,7 @@ span {
 @media screen and (max-width: 400px) {
   .optionsBtn {
     padding: 10px;
-    width: 45vw;
+    width: 41.25vw;
     border-radius: 10px;
     background: rgba(217, 217, 217, 0.25);
     color: white;

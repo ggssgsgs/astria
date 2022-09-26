@@ -108,7 +108,7 @@ export default {
       this.cs = 500 * (window.innerWidth / 1200);
     }
     if (window.innerWidth < 992) {
-      this.cs = window.innerWidth * 0.9;
+      this.cs = ((window.innerWidth * 0.9) / 12) * 11;
     }
 
     console.log(this.chartData);
@@ -194,7 +194,7 @@ export default {
 
       //change size
       if (window.innerWidth < 992) {
-        this.cs = window.innerWidth * 0.9;
+        this.cs = ((window.innerWidth * 0.9) / 12) * 11;
       } else if (window.innerWidth < 1140) {
         this.cs = 500 * (window.innerWidth / 1200);
       } else {

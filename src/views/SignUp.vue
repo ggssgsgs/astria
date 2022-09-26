@@ -1,15 +1,15 @@
 <template>
   <div class="BG">
-    <div class="container-xl mt-5">
+    <div class="container-xl my-5">
       <div class="singup-containt">
-        <div class="row justify-content-center">
-          <div class="col-12 col-lg-6">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-12 col-lg-4">
             <div class="card pic">
               <img src="../assets/img/LoginLogo.png" alt="logo" />
             </div>
           </div>
-          <div class="col-12 col-lg-6">
-            <div class="singup-form">
+          <div class="col-12 col-lg-7">
+            <div class="card singup-form">
               <h2>{{ msg1 }}</h2>
               <input
                 type="text"
@@ -35,31 +35,33 @@
                 placeholder="密碼確認(字母開頭含數字、6~18碼)"
               />
               <div class="el-form-item__error">{{ user.repassword.msg }}</div>
-              <input
-                type="text"
-                v-model="user.code.value"
-                placeholder="輸入驗證碼"
-                required
-              />
               <div class="d-flex login-bottom-containt">
-                <button class="singupcode-submit" @click="onChange">
-                  {{ message }}
+                <button class="singupcode-submit m-2" @click="onChange">
+                  <h5>{{ message }}</h5>
                 </button>
-                <br />
+
+                <input
+                  type="text"
+                  v-model="user.code.value"
+                  placeholder="輸入驗證碼"
+                  required
+                />
+
                 <button
-                  class="singup-submit"
+                  class="singup-submit m-2"
                   @click="nativeSubmit"
                   :disabled="status"
                 >
-                  註冊
+                  <h5>註冊</h5>
                 </button>
               </div>
               <div class="d-flex txt">
-                <div class="sinup">
-                  <span>已經是會員</span>
-                  <span class="t1" @click="loginTo">立即登入</span>
+                <div class="sign-up d-flex justify-content-between">
+                  <span class="h5 m-4">已經是會員</span>
+                  <span class="t1 h5 m-4" @click="loginTo">立即登入</span>
                 </div>
                 <div class="outlink">
+                  <hr />
                   <p><span>或請使用以下方式登入</span></p>
                   <div class="d-flex img-d">
                     <div class="image" @click="fbsingup">
@@ -82,7 +84,7 @@
   </div>
 </template>
 <script>
-import { reg_pwdCommon, reg_email } from "../utils/validate";
+import {reg_pwdCommon, reg_email} from "../utils/validate";
 import SketchMain from "../components/P5CanvasKeyVision_half.vue";
 import imgUrl from "../assets/img/starHolder.png";
 import imgUrl2 from "../assets/img/0728.jpg";
@@ -103,10 +105,10 @@ export default {
       resingupmsg1: "",
 
       user: {
-        username: { value: "", msg: "" },
-        password: { value: "", msg: "" },
-        repassword: { value: "", msg: "" },
-        code: { value: "", msg: "" },
+        username: {value: "", msg: ""},
+        password: {value: "", msg: ""},
+        repassword: {value: "", msg: ""},
+        code: {value: "", msg: ""},
       },
       submitDisabled: true, // 送出按鈕的disabled狀態，true為禁用
     };
@@ -256,7 +258,7 @@ input {
   background: rgba(255, 255, 255, 0.25);
 }
 h2 {
-  text-align: center;
+  text-align: center;sign-up
   margin: 30px 0 20px;
   color: #eee;
 }
@@ -268,15 +270,23 @@ img {
   background: #000235;
 }
 .pic img {
-  padding: 50px;
+  margin: auto;
+  width: 20vw;
 }
 .login-bottom-containt {
   flex-direction: column;
   align-items: center;
 }
+
+.singupcode-submit h5,
+.singup-submit h5 {
+  margin: 0px;
+  color: #fff;
+}
 .singupcode-submit {
-  width: 160px;
-  height: 30px;
+  width: 150px;
+  /* height: 30px; */
+  padding: 10px;
   margin-top: 30px;
   margin: 20px auto 0;
   border-radius: 10px;
@@ -286,8 +296,9 @@ img {
   /* text-align: center; */
 }
 .singup-submit {
-  width: 160px;
-  height: 30px;
+  width: 150px;
+  /* height: 30px; */
+  padding: 10px;
   margin: 0px auto 0;
   border-radius: 10px;
   background: rgba(217, 217, 217, 0.25);
@@ -302,40 +313,54 @@ img {
   color: gray;
   position: relative;
 }
-
+hr {
+  color: #eee;
+}
 .outlink p {
   color: gray;
   margin: 20px 0 30px;
 }
 
-.image {
-  width: 20%;
-  margin: 20px auto;
-}
 .image img {
-  border-radius: 50%;
+  width: 5vw;
+  margin: 40px 40px;
+  margin-bottom: 40px;
 }
-
 .txt {
   flex-direction: column;
   align-items: center;
   text-align: center;
   margin-top: 10px;
 }
-.sinup span {
+.sign-up span {
   color: #eee;
   margin-top: 10px;
 }
-.sinup .t1 {
-  margin: 0px 0 0 10px;
+.sign-up .t1 {
+  /* margin: 0px 0 0 10px; */
 
   color: #eee;
 }
-.sinup .t1:hover {
-  margin: 10px 0 0 10px;
+.sign-up .t1:hover {
   color: #62ff36;
+  cursor: pointer;
 }
-.el-form-item__error{
+.el-form-item__error {
   color: #eee;
+}
+
+@media screen and (max-width: 992px) {
+  .pic img {
+    margin: 0px auto;
+    width: 60vw;
+  }
+  .image img {
+    width: 15vw;
+    margin: 0px 40px;
+    margin-bottom: 40px;
+  }
+  .img-d {
+    padding: 0px;
+  }
 }
 </style>

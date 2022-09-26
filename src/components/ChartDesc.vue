@@ -1,6 +1,6 @@
 <template>
   <swiper
-    :slidesPerView="8"
+    :slidesPerView="this.slidesPerView"
     :spaceBetween="0"
     :freeMode="true"
     :modules="modules"
@@ -38,6 +38,7 @@
   <div class="contentBox">
     <div class="d-flex justify-content-center align-items-center">
       <img
+        class="img-planet"
         :src="this.iconPlanet[this.currentPlanetIndex]"
         alt="iconCCurrentPlanet"
       />
@@ -47,6 +48,7 @@
         class="logoSign"
       />
       <img
+        class="img-planet"
         :src="this.iconPlanet[this.currentPlanetIndex]"
         alt="iconCCurrentPlanet"
       />
@@ -137,6 +139,11 @@ export default {
   },
 
   mounted() {
+    if (window.innerWidth < 400) {
+      this.slidesPerView = 4;
+    } else {
+      this.slidesPerView = 8;
+    }
     console.log("chartDesc mounted");
     //only need to set once in myChart.vue
     //this.$store.dispatch("getMyChartData");
@@ -209,10 +216,10 @@ export default {
   methods: {
     changeSlidesAmount(e) {
       //change size
-      if (window.innerWidth < 992) {
-        this.slidesPerView = 1.2;
+      if (window.innerWidth < 400) {
+        this.slidesPerView = 4;
       } else {
-        this.slidesPerView = 4.5;
+        this.slidesPerView = 8;
       }
     },
     switchInfo(index) {
@@ -258,6 +265,7 @@ export default {
   computed: {},
   data() {
     return {
+      slidesPerView: 8,
       //icon
       iconPlanet: [
         iSun,
@@ -375,5 +383,11 @@ export default {
 }
 .logoSign {
   width: 200px;
+}
+
+@media screen and (max-width: 555px) {
+  .img-planet {
+    width: 15vw;
+  }
 }
 </style>

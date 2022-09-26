@@ -3,6 +3,7 @@ import axios from "axios";
 import descriptionJSON from "../assets/description.json";
 export default createStore({
   state: {
+    submitDisabled: false,
     currentAPIsrc:
       "http://52.139.170.100:3333/horoscope?time=1995-07-07T03:08:00Z&latitude=25.11111&longitude=120.11111&houseSystem=P",
     //Genaral Data
@@ -119,12 +120,12 @@ export default createStore({
 
     //專業帳號資料
     myPhoto: "",
-    myProName: "酥酥",
-    myProPhone: "0988888888",
-    myExperience: "三年占星經驗",
-    mySkill: "星盤",
+    myProName: "",
+    myProPhone: "",
+    myExperience: "",
+    mySkill: "",
     //居住地
-    myAddress: "台南市",
+    myAddress: "",
 
     isPro: false,
 
@@ -627,6 +628,7 @@ export default createStore({
       state.myPhone = payload.Phone;
       state.myGender = payload.Sex;
       state.isPro = payload.IsAdv;
+      state.mySigns = payload.signs;
 
       state.myLatitude = payload.JsonData.lat;
       state.myLongitude = payload.JsonData.lng;
@@ -1369,6 +1371,16 @@ export default createStore({
             }
           });
       });
+    },
+
+    getFriendsCharts({state, commit}, email) {
+      axios
+        .post("https://astria.sutsanyuan.com/Astria_api/ShowFriendData", {
+          Email: email,
+        })
+        .then((response) => {
+          console.log("friend", response);
+        });
     },
   },
   modules: {},

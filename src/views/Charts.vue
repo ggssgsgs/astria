@@ -2,10 +2,16 @@
   <div class="BG">
     <div class="container-xl mt-5">
       <div class="row justify-content-center">
-        <h2>選擇星盤好友</h2>
+        <div
+          class="mb-lg-5 mb-2 d-flex flex-wrap flex-md-nowrap justify-content-between align-items-center"
+        >
+          <h2>選擇星盤好友</h2>
+          <div class="btn btn-c">新增好友</div>
+        </div>
+
         <div
           v-for="friend in this.$store.state.friends"
-          class="col-lg-5 col-md-11 my-3 mx-3 friend-block"
+          class="col-lg-5 col-11 my-3 mx-3 friend-block"
         >
           <div class="d-flex">
             <div class="left-part m-auto d-flex justify-content-center">
@@ -154,6 +160,9 @@ export default {
       ],
     };
   },
+  beforeMount() {
+    this.$store.dispatch("getFriendsCharts", localStorage.getItem("myemail"));
+  },
   mounted() {
     if (!this.$store.state.isLogIn) {
       console.log("not log in");
@@ -166,6 +175,7 @@ export default {
         confirmButtonColor: "rgba(0,2,53,0.5)",
         //cancelButtonColor: "rgba(0,2,53,0.5)",
         confirmButtonText: "登入以繼續",
+        allowOutsideClick: false,
       }).then((result) => {
         if (result.isConfirmed) {
           this.$router.push("/logIn");
@@ -205,5 +215,15 @@ export default {
   cursor: pointer;
   background: rgba(217, 217, 217, 0.5);
   /* width: 200px; */
+}
+.btn {
+}
+@media screen and (max-width: 400px) {
+  .logoSign-sun-s {
+    width: 30vw;
+  }
+  .friend-block {
+    padding: 10px 0px;
+  }
 }
 </style>

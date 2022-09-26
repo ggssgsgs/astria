@@ -121,6 +121,12 @@ export default {
 
     //reload_newdata
     window.setTimeout(() => {
+      //delete the existing element
+      let element = document.getElementById("paper");
+      while (element.firstChild) {
+        element.removeChild(element.firstChild);
+      }
+
       loadScript("public/js/astrochart.js")
         .then(() => {
           // Script is loaded, do something

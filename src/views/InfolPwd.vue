@@ -142,11 +142,11 @@ export default {
   color: gray;
 }
 .infoContaint {
-  height: 540px;
+  /* height: 540px; */
 }
 .inputForm {
   flex-direction: column;
-  padding: 120px 100px;
+  padding: 40px 100px;
 }
 .card {
   background: #dadada !important;
@@ -201,5 +201,36 @@ h3 {
 }
 h5 {
   margin: 0;
+}
+
+@media screen and (max-width: 555px) {
+  /* .btn {
+    width: 25vw;
+  } */
+  .image {
+    width: 10vw;
+    margin: 10px auto;
+  }
+  .radio-btns {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px auto;
+    /* justify-content: flex-start !important; */
+    flex-wrap: wrap;
+  }
+  .radio-btns .btn {
+    width: 70px;
+    margin: 0px 5px;
+  }
+  .inputForm {
+    flex-direction: column;
+    padding: 20px 10vw;
+  }
+  .l1 {
+    width: 150px;
+    padding: auto 0;
+    letter-spacing: 0.2rem;
+    text-align: left;
+  }
 }
 </style>

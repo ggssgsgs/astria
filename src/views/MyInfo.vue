@@ -1,7 +1,7 @@
 <template>
   <div :class="{bgGray: isPro, BG: !isPro}">
-    <div class="container-xl mt-5">
-      <div class="row justify-content-center myInfo">
+    <div class="container-xl mt-5 pb-5 mb-5">
+      <div class="row justify-content-center myInfo mb-5">
         <div class="col-12 col-lg-4 buttonForm">
           <div
             class="btn"
@@ -207,6 +207,11 @@ input {
     width: 240px;
     margin-bottom: 30px;
     background: rgba(217, 217, 217, 0.25);
+  }
+}
+@media screen and (max-width: 400px) {
+  .btn {
+    width: 10vw;
   }
 }
 

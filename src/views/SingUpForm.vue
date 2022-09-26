@@ -108,7 +108,7 @@
   </div>
 </template>
 <script>
-import { reg_phoneType2 } from "../utils/validate";
+import {reg_phoneType2} from "../utils/validate";
 export default {
   mounted() {
     this.form.email.value = localStorage.getItem("myemail");
@@ -119,11 +119,11 @@ export default {
       remsg: "",
       remsgg: "",
       form: {
-        name: { value: "", msg: "" },
-        gender: { value: "1", msg: "" },
-        date: { value: "", msg: "" },
-        time: { value: "", msg: "" },
-        address: { value: "", msg: "" },
+        name: {value: "", msg: ""},
+        gender: {value: "1", msg: ""},
+        date: {value: "", msg: ""},
+        time: {value: "", msg: ""},
+        address: {value: "", msg: ""},
         addresslist: [
           "台北市",
           "新北市",
@@ -148,8 +148,8 @@ export default {
           "金門縣",
           "馬祖縣",
         ],
-        phone: { value: "", msg: "" },
-        email: { value: "" },
+        phone: {value: "", msg: ""},
+        email: {value: ""},
       },
       submitDisabled: true, // 送出按鈕的disabled狀態，true為禁用
     };
@@ -213,10 +213,11 @@ export default {
             this.remsg = result.Status;
             if (this.remsg == 1) {
               console.log(this.remsg);
-              localStorage.setItem("token", "ImLogin");
+              //localStorage.setItem("token", "ImLogin");
               //更改vuex狀態
-              this.$store.state.isLogIn = true;
-              this.$router.push("/");
+              //this.$store.state.isLogIn = true;
+
+              this.$router.push("/logIn");
             }
           })
           .catch((error) => console.log("error", error));

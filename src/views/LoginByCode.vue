@@ -1,5 +1,5 @@
 <template>
-  <div class="login-code">
+  <div class="login-code d-flex flex-wrap justify-content-center">
     <input
       class="input"
       v-model="userForm.email"
@@ -42,7 +42,7 @@ export default {
 } */
 input {
   /* list-style: none; */
-  width: 100%;
+  width: 85%;
   height: 60px;
   margin: 20px 0;
   padding-left: 10px;
@@ -50,6 +50,6 @@ input {
   color: #666;
 }
 .login-code {
-  padding: 0 80px;
+  /* padding: auto; */
 }
 </style>

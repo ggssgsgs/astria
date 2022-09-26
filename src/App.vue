@@ -299,6 +299,9 @@ input {
 button {
   border: none;
 }
+option {
+  color: #555;
+}
 .bgGray {
   background: #f5f5f5;
   display: flex;

@@ -1,5 +1,5 @@
 <template>
-  <div class="inpuForm">
+  <div class="inpuForm d-flex flex-wrap justify-content-center">
     <input
       v-model="userForm.username"
       @keyup.delete="keydelete"
@@ -43,7 +43,7 @@ export default {
 </script>
 <style scoped>
 input {
-  width: 100%;
+  width: 85%;
   height: 60px;
   margin: 20px 0;
   padding-left: 10px;
@@ -51,6 +51,6 @@ input {
   color: #666;
 }
 .inpuForm {
-  padding: 0 80px;
+  /* padding: 0 80px; */
 }
 </style>

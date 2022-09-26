@@ -121,6 +121,7 @@ export default {
         confirmButtonColor: "rgba(0,2,53,0.5)",
         //cancelButtonColor: "rgba(0,2,53,0.5)",
         confirmButtonText: "登入以繼續",
+        allowOutsideClick: false,
       }).then((result) => {
         if (result.isConfirmed) {
           this.$router.push("/logIn");

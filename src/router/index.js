@@ -89,6 +89,11 @@ const router = createRouter({
       name: "chartFormPage",
       component: () => import("../views/ChartFormPage.vue"),
     },
+    {
+      path: "/chartFormAddFriendPage",
+      name: "chartFormAddFriendPage",
+      component: () => import("../views/ChartFormAddFriendPage.vue"),
+    },
 
     // {
     //   path: '*',

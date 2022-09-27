@@ -112,7 +112,7 @@ import { reg_phoneType2 } from "../utils/validate";
 export default {
   mounted() {
     this.form.email.value = localStorage.getItem("myemail");
-    // console.log(localStorage.getItem('myemail'));
+   
   },
   data() {
     return {

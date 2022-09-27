@@ -41,7 +41,7 @@
             </div>
             <div class="count d-flex">
               <p>商品數量</p>
-              <p>{{ this.TheTime }}項</p>
+              <p>1項</p>
             </div>
             <div class="total d-flex">
               <p>商品總金額</p>

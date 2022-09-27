@@ -15,15 +15,15 @@
           @slideChange="onSlideChange"
           @resize="onresize"
         >
-          <swiper-slide v-for="item in lesson">
+          <swiper-slide v-for="item in pslessons">
             <div class="shopItem">
               <div class="image">
-                <img src="https://picsum.photos/200/200?random=1" />
+                <img :src="pslessons.Photo" />
               </div>
-              <h4>{{ item.lesson }}</h4>
-              <p>{{ item.psTime }} mins NTD$起</p>
+              <h4>{{ item.Lesson }}</h4>
+              <p>{{ item.Time }} mins,NTD${{ item.Cost }}起</p>
               <p class="swTxt">
-                {{ item.pscontent }}
+                {{ item.Des }}
               </p>
               <p class="swTxt1">{{ pTip }}</p>
             </div>
@@ -33,7 +33,7 @@
       <div class="row content">
         <div class="col-12 col-lg-5 shop">
           <div class="image">
-            <img src="https://picsum.photos/200/200?random=1" />
+            <img :src="this.images" />
           </div>
           <h4>{{ lessonName }}</h4>
           <p>{{ lessonTime }} mins NTD${{ lessonPrice }}起</p>
@@ -60,36 +60,38 @@
 
             <div class="radio-btns d-flex">
               <label>課程安排</label>
-              <input
-                v-model="location"
-                type="radio"
-                value="線上"
-                class="btn-check"
-                name="locations"
-                id="online"
-                autocomplete="off"
-              />
-              <label class="btn btn-secondary" for="online">線上</label>
-              <input
-                v-model="location"
-                value="實體"
-                type="radio"
-                class="btn-check"
-                name="locations"
-                id="local"
-                autocomplete="off"
-              />
-              <label class="btn btn-secondary" for="local">實體</label>
-              <input
-                v-model="location"
-                value="其他"
-                type="radio"
-                class="btn-check"
-                name="locations"
-                id="others"
-                autocomplete="off"
-              />
-              <label class="btn btn-secondary" for="others">其他</label>
+              <div class="radioBtn">
+                <input
+                  v-model="location"
+                  type="radio"
+                  value="線上"
+                  class="btn-check"
+                  name="locations"
+                  id="online"
+                  autocomplete="off"
+                />
+                <label class="btn btn-secondary" for="online">線上</label>
+                <input
+                  v-model="location"
+                  value="實體"
+                  type="radio"
+                  class="btn-check"
+                  name="locations"
+                  id="local"
+                  autocomplete="off"
+                />
+                <label class="btn btn-secondary" for="local">實體</label>
+                <input
+                  v-model="location"
+                  value="其他"
+                  type="radio"
+                  class="btn-check"
+                  name="locations"
+                  id="others"
+                  autocomplete="off"
+                />
+                <label class="btn btn-secondary" for="others">其他</label>
+              </div>
             </div>
             <div class="d-flex t1">
               <label for="des">課程介紹</label>
@@ -222,6 +224,7 @@ export default {
         "生命靈數",
         "人類圖",
       ],
+      images:'',
     };
   },
   methods: {
@@ -256,6 +259,11 @@ export default {
         })
         .then((body) => {
           console.log(body);
+          this.pslessons = body.LessonTC;
+          this.images=body.Photo
+         
+
+
         })
         .catch(function (err) {
           console.log(err);
@@ -274,8 +282,17 @@ export default {
   border-radius: 10px 10px 0px 0px;
   /* background: #999; */
 }
+.t1 {
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.radio-btns {
+  flex-direction: column;
+}
 .shopItem {
   background: #999;
+  padding: 20px;
 }
 .item {
   flex-direction: column;
@@ -284,20 +301,29 @@ export default {
 .inputGroup {
   flex-direction: column;
 }
+.btn-secondary {
+  width: 60px;
+  height: 40px;
+  color: #aaa;
+  margin: 15px 10px;
+}
 .itemGroup {
   margin: 30px auto;
   padding: 0 20px;
   /* text-align: center; */
 }
+.priceGroup {
+  flex-direction: column;
+  align-items: center;
+}
 .shop {
   background: #999;
 }
-
-.btn-secondary {
-  width: 60px;
-  height: 40px;
-  color: #aaa;
+.timeWrap {
+  flex-direction: column;
+  align-items: center;
 }
+
 .content {
   margin-top: 20px;
   border-radius: 0px 0px 10px 10px;
@@ -315,6 +341,7 @@ img {
 h2 {
   color: #999;
   margin-bottom: 20px;
+  text-align: center;
 }
 h5 {
   font-size: 18px;
@@ -332,14 +359,14 @@ h6 {
 input {
   width: 55%;
   height: 30px;
-  margin: 0px 0px 20px;
+  margin: 10px 0px 20px;
   color: gray;
   border-radius: 5px;
   padding-left: 10px;
 }
 textarea {
   width: 55%;
-  margin: 20px 20px 20px 0;
+  margin: 10px 20px 20px;
   border: none;
   color: gray;
   border-radius: 5px;
@@ -349,8 +376,10 @@ select {
   width: 55%;
   height: 30px;
   color: #999;
+  margin-top: 10px;
 }
 option {
+  width: 55%;
   color: #999;
 }
 .timeWrap input {
@@ -363,19 +392,21 @@ span {
 }
 label {
   color: gray;
-  margin: 0px 20px 20px 0;
 }
-.t1 label {
-}
+
 button {
   width: 100px;
   height: 40px;
   border-radius: 10px;
-  background: #999;
+  background: #a3a3ac;
 }
-.timeWrap {
-  flex-direction: column;
+.swTxt1{
+  margin: 10px;
 }
+/* .btn{
+  background: #a3a3ac;
+} */
+
 @media screen and (min-width: 992px) {
   .content {
     margin-top: 20px;
@@ -387,6 +418,29 @@ button {
     flex-direction: row;
   }
   .timeWrap label {
+    margin-right: 10px;
+  }
+  .t1 {
+    flex-direction: row;
+  }
+  .radio-btns {
+    flex-direction: row;
+  }
+  .radio-btns label{
+    margin-right: 10px;
+  }
+  .priceGroup{
+    flex-direction:row;
+  }
+ 
+  input{
+    margin-left: 20px;
+  }
+  select{
+    margin-left: 20px;
+  }
+  .btn-secondary{
+    margin-left: 10px;
   }
 }
 </style>

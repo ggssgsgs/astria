@@ -253,7 +253,7 @@ export default {
         email: {value: this.$store.state.myEmail, msg: ""},
         textmsg: {value: this.$store.state.myExperience},
       },
-      submitDisabled: this.$store.state.submitDisabled, // 送出按鈕的disabled狀態，true為禁用 // 粲淵改成false 否則依定需要更改電話號碼才能送
+      submitDisabled: true, // 送出按鈕的disabled狀態，true為禁用 // 粲淵改成false 否則依定需要更改電話號碼才能送
     };
   },
   methods: {

@@ -1,29 +1,30 @@
 <template>
-  <swiper
-    :slidesPerView="8"
-    :spaceBetween="0"
-    :freeMode="true"
-    :modules="modules"
-    :navigation="true"
-  >
-    <swiper-slide
-      v-for="planet in planets"
-      @click="switchInfo(this.planets.indexOf(planet))"
-      class="pe-auto"
+  <div class="py-1">
+    <swiper
+      :slidesPerView="this.slidesPerView"
+      :spaceBetween="0"
+      :freeMode="true"
+      :modules="modules"
+      :navigation="true"
     >
-      <div class="d-flex flex-column align-items-center">
-        <div class="my-2">
-          <img
-            :src="iconPlanet[this.planets.indexOf(planet)]"
-            alt="planetIcon"
-            class="iconPlanet"
-          />
+      <swiper-slide
+        v-for="planet in planets"
+        @click="switchInfo(this.planets.indexOf(planet))"
+        class="pe-auto"
+      >
+        <div class="d-flex flex-column align-items-center">
+          <div class="my-2">
+            <img
+              :src="iconPlanet[this.planets.indexOf(planet)]"
+              alt="planetIcon"
+              class="iconPlanet"
+            />
+          </div>
+          <span class="h5">{{ planet }}</span>
         </div>
-        <span class="h5">{{ planet }}</span>
-      </div>
-    </swiper-slide>
-    <!-- 記得最後可以複製一遍 -->
-    <!-- <swiper-slide>Slide 2</swiper-slide>
+      </swiper-slide>
+      <!-- 記得最後可以複製一遍 -->
+      <!-- <swiper-slide>Slide 2</swiper-slide>
     <swiper-slide>Slide 3</swiper-slide>
     <swiper-slide>Slide 1</swiper-slide>
     <swiper-slide>Slide 2</swiper-slide>
@@ -34,37 +35,40 @@
     <swiper-slide>Slide 1</swiper-slide>
     <swiper-slide>Slide 2</swiper-slide>
     <swiper-slide>Slide 3</swiper-slide> -->
-  </swiper>
-  <div class="contentBox">
-    <div class="d-flex justify-content-center align-items-center">
-      <img
-        :src="this.iconPlanet[this.currentPlanetIndex]"
-        alt="iconCCurrentPlanet"
-      />
-      <img
-        :src="this.logoSigns[this.currentSign - 1]"
-        alt="imgSign"
-        class="logoSign"
-      />
-      <img
-        :src="this.iconPlanet[this.currentPlanetIndex]"
-        alt="iconCCurrentPlanet"
-      />
+    </swiper>
+    <div class="contentBox">
+      <div class="d-flex justify-content-center align-items-center">
+        <img
+          class="img-planet"
+          :src="this.iconPlanet[this.currentPlanetIndex]"
+          alt="iconCCurrentPlanet"
+        />
+        <img
+          :src="this.logoSigns[this.currentSign - 1]"
+          alt="imgSign"
+          class="logoSign"
+        />
+        <img
+          class="img-planet"
+          :src="this.iconPlanet[this.currentPlanetIndex]"
+          alt="iconCCurrentPlanet"
+        />
+      </div>
+      <div class="h5 text-center">{{ signName }}</div>
+      <div class="p-2 p">
+        {{ signInfo }}
+      </div>
     </div>
-    <div class="h5 text-center">{{ signName }}</div>
-    <div class="p-2 p">
-      {{ signInfo }}
+    <div class="contentBox">
+      <div class="h5 text-center mt-2">{{ houseName }}</div>
+      <div class="p-2 p">{{ houseInfo }}</div>
     </div>
-  </div>
-  <div class="contentBox">
-    <div class="h5 text-center mt-2">{{ houseName }}</div>
-    <div class="p-2 p">{{ houseInfo }}</div>
-  </div>
 
-  <!-- <div>
+    <!-- <div>
     <table></table>
     <button @click="$store.dispatch('getMyChartData')">get data</button>
   </div> -->
+  </div>
 </template>
 <script>
 //import planets icon
@@ -128,8 +132,20 @@ export default {
       modules: [FreeMode],
     };
   },
+  created() {
+    window.addEventListener("resize", this.changeSlidesAmount);
+  },
+
+  destroyed() {
+    window.removeEventListener("resize", this.changeSlidesAmount);
+  },
 
   mounted() {
+    if (window.innerWidth < 400) {
+      this.slidesPerView = 4;
+    } else {
+      this.slidesPerView = 8;
+    }
     console.log("chartDesc mounted");
     //only need to set once in myChart.vue
     //this.$store.dispatch("getMyChartData");
@@ -200,6 +216,14 @@ export default {
     // console.log(this.signsNames);
   },
   methods: {
+    changeSlidesAmount(e) {
+      //change size
+      if (window.innerWidth < 400) {
+        this.slidesPerView = 4;
+      } else {
+        this.slidesPerView = 8;
+      }
+    },
     switchInfo(index) {
       this.signInfo = this.l_currentSignInfo[index];
       this.signName = this.currentSignsNames[index];
@@ -243,6 +267,7 @@ export default {
   computed: {},
   data() {
     return {
+      slidesPerView: 8,
       //icon
       iconPlanet: [
         iSun,
@@ -344,7 +369,7 @@ export default {
   border-radius: 10px;
 }
 .contentBox {
-  margin: 5px;
+  margin: 10px;
   background: #d9d9d9;
   border-radius: 10px;
   padding: 10px;
@@ -360,5 +385,11 @@ export default {
 }
 .logoSign {
   width: 200px;
+}
+
+@media screen and (max-width: 555px) {
+  .img-planet {
+    width: 15vw;
+  }
 }
 </style>

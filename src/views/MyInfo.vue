@@ -1,7 +1,7 @@
 <template>
   <div :class="{bgGray: isPro, BG: !isPro}">
-    <div class="container-xl mt-5">
-      <div class="row justify-content-center myInfo">
+    <div class="container-xl mt-5 pb-5 mb-5">
+      <div class="row justify-content-center myInfo mb-5">
         <div class="col-12 col-lg-4 buttonForm">
           <div
             class="btn"
@@ -35,6 +35,18 @@
           </div>
           <!-- <div @click="charts">好友星盤管理</div> -->
           <div
+            v-if="!isPro"
+            class="btn"
+            :class="{
+              btnGray: isPro,
+              btn: !isPro,
+            }"
+            @click="content = 'ftInfolCodeRegister'"
+          >
+            <h4>成為占星師</h4>
+          </div>
+          <div
+            v-if="isPro"
             class="btn"
             :class="{
               btnGray: isPro,
@@ -42,8 +54,7 @@
             }"
             @click="content = 'ftInfolCode'"
           >
-            <h4 v-if="!isPro">成為占星師</h4>
-            <h4 v-if="isPro">我的專業帳號</h4>
+            <h4>我的專業帳號</h4>
           </div>
           <div
             v-if="isPro"
@@ -86,6 +97,7 @@ import InfolCode from "./InfolCode.vue";
 import InfolPwd from "./InfolPwd.vue";
 // import InfolReserve from "./InfolReserve.vue";
 import ftInfolCode from "./ftInfolCode.vue";
+import ftInfolCodeRegister from "./ftInfolCodeRegister.vue";
 import reservation from "../components/Reservation.vue";
 import reservationPro from "../components/ReservationPro.vue";
 import CourseManagementPro from "../components/CourseManagementPro.vue";
@@ -113,8 +125,9 @@ export default {
     // InfolReserve,
     reservation,
     reservationPro,
-    CourseManagementPro,
     ftInfolCode,
+    ftInfolCodeRegister,
+    CourseManagementPro,
   },
   name: "MyInfo",
   data() {
@@ -220,6 +233,11 @@ input {
     width: 240px;
     margin-bottom: 30px;
     background: rgba(217, 217, 217, 0.25);
+  }
+}
+@media screen and (max-width: 400px) {
+  .btn {
+    width: 10vw;
   }
 }
 

@@ -16,7 +16,9 @@
         />
         <div class="el-form-item__error">{{ form.name.msg }}</div>
       </div>
-      <div class="d-flex input-item">
+      <div
+        class="d-flex input-item flex-wrap flex-md-nowrap justify-content-between"
+      >
         <label class="l1">性別 </label>
         <!-- <input v-model="gender" class="t2" type="radio" value="male" /> -->
         <!-- <p class="radioTxt">Male</p> -->
@@ -149,14 +151,20 @@
   <div class="card infolBtnContent mx-1 mx-md-5">
     <h3>推播通知設定</h3>
     <div class="infolBtn">
-      <div class="d-flex inforpaper-d">
-        <div class="btn">願意</div>
-        <div class="btn">不願意</div>
+      <div class="d-flex inforpaper-d flex-wrap flex-md-nowrap">
+        <div class="d-flex">
+          <div class="btn">願意</div>
+          <div class="btn">不願意</div>
+        </div>
+
         <p class="infoTxt">收到Astria藏星電子報</p>
       </div>
-      <div class="d-flex inforphone-d">
-        <div class="btn">願意</div>
-        <div class="btn">不願意</div>
+      <div class="d-flex inforphone-d flex-wrap flex-md-nowrap">
+        <div class="d-flex">
+          <div class="btn">願意</div>
+          <div class="btn">不願意</div>
+        </div>
+
         <p class="infoTxt">收到Astria藏星電話通知</p>
       </div>
     </div>
@@ -308,7 +316,7 @@ export default {
     },
     nativeSubmit() {
       if (!this.submitDisabled) {
-        alert("進入if");
+        //alert("進入if");
         // let chName = this.form.name.value;
 
         // let chGender = 0;
@@ -464,8 +472,9 @@ input {
 }
 
 .l1 {
+  margin: auto 0;
   width: 150px;
-  padding: 20px 0 0;
+  padding: auto 0;
   letter-spacing: 0.5rem;
   text-align: left;
 }
@@ -483,7 +492,7 @@ select {
 }
 .image {
   width: 20%;
-  margin: 0 auto 10px;
+  margin: 10px auto;
 }
 .outLink h3 {
   margin: 30px 0;
@@ -533,13 +542,45 @@ select {
   border: none;
 }
 .radio-btns .btn {
-  width: 100px;
+  width: 80px;
   margin: 0px 10px;
+  /* padding-top: 10px; */
 }
 .onsubmitcontent {
   background: #000235;
 }
 h5 {
   margin: 0;
+}
+
+@media screen and (max-width: 555px) {
+  /* .btn {
+    width: 25vw;
+  } */
+  .image {
+    width: 10vw;
+    margin: 10px auto;
+  }
+  .radio-btns {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px auto;
+    /* justify-content: flex-start !important; */
+    flex-wrap: wrap;
+  }
+  .radio-btns .btn {
+    width: 70px;
+    margin: 0px 5px;
+  }
+  .inputForm {
+    flex-direction: column;
+    padding: 20px 10vw;
+  }
+  .l1 {
+    width: 150px;
+    padding: auto 0;
+    letter-spacing: 0.2rem;
+    text-align: left;
+  }
 }
 </style>

@@ -1,7 +1,8 @@
 <template>
   <div class="col-12 col-lg-3 itemPic">
     <div class="pic">
-      <img src="https://picsum.photos/200/200?random=1" />
+      <!-- <img src="https://picsum.photos/200/200?random=1" /> -->
+      <img :src="proimg.ProImg" />
     </div>
   </div>
   <div class="col-12 col-lg-9 itemTxt">
@@ -16,7 +17,12 @@
   </div>
 </template>
 <script>
+import { useStore } from "vuex";
 export default {
+  setup() {
+    const store = useStore();
+    return {};
+  },
   props: ["the-shop", "the-location", "the-pcontent"],
   data() {
     return {
@@ -34,6 +40,11 @@ export default {
       }
     },
   },
+   computed:{
+    proimg(){
+      return  this.$store.state.currentData.currentAstrologist
+    },
+   },
 };
 </script>
 <style scoped>

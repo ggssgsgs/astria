@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<sitemanifest>
-  <IisApp path="C:\Users\z0938\OneDrive\文件\上課素材\全端課程\全端期末\astro\WebApplication1\WebApplication1\obj\Release\Package\PackageTmp" />
-  <setAcl path="C:\Users\z0938\OneDrive\文件\上課素材\全端課程\全端期末\astro\WebApplication1\WebApplication1\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
-  <setAcl path="C:\Users\z0938\OneDrive\文件\上課素材\全端課程\全端期末\astro\WebApplication1\WebApplication1\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
-</sitemanifest>

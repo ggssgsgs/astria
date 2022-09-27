@@ -74,6 +74,33 @@ export default {
     // }
     // this.$store.state.myEmail = localStorage.getItem("myemail");
 
+    // //----- 產 生 星 盤 S O P ------
+
+    // //將資料導入Ｃurrent
+    // this.$store.commit("setCurrentData", {
+    //   name: this.$store.state.myName,
+    //   birthday: this.$store.state.myBirthday,
+    //   birthTime: this.$store.state.myBirthTime,
+    //   location: this.$store.state.myLocation,
+    // });
+
+    // //轉換 UTC 時間
+    // this.$store.commit("setCurrentUTCtime");
+
+    // //非同步 產生星盤資料
+    // this.$store.dispatch("getChartData", {
+    //   birthday: this.$store.state.currentData.currentUTCBirthday,
+    //   birthTime: this.$store.state.currentData.currentUTCBirthTime,
+    //   location: this.$store.state.currentData.currentLocation,
+    // });
+
+    // //----- 產 生 星 盤 S O P ------
+
+    // console.log(this.$store.state.myChartData);
+    // console.log("MyChart>mySigns", this.$store.state.mySigns);
+    // console.log("JSON", this.$store.state.descJSON.length);
+  },
+  mounted() {
     //----- 產 生 星 盤 S O P ------
 
     //將資料導入Ｃurrent
@@ -87,6 +114,10 @@ export default {
     //轉換 UTC 時間
     this.$store.commit("setCurrentUTCtime");
 
+    console.log(
+      "this.$store.state.currentData.currentUTCBirthTime",
+      this.$store.state.currentData.currentUTCBirthTime
+    );
     //非同步 產生星盤資料
     this.$store.dispatch("getChartData", {
       birthday: this.$store.state.currentData.currentUTCBirthday,
@@ -95,12 +126,6 @@ export default {
     });
 
     //----- 產 生 星 盤 S O P ------
-
-    // console.log(this.$store.state.myChartData);
-    // console.log("MyChart>mySigns", this.$store.state.mySigns);
-    // console.log("JSON", this.$store.state.descJSON.length);
-  },
-  mounted() {
     // window.setTimeout(() => {
     //   if (localStorage.getItem("token") === "ImLogin") {
     //     this.$store.state.isLogIn = true;
@@ -121,6 +146,7 @@ export default {
         confirmButtonColor: "rgba(0,2,53,0.5)",
         //cancelButtonColor: "rgba(0,2,53,0.5)",
         confirmButtonText: "登入以繼續",
+        allowOutsideClick: false,
       }).then((result) => {
         if (result.isConfirmed) {
           this.$router.push("/logIn");
@@ -142,10 +168,10 @@ export default {
 };
 </script>
 <template>
-  <div class="BG py-5">
-    <div class="container-xl my-5">
+  <div class="BG py-0 py-lg-5">
+    <div class="container-xl my-2 my-lg-5">
       <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-12 row-no-padding">
+        <div class="col-lg-6 col-11 row-no-padding">
           <div class="smallBlock mx-1 mt-2 d-flex">
             <div
               class="w-25 m-auto d-flex justify-content-center"
@@ -187,7 +213,7 @@ export default {
           </div>
         </div>
 
-        <div class="col-lg-6 col-md-12 row-no-padding">
+        <div class="col-lg-6 col-11 row-no-padding">
           <div class="smallBlock mx-1 mt-2 d-flex align-items-center">
             <tr class="d-flex justify-content-around text-center w-100">
               <td>
@@ -252,6 +278,7 @@ export default {
   background: rgba(217, 217, 217, 0.25);
   color: white;
 }
+
 .optionsBtn:hover {
   cursor: pointer;
   background: rgba(217, 217, 217, 0.5);
@@ -267,5 +294,15 @@ export default {
 }
 span {
   margin-right: 10px;
+}
+
+@media screen and (max-width: 400px) {
+  .optionsBtn {
+    padding: 10px;
+    width: 41.25vw;
+    border-radius: 10px;
+    background: rgba(217, 217, 217, 0.25);
+    color: white;
+  }
 }
 </style>

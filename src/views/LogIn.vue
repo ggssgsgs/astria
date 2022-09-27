@@ -1,56 +1,58 @@
 <template>
   <div class="BG">
-    <div class="container-xl mt-5">
+    <div class="container-xl my-5">
       <div class="login-containt">
-        <div class="row justify-content-center">
-          <div class="col">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-12 col-lg-4">
             <div class="card pic">
               <img src="../assets/img/LoginLogo.png" alt="logo" />
             </div>
           </div>
-          <div class="col-12 col-lg-6">
+          <div class="col-12 col-lg-7">
             <div class="card inputform">
               <h2>{{ msg1 }}</h2>
               <!-- 忘記密碼 -->
               <login-by-code
                 @pchecked="paddchick"
                 @pdeleted="pdeletechick"
-                v-show="logonType === 'code'"
+                v-if="logonType === 'code'"
               >
               </login-by-code>
               <!-- 登入頁面 -->
               <login-by-pwd
                 @checked="addchick"
                 @deleted="deletechick"
-                v-show="logonType === 'pwd'"
+                v-if="logonType === 'pwd'"
               >
               </login-by-pwd>
 
-              <div class="d-flex login-bottom-containt">
-                <button id="login" class="login-button" @click="onSubmit">
-                  {{ msg }}
+              <div class="d-flex justify-content-center flex-wrap">
+                <button id="login" class="login-button m-2" @click="onSubmit">
+                  <h5>{{ msg }}</h5>
                 </button>
                 <button
-                  class="change-login-type"
+                  class="change-login-type m-2"
                   @click="onChangeLoginType"
                   v-show="logonType === 'pwd'"
                 >
-                  忘記密碼
+                  <h5>忘記密碼</h5>
                 </button>
                 <button
-                  class="change-login-type"
+                  class="change-login-type m-2"
                   @click="onChangeLoginType"
                   v-show="logonType === 'code'"
                 >
-                  回上一頁
+                  <h5>回上一頁</h5>
                 </button>
               </div>
               <div class="d-flex txt">
-                <div class="sinup">
-                  <span>還不是會員</span>
-                  <span class="t1" @click="singupTo">立即註冊</span>
+                <div class="sign-up d-flex justify-content-between">
+                  <span class="h5 m-4">還不是會員?</span>
+                  <span class="t1 h5 m-4" @click="singupTo">立即註冊</span>
                 </div>
+
                 <div class="outlink">
+                  <hr />
                   <p><span>或請使用以下方式登入</span></p>
                   <div class="d-flex img-d">
                     <div class="image">
@@ -120,7 +122,7 @@ export default {
     },
     //登入頁面,，觸發事件，抓取子物件回傳
     addchick(item) {
-      console.log(item.username, item.password);
+      // console.log(item.username, item.password);
       this.users.push(item.username);
       this.passwords.push(item.password);
     },
@@ -151,14 +153,26 @@ export default {
             return response.json();
           })
           .then((body) => {
-            console.log(body);
-            console.log(body.Msg);
+            // console.log(body);
+            // console.log(body.Msg);
             this.a = body.Msg;
-            console.log(this.a);
+            // console.log(this.a);
+            if (this.a == "尚未註冊完成") {
+              localStorage.setItem(
+                "myemail",
+                `${this.users[this.users.length - 1]}`
+              );
+              localStorage.setItem("mymsg", `${this.a}`);
+              this.$router.push("/signUpForm");
+              //onsole.log("註冊成功");
+            }
             if (this.a == "登入成功") {
               localStorage.setItem("token", "ImLogin");
               //this.$store.commit("testChangeFriendsName", {name: this.a});
-              localStorage.setItem("myemail", `${this.users}`);
+              localStorage.setItem(
+                "myemail",
+                `${this.users[this.users.length - 1]}`
+              );
               localStorage.setItem("mymsg", `${this.a}`);
 
               //更改vuex狀態
@@ -170,14 +184,14 @@ export default {
           // .then(body => this.datas = body.Msg
           // )
           .catch(function (err) {
-            console.log(err);
+            // console.log(err);
           });
       } else {
         // 忘記密碼
         // this.$router.push('/');
         let chemaillen = this.chemail.length;
         let chemails = this.chemail[chemaillen - 1];
-        console.log(chemails);
+        // console.log(chemails);
 
         fetch("https://astria.sutsanyuan.com/Astria_api/ForgottenPWD", {
           method: "post",
@@ -196,13 +210,13 @@ export default {
             this.b = body.Status;
             if (this.b == "1") {
               this.$data.logonType = "pwd";
-              console.log("忘記密碼");
+              // console.log("忘記密碼");
               this.msg1 = "登入";
               this.msg = "登入";
             }
           })
           .catch(function (err) {
-            console.log(err);
+            // console.log(err);
           });
       }
     },
@@ -252,47 +266,55 @@ img {
   width: 100%;
 }
 .pic {
-  padding: 50px 50px 50px 0;
+  padding: 50px;
   background: #000235;
 }
 .pic img {
-  padding: 70px;
+  margin: auto;
+  width: 20vw;
+  /* padding: 70px; */
 }
 .inputform {
-  height: 740px;
+  /* height: 740px; */
   background: rgba(255, 255, 255, 0.25);
-  padding-top: 30px;
+  /* padding: 30px; */
 }
-.login-bottom-containt {
-  flex-direction: column;
-  align-items: center;
-}
+
 .login-button {
-  width: 160px;
-  height: 30px;
-  margin-top: 30px;
-  margin: 20px auto 0;
+  width: 150px;
+  padding: 10px;
+
+  /* margin-top: 30px; */
+  /* margin: 20px auto 0; */
   border-radius: 10px;
   background: rgba(217, 217, 217, 0.25);
   border: none;
   color: #fff;
   /* text-align: center; */
 }
+.login-button h5,
+.change-login-type h5 {
+  margin: 0;
+}
 .change-login-type {
-  width: 160px;
-  height: 30px;
+  width: 150px;
+  padding: 10px;
   border-radius: 10px;
   background: rgba(217, 217, 217, 0.25);
   border: none;
   color: #fff;
-  margin: 20px 0 5px;
+  /* margin: 20px 0 5px; */
 }
 h2 {
   text-align: center;
   margin: 30px 0 20px;
 }
 .outlink {
-  padding: 20px 30px;
+  padding: 20px 0px;
+}
+
+.outlink hr {
+  color: #eee;
 }
 .outlink span {
   display: block; /*設定為塊級元素會獨佔一行形成上下居中的效果*/
@@ -305,12 +327,13 @@ h2 {
   margin: 20px 0 30px;
 }
 
-.image {
-  width: 18%;
-  margin: 20px auto;
+.image img {
+  width: 5vw;
+  margin: 40px 40px;
+  margin-bottom: 40px;
 }
 .img-d {
-  padding: 0 80px;
+  padding: 0 px;
 }
 
 .txt {
@@ -321,14 +344,27 @@ h2 {
 .oltxt {
   margin: 10px;
 }
-.sinup .t1 {
-  margin-left: 10px;
+
+.sign-up .t1 {
+  /* margin-left: 10px; */
 }
-.sinup .t1:hover {
-  margin-left: 10px;
+.sign-up .t1:hover {
   color: #62ff36;
+  cursor: pointer;
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (max-width: 992px) {
+  .pic img {
+    margin: 0px auto;
+    width: 60vw;
+  }
+  .image img {
+    width: 15vw;
+    margin: 0px 40px;
+    margin-bottom: 40px;
+  }
+  .img-d {
+    padding: 0px;
+  }
 }
 </style>

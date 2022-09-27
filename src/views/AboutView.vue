@@ -1,9 +1,9 @@
 <template>
   <div class="BG">
     <div class="container my-5">
-      <div class="row">
-        <h2 class="my-5">關於我們</h2>
-        <div>
+      <div class="row justify-content-center">
+        <div class="col-11">
+          <h2 class="my-5">關於我們</h2>
           <p>
             你相信星座嗎？你知道每個人會因為出生於不同的日期、時間及地點，而造就出不一樣的性格以及命運嗎？
           </p>

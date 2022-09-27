@@ -108,7 +108,7 @@ export default {
       this.cs = 500 * (window.innerWidth / 1200);
     }
     if (window.innerWidth < 992) {
-      this.cs = window.innerWidth * 0.9;
+      this.cs = ((window.innerWidth * 0.9) / 12) * 11;
     }
 
     console.log(this.chartData);
@@ -121,6 +121,12 @@ export default {
 
     //reload_newdata
     window.setTimeout(() => {
+      //delete the existing element
+      let element = document.getElementById("paper");
+      while (element.firstChild) {
+        element.removeChild(element.firstChild);
+      }
+
       loadScript("public/js/astrochart.js")
         .then(() => {
           // Script is loaded, do something
@@ -188,7 +194,7 @@ export default {
 
       //change size
       if (window.innerWidth < 992) {
-        this.cs = window.innerWidth * 0.9;
+        this.cs = ((window.innerWidth * 0.9) / 12) * 11;
       } else if (window.innerWidth < 1140) {
         this.cs = 500 * (window.innerWidth / 1200);
       } else {
@@ -266,14 +272,14 @@ export default {
   /* width: 90vw;
   height: 90vw; */
 }
-@media (screen) and (min-width: 768) {
-  .block {
+@media screen and (min-width: 768px) {
+  /* .block {
     width: 500px;
     height: 500px;
   }
   #paper {
     width: 500px;
     height: 500px;
-  }
+  } */
 }
 </style>

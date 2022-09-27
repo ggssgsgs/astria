@@ -67,6 +67,8 @@
 </template>
 <script>
 import { useStore } from "vuex";
+//import sweetalert
+import Swal from "sweetalert2";
 export default {
   setup() {
     const store = useStore();
@@ -88,6 +90,7 @@ export default {
       TheLocation: "",
       TheTime: "",
       TheCost: "",
+      pStatus:"",
     };
   },
   methods: {
@@ -124,7 +127,7 @@ export default {
           ProCost: this.TheCost,
           Total: this.TheCost,
           Email: this.email,
-          PEmail: "aa@gmail.com",
+          PEmail: this.$store.state.currentData.currentAstrologist.ProEmail,
           Memo: this.theMemo,
           Date: "1",
         }),
@@ -133,7 +136,20 @@ export default {
           return re.json();
         })
         .then((body) => {
-          console.log(body);
+          // console.log(body);
+          this.pStatus=body.Status
+          if (this.pStatus == "1") {
+            Swal.fire({
+              // position: "top-end",
+              icon: "success",
+              title: "預約成功",
+              text: "可以查看你的預約課程",
+              iconColor: "rgba(0,2,53,0.3)",
+              showConfirmButton: false,
+            }).then((result) => {
+              this.$router.push("/productShop");
+            });
+          }
         })
         .catch(function (err) {
           console.log(err);

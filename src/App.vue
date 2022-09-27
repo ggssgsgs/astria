@@ -118,10 +118,11 @@ import {RouterLink, RouterView} from "vue-router";
   <RouterView />
   <footer>
     <div class="container">
-      <div class="row py-5">
+      <div class="row py-5 justify-content-center">
         <div class="col-2 d-flex justify-content-center">
           <div class="my-2">
             <img
+              class="footer-logo"
               alt="Astria logo"
               src="@/assets/logo.png"
               width="80"
@@ -129,7 +130,7 @@ import {RouterLink, RouterView} from "vue-router";
             />
           </div>
         </div>
-        <div class="col-6 d-flex flex-column justify-content-between">
+        <div class="col-8 col-md-6 d-flex flex-column justify-content-between">
           <div>
             <button type="button" class="btn btn-primary mx-2 ms-0">
               <svg
@@ -187,7 +188,9 @@ import {RouterLink, RouterView} from "vue-router";
                 ></path>
               </svg>
             </button>
-            <span class="mx-2">隱私條款</span>
+          </div>
+          <div class="mt-2">
+            <span class="mx-2 ms-0">隱私條款</span>
             <span class="mx-2">問題回報</span>
           </div>
           <div>
@@ -196,7 +199,7 @@ import {RouterLink, RouterView} from "vue-router";
           </div>
         </div>
 
-        <div class="col-4"></div>
+        <div class="col-0 col-md-2"></div>
       </div>
     </div>
   </footer>
@@ -296,6 +299,9 @@ input {
 button {
   border: none;
 }
+option {
+  color: #555;
+}
 .bgGray {
   background: #f5f5f5;
   display: flex;
@@ -313,6 +319,7 @@ p {
 }
 h1 {
 }
+
 footer {
   background: #001055;
 }
@@ -332,5 +339,13 @@ footer {
 }
 .color-dark-gray {
   color: #555;
+}
+
+@media screen and (max-width: 400px) {
+  .footer-logo {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+  }
 }
 </style>

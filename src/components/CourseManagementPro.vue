@@ -18,7 +18,7 @@
           <swiper-slide v-for="item in pslessons">
             <div class="shopItem">
               <div class="image">
-                <img :src="pslessons.Photo" />
+                <img :src="item.Photo" />
               </div>
               <h4>{{ item.Lesson }}</h4>
               <p>{{ item.Time }} mins,NTD${{ item.Cost }}起</p>
@@ -33,7 +33,7 @@
       <div class="row content">
         <div class="col-12 col-lg-5 shop">
           <div class="image">
-            <img :src="this.images" />
+            <img src="..\assets\img\lessons\lesson3.jpg" />
           </div>
           <h4>{{ lessonName }}</h4>
           <p>{{ lessonTime }} mins NTD${{ lessonPrice }}起</p>
@@ -168,6 +168,8 @@
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import { useStore } from "vuex";
+//import sweetalert
+import Swal from "sweetalert2";
 export default {
   components: {
     Swiper,
@@ -189,14 +191,14 @@ export default {
         return re.json();
       })
       .then((body) => {
-        console.log(body);
+        // console.log(body);
         this.msgt1 = body.Name;
         this.msglocation = body.Address;
         this.msgp1 = body.Experience;
         this.pslessons = body.LessonTC;
       })
       .catch(function (err) {
-        console.log(err);
+        // console.log(err);
       });
   },
 
@@ -224,7 +226,7 @@ export default {
         "生命靈數",
         "人類圖",
       ],
-      images:'',
+      myStatus: "",
     };
   },
   methods: {
@@ -258,15 +260,24 @@ export default {
           return re.json();
         })
         .then((body) => {
-          console.log(body);
+          // console.log(body);
           this.pslessons = body.LessonTC;
-          this.images=body.Photo
-         
-
-
+          this.myStatus = body.Status;
+          if (this.myStatus == "11-1") {
+            Swal.fire({
+              // position: "top-end",
+              icon: "success",
+              title: "新增成功",
+              text: "可以查看你的課程",
+              iconColor: "rgba(0,2,53,0.3)",
+              showConfirmButton: false,
+            }).then((result) => {
+              this.$router.push("/products");
+            });
+          }
         })
         .catch(function (err) {
-          console.log(err);
+          // console.log(err);
         });
     },
   },
@@ -304,8 +315,9 @@ export default {
 .btn-secondary {
   width: 60px;
   height: 40px;
-  color: #aaa;
   margin: 15px 10px;
+  background: #a3a3ac;
+  border: none;
 }
 .itemGroup {
   margin: 30px auto;
@@ -377,6 +389,7 @@ select {
   height: 30px;
   color: #999;
   margin-top: 10px;
+  border: none;
 }
 option {
   width: 55%;
@@ -400,12 +413,12 @@ button {
   border-radius: 10px;
   background: #a3a3ac;
 }
-.swTxt1{
+.swTxt1 {
   margin: 10px;
 }
-/* .btn{
-  background: #a3a3ac;
-} */
+.btn {
+  color: #eee;
+}
 
 @media screen and (min-width: 992px) {
   .content {
@@ -426,20 +439,20 @@ button {
   .radio-btns {
     flex-direction: row;
   }
-  .radio-btns label{
+  .radio-btns label {
     margin-right: 10px;
   }
-  .priceGroup{
-    flex-direction:row;
+  .priceGroup {
+    flex-direction: row;
   }
- 
-  input{
+
+  input {
     margin-left: 20px;
   }
-  select{
+  select {
     margin-left: 20px;
   }
-  .btn-secondary{
+  .btn-secondary {
     margin-left: 10px;
   }
 }

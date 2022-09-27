@@ -32,7 +32,7 @@
               <h6>預約日期：{{ order.ProTime }}</h6>
             </div>
             <div class="text-start mx-4 ms-0">
-              <h6>備註：無</h6>
+              <h6>備註：{{ order.Memo }}</h6>
             </div>
           </div>
         </div>

@@ -119,12 +119,12 @@ export default createStore({
 
     //專業帳號資料
     myPhoto: "",
-    myProName: "酥酥",
-    myProPhone: "0988888888",
-    myExperience: "三年占星經驗",
-    mySkill: "星盤",
+    myProName: "",
+    myProPhone: "",
+    myExperience: "",
+    mySkill: "",
     //居住地
-    myAddress: "台南市",
+    myAddress: "",
 
     isPro: false,
 
@@ -1112,23 +1112,23 @@ export default createStore({
     },
     //productshop購物車
     addStorespTime(state) {
-      state.myCart.addpsTime += 30;
-      state.myCart.addCost += state.psCost[0];
+      // state.myCart.addpsTime += 30;
+      // state.myCart.addCost += state.psCost[0];
       state.myCart.psCount += 1;
     },
     addStorespTime1(state) {
-      state.myCart.addpsTime += 60;
-      state.myCart.addCost += state.psCost[1];
+      // state.myCart.addpsTime += 60;
+      // state.myCart.addCost += state.psCost[1];
       state.myCart.psCount += 1;
     },
     addStorespTime2(state) {
-      state.myCart.addpsTime += 90;
-      state.myCart.addCost += state.psCost[2];
+      // state.myCart.addpsTime += 90;
+      // state.myCart.addCost += state.psCost[2];
       state.myCart.psCount += 1;
     },
     addStorespTime3(state) {
-      state.myCart.addpsTime += 120;
-      state.myCart.addCost += state.psCost[3];
+      // state.myCart.addpsTime += 120;
+      // state.myCart.addCost += state.psCost[3];
       state.myCart.psCount += 1;
     },
     addStoreonline(state) {
@@ -1138,8 +1138,8 @@ export default createStore({
       state.myCart.local = "實體";
     },
     removeStoreInfol(state) {
-      state.myCart.addpsTime = 0;
-      state.myCart.addCost = 0;
+      // state.myCart.addpsTime = 0;
+      // state.myCart.addCost = 0;
       state.myCart.psCount = 0;
       state.myCart.local = "";
       state.myCart.online = "";

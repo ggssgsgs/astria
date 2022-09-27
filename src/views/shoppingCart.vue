@@ -9,9 +9,19 @@
             <div class="tittl">
               <h4>{{ myCart.shopNmae }}</h4>
             </div>
-
-            <shopping-cart-card></shopping-cart-card>
-
+            <div class="card">
+              <div class="item d-flex">
+                <div class="pic">
+                  <img src="https://picsum.photos/200/200?random=1" />
+                </div>
+                <div class="txt d-flex">
+                  <p>{{ TheLesson }}</p>
+                  <p>{{ TheTime }}mins</p>
+                  <p>NT${{ TheCost }}</p>
+                  <p>{{ myCart.online }}{{ myCart.local }}</p>
+                </div>
+              </div>
+            </div>
             <div class="memo">
               <h4>商品備註</h4>
               <textarea v-model="theMemo" cols="42" rows="6"></textarea>
@@ -31,11 +41,11 @@
             </div>
             <div class="count d-flex">
               <p>商品數量</p>
-              <p>{{ myCart.psCount }}項</p>
+              <p>{{ this.TheTime }}項</p>
             </div>
             <div class="total d-flex">
               <p>商品總金額</p>
-              <p>NT${{ myCart.addCost }}</p>
+              <p>NT${{ this.TheCost }}</p>
             </div>
             <div class="tip">
               <p>
@@ -56,18 +66,19 @@
   </div>
 </template>
 <script>
-import shoppingCartCard from "../components/shoppingCartCard.vue";
 import { useStore } from "vuex";
 export default {
   setup() {
     const store = useStore();
     return {};
   },
-  components: {
-    shoppingCartCard,
-  },
+
   mounted() {
-    
+    this.email = localStorage.getItem("myemail");
+    this.TheLocation = localStorage.getItem("myLocation");
+    this.TheLesson = localStorage.getItem("myLesson");
+    this.TheTime = localStorage.getItem("myTime");
+    this.TheCost = localStorage.getItem("myCost");
   },
   data() {
     return {
@@ -75,19 +86,32 @@ export default {
       email: "",
       TheLesson: "",
       TheLocation: "",
+      TheTime: "",
+      TheCost: "",
     };
   },
   methods: {
     remove() {
       this.$store.commit("removeStoreInfol");
+      this.TheLesson = "";
+      this.TheTime = "";
+      this.TheLocation = "";
+      this.TheCost = "";
+      this.theMemo = "";
       localStorage.removeItem("myLesson");
+      localStorage.removeItem("myLocation");
+      localStorage.removeItem("myTime");
+      localStorage.removeItem("myCost");
     },
     onsubmit() {
-      alert(this.myCart.addpsTime);
-      alert(this.theMemo);
-      alert(this.email);
-      alert(this.TheLesson);
-      alert("fetch");
+      // alert(this.TheLesson)
+      // alert(this.TheTime)
+      // alert(this.TheLocation)
+      // alert(this.TheCost)
+      // alert(this.TheLesson)
+      // alert(this.email)
+      // alert(this.theMemo)
+
       fetch(" https://astria.sutsanyuan.com/Astria_api/CreateReserve", {
         method: "post",
         headers: {
@@ -95,12 +119,12 @@ export default {
         },
         body: JSON.stringify({
           Lesson: this.TheLesson,
-          Time: this.myCart.addpsTime,
-          Select: this.TheLocationl,
-          Cost: this.myCart.addCost,
-          Total: this.myCart.addCost,
+          Time: this.TheTime,
+          Select: this.TheLocation,
+          ProCost: this.TheCost,
+          Total: this.TheCost,
           Email: this.email,
-          PEmail: "a1@gmail.com",
+          PEmail: "aa@gmail.com",
           Memo: this.theMemo,
           Date: "1",
         }),
@@ -110,7 +134,6 @@ export default {
         })
         .then((body) => {
           console.log(body);
-          alert("我到fetch");
         })
         .catch(function (err) {
           console.log(err);
@@ -118,8 +141,9 @@ export default {
 
       localStorage.removeItem("myLesson");
       localStorage.removeItem("myLocation");
+      localStorage.removeItem("myCost");
+      localStorage.removeItem("myTime");
       this.$router.push("/productShop");
-      alert("我到local");
     },
   },
   computed: {
@@ -187,16 +211,36 @@ button {
   text-align: left;
 }
 textarea {
+  width: 100%;
   color: #666;
   border-radius: 10px;
+  padding-left: 10px;
 }
 h3 {
   margin-top: 20px;
+}
+.card {
+  background: rgba(255, 255, 255, 0.25);
+}
+.txt {
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10px auto;
+  padding-top: 30px;
+  
+}
+p {
+  letter-spacing: 0.1rem;
+}
+.tip p {
+  padding: 20px 0;
 }
 @media screen and (min-width: 992px) {
   textarea {
     width: 60%;
     color: #666;
+
   }
   button {
     width: 120px;
@@ -215,11 +259,21 @@ h3 {
     margin: 0 0 20px;
     text-align: left;
   }
-  p {
-    padding: 10px 0;
+  .txt p {
+    padding: 0 30px;
   }
   .image {
     padding: 40px 50px 20px;
+  }
+  .txt {
+    /* align-items: center; */
+    /* margin: auto; */
+    flex-direction: row;
+    padding-top: 0;
+    /* text-align: center; */
+  }
+  .itemgroup p {
+    margin: 10px;
   }
 }
 </style>

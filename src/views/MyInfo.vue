@@ -56,6 +56,17 @@
           >
             <h4>我的預約</h4>
           </div>
+          <div
+            v-if="isPro"
+            class="btn"
+            :class="{
+              btnGray: isPro,
+              btn: !isPro,
+            }"
+            @click="content = 'CourseManagementPro'"
+          >
+            <h4>我的課程管理</h4>
+          </div>
         </div>
         <div class="col-12 col-lg-8 inforForm py-5">
           <keep-alive>
@@ -77,6 +88,7 @@ import InfolPwd from "./InfolPwd.vue";
 import ftInfolCode from "./ftInfolCode.vue";
 import reservation from "../components/Reservation.vue";
 import reservationPro from "../components/ReservationPro.vue";
+import CourseManagementPro from "../components/CourseManagementPro.vue";
 export default {
   beforeMount() {
     this.$store.dispatch("getReserationInfo", this.$store.state.myEmail);
@@ -101,6 +113,7 @@ export default {
     // InfolReserve,
     reservation,
     reservationPro,
+    CourseManagementPro,
     ftInfolCode,
   },
   name: "MyInfo",

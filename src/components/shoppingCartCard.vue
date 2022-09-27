@@ -6,8 +6,8 @@
       </div>
       <div class="txt d-flex">
         <p>{{ TheLesson }}</p>
-        <p>{{ myCart.addpsTime }}mins</p>
-        <p>NT${{ myCart.addCost }}</p>
+        <p>{{ TheTime }}mins</p>
+        <p>NT${{ TheCost }}</p>
         <p>{{ myCart.online }}{{ myCart.local }}</p>
       </div>
     </div>
@@ -23,19 +23,15 @@ export default {
   },
   mounted() {
     this.TheLesson = localStorage.getItem("myLesson");
+    this.TheTime = localStorage.getItem("myTime");
+    this.TheCost = localStorage.getItem("myCost");
   },
   data() {
     return {
       TheLesson: "",
-      // cartItem: [
-      //   {
-      //     myLesson: { value: "" },
-      //     myTime: { value: "" },
-      //     myPrice: { value: "" },
-      //     myLocation: { value: "" },
-      //     myTotalPrice: { value: "" },
-      //   },
-      // ],
+      TheTime:'',
+      TheCost:'',
+
     };
   },
 

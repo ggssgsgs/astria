@@ -35,6 +35,18 @@
           </div>
           <!-- <div @click="charts">好友星盤管理</div> -->
           <div
+            v-if="!isPro"
+            class="btn"
+            :class="{
+              btnGray: isPro,
+              btn: !isPro,
+            }"
+            @click="content = 'ftInfolCodeRegister'"
+          >
+            <h4>成為占星師</h4>
+          </div>
+          <div
+            v-if="isPro"
             class="btn"
             :class="{
               btnGray: isPro,
@@ -42,8 +54,7 @@
             }"
             @click="content = 'ftInfolCode'"
           >
-            <h4 v-if="!isPro">成為占星師</h4>
-            <h4 v-if="isPro">我的專業帳號</h4>
+            <h4>我的專業帳號</h4>
           </div>
           <div
             v-if="isPro"
@@ -55,6 +66,17 @@
             @click="content = 'reservationPro'"
           >
             <h4>我的預約</h4>
+          </div>
+          <div
+            v-if="isPro"
+            class="btn"
+            :class="{
+              btnGray: isPro,
+              btn: !isPro,
+            }"
+            @click="content = 'CourseManagementPro'"
+          >
+            <h4>我的課程管理</h4>
           </div>
         </div>
         <div class="col-12 col-lg-8 inforForm py-5">
@@ -75,8 +97,10 @@ import InfolCode from "./InfolCode.vue";
 import InfolPwd from "./InfolPwd.vue";
 // import InfolReserve from "./InfolReserve.vue";
 import ftInfolCode from "./ftInfolCode.vue";
+import ftInfolCodeRegister from "./ftInfolCodeRegister.vue";
 import reservation from "../components/Reservation.vue";
 import reservationPro from "../components/ReservationPro.vue";
+import CourseManagementPro from "../components/CourseManagementPro.vue";
 export default {
   beforeMount() {
     this.$store.dispatch("getReserationInfo", this.$store.state.myEmail);
@@ -102,6 +126,8 @@ export default {
     reservation,
     reservationPro,
     ftInfolCode,
+    ftInfolCodeRegister,
+    CourseManagementPro,
   },
   name: "MyInfo",
   data() {

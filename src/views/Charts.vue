@@ -6,7 +6,7 @@
           class="mb-lg-5 mb-2 d-flex flex-wrap flex-md-nowrap justify-content-between align-items-center"
         >
           <h2>選擇星盤好友</h2>
-          <div class="btn btn-c">新增好友</div>
+          <div class="btn btn-c" @click="addFriend">新增好友</div>
         </div>
 
         <div
@@ -110,6 +110,9 @@ export default {
     return {};
   },
   methods: {
+    addFriend() {
+      this.$router.push("/chartFormAddFriendPage");
+    },
     viewChart(friend) {
       //將資料導入Current
       this.$store.commit("setCurrentData", {

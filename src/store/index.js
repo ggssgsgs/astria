@@ -92,6 +92,7 @@ export default createStore({
         Select: "占星塔羅",
         ProImg: "2.jpg",
         PID: 1,
+        ProEmail: "aa@gmail.com",
       },
     },
 
@@ -193,10 +194,10 @@ export default createStore({
         birthday: "1996-08-09",
         birthTime: "03:08:00",
         birthCity: "Taipei",
-        // astroAPI:
-        //   "http://52.139.170.100:3333/horoscope?time=1996-08-09T08:14:00Z&latitude=25.11111&longitude=120.11111&houseSystem=P",
 
         signs: [5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        // astroAPI:
+        //   "http://52.139.170.100:3333/horoscope?time=1996-08-09T08:14:00Z&latitude=25.11111&longitude=120.11111&houseSystem=P",
         //myLatitude: "25.11111",
         //myLongitude: "121.11111",
         //birthdayAndTime: "1995-07-07T03:08:00Z",
@@ -309,6 +310,7 @@ export default createStore({
         LesCount: 2,
         ReserveAmount: 2,
 
+        Memo: "備註",
         //資料表沒有
         purchaseDate: "2022-09-02",
         isOver: true,
@@ -414,28 +416,148 @@ export default createStore({
     // Select: "星盤"
     // photo: "./imgs/Adv/Default.jpg"
     allAstrologists: [
-      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "1.jpg", PID: 1},
-      {ProName: "唐揚揚", Select: "生命靈數", ProImg: "2.jpg", PID: 2},
-      {ProName: "詹惟中", Select: "塔羅占卜", ProImg: "3.jpg", PID: 3},
-      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "4.jpg", PID: 4},
-      {ProName: "唐揚揚", Select: "人類圖", ProImg: "5.jpg", PID: 5},
-      {ProName: "詹惟中", Select: "八字", ProImg: "6.jpg", PID: 6},
-      {ProName: "詹惟中", Select: "風水", ProImg: "3.jpg", PID: 7},
-      {ProName: "唐齊齊", Select: "星座命盤", ProImg: "7.jpg", PID: 8},
-      {ProName: "唐揚揚", Select: "紫微斗數", ProImg: "5.jpg", PID: 9},
-      {ProName: "詹惟中", Select: "風水", ProImg: "6.jpg", PID: 10},
+      {
+        ProName: "唐齊齊",
+        Select: "星座命盤",
+        ProImg: "1.jpg",
+        PID: 1,
+        ProEmail: "cc@gmail..com",
+      },
+      {
+        ProName: "唐揚揚",
+        Select: "生命靈數",
+        ProImg: "2.jpg",
+        PID: 2,
+        ProEmail: "cc@gmail..com",
+      },
+      {
+        ProName: "詹惟中",
+        Select: "塔羅占卜",
+        ProImg: "3.jpg",
+        PID: 3,
+        ProEmail: "cc@gmail..com",
+      },
+      {
+        ProName: "唐齊齊",
+        Select: "星座命盤",
+        ProImg: "4.jpg",
+        PID: 4,
+        ProEmail: "cc@gmail..com",
+      },
+      {
+        ProName: "唐揚揚",
+        Select: "人類圖",
+        ProImg: "5.jpg",
+        PID: 5,
+        ProEmail: "cc@gmail..com",
+      },
+      {
+        ProName: "詹惟中",
+        Select: "八字",
+        ProImg: "6.jpg",
+        PID: 6,
+        ProEmail: "cc@gmail..com",
+      },
+      {
+        ProName: "詹惟中",
+        Select: "風水",
+        ProImg: "3.jpg",
+        PID: 7,
+        ProEmail: "cc@gmail..com",
+      },
+      {
+        ProName: "唐齊齊",
+        Select: "星座命盤",
+        ProImg: "7.jpg",
+        PID: 8,
+        ProEmail: "cc@gmail..com",
+      },
+      {
+        ProName: "唐揚揚",
+        Select: "紫微斗數",
+        ProImg: "5.jpg",
+        PID: 9,
+        ProEmail: "cc@gmail..com",
+      },
+      {
+        ProName: "詹惟中",
+        Select: "風水",
+        ProImg: "6.jpg",
+        PID: 10,
+        ProEmail: "cc@gmail..com",
+      },
     ],
 
     astrologistsByCat: [
-      [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
-      [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
-      [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
-      [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
-      [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
-      [{ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1}],
       [
-        {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1},
-        {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1},
+        {
+          ProName: "唐揚揚",
+          Select: "占星塔羅",
+          ProImg: "2.jpg",
+          PID: 1,
+          ProEmail: "cc@gmail..com",
+        },
+      ],
+      [
+        {
+          ProName: "唐揚揚",
+          Select: "占星塔羅",
+          ProImg: "2.jpg",
+          PID: 1,
+          ProEmail: "cc@gmail..com",
+        },
+      ],
+      [
+        {
+          ProName: "唐揚揚",
+          Select: "占星塔羅",
+          ProImg: "2.jpg",
+          PID: 1,
+          ProEmail: "cc@gmail..com",
+        },
+      ],
+      [
+        {
+          ProName: "唐揚揚",
+          Select: "占星塔羅",
+          ProImg: "2.jpg",
+          PID: 1,
+          ProEmail: "cc@gmail..com",
+        },
+      ],
+      [
+        {
+          ProName: "唐揚揚",
+          Select: "占星塔羅",
+          ProImg: "2.jpg",
+          PID: 1,
+          ProEmail: "cc@gmail..com",
+        },
+      ],
+      [
+        {
+          ProName: "唐揚揚",
+          Select: "占星塔羅",
+          ProImg: "2.jpg",
+          PID: 1,
+          ProEmail: "cc@gmail..com",
+        },
+      ],
+      [
+        {
+          ProName: "唐揚揚",
+          Select: "占星塔羅",
+          ProImg: "2.jpg",
+          PID: 1,
+          ProEmail: "cc@gmail..com",
+        },
+        {
+          ProName: "唐揚揚",
+          Select: "占星塔羅",
+          ProImg: "2.jpg",
+          PID: 1,
+          ProEmail: "cc@gmail..com",
+        },
       ],
     ],
 
@@ -510,6 +632,43 @@ export default createStore({
   },
   getters: {},
   mutations: {
+    //---Set Friends
+    setFriendsList(state, payload) {
+      payload.forEach((friend) => {
+        if (
+          payload.indexOf(friend) != 0 &&
+          payload.length > state.friends.length
+        ) {
+          state.friends.push({});
+        }
+      });
+      payload.forEach((friend) => {
+        //-----data from api-----
+        // Birth: "1998-09-30"
+        // BirthPlace: "新北市"
+        // BirthTime: "11:00"
+        // Email: ""
+        // FID: null
+        // JObj: null
+        // JsonData: null
+        // MID: 0
+        // Name: "aaa"
+        // signs: null
+        //-----friends------
+        // name: "林冠廷",
+        // birthday: "1996-08-09",
+        // birthTime: "03:08:00",
+        // birthCity: "Taipei",
+        // signs: [5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        state.friends[payload.indexOf(friend)].name = friend.Name;
+        state.friends[payload.indexOf(friend)].birthday = friend.Birth;
+        state.friends[payload.indexOf(friend)].birthTime = friend.BirthTime;
+        state.friends[payload.indexOf(friend)].birthCity = friend.BirthPlace;
+        state.friends[payload.indexOf(friend)].signs = friend.signs;
+        console.log("set friend index", payload.indexOf(friend));
+      });
+    },
+
     //---Set Pro List
     //---from api
     // Name: "ccc"
@@ -536,6 +695,8 @@ export default createStore({
           astrologist.Select;
         state.allAstrologists[payload.indexOf(astrologist)].ProImg =
           astrologist.photo;
+        state.allAstrologists[payload.indexOf(astrologist)].ProEmail =
+          astrologist.Email;
 
         console.log("set index", payload.indexOf(astrologist));
       });
@@ -544,24 +705,24 @@ export default createStore({
     setAstrologistsByCat(state, payload) {
       // console.log("print cat", payload.cat);
       payload.data.forEach((astrologist) => {
-        console.log("length", state.astrologistsByCat[payload.index].length);
+        //console.log("length", state.astrologistsByCat[payload.index].length);
         if (
           payload.data.indexOf(astrologist) != 0 &&
           payload.data.length > state.astrologistsByCat[payload.index].length
         ) {
           state.astrologistsByCat[payload.index].push({});
         }
-        console.log(
-          "state.astrologistsByCat[payload.index]" + payload.index,
-          state.astrologistsByCat[payload.index]
-        );
-        console.log(
-          "state.astrologistsByCat[payload.index].PID" + payload.index,
-          state.astrologistsByCat[payload.index][
-            payload.data.indexOf(astrologist)
-          ].PID
-        );
-        console.log("astrologist.PID", astrologist.PID);
+        // console.log(
+        //   "state.astrologistsByCat[payload.index]" + payload.index,
+        //   state.astrologistsByCat[payload.index]
+        // );
+        // console.log(
+        //   "state.astrologistsByCat[payload.index].PID" + payload.index,
+        //   state.astrologistsByCat[payload.index][
+        //     payload.data.indexOf(astrologist)
+        //   ].PID
+        // );
+        //console.log("astrologist.PID", astrologist.PID);
         state.astrologistsByCat[payload.index][
           payload.data.indexOf(astrologist)
         ].PID = astrologist.PID;
@@ -574,11 +735,14 @@ export default createStore({
         state.astrologistsByCat[payload.index][
           payload.data.indexOf(astrologist)
         ].ProImg = astrologist.photo;
-
-        console.log(
-          "set cat index" + payload.index,
+        state.astrologistsByCat[payload.index][
           payload.data.indexOf(astrologist)
-        );
+        ].ProEmail = astrologist.Email;
+
+        // console.log(
+        //   "set cat index" + payload.index,
+        //   payload.data.indexOf(astrologist)
+        // );
       });
     },
 
@@ -589,6 +753,7 @@ export default createStore({
       state.currentData.currentAstrologist.ProName = payload.ProName;
       state.currentData.currentAstrologist.ProImg = payload.ProImg;
       state.currentData.currentAstrologist.Select = payload.Select;
+      state.currentData.currentAstrologist.ProEmail = payload.ProEmail;
     },
 
     //------Log Out
@@ -691,9 +856,10 @@ export default createStore({
           state.myOrders[payload.indexOf(order)].ProLesson = order.Lesson;
           state.myOrders[payload.indexOf(order)].ProTime = "2022-10-10"; //假日期
           state.myOrders[payload.indexOf(order)].UserSelect = order.Select;
-          state.myOrders[payload.indexOf(order)].ProCost = order.Cost;
+          state.myOrders[payload.indexOf(order)].ProCost = order.ProCost;
+          state.myOrders[payload.indexOf(order)].Memo = order.Memo;
           state.myOrders[payload.indexOf(order)].LesCount =
-            order.Total / order.Cost;
+            order.Total / order.ProCost;
           // state.myOrders.ReserveAmount
           state.myOrders[payload.indexOf(order)].purchaseDate = "2022-09-09";
           state.myOrders[payload.indexOf(order)].isOver = false; //統一未結案
@@ -733,9 +899,9 @@ export default createStore({
           state.proOrders[payload.indexOf(order)].ProLesson = order.Lesson;
           state.proOrders[payload.indexOf(order)].ProTime = "2022-10-10"; //假日期
           state.proOrders[payload.indexOf(order)].UserSelect = order.Select;
-          state.proOrders[payload.indexOf(order)].ProCost = order.Cost;
+          state.proOrders[payload.indexOf(order)].ProCost = order.ProCost;
           state.proOrders[payload.indexOf(order)].LesCount =
-            order.Total / order.Cost;
+            order.Total / order.ProCost;
           // state.proOrders.ReserveAmount
           state.proOrders[payload.indexOf(order)].purchaseDate = "2022-09-09";
           state.proOrders[payload.indexOf(order)].Memo = order.Memo;
@@ -1117,23 +1283,23 @@ export default createStore({
     },
     //productshop購物車
     addStorespTime(state) {
-      state.myCart.addpsTime += 30;
-      state.myCart.addCost += state.psCost[0];
+      // state.myCart.addpsTime += 30;
+      // state.myCart.addCost += state.psCost[0];
       state.myCart.psCount += 1;
     },
     addStorespTime1(state) {
-      state.myCart.addpsTime += 60;
-      state.myCart.addCost += state.psCost[1];
+      // state.myCart.addpsTime += 60;
+      // state.myCart.addCost += state.psCost[1];
       state.myCart.psCount += 1;
     },
     addStorespTime2(state) {
-      state.myCart.addpsTime += 90;
-      state.myCart.addCost += state.psCost[2];
+      // state.myCart.addpsTime += 90;
+      // state.myCart.addCost += state.psCost[2];
       state.myCart.psCount += 1;
     },
     addStorespTime3(state) {
-      state.myCart.addpsTime += 120;
-      state.myCart.addCost += state.psCost[3];
+      // state.myCart.addpsTime += 120;
+      // state.myCart.addCost += state.psCost[3];
       state.myCart.psCount += 1;
     },
     addStoreonline(state) {
@@ -1143,8 +1309,8 @@ export default createStore({
       state.myCart.local = "實體";
     },
     removeStoreInfol(state) {
-      state.myCart.addpsTime = 0;
-      state.myCart.addCost = 0;
+      // state.myCart.addpsTime = 0;
+      // state.myCart.addCost = 0;
       state.myCart.psCount = 0;
       state.myCart.local = "";
       state.myCart.online = "";
@@ -1379,7 +1545,8 @@ export default createStore({
           Email: email,
         })
         .then((response) => {
-          console.log("friend", response);
+          console.log("friend", response.data.Req);
+          commit("setFriendsList", response.data.Req);
         });
     },
   },

@@ -157,10 +157,22 @@ export default {
             console.log(body.Msg);
             this.a = body.Msg;
             console.log(this.a);
+            if (this.a == "尚未註冊完成") {
+              localStorage.setItem(
+                "myemail",
+                `${this.users[this.users.length - 1]}`
+              );
+              localStorage.setItem("mymsg", `${this.a}`);
+              this.$router.push("/signUpForm");
+              //onsole.log("註冊成功");
+            }
             if (this.a == "登入成功") {
               localStorage.setItem("token", "ImLogin");
               //this.$store.commit("testChangeFriendsName", {name: this.a});
-              localStorage.setItem("myemail", `${this.users}`);
+              localStorage.setItem(
+                "myemail",
+                `${this.users[this.users.length - 1]}`
+              );
               localStorage.setItem("mymsg", `${this.a}`);
 
               //更改vuex狀態

@@ -74,6 +74,33 @@ export default {
     // }
     // this.$store.state.myEmail = localStorage.getItem("myemail");
 
+    // //----- 產 生 星 盤 S O P ------
+
+    // //將資料導入Ｃurrent
+    // this.$store.commit("setCurrentData", {
+    //   name: this.$store.state.myName,
+    //   birthday: this.$store.state.myBirthday,
+    //   birthTime: this.$store.state.myBirthTime,
+    //   location: this.$store.state.myLocation,
+    // });
+
+    // //轉換 UTC 時間
+    // this.$store.commit("setCurrentUTCtime");
+
+    // //非同步 產生星盤資料
+    // this.$store.dispatch("getChartData", {
+    //   birthday: this.$store.state.currentData.currentUTCBirthday,
+    //   birthTime: this.$store.state.currentData.currentUTCBirthTime,
+    //   location: this.$store.state.currentData.currentLocation,
+    // });
+
+    // //----- 產 生 星 盤 S O P ------
+
+    // console.log(this.$store.state.myChartData);
+    // console.log("MyChart>mySigns", this.$store.state.mySigns);
+    // console.log("JSON", this.$store.state.descJSON.length);
+  },
+  mounted() {
     //----- 產 生 星 盤 S O P ------
 
     //將資料導入Ｃurrent
@@ -87,6 +114,10 @@ export default {
     //轉換 UTC 時間
     this.$store.commit("setCurrentUTCtime");
 
+    console.log(
+      "this.$store.state.currentData.currentUTCBirthTime",
+      this.$store.state.currentData.currentUTCBirthTime
+    );
     //非同步 產生星盤資料
     this.$store.dispatch("getChartData", {
       birthday: this.$store.state.currentData.currentUTCBirthday,
@@ -95,12 +126,6 @@ export default {
     });
 
     //----- 產 生 星 盤 S O P ------
-
-    // console.log(this.$store.state.myChartData);
-    // console.log("MyChart>mySigns", this.$store.state.mySigns);
-    // console.log("JSON", this.$store.state.descJSON.length);
-  },
-  mounted() {
     // window.setTimeout(() => {
     //   if (localStorage.getItem("token") === "ImLogin") {
     //     this.$store.state.isLogIn = true;

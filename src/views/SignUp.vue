@@ -218,10 +218,14 @@ export default {
           this.remsg = body.Status;
           this.retime = body.RemainingSec;
           this.reMsgg = body.Msg;
-          if (this.remsg == "1") {
+          if (this.remsg == "1" && this.reMsgg == "帳號存在") {
+            this.message = "帳號已存在";
+          } else if (this.remsg == "1") {
             this.message = "已傳送驗證碼";
-          } else {
-            this.message = `送出驗證碼(請於${this.retime}秒後再送出)`;
+          } else if (this.submitDisabled == true) {
+            this.message = "輸入格式不符";
+          } else if (this.remsg == "2") {
+            this.message = `已送出驗證碼(請於${this.retime}秒後再點擊)`;
           }
         })
         .catch(function (err) {

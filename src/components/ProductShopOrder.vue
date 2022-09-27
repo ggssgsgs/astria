@@ -23,27 +23,27 @@
         <div class="d-flex btnGroup">
           <span class="priceItem">
             <button @click="addTime1" :style="changeColor">
-              {{ timeMsg[0] }}mins
+              {{ theTime }}mins
             </button>
-            <p>${{ price[0] }}</p>
+            <p>${{theCost }}</p>
           </span>
           <span class="priceItem">
             <button @click="addTime2" :style="changeColor1">
-              {{ timeMsg[1] }}mins
+              {{ theTime*2 }}mins
             </button>
-            <p>${{ price[1] }}</p>
+            <p>${{ theCost*2 }}</p>
           </span>
           <span class="priceItem">
             <button @click="addTime3" :style="changeColor2">
-              {{ timeMsg[2] }}mins
+              {{ theTime*3 }}mins
             </button>
-            <p>${{ price[2] }}</p>
+            <p>${{ theCost*3 }}</p>
           </span>
           <span class="priceItem">
             <button @click="addTime4" :style="changeColor3">
-              {{ timeMsg[3] }}mins
+              {{ theTime*4}}mins
             </button>
-            <p>${{ price[3] }}</p>
+            <p>${{ theCost*4 }}</p>
           </span>
         </div>
         <h3 class="t2">課程安排</h3>
@@ -56,8 +56,8 @@
           </button>
         </div>
         <div class="d-flex totalPrice">
-          <p>時間:{{ myCart.addpsTime }}mins</p>
-          <p>價格:NT${{ myCart.addCost }}</p>
+          <p>時間:{{ time }}mins</p>
+          <p>價格:NT${{ cost }}</p>
           <p>地點:{{ myCart.online }}{{ myCart.local }}</p>
         </div>
         <div class="d-flex cart pushGroup">
@@ -80,9 +80,9 @@ export default {
   mounted() {},
   data() {
     return {
-      timeMsg: ["30", "60", "90", "120"],
       timeMsg1: ["線上", "實體"],
       time: "",
+      cost:"",
       addLesson: "",
       isClick: "true",
       isClick1: "true",
@@ -101,10 +101,14 @@ export default {
       this.$router.push("/shoppingCart");
       this.isClick = "true";
       localStorage.setItem("myLesson", `${this.theLesson}`);
+      localStorage.setItem("myTime", `${this.time}`);
+      localStorage.setItem("myCost", `${this.cost}`);
     },
     addTime1() {
       if (this.isClick1 == "true") {
         this.$store.commit("addStorespTime");
+        this.time =this.theTime
+        this.cost =this.theCost
         this.objColor.coloritem1 = "rgba(255, 255, 255, 0.5)";
         this.isClick1 = "false";
       } else {
@@ -114,6 +118,8 @@ export default {
     addTime2() {
       if (this.isClick1 == "true") {
         this.$store.commit("addStorespTime1");
+        this.time =(this.theTime)*2
+        this.cost =(this.theCost)*2
         this.objColor.coloritem2 = "rgba(255, 255, 255, 0.5)";
         this.isClick1 = "false";
       } else {
@@ -123,6 +129,8 @@ export default {
     addTime3() {
       if (this.isClick1 == "true") {
         this.$store.commit("addStorespTime2");
+        this.time =(this.theTime)*3
+        this.cost =(this.theCost)*3
         this.objColor.coloritem3 = "rgba(255, 255, 255, 0.5)";
         this.isClick1 = "false";
       } else {
@@ -132,6 +140,8 @@ export default {
     addTime4() {
       if (this.isClick1 == "true") {
         this.$store.commit("addStorespTime3");
+        this.time =(this.theTime)*4
+        this.cost =(this.theCost)*4
         this.objColor.coloritem4 = "rgba(255, 255, 255, 0.5)";
         this.isClick1 = "false";
       } else {
@@ -170,6 +180,7 @@ export default {
       this.objColor.coloritem5 = "rgba(255, 255, 255, 0.25)";
       this.objColor.coloritem6 = "rgba(255, 255, 255, 0.25)";
       localStorage.removeItem("myLocation");
+      this.time="";
     },
   },
   computed: {

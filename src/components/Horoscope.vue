@@ -215,7 +215,7 @@ export default {
   margin: 5px;
   width: 100px;
 
-  background: rgb(58, 60, 104);
+  background: #36385e;
   border-radius: 10px;
 }
 .contentBox {

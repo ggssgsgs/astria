@@ -220,6 +220,7 @@ export default createStore({
         //   },
         //   cusps: [296, 350, 30, 56, 75, 94, 116, 170, 210, 236, 255, 274],
         // },
+        FID: 1,
       },
       {
         name: "照相相",
@@ -232,6 +233,7 @@ export default createStore({
         //myLatitude: "23.11111",
         //myLongitude: "121.11111",
         signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        FID: 1,
       },
       {
         name: "正預期",
@@ -244,6 +246,7 @@ export default createStore({
         // myLatitude: "23.11111",
         // myLongitude: "121.11111",
         signs: [7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        FID: 1,
       },
       {
         name: "照相相",
@@ -256,6 +259,7 @@ export default createStore({
         // myLatitude: "23.11111",
         // myLongitude: "121.11111",
         signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        FID: 1,
       },
       {
         name: "照相相",
@@ -268,6 +272,7 @@ export default createStore({
         // myLatitude: "23.11111",
         // myLongitude: "121.11111",
         signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        FID: 1,
       },
       {
         name: "照相相",
@@ -280,6 +285,7 @@ export default createStore({
         // myLatitude: "23.11111",
         // myLongitude: "121.11111",
         signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        FID: 1,
       },
       {
         name: "照相相",
@@ -292,6 +298,7 @@ export default createStore({
         // myLatitude: "23.11111",
         // myLongitude: "121.11111",
         signs: [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        FID: 1,
       },
     ],
 
@@ -400,15 +407,30 @@ export default createStore({
       {
         ProName: "唐齊齊",
         Select: "占星塔羅",
-        ProImg: "1.jpg",
+        ProImg: "./imgs/adv/1.jpg",
         MemberEmail: "hsianghoney@gmail.com",
         PID: 1,
       },
-      {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "2.jpg", PID: 1},
-      {ProName: "詹惟中", Select: "風水", ProImg: "3.jpg", PID: 1},
-      {ProName: "唐齊齊", Select: "占星塔羅", ProImg: "4.jpg", PID: 1},
-      {ProName: "唐揚揚", Select: "占星塔羅", ProImg: "5.jpg", PID: 1},
-      {ProName: "詹惟中", Select: "風水", ProImg: "6.jpg", PID: 1},
+      {
+        ProName: "唐揚揚",
+        Select: "占星塔羅",
+        ProImg: "./imgs/adv/2.jpg",
+        PID: 1,
+      },
+      {ProName: "詹惟中", Select: "風水", ProImg: "./imgs/adv/3.jpg", PID: 1},
+      {
+        ProName: "唐齊齊",
+        Select: "占星塔羅",
+        ProImg: "./imgs/adv/4.jpg",
+        PID: 1,
+      },
+      {
+        ProName: "唐揚揚",
+        Select: "占星塔羅",
+        ProImg: "./imgs/adv/5.jpg",
+        PID: 1,
+      },
+      {ProName: "詹惟中", Select: "風水", ProImg: "./imgs/adv/6.jpg", PID: 1},
     ],
     //所有占星師
     // Name: "ccc"
@@ -419,70 +441,70 @@ export default createStore({
       {
         ProName: "唐齊齊",
         Select: "星座命盤",
-        ProImg: "1.jpg",
+        ProImg: "./imgs/adv/1.jpg",
         PID: 1,
         ProEmail: "cc@gmail..com",
       },
       {
         ProName: "唐揚揚",
         Select: "生命靈數",
-        ProImg: "2.jpg",
+        ProImg: "./imgs/adv/2.jpg",
         PID: 2,
         ProEmail: "cc@gmail..com",
       },
       {
         ProName: "詹惟中",
         Select: "塔羅占卜",
-        ProImg: "3.jpg",
+        ProImg: "./imgs/adv/3.jpg",
         PID: 3,
         ProEmail: "cc@gmail..com",
       },
       {
         ProName: "唐齊齊",
         Select: "星座命盤",
-        ProImg: "4.jpg",
+        ProImg: "./imgs/adv/4.jpg",
         PID: 4,
         ProEmail: "cc@gmail..com",
       },
       {
         ProName: "唐揚揚",
         Select: "人類圖",
-        ProImg: "5.jpg",
+        ProImg: "./imgs/adv/5.jpg",
         PID: 5,
         ProEmail: "cc@gmail..com",
       },
       {
         ProName: "詹惟中",
         Select: "八字",
-        ProImg: "6.jpg",
+        ProImg: "./imgs/adv/6.jpg",
         PID: 6,
         ProEmail: "cc@gmail..com",
       },
       {
         ProName: "詹惟中",
         Select: "風水",
-        ProImg: "3.jpg",
+        ProImg: "./imgs/adv/3.jpg",
         PID: 7,
         ProEmail: "cc@gmail..com",
       },
       {
         ProName: "唐齊齊",
         Select: "星座命盤",
-        ProImg: "7.jpg",
+        ProImg: "./imgs/adv/7.jpg",
         PID: 8,
         ProEmail: "cc@gmail..com",
       },
       {
         ProName: "唐揚揚",
         Select: "紫微斗數",
-        ProImg: "5.jpg",
+        ProImg: "./imgs/adv/5.jpg",
         PID: 9,
         ProEmail: "cc@gmail..com",
       },
       {
         ProName: "詹惟中",
         Select: "風水",
-        ProImg: "6.jpg",
+        ProImg: "./imgs/adv/6.jpg",
         PID: 10,
         ProEmail: "cc@gmail..com",
       },
@@ -493,7 +515,7 @@ export default createStore({
         {
           ProName: "唐揚揚",
           Select: "占星塔羅",
-          ProImg: "2.jpg",
+          ProImg: "./imgs/adv/2.jpg",
           PID: 1,
           ProEmail: "cc@gmail..com",
         },
@@ -502,7 +524,7 @@ export default createStore({
         {
           ProName: "唐揚揚",
           Select: "占星塔羅",
-          ProImg: "2.jpg",
+          ProImg: "./imgs/adv/2.jpg",
           PID: 1,
           ProEmail: "cc@gmail..com",
         },
@@ -511,7 +533,7 @@ export default createStore({
         {
           ProName: "唐揚揚",
           Select: "占星塔羅",
-          ProImg: "2.jpg",
+          ProImg: "./imgs/adv/2.jpg",
           PID: 1,
           ProEmail: "cc@gmail..com",
         },
@@ -520,7 +542,7 @@ export default createStore({
         {
           ProName: "唐揚揚",
           Select: "占星塔羅",
-          ProImg: "2.jpg",
+          ProImg: "./imgs/adv/2.jpg",
           PID: 1,
           ProEmail: "cc@gmail..com",
         },
@@ -529,7 +551,7 @@ export default createStore({
         {
           ProName: "唐揚揚",
           Select: "占星塔羅",
-          ProImg: "2.jpg",
+          ProImg: "./imgs/adv/2.jpg",
           PID: 1,
           ProEmail: "cc@gmail..com",
         },
@@ -538,7 +560,7 @@ export default createStore({
         {
           ProName: "唐揚揚",
           Select: "占星塔羅",
-          ProImg: "2.jpg",
+          ProImg: "./imgs/adv/2.jpg",
           PID: 1,
           ProEmail: "cc@gmail..com",
         },
@@ -547,14 +569,14 @@ export default createStore({
         {
           ProName: "唐揚揚",
           Select: "占星塔羅",
-          ProImg: "2.jpg",
+          ProImg: "./imgs/adv/2.jpg",
           PID: 1,
           ProEmail: "cc@gmail..com",
         },
         {
           ProName: "唐揚揚",
           Select: "占星塔羅",
-          ProImg: "2.jpg",
+          ProImg: "./imgs/adv/2.jpg",
           PID: 1,
           ProEmail: "cc@gmail..com",
         },
@@ -632,8 +654,21 @@ export default createStore({
   },
   getters: {},
   mutations: {
+    //---Add friend to store after adding friend
+    addFriendToStore(state, payload) {
+      state.friends.push({
+        name: payload.name,
+        birthday: payload.birthday,
+        birthTime: payload.birthTime,
+        birthCity: payload.birthCity,
+        signs: payload.signs,
+      });
+    },
     //---Set Friends
     setFriendsList(state, payload) {
+      if (payload.length > 0) {
+        state.friends = [{}];
+      }
       payload.forEach((friend) => {
         if (
           payload.indexOf(friend) != 0 &&
@@ -665,6 +700,7 @@ export default createStore({
         state.friends[payload.indexOf(friend)].birthTime = friend.BirthTime;
         state.friends[payload.indexOf(friend)].birthCity = friend.BirthPlace;
         state.friends[payload.indexOf(friend)].signs = friend.signs;
+        state.friends[payload.indexOf(friend)].FID = friend.FID;
         console.log("set friend index", payload.indexOf(friend));
       });
     },
@@ -793,7 +829,7 @@ export default createStore({
       state.myPhone = payload.Phone;
       state.myGender = payload.Sex;
       state.isPro = payload.IsAdv;
-      state.mySigns = payload.signs;
+      //state.mySigns = payload.signs;
 
       state.myLatitude = payload.JsonData.lat;
       state.myLongitude = payload.JsonData.lng;
@@ -953,6 +989,45 @@ export default createStore({
       state.currentData.currentUTCBirthday =
         date1.getUTCFullYear().toString() + "-" + newMonth + "-" + newDate;
     },
+
+    setMyUTCtime(state) {
+      // let date = this.$store.state.currentData.currentBirthday;
+      // let time = this.$store.state.currentData.currentBirthTime;
+      let date = state.myBirthday;
+      let time = state.myBirthTime;
+      let date1 = new Date(`${date}, ${time} GMT+8:00`);
+
+      console.log("TIMETEST", date1.getUTCHours());
+      console.log("DAYTEST", date1.getUTCDate());
+      let newMonth;
+      if (date1.getUTCMonth() + 1 < 10) {
+        newMonth = "0" + (date1.getUTCMonth() + 1).toString();
+      } else {
+        newMonth = (date1.getUTCMonth() + 1).toString();
+      }
+      let newDate;
+      if (date1.getUTCDate() < 10) {
+        newDate = "0" + date1.getUTCDate().toString();
+      } else {
+        newDate = date1.getUTCDate().toString();
+      }
+      let newHours;
+      if (date1.getUTCHours() < 10) {
+        newHours = "0" + date1.getUTCHours().toString();
+      } else {
+        newHours = date1.getUTCHours().toString();
+      }
+      let newMinutes;
+      if (date1.getUTCMinutes() < 10) {
+        newMinutes = "0" + date1.getUTCMinutes().toString();
+      } else {
+        newMinutes = date1.getUTCMinutes().toString();
+      }
+
+      state.myUTCBirthTime = newHours + ":" + newMinutes + ":00";
+      state.myUTCBirthday =
+        date1.getUTCFullYear().toString() + "-" + newMonth + "-" + newDate;
+    },
     setCurrentData(state, payload) {
       state.currentData.currentName = payload.name;
       state.currentData.currentBirthday = payload.birthday;
@@ -1099,6 +1174,24 @@ export default createStore({
     setSigns(state, astroDataOriginal) {
       //console.log("測試", state.currentData.currentSigns);
       state.currentData.currentSigns = [
+        astroDataOriginal.astros.sun.sign,
+        astroDataOriginal.axes.asc.sign,
+        astroDataOriginal.astros.moon.sign,
+        astroDataOriginal.astros.mars.sign,
+        astroDataOriginal.astros.mercury.sign,
+        astroDataOriginal.astros.venus.sign,
+        astroDataOriginal.astros.jupiter.sign,
+        astroDataOriginal.astros.saturn.sign,
+        astroDataOriginal.astros.uranus.sign,
+        astroDataOriginal.astros.neptune.sign,
+        astroDataOriginal.astros.pluto.sign,
+      ];
+    },
+
+    //set to currentData.currentSigns in vuex
+    setMySigns(state, astroDataOriginal) {
+      //console.log("測試", state.currentData.currentSigns);
+      state.mySigns = [
         astroDataOriginal.astros.sun.sign,
         astroDataOriginal.axes.asc.sign,
         astroDataOriginal.astros.moon.sign,
@@ -1450,6 +1543,29 @@ export default createStore({
       //   });
     },
 
+    //---getMySign
+    getChartDataAndSetMySign({commit, state}, payload) {
+      axios
+        .post("https://astria.sutsanyuan.com/Astria_api/GuestAstroData", {
+          Date: payload.birthday,
+          Time: payload.birthTime,
+          Address: payload.location,
+        })
+        .then(function (response) {
+          console.log("get astro data by post", response);
+          state.myChartDataOrigin = response.data.JObj.data;
+
+          console.log("myChartDataOrigin:", state.myChartDataOrigin);
+          //commit("setChartData", state.currentData.currentChartDataOrigin);
+          //console.log("myChartData_Axios", state.myChartData);
+          //分配取得各行星星座
+          commit("setMySigns", state.myChartDataOrigin);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+
     //取得登入資料
     getLoginInfo({commit, state}, email) {
       axios
@@ -1547,6 +1663,49 @@ export default createStore({
         .then((response) => {
           console.log("friend", response.data.Req);
           commit("setFriendsList", response.data.Req);
+        });
+    },
+
+    addFriend({state, commit}, payload) {
+      axios
+        .post("https://astria.sutsanyuan.com/Astria_api/FriendAstroAdd", {
+          Email: payload.email,
+          Name: payload.name,
+          Birth: payload.birthday,
+          BirthTime: payload.birthTime,
+          BirthPlace: payload.birthPlace,
+        })
+        .then((response) => {
+          console.log("status", response.data.status);
+          console.log("msg", response.data.Msg);
+        });
+    },
+
+    //視ＡＰＩ狀況 新增
+    editFriend({state, commit}, payload) {
+      axios
+        .post("https://astria.sutsanyuan.com/Astria_api/FriendAstroAdd", {
+          Email: payload.email,
+          Name: payload.name,
+          Birth: payload.birthday,
+          BirthTime: payload.birthTime,
+          BirthPlace: payload.birthPlace,
+          FID: payload.FID,
+        })
+        .then((response) => {
+          console.log("status", response.data.status);
+          console.log("msg", response.data.Msg);
+        });
+    },
+
+    deleteFriend({state, commit}, payload) {
+      axios
+        .delete("https://astria.sutsanyuan.com/Astria_api/Delfrienddata", {
+          data: {Email: payload.email, FID: payload.FID},
+        })
+        .then((response) => {
+          console.log("delete status", response.data.status);
+          console.log(" delete msg", response.data.Msg);
         });
     },
   },

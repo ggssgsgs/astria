@@ -1,6 +1,11 @@
 <template>
   <div class="pic">
-    <img src="https://picsum.photos/200/200?" />
+    <img
+      class="logoSign-profile"
+      :src="this.logoSigns[this.mySign - 1]"
+      alt="sunSignLogo"
+    />
+    <!-- <img src="https://picsum.photos/200/200?" /> -->
   </div>
   <div class="card mx-1 mx-md-5">
     <div class="d-flex inputForm">
@@ -123,6 +128,7 @@
           @change="nativeValidate(form, 'email')"
           :placeholder="form.email.value"
           required
+          disabled
         />
 
         <div class="el-form-item__error">{{ form.email.msg }}</div>
@@ -171,7 +177,7 @@
   </div>
   <div class="card onsubmitcontent mx-1 mx-md-5">
     <div class="btn onsubmit" @click.prevent="nativeSubmit" :disabled="status">
-      <h5>送出</h5>
+      <h5>修改</h5>
     </div>
   </div>
 </template>
@@ -181,6 +187,20 @@ import {computed} from "@vue/runtime-core";
 import google from "../assets/img/icons/google.png";
 import {reg_phoneType2} from "../utils/validate";
 import {reg_email} from "../utils/validate";
+
+//星座圖
+import lAries from "../assets/img/signLogos/Aries_pink_400p.png";
+import lTarus from "../assets/img/signLogos/Tarus_pink_400p.png";
+import lGemini from "../assets/img/signLogos/Gemini_pink_400p.png";
+import lCancer from "../assets/img/signLogos/Cancer_pink_400p.png";
+import lLeo from "../assets/img/signLogos/Leo_pink_400p.png";
+import lVirgo from "../assets/img/signLogos/Virgo_pink_400p.png";
+import lLibra from "../assets/img/signLogos/Libra_pink_400p.png";
+import lScorpio from "../assets/img/signLogos/Scorpio_pink_400p.png";
+import lSagitarius from "../assets/img/signLogos/Sagitarius_pink_400p.png";
+import lCapricorn from "../assets/img/signLogos/Capricorn_pink_400p.png";
+import lAquarius from "../assets/img/signLogos/Aquarius_pink_400p.png";
+import lPisces from "../assets/img/signLogos/Pisces_pink_400p.png";
 
 export default {
   name: "InfolCode",
@@ -229,6 +249,23 @@ export default {
   },
   data() {
     return {
+      logoSigns: [
+        lAries,
+        lTarus,
+        lGemini,
+        lCancer,
+        lLeo,
+        lVirgo,
+        lLibra,
+        lScorpio,
+        lSagitarius,
+        lCapricorn,
+        lAquarius,
+        lPisces,
+      ],
+      //沒用到
+
+      //currentSign: 1,
       datas: [],
       remsg: "",
       remsgg: "",
@@ -270,6 +307,9 @@ export default {
     };
   },
   computed: {
+    mySign() {
+      return this.$store.state.mySigns[0];
+    },
     gender() {
       if (this.$store.state.myGender == 1) {
         return "male";
@@ -582,5 +622,8 @@ h5 {
     letter-spacing: 0.2rem;
     text-align: left;
   }
+}
+.logoSign-profile {
+  width: 200px;
 }
 </style>

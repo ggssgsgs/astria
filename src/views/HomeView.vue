@@ -30,7 +30,7 @@ export default {
 
 <template>
   <!-- 很長的 bg -->
-  <div class="bg-color"></div>
+  <!-- <div class="bg-color"></div> -->
   <div>
     <SketchMain v-bind="sketchData" class="fixed" />
     <!-- <img :src="sketchData.imgStarHolderSrc" alt="" /> -->
@@ -50,7 +50,7 @@ export default {
   position: fixed;
   top: 0px;
   z-index: -3;
-  background: rgb(0, 2, 53);
+  background: #000125;
   /* clear: both; */
 }
 .fixed {

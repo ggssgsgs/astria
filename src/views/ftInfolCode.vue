@@ -69,7 +69,7 @@
       </div>
       <div class="d-flex input-item">
         <label class="l1">專長</label>
-        <select v-model="form.skill.value" class="t1 text-center">
+        <select v-model="form.skill.value" class="t1 text-center" required>
           <option v-if="form.skill.value != null" disabled>請選擇專長</option>
           <option v-for="skill in form.Selectlist" :key="skill" :value="skill">
             {{ skill }}
@@ -95,7 +95,7 @@
       </div> -->
       <div class="d-flex input-item">
         <label class="l1">居住地</label>
-        <select v-model="form.address.value" class="t1 text-center">
+        <select v-model="form.address.value" class="t1 text-center" required>
           <option value="" disabled>請選擇居住地</option>
           <!--<option v-for="address in addresslist" v-on:change="setplace" :key="address" :value="address">{{address}}</option>-->
           <option
@@ -130,7 +130,7 @@
       </div>
     </div>
   </div>
-  <div class="card outLink mx-1 mx-md-5">
+  <!-- <div class="card outLink mx-1 mx-md-5">
     <h3>快速登入</h3>
     <div class="d-flex outLink-d">
       <div class="outlink-item">
@@ -169,14 +169,14 @@
         <p class="infoTxt">收到Astria藏星電話通知</p>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="card onsubmitcontent mx-1 mx-md-5">
     <button
       class="onsubmit btn"
       @click.prevent="nativeSubmit"
       :disabled="status"
     >
-      <h5>送出</h5>
+      <h5>修改</h5>
     </button>
   </div>
 </template>

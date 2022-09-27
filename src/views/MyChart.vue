@@ -245,7 +245,7 @@ export default {
   padding: 0px;
 }
 .BG {
-  background: rgb(0, 2, 53);
+  background: #000125;
   display: flex;
   justify-content: center;
   width: 100vw;

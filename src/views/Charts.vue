@@ -26,7 +26,7 @@
                 <span class="mt-3">{{ friend.name }}</span
                 ><span>
                   <!-- edit -->
-                  <span class="mx-1 btn"
+                  <span class="mx-1 btn" @click="editFriend(friend)"
                     ><svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -48,7 +48,10 @@
                   <span
                     class="btn"
                     @click="
-                      deleteFriend(this.$store.state.friends.indexOf(friend))
+                      deleteFriend(
+                        friend,
+                        this.$store.state.friends.indexOf(friend)
+                      )
                     "
                     ><svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -113,6 +116,16 @@ export default {
     addFriend() {
       this.$router.push("/chartFormAddFriendPage");
     },
+    editFriend(friend) {
+      //將資料導入Current
+      this.$store.commit("setCurrentData", {
+        name: friend.name,
+        birthday: friend.birthday,
+        birthTime: friend.birthTime,
+        location: friend.birthCity,
+      });
+      this.$router.push("/chartFormEditFriendPage");
+    },
     viewChart(friend) {
       //將資料導入Current
       this.$store.commit("setCurrentData", {
@@ -127,7 +140,7 @@ export default {
 
       this.$router.push("/currentChart");
     },
-    deleteFriend(index) {
+    deleteFriend(friend, index) {
       Swal.fire({
         title: "確定要刪除此好友星盤嗎?",
         text: "資料將永久刪除!",
@@ -139,6 +152,10 @@ export default {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
+          this.$store.dispatch("deleteFriend", {
+            email: localStorage.getItem("myemail"),
+            FID: friend.FID,
+          });
           this.$store.commit("deleteFriend", index);
           Swal.fire("成功!", "已刪除好友星盤.", "success");
         }

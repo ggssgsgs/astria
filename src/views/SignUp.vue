@@ -12,15 +12,17 @@
             <div class="card singup-form">
               <h2>{{ msg1 }}</h2>
               <input
+                required
                 type="text"
                 v-model="user.username.value"
                 placeholder="EMAIL"
-                @change="nativeValidate(user, 'username'), pushStore"
+                @change="nativeValidate(user, 'username')"
                 autofocus
               />
               <div class="el-form-item__error">{{ user.username.msg }}</div>
 
               <input
+                required
                 type="password"
                 v-model="user.password.value"
                 @change="nativeValidate(user, 'password')"
@@ -29,6 +31,7 @@
               <div class="el-form-item__error">{{ user.password.msg }}</div>
 
               <input
+                required
                 type="password"
                 v-model="user.repassword.value"
                 @change="nativeValidate(user, 'repassword')"
@@ -133,12 +136,14 @@ export default {
         case "password":
           checkPassword == true
             ? (target.password.msg = "")
-            : (target.password.msg = "密碼格式錯誤或未輸入");
+            : (target.password.msg =
+                "密碼格式錯誤或未輸入(字母開頭含數字、6~18碼)");
           break;
         case "repassword":
           checkRePassword == true
             ? (target.repassword.msg = "")
-            : (target.repassword.msg = "密碼格式錯誤或未輸入");
+            : (target.repassword.msg =
+                "密碼格式錯誤或未輸入(字母開頭含數字、6~18碼)");
           break;
       }
       // 用find只會撈回符合條件第一個值的特性，任何一個驗證規則沒通過就不能讓送出表單的按鈕被啟用
@@ -262,7 +267,7 @@ input {
   background: rgba(255, 255, 255, 0.25);
 }
 h2 {
-  text-align: center;sign-up
+  text-align: center;
   margin: 30px 0 20px;
   color: #eee;
 }
@@ -271,7 +276,8 @@ img {
 }
 .pic {
   padding: 50px;
-  background: #000235;
+  background: #000125;
+  border: none;
 }
 .pic img {
   margin: auto;

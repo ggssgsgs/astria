@@ -94,6 +94,11 @@ const router = createRouter({
       name: "chartFormAddFriendPage",
       component: () => import("../views/ChartFormAddFriendPage.vue"),
     },
+    {
+      path: "/chartFormEditFriendPage",
+      name: "chartFormEditFriendPage",
+      component: () => import("../views/ChartFormEditFriendPage.vue"),
+    },
 
     // {
     //   path: '*',

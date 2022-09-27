@@ -61,7 +61,7 @@ h4 {
 .content-box {
   padding: 40px;
   border-radius: 10px;
-  background: rgb(58, 60, 104);
+  background: #36385e;
 }
 .sub-font {
   font-weight: 50;

@@ -69,7 +69,7 @@
               </div>
               <div class="d-flex inputItem">
                 <label for="">出生地</label>
-                <select v-model="form.address.value" class="t1">
+                <select v-model="form.address.value" class="t1" required>
                   <option value="" disabled>-- 請選擇出生地 --</option>
                   <!--<option v-for="address in addresslist" v-on:change="setplace" :key="address" :value="address">{{address}}</option>-->
                   <option
@@ -121,8 +121,8 @@ export default {
       form: {
         name: {value: "", msg: ""},
         gender: {value: "1", msg: ""},
-        date: {value: "", msg: ""},
-        time: {value: "", msg: ""},
+        date: {value: "1990-01-01", msg: ""},
+        time: {value: "12:00", msg: ""},
         address: {value: "", msg: ""},
         addresslist: [
           "台北市",

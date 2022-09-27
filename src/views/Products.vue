@@ -17,7 +17,7 @@
             <div class="d-flex flex-column align-items-center">
               <div class="my-5">
                 <img
-                  :src="this.imgRoot + astrologist.ProImg"
+                  :src="astrologist.ProImg"
                   alt="astrologistLogo"
                   class="imgSize"
                 />
@@ -56,7 +56,7 @@
     <swiper-slide>Slide 3</swiper-slide> -->
         </swiper>
       </div>
-      <div class="row justify-content-center mt-5">
+      <div class="row justify-content-center my-5">
         <div class="searchGroup">
           <h2>依分類選擇</h2>
           <div class="mx-4 inputSearch">
@@ -92,7 +92,7 @@
             <div class="d-flex flex-column align-items-center">
               <div class="my-5">
                 <img
-                  :src="this.imgRoot + astrologist.ProImg"
+                  :src="astrologist.ProImg"
                   alt="astrologistLogo"
                   class="imgSize"
                 />
@@ -265,7 +265,7 @@ h2 {
   width: 300px;
   height: 300px;
 }
-rgb(42, 55, 38) .anyChoice button {
+.anyChoice button {
   background: rgba(217, 217, 217, 0.25);
   width: 240px;
   height: 50px;

@@ -4,7 +4,7 @@
       <div
         class="block col-12 col-md-8 d-flex flex-column align-items-center justify-content-center"
       >
-        <h1 class="my-5 align-self-center">查詢星盤</h1>
+        <h1 class="my-5 align-self-center">新增好友</h1>
 
         <!--不使用element UI 內建驗證的表單-->
 
@@ -21,7 +21,7 @@
           </div>
           <div class="el-form-item__error">{{ form.name.msg }}</div>
 
-          <div class="w-100 d-flex my-3">
+          <!-- <div class="w-100 d-flex my-3">
             <span class="flex-shrink-1 px-3 px-md-4 ps-0">性別</span>
             <div class="radio-btns flex-fill d-flex justify-content-around">
               <input
@@ -55,8 +55,8 @@
               />
               <label class="btn btn-secondary btn-lg" for="others">其他</label>
             </div>
-          </div>
-          <div class="el-form-item__error">{{ form.gender.msg }}</div>
+          </div> -->
+          <!-- <div class="el-form-item__error">{{ form.gender.msg }}</div> -->
           <div class="w-100 d-flex my-3">
             <span class="flex-shrink-1 px-3 px-md-4 ps-0">出生日期</span>
             <input
@@ -110,7 +110,7 @@
             @click="submitData"
             class="btn btn-lg btn-customized btn-secondary"
           >
-            查看星盤
+            新增好友星盤
           </button>
           <!-- 需要先做停止瀏覽器預設行為 -->
           <!-- <button @click.prevent="nativeSubmit" :disabled="status">送出</button> -->
@@ -122,6 +122,11 @@
 <script>
 import {reg_phoneType2} from "../utils/validate";
 import {useStore} from "vuex";
+
+//import sweetalert
+import Swal from "sweetalert2";
+
+import logo from "../assets/img/LOGO.png";
 
 export default {
   setup() {
@@ -140,8 +145,8 @@ export default {
       form: {
         name: {value: "", msg: ""},
         gender: {value: "male", msg: ""},
-        date: {value: "", msg: ""},
-        time: {value: "", msg: ""},
+        date: {value: "1990-01-01", msg: ""},
+        time: {value: "12:00", msg: ""},
         address: {value: "", msg: ""},
         addresslist: [
           "台北市",
@@ -175,15 +180,50 @@ export default {
   },
   methods: {
     submitData() {
-      this.$store.commit("setCurrentData", {
-        name: this.form.name.value,
-        birthday: this.form.date.value,
-        birthTime: this.form.time.value,
-        location: this.form.address.value,
-      });
-      this.$store.commit("setCurrentUTCtime");
+      if (
+        this.form.name.value != "" &&
+        this.form.date.value != "" &&
+        this.form.time.value != "" &&
+        this.form.address.value != ""
+      ) {
+        this.$store.commit("setCurrentData", {
+          name: this.form.name.value,
+          birthday: this.form.date.value,
+          birthTime: this.form.time.value,
+          location: this.form.address.value,
+        });
+        this.$store.commit("setCurrentUTCtime");
 
-      this.$router.push("/currentChart");
+        this.$store.dispatch("addFriend", {
+          email: localStorage.getItem("myemail"),
+          name: this.form.name.value,
+          birthday: this.form.date.value,
+          birthTime: this.form.time.value,
+          birthPlace: this.form.address.value,
+        });
+
+        this.$router.push("/currentChart");
+      } else {
+        Swal.fire({
+          title: "缺一不可！",
+          text: "請輸入完整資料",
+          // icon: "warning",
+          iconColor: "rgba(0,2,53,0.3)",
+          showCancelButton: false,
+          confirmButtonColor: "rgba(0,2,53,0.5)",
+          //cancelButtonColor: "rgba(0,2,53,0.5)",
+          confirmButtonText: "繼續輸入",
+          allowOutsideClick: false,
+          imageUrl: logo,
+          imageWidth: 150,
+          imageHeight: 150,
+          imageAlt: "Astria Logo",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            //this.$router.push("/logIn");
+          }
+        });
+      }
     },
     nativeValidate(target, key) {
       let checkPhone = reg_phoneType2(target.phone.value);
@@ -286,7 +326,7 @@ export default {
   padding: 30px;
   /* height: 200px; */
   border-radius: 5px;
-  background-color: rgb(58, 60, 104);
+  background-color: #36385e;
 }
 .input-style {
   text-decoration: none;

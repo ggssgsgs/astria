@@ -103,6 +103,13 @@ import reservationPro from "../components/ReservationPro.vue";
 import CourseManagementPro from "../components/CourseManagementPro.vue";
 export default {
   beforeMount() {
+    this.$store.commit("setMyUTCtime");
+    this.$store.dispatch("getChartDataAndSetMySign", {
+      birthday: this.$store.state.myUTCBirthday,
+      birthTime: this.$store.state.myUTCBirthTime,
+      location: this.$store.state.myLocation,
+    });
+
     this.$store.dispatch("getReserationInfo", this.$store.state.myEmail);
     if (this.isPro) {
       this.$store.dispatch("getReserationProInfo", this.$store.state.myEmail);

@@ -260,14 +260,15 @@ export default {
   list-style: none;
 }
 .BG {
-  background: rgb(0, 2, 53);
+  background: #000125;
 }
 img {
   width: 100%;
 }
 .pic {
   padding: 50px;
-  background: #000235;
+  border: none;
+  background: #000125;
 }
 .pic img {
   margin: auto;

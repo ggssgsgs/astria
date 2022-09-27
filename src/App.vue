@@ -217,6 +217,8 @@ export default {
       this.$store.state.myEmail = localStorage.getItem("myemail");
       this.$store.dispatch("getAccountInfo", this.$store.state.myEmail);
 
+      //
+
       //需要密碼
       //this.$store.dispatch("getLoginInfo", this.$store.state.myEmail);
     } else {
@@ -309,7 +311,7 @@ option {
   width: 100vw;
 }
 .BG {
-  background: rgb(0, 2, 53);
+  background: #000125;
   display: flex;
   justify-content: center;
   width: 100vw;

@@ -77,7 +77,7 @@
 import LoginByCode from "./LoginByCode.vue";
 import LoginByPwd from "./LoginByPwd.vue";
 //import axios from "axios";
-import { useStore } from "vuex";
+import {useStore} from "vuex";
 
 export default {
   setup() {
@@ -157,7 +157,7 @@ export default {
             console.log(this.a);
             if (this.a == "登入成功") {
               localStorage.setItem("token", "ImLogin");
-              this.$store.commit("testChangeFriendsName", { name: this.a });
+              this.$store.commit("testChangeFriendsName", {name: this.a});
               localStorage.setItem("myemail", `${this.users}`);
               localStorage.setItem("mymsg", `${this.a}`);
 
@@ -246,7 +246,7 @@ export default {
   list-style: none;
 }
 .BG {
-  background: rgb(0, 2, 53);
+  background: #000125;
 }
 img {
   width: 100%;

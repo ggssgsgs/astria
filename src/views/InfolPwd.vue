@@ -44,6 +44,8 @@
 </template>
 <script>
 import {reg_pwdCommon, reg_email} from "../utils/validate";
+
+import Swal from "sweetalert2";
 export default {
   name: "InfolPwd",
   data() {
@@ -124,6 +126,18 @@ export default {
               this.user.password = "";
               this.user.repassword = "";
               console.log("密碼更新成功");
+
+              Swal.fire({
+                // position: "top-end",
+                icon: "success",
+                title: "修改成功",
+                //text: "請重新登入開始您的藏星體驗",
+                iconColor: "rgba(0,2,53,0.3)",
+                showConfirmButton: false,
+              }).then((result) => {
+                localStorage.setItem("token", "ImLogin");
+                this.$router.push("/myInfo");
+              });
             }
           })
           .catch(function (err) {
@@ -131,6 +145,17 @@ export default {
           });
       } else {
         console.log("密碼更新失敗");
+        Swal.fire({
+          // position: "top-end",
+          //icon: "success",
+          title: "發生狀況",
+          text: "請嘗試重新操作一次",
+          iconColor: "rgba(0,2,53,0.3)",
+          showConfirmButton: false,
+        }).then((result) => {
+          this.$store.commit("logOut");
+          this.$router.push("/");
+        });
       }
     },
   },

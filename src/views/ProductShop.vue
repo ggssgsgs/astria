@@ -27,7 +27,7 @@
             <swiper-slide v-for="item in pslessons">
               <div class="shopItem">
                 <div class="image">
-                  <img src="../assets/img/lessons/lesson1.jpg">
+                  <img :src="item.Photo">
                 </div>
                 <h4>{{ item.Lesson }}</h4>
                 <p>{{ item.Time }} mins NTD${{ item.Cost }} 起</p>
@@ -101,6 +101,8 @@ export default {
         this.msglocation = body.Address;
         this.msgp1 = body.Experience;
         this.pslessons = body.LessonTC;
+       
+
       })
       .catch(function (err) {
         console.log(err);
@@ -119,9 +121,7 @@ export default {
       msglocation: "",
       msgp1: "",
       pslessons: [],
-   
-     
-     
+ 
     };
   },
   methods: {

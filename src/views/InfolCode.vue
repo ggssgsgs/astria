@@ -135,7 +135,7 @@
       </div>
     </div>
   </div>
-  <div class="card outLink mx-1 mx-md-5">
+  <!-- <div class="card outLink mx-1 mx-md-5">
     <h3>快速登入</h3>
     <div class="d-flex outLink-d">
       <div class="outlink-item">
@@ -174,7 +174,7 @@
         <p class="infoTxt">收到Astria藏星電話通知</p>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="card onsubmitcontent mx-1 mx-md-5">
     <div class="btn onsubmit" @click.prevent="nativeSubmit" :disabled="status">
       <h5>修改</h5>
@@ -187,6 +187,8 @@ import {computed} from "@vue/runtime-core";
 import google from "../assets/img/icons/google.png";
 import {reg_phoneType2} from "../utils/validate";
 import {reg_email} from "../utils/validate";
+
+import Swal from "sweetalert2";
 
 //星座圖
 import lAries from "../assets/img/signLogos/Aries_pink_400p.png";
@@ -422,13 +424,35 @@ export default {
             console.log(body);
             this.remsg = body.Status;
             this.remsgg = body.Msg;
-            alert(this.remsg + this.remsgg);
+            //alert(this.remsg + this.remsgg);
             if (this.remsg != 1) {
               //   alert("失敗");
+              Swal.fire({
+                // position: "top-end",
+                //icon: "success",
+                title: "修改失敗",
+                text: "請嘗試重新登入一次",
+                iconColor: "rgba(0,2,53,0.3)",
+                showConfirmButton: false,
+              }).then((result) => {
+                this.$store.commit("logOut");
+                this.$router.push("/");
+              });
             } else {
               //   alert("成功");
-              localStorage.setItem("token", "ImLogin");
-              this.$router.push("/myInfo");
+
+              Swal.fire({
+                // position: "top-end",
+                icon: "success",
+                title: "修改成功",
+                //text: "請重新登入開始您的藏星體驗",
+                iconColor: "rgba(0,2,53,0.3)",
+                showConfirmButton: false,
+              }).then((result) => {
+                localStorage.setItem("token", "ImLogin");
+
+                this.$router.push("/myInfo");
+              });
             }
           })
           .catch(function (err) {
@@ -454,6 +478,18 @@ export default {
         console.log(chPhone);
         console.log(chEmail);
         console.log("表單註冊失敗");
+
+        Swal.fire({
+          // position: "top-end",
+          //icon: "success",
+          title: "發生狀況",
+          text: "請嘗試重新操作一次",
+          iconColor: "rgba(0,2,53,0.3)",
+          showConfirmButton: false,
+        }).then((result) => {
+          this.$store.commit("logOut");
+          this.$router.push("/");
+        });
       }
     },
   },

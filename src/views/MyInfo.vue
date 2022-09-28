@@ -21,7 +21,7 @@
             }"
             @click="content = 'InfolPwd'"
           >
-            <h4>忘記密碼</h4>
+            <h4>修改密碼</h4>
           </div>
           <div
             class="btn"

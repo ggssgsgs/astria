@@ -184,6 +184,8 @@
 <script>
 import google from "../assets/img/icons/google.png";
 import {reg_phoneType2} from "../utils/validate";
+
+import Swal from "sweetalert2";
 export default {
   name: "InfolCode",
   components: {
@@ -286,7 +288,7 @@ export default {
     },
     nativeSubmit() {
       if (!this.submitDisabled) {
-        alert("進入if");
+        //alert("進入if");
 
         // let chName = this.form.name.value;
         // let chGender = this.form.gender.value;
@@ -358,11 +360,32 @@ export default {
             alert(this.remsg + this.remsgg);
             if (this.remsg != 1) {
               //   alert("失敗");
+              Swal.fire({
+                // position: "top-end",
+                //icon: "success",
+                title: "修改失敗",
+                text: "請嘗試重新登入一次",
+                iconColor: "rgba(0,2,53,0.3)",
+                showConfirmButton: false,
+              }).then((result) => {
+                this.$store.commit("logOut");
+                this.$router.push("/");
+              });
             } else {
               //   alert("成功");
-              localStorage.setItem("token", "ImLogin");
-              this.$router.push("/myInfo");
-              localStorage.setItem("isPro", "True");
+              Swal.fire({
+                // position: "top-end",
+                icon: "success",
+                title: "修改成功",
+                //text: "請重新登入開始您的藏星體驗",
+                iconColor: "rgba(0,2,53,0.3)",
+                showConfirmButton: false,
+              }).then((result) => {
+                localStorage.setItem("token", "ImLogin");
+
+                localStorage.setItem("isPro", "True");
+                this.$router.push("/myInfo");
+              });
             }
           })
           .catch(function (err) {
@@ -372,7 +395,8 @@ export default {
 
         // 接下來就是進入表單下一步動作，反之阻擋住
       } else {
-        alert("沒進FETCH");
+        //alert("沒進FETCH");
+
         let chName = this.form.name.value;
         let chGender = this.form.gender.value;
         let chSelect = this.form.skill.value;
@@ -389,6 +413,18 @@ export default {
         console.log(chPhone);
         console.log(chEmail);
         console.log(chtextmsg);
+
+        Swal.fire({
+          // position: "top-end",
+          //icon: "success",
+          title: "發生狀況",
+          text: "請嘗試重新操作一次",
+          iconColor: "rgba(0,2,53,0.3)",
+          showConfirmButton: false,
+        }).then((result) => {
+          this.$store.commit("logOut");
+          this.$router.push("/");
+        });
       }
     },
   },

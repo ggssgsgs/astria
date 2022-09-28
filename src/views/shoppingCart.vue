@@ -41,7 +41,7 @@
             </div>
             <div class="count d-flex">
               <p>商品數量</p>
-              <p>{{ this.TheTime }}項</p>
+              <p>1項</p>
             </div>
             <div class="total d-flex">
               <p>商品總金額</p>
@@ -66,7 +66,9 @@
   </div>
 </template>
 <script>
-import {useStore} from "vuex";
+import { useStore } from "vuex";
+//import sweetalert
+import Swal from "sweetalert2";
 export default {
   setup() {
     const store = useStore();
@@ -88,6 +90,7 @@ export default {
       TheLocation: "",
       TheTime: "",
       TheCost: "",
+      pStatus:"",
     };
   },
   methods: {
@@ -133,7 +136,20 @@ export default {
           return re.json();
         })
         .then((body) => {
-          console.log(body);
+          // console.log(body);
+          this.pStatus=body.Status
+          if (this.pStatus == "1") {
+            Swal.fire({
+              // position: "top-end",
+              icon: "success",
+              title: "預約成功",
+              text: "可以查看你的預約課程",
+              iconColor: "rgba(0,2,53,0.3)",
+              showConfirmButton: false,
+            }).then((result) => {
+              this.$router.push("/productShop");
+            });
+          }
         })
         .catch(function (err) {
           console.log(err);
@@ -228,6 +244,7 @@ h3 {
   justify-content: space-between;
   margin: 10px auto;
   padding-top: 30px;
+  
 }
 p {
   letter-spacing: 0.1rem;
@@ -239,6 +256,7 @@ p {
   textarea {
     width: 60%;
     color: #666;
+
   }
   button {
     width: 120px;

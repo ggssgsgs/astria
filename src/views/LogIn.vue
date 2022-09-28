@@ -80,7 +80,7 @@ import LoginByCode from "./LoginByCode.vue";
 import LoginByPwd from "./LoginByPwd.vue";
 //import axios from "axios";
 import {useStore} from "vuex";
-
+import Swal from "sweetalert2";
 export default {
   setup() {
     const store = useStore();
@@ -179,6 +179,17 @@ export default {
               this.$store.commit("loginSet", body.Req);
               this.$store.state.isLogIn = true;
               this.$router.push("/");
+            } else {
+              Swal.fire({
+                // position: "top-end",
+                //icon: "success",
+                title: "密碼錯誤",
+                text: "請嘗試重新輸入一次，或點選忘記密碼",
+                iconColor: "rgba(0,2,53,0.3)",
+                showConfirmButton: false,
+              }).then((result) => {
+                //this.$router.push("/");
+              });
             }
           })
           // .then(body => this.datas = body.Msg

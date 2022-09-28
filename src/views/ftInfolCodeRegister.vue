@@ -359,7 +359,7 @@ export default {
             console.log(body);
             this.remsg = body.Status;
             this.remsgg = body.Msg;
-            alert(this.remsg + this.remsgg);
+            //alert(this.remsg + this.remsgg);
             if (this.remsg != 1) {
               //   alert("失敗");
               Swal.fire({
